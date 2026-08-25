@@ -30,7 +30,7 @@ export default function Capabilities() {
         <ScrollReveal>
           <div className="text-center mb-16 md:mb-32">
             <h2 className="text-display font-bold text-text-primary">
-              Everything business needs to grow digitally.
+              Всё, что нужно бизнесу для цифрового роста.
             </h2>
           </div>
         </ScrollReveal>

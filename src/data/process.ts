@@ -7,27 +7,27 @@ export interface ProcessStep {
 export const processSteps: ProcessStep[] = [
   {
     number: '01',
-    title: 'Understand',
-    description: 'Business, market, customer journey.',
+    title: 'Погружение',
+    description: 'Изучаем ваш бизнес, рынок и путь клиента (CJM).',
   },
   {
     number: '02',
-    title: 'Design',
-    description: 'Architecture, funnel and solution.',
+    title: 'Проектирование',
+    description: 'Разрабатываем архитектуру, воронку и техническое решение.',
   },
   {
     number: '03',
-    title: 'Build',
-    description: 'Website, automation, data systems.',
+    title: 'Разработка',
+    description: 'Создаём сайт, настраиваем автоматизацию и системы данных.',
   },
   {
     number: '04',
-    title: 'Launch',
-    description: 'Traffic, integrations and analytics.',
+    title: 'Запуск',
+    description: 'Подключаем трафик, интеграции и сквозную аналитику.',
   },
   {
     number: '05',
-    title: 'Optimize',
-    description: 'Conversion, cost, workflows and revenue.',
+    title: 'Оптимизация',
+    description: 'Улучшаем конверсию, снижаем стоимость лида и растим выручку.',
   },
 ];

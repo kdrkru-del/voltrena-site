@@ -11,7 +11,7 @@ export default function Solutions() {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <ScrollReveal>
           <SectionHeading
-            title="Solutions, not isolated services."
+            title="Готовые решения, а не просто услуги."
             align="center"
           />
         </ScrollReveal>

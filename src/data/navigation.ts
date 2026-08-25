@@ -1,12 +1,12 @@
 export const navigationLinks = [
-  { label: 'Services', href: '/services' },
-  { label: 'Solutions', href: '/solutions' },
-  { label: 'Cases', href: '/cases' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Услуги', href: '/services' },
+  { label: 'Решения', href: '/solutions' },
+  { label: 'Кейсы', href: '/cases' },
+  { label: 'О нас', href: '/about' },
+  { label: 'Контакты', href: '/contact' },
 ] as const;
 
 export const ctaButton = {
-  label: 'Discuss a project',
+  label: 'Обсудить проект',
   href: '/contact',
 } as const;

@@ -67,7 +67,7 @@ export default function Process() {
     <section className="py-section bg-bg-secondary overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
-          <SectionHeading title="From problem to working system." />
+          <SectionHeading title="От проблемы к работающей системе." />
         </ScrollReveal>
 
         <div className="mt-16 relative" ref={containerRef}>

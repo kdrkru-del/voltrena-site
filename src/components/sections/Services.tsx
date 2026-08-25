@@ -11,7 +11,7 @@ export default function Services() {
       <div className="container mx-auto px-4 md:px-6">
         <ScrollReveal>
           <SectionHeading
-            title="Full-cycle digital services."
+            title="Полный цикл цифровых услуг."
           />
         </ScrollReveal>
 

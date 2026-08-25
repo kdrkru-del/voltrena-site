@@ -17,18 +17,17 @@ export default function Footer() {
               </span>
             </Link>
             <p className="mt-4 text-text-secondary text-sm leading-relaxed max-w-sm">
-              Digital Growth &amp; Automation Agency. We build connected systems that find
-              customers, convert leads, and automate sales.
+              Агентство цифрового роста и автоматизации. Мы строим объединенные системы, которые находят клиентов, конвертируют лиды и автоматизируют продажи.
             </p>
             <p className="mt-6 text-text-muted text-xs font-mono">
-              Websites · Marketing · AI · Automation · Data
+              Сайты · Маркетинг · ИИ · Автоматизация · Данные
             </p>
           </div>
 
           {/* Navigation */}
           <div>
             <h3 className="text-xs font-mono tracking-[0.2em] uppercase text-text-secondary mb-4">
-              Navigation
+              Навигация
             </h3>
             <nav aria-label="Footer navigation">
               <ul className="space-y-3">
@@ -49,7 +48,7 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <h3 className="text-xs font-mono tracking-[0.2em] uppercase text-text-secondary mb-4">
-              Contact
+              Контакты
             </h3>
             <ul className="space-y-3">
               <li>
@@ -77,13 +76,13 @@ export default function Footer() {
         {/* Bottom */}
         <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-text-muted">
-            © {new Date().getFullYear()} VOLTRENA Digital. All rights reserved.
+            © {new Date().getFullYear()} VOLTRENA Digital. Все права защищены.
           </p>
           <Link
             href="/privacy"
             className="text-xs text-text-muted hover:text-text-secondary transition-colors"
           >
-            Privacy Policy
+            Политика конфиденциальности
           </Link>
         </div>
       </div>

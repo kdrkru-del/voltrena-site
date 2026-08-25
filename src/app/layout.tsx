@@ -17,34 +17,34 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'VOLTRENA Digital — Digital Growth & Automation Agency',
+  title: 'VOLTRENA Digital — Агентство цифрового роста и автоматизации',
   description:
-    'We build connected digital systems that find customers, convert leads, and automate sales. Websites, performance marketing, AI, automation, and data — in one growth system.',
+    'Мы создаем цифровые системы, которые находят клиентов, конвертируют лиды и автоматизируют продажи. Сайты, маркетинг, ИИ, автоматизация и данные — в единой системе роста.',
   keywords: [
-    'digital agency',
-    'growth system',
-    'website development',
-    'AI automation',
+    'цифровое агентство',
+    'система роста',
+    'разработка сайтов',
+    'ИИ автоматизация',
     'CRM',
-    'lead generation',
+    'лидогенерация',
     'SEO',
-    'web scraping',
-    'business automation',
-    'digital marketing',
+    'парсинг',
+    'автоматизация бизнеса',
+    'цифровой маркетинг',
   ],
   openGraph: {
-    title: 'VOLTRENA Digital — Digital Growth & Automation Agency',
+    title: 'VOLTRENA Digital — Агентство цифрового роста и автоматизации',
     description:
-      'Websites, performance marketing, AI, automation and data — connected into one growth system.',
+      'Мы создаем цифровые системы, которые находят клиентов, конвертируют лиды и автоматизируют продажи. Сайты, маркетинг, ИИ, автоматизация и данные — в единой системе роста.',
     type: 'website',
-    locale: 'en_US',
+    locale: 'ru_RU',
     siteName: 'VOLTRENA Digital',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'VOLTRENA Digital — Digital Growth & Automation Agency',
+    title: 'VOLTRENA Digital — Агентство цифрового роста и автоматизации',
     description:
-      'Websites, performance marketing, AI, automation and data — connected into one growth system.',
+      'Мы создаем цифровые системы, которые находят клиентов, конвертируют лиды и автоматизируют продажи. Сайты, маркетинг, ИИ, автоматизация и данные — в единой системе роста.',
   },
   robots: {
     index: true,
@@ -58,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="ru" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="font-sans antialiased">
         <Header />
         <main>{children}</main>

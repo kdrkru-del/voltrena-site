@@ -8,26 +8,26 @@ export interface Solution {
 export const solutions: Solution[] = [
   {
     id: 'lead-generation',
-    title: 'Lead Generation System',
-    components: ['Landing', 'Ads', 'Analytics', 'CRM'],
-    description: 'End-to-end system that attracts, captures, and qualifies leads automatically.',
+    title: 'Система генерации лидов',
+    components: ['Лендинг', 'Реклама', 'Аналитика', 'CRM'],
+    description: 'Комплексная система, которая автоматически привлекает, собирает и квалифицирует заявки.',
   },
   {
     id: 'b2b-lead-machine',
-    title: 'B2B Lead Machine',
-    components: ['Target companies', 'Data collection', 'Enrichment', 'Outreach', 'Automation'],
-    description: 'Automated B2B pipeline from target identification to first contact.',
+    title: 'B2B Лид-машина',
+    components: ['Целевые компании', 'Сбор данных', 'Обогащение', 'Аутрич', 'Автоматизация'],
+    description: 'Автоматизированная B2B воронка: от поиска компаний до первого контакта.',
   },
   {
     id: 'ai-sales-manager',
-    title: 'AI Sales Manager',
-    components: ['AI Agent', 'Knowledge Base', 'CRM', 'Telegram / Website', 'Lead Qualification'],
-    description: 'AI-powered sales assistant that qualifies and routes leads 24/7.',
+    title: 'ИИ Менеджер по продажам',
+    components: ['ИИ-агент', 'База знаний', 'CRM', 'Telegram / Сайт', 'Квалификация'],
+    description: 'ИИ-ассистент, который общается с клиентами и квалифицирует лиды 24/7.',
   },
   {
     id: 'digital-intelligence',
-    title: 'Digital Intelligence',
-    components: ['Market data', 'Competitors', 'Prices', 'Monitoring', 'Dashboards'],
-    description: 'Real-time market and competitor intelligence for informed decisions.',
+    title: 'Цифровая разведка',
+    components: ['Рыночные данные', 'Конкуренты', 'Цены', 'Мониторинг', 'Дашборды'],
+    description: 'Мониторинг рынка и конкурентов в реальном времени для принятия решений.',
   },
 ];

@@ -14,27 +14,27 @@ export default function FinalCTA() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         <ScrollReveal className="max-w-3xl mx-auto flex flex-col items-center">
           <h2 className="text-display-xl font-bold text-text-primary mb-6 tracking-tight">
-            Let's build your growth system.
+            Давайте построим вашу систему роста.
           </h2>
           
           <p className="text-text-secondary text-lg md:text-xl max-w-2xl mx-auto mb-10">
-            Tell us what you want to improve. We'll design the digital system around it.
+            Расскажите, что вы хотите улучшить. Мы спроектируем цифровую систему специально для вас.
           </p>
           
           <Button variant="primary" size="lg" className="mb-8">
-            Discuss your project
+            Обсудить проект
           </Button>
           
           <div className="font-mono text-xs text-text-muted flex flex-wrap items-center justify-center gap-2">
-            <span>Websites</span>
+            <span>Сайты</span>
             <span className="opacity-50">·</span>
-            <span>Marketing</span>
+            <span>Маркетинг</span>
             <span className="opacity-50">·</span>
-            <span>AI</span>
+            <span>ИИ</span>
             <span className="opacity-50">·</span>
-            <span>Automation</span>
+            <span>Автоматизация</span>
             <span className="opacity-50">·</span>
-            <span>Data</span>
+            <span>Данные</span>
           </div>
         </ScrollReveal>
       </div>

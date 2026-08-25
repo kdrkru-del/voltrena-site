@@ -8,13 +8,13 @@ import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { registerGSAP, gsap, ScrollTrigger } from '@/animations/gsap-config'
 
 const nodes = [
-  { id: 'traffic', label: 'Traffic' },
-  { id: 'website', label: 'Website' },
-  { id: 'ai', label: 'AI' },
+  { id: 'traffic', label: 'Трафик' },
+  { id: 'website', label: 'Сайт' },
+  { id: 'ai', label: 'ИИ' },
   { id: 'crm', label: 'CRM' },
-  { id: 'sales', label: 'Sales' },
-  { id: 'analytics', label: 'Analytics' },
-  { id: 'growth', label: 'Growth' }
+  { id: 'sales', label: 'Продажи' },
+  { id: 'analytics', label: 'Аналитика' },
+  { id: 'growth', label: 'Рост' }
 ]
 
 export default function ConnectedSystem() {
@@ -93,19 +93,19 @@ export default function ConnectedSystem() {
         <div className="max-w-4xl mx-auto text-center mb-24">
           <ScrollReveal>
             <h2 className="text-display font-bold text-text-primary mb-6 leading-tight">
-              A website is only <span className="text-text-muted">one part of the system.</span>
+              Сайт — это лишь <span className="text-text-muted">одна часть системы.</span>
             </h2>
           </ScrollReveal>
           
           <ScrollReveal delay={0.2}>
             <p className="text-heading text-text-secondary mb-12">
-              Most businesses hire a web studio, advertising specialist, CRM integrator and automation developer separately.
+              Большинство бизнесов нанимают веб-студию, таргетолога, интегратора CRM и разработчика автоматизации по отдельности.
             </p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.4}>
             <h3 className="text-display-xl font-bold text-gradient inline-block pb-2">
-              We connect everything.
+              Мы объединяем всё.
             </h3>
           </ScrollReveal>
         </div>

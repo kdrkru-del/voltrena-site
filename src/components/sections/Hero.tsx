@@ -8,10 +8,10 @@ import NodeNetwork from '@/components/ui/NodeNetwork'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 
 const rotators = [
-  'We build websites.',
-  'We generate demand.',
-  'We automate sales.',
-  'We build growth systems.'
+  'Мы создаем сайты.',
+  'Мы генерируем спрос.',
+  'Мы автоматизируем продажи.',
+  'Мы строим системы роста.'
 ]
 
 export default function Hero() {
@@ -65,7 +65,7 @@ export default function Hero() {
           variants={itemVariants}
           className="text-display-xl font-bold tracking-tight text-text-primary mb-6"
         >
-          <span className="block mb-2">From first click to sale.</span>
+          <span className="block mb-2">От первого клика до продажи.</span>
           <div className="h-[1.2em] relative overflow-hidden flex justify-center text-accent-light">
             <AnimatePresence mode="wait">
               <motion.span
@@ -86,7 +86,7 @@ export default function Hero() {
           variants={itemVariants}
           className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10"
         >
-          Websites, performance marketing, AI, automation and data — connected into one growth system.
+          Сайты, маркетинг, ИИ, автоматизация и данные — объединенные в единую систему роста.
         </motion.p>
 
         <motion.div 
@@ -94,10 +94,10 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Button href="/contact">
-            Discuss your project
+            Обсудить проект
           </Button>
           <Button href="#capabilities" variant="secondary">
-            Explore what we do
+            Посмотреть услуги
           </Button>
         </motion.div>
       </motion.div>
@@ -109,7 +109,7 @@ export default function Hero() {
         transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
       >
-        <span className="text-xs uppercase tracking-widest text-text-muted font-medium">Scroll</span>
+        <span className="text-xs uppercase tracking-widest text-text-muted font-medium">Вниз</span>
         <motion.div 
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}

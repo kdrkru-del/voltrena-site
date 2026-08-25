@@ -85,17 +85,17 @@ export default function GrowthSystem() {
 
   const renderMobileView = () => (
     <div className="flex flex-col gap-12 py-12 px-6">
-      <SectionHeading title="One connected growth system." />
+      <SectionHeading title="Единая система роста." />
       {/* Simplified Mobile View */}
       {[
-        { stage: 'ATTRACT', desc: 'Search, Ads, SEO, B2B' },
-        { stage: 'CONNECT', desc: 'Website & Landing Pages' },
-        { stage: 'CAPTURE', desc: 'Lead Generation' },
-        { stage: 'QUALIFY', desc: 'AI Scoring' },
-        { stage: 'MANAGE', desc: 'CRM Integration' },
-        { stage: 'SELL', desc: 'Sales Enablement' },
-        { stage: 'ANALYZE', desc: 'Data Analytics' },
-        { stage: 'GROW', desc: 'Revenue Growth' },
+        { stage: 'ПРИВЛЕЧЕНИЕ', desc: 'Поиск, Реклама, SEO, B2B' },
+        { stage: 'CONNECT', desc: 'Сайт и Лендинги' },
+        { stage: 'CAPTURE', desc: 'Генерация лидов' },
+        { stage: 'QUALIFY', desc: 'Оценка ИИ' },
+        { stage: 'MANAGE', desc: 'Интеграция с CRM' },
+        { stage: 'SELL', desc: 'Система продаж' },
+        { stage: 'АНАЛИТИКА', desc: 'Аналитика данных' },
+        { stage: 'РОСТ', desc: 'Рост выручки' },
       ].map((item, idx) => (
         <ScrollReveal key={idx} delay={idx * 0.1}>
           <div className="bg-bg-surface p-6 rounded-xl border border-white/5">
@@ -114,15 +114,15 @@ export default function GrowthSystem() {
   return (
     <section ref={containerRef} className="bg-bg-secondary min-h-screen relative overflow-hidden flex items-center justify-center">
       <div className="absolute top-32 left-1/2 -translate-x-1/2 text-center w-full z-10 pointer-events-none">
-        <h2 className="text-display font-bold text-text-primary mb-4">One connected growth system.</h2>
+        <h2 className="text-display font-bold text-text-primary mb-4">Единая система роста.</h2>
         
         {/* Stage Labels */}
         <div className="relative h-12 flex justify-center">
-          <div className="stage-label label-attract absolute text-xl text-accent font-medium">ATTRACT</div>
-          <div className="stage-label label-convert absolute text-xl text-accent font-medium">CONVERT</div>
-          <div className="stage-label label-automate absolute text-xl text-accent font-medium">AUTOMATE</div>
-          <div className="stage-label label-analyze absolute text-xl text-accent font-medium">ANALYZE</div>
-          <div className="stage-label label-grow absolute text-xl text-accent font-medium">GROW</div>
+          <div className="stage-label label-attract absolute text-xl text-accent font-medium">ПРИВЛЕЧЕНИЕ</div>
+          <div className="stage-label label-convert absolute text-xl text-accent font-medium">КОНВЕРСИЯ</div>
+          <div className="stage-label label-automate absolute text-xl text-accent font-medium">АВТОМАТИЗАЦИЯ</div>
+          <div className="stage-label label-analyze absolute text-xl text-accent font-medium">АНАЛИТИКА</div>
+          <div className="stage-label label-grow absolute text-xl text-accent font-medium">РОСТ</div>
         </div>
       </div>
 
@@ -144,11 +144,11 @@ export default function GrowthSystem() {
           {/* Nodes */}
           <g className="node-source">
             <rect x="50" y="130" width="100" height="40" rx="20" fill="#1a1a25" stroke="#333" />
-            <text x="100" y="155" textAnchor="middle" fill="#8888a0" fontSize="12">SEARCH</text>
+            <text x="100" y="155" textAnchor="middle" fill="#8888a0" fontSize="12">ПОИСК</text>
           </g>
           <g className="node-source">
             <rect x="50" y="230" width="100" height="40" rx="20" fill="#1a1a25" stroke="#333" />
-            <text x="100" y="255" textAnchor="middle" fill="#8888a0" fontSize="12">ADS</text>
+            <text x="100" y="255" textAnchor="middle" fill="#8888a0" fontSize="12">РЕКЛАМА</text>
           </g>
           <g className="node-source">
             <rect x="50" y="330" width="100" height="40" rx="20" fill="#1a1a25" stroke="#333" />
@@ -161,18 +161,18 @@ export default function GrowthSystem() {
 
           <g className="node-website">
             <circle cx="350" cy="300" r="40" fill="#12121a" stroke="#6366f1" strokeWidth="2" />
-            <text x="350" y="305" textAnchor="middle" fill="#f0f0f5" fontSize="14" fontWeight="bold">WEBSITE</text>
+            <text x="350" y="305" textAnchor="middle" fill="#f0f0f5" fontSize="14" fontWeight="bold">САЙТ</text>
           </g>
 
           {/* Moving Lead Indicator */}
           <g className="lead-indicator">
             <circle cx="350" cy="270" r="8" fill="#818cf8" />
-            <text x="350" y="255" textAnchor="middle" fill="#818cf8" fontSize="12">LEAD</text>
+            <text x="350" y="255" textAnchor="middle" fill="#818cf8" fontSize="12">ЛИД</text>
           </g>
 
           <g className="node-ai">
             <rect x="460" y="270" width="80" height="60" rx="8" fill="#1a1a25" stroke="#6366f1" strokeWidth="2" />
-            <text x="500" y="305" textAnchor="middle" fill="#f0f0f5" fontSize="14" fontWeight="bold">AI</text>
+            <text x="500" y="305" textAnchor="middle" fill="#f0f0f5" fontSize="14" fontWeight="bold">ИИ</text>
           </g>
 
           <g className="node-crm">
@@ -182,18 +182,18 @@ export default function GrowthSystem() {
 
           <g className="node-sales">
             <circle cx="800" cy="300" r="40" fill="#12121a" stroke="#6366f1" strokeWidth="2" />
-            <text x="800" y="305" textAnchor="middle" fill="#f0f0f5" fontSize="14" fontWeight="bold">SALES</text>
+            <text x="800" y="305" textAnchor="middle" fill="#f0f0f5" fontSize="14" fontWeight="bold">ПРОДАЖИ</text>
           </g>
 
           <g className="node-analytics">
             <circle cx="650" cy="450" r="30" fill="#12121a" stroke="#8888a0" strokeWidth="2" />
-            <text x="650" y="455" textAnchor="middle" fill="#8888a0" fontSize="12">ANALYTICS</text>
+            <text x="650" y="455" textAnchor="middle" fill="#8888a0" fontSize="12">АНАЛИТИКА</text>
           </g>
 
           <g className="node-growth">
             <circle cx="850" cy="150" r="50" fill="#6366f1" fillOpacity="0.1" stroke="#6366f1" strokeWidth="2" />
-            <text x="850" y="145" textAnchor="middle" fill="#f0f0f5" fontSize="16" fontWeight="bold">↗ Growth</text>
-            <text x="850" y="165" textAnchor="middle" fill="#818cf8" fontSize="12">+ Revenue</text>
+            <text x="850" y="145" textAnchor="middle" fill="#f0f0f5" fontSize="16" fontWeight="bold">↗ Рост</text>
+            <text x="850" y="165" textAnchor="middle" fill="#818cf8" fontSize="12">+ Выручка</text>
           </g>
         </svg>
       </div>

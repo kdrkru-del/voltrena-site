@@ -1,9 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  output: 'export',
+  basePath: '/voltrena-site',
   images: {
-    formats: ['image/webp', 'image/avif'],
+    unoptimized: true,
   },
+  reactStrictMode: true,
 };
 
 export default nextConfig;
