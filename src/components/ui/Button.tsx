@@ -12,12 +12,13 @@ interface ButtonProps {
   className?: string;
   onClick?: () => void;
   type?: 'button' | 'submit';
+  disabled?: boolean;
 }
 
 const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
-  ({ variant = 'primary', size = 'default', href, children, className, onClick, type = 'button' }, ref) => {
+  ({ variant = 'primary', size = 'default', href, children, className, onClick, type = 'button', disabled }, ref) => {
     const baseStyles =
-      'inline-flex items-center justify-center font-medium transition-all duration-300 rounded-lg relative overflow-hidden group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary';
+      'inline-flex items-center justify-center font-medium transition-all duration-300 rounded-lg relative overflow-hidden group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary disabled:opacity-50 disabled:cursor-not-allowed';
 
     const variants = {
       primary:
@@ -48,7 +49,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
     }
 
     return (
-      <button type={type} className={classes} onClick={onClick} ref={ref as React.Ref<HTMLButtonElement>}>
+      <button type={type} className={classes} onClick={onClick} disabled={disabled} ref={ref as React.Ref<HTMLButtonElement>}>
         {children}
         {variant === 'primary' && (
           <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
