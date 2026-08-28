@@ -1,21 +1,4 @@
-import {
-  ApproachStep,
-  EcosystemItem,
-  FAQItem,
-  ComparisonPath,
-  FormulaStep,
-  IntentLevel,
-  RelatedService,
-  SaleSystemNode,
-  SEOData,
-  ServiceProcessStep,
-  ServiceSectionCopy,
-  ServiceType,
-  TechItem,
-  UseCase,
-  IncludedItem,
-  FlowNode,
-} from './types'; // assuming types are imported, or we can just define the interface inline
+// Service page types
 
 // Since the file originally had types, let's include the types directly to be safe:
 export interface FlowNode {
@@ -32,6 +15,7 @@ export interface ServiceType {
   title: string;
   description: string;
   featured?: boolean;
+  items?: string[];
 }
 export interface ApproachStep {
   number: string;
@@ -46,7 +30,7 @@ export interface EcosystemItem {
 export interface ServiceProcessStep {
   number: string;
   title: string;
-  description: string;
+  description?: string;
 }
 export interface TechItem {
   highlights: string[];
@@ -77,7 +61,7 @@ export interface ServiceSectionCopy {
   conclusion?: string;
   flow?: string[];
   centerLabel?: string;
-  items?: { id: string; title: string; description: string; items?: string[] }[];
+  items?: ServiceType[];
 }
 export interface IntentLevel {
   id: string;
@@ -117,11 +101,11 @@ export interface ServicePageData {
   saleSystemSection?: ServiceSectionCopy;
   saleSystemNodes?: SaleSystemNode[];
   typesSection?: ServiceSectionCopy;
-  types: ServiceType[];
+  types?: ServiceType[];
   approachSection?: ServiceSectionCopy;
-  approach: ApproachStep[];
+  approach?: ApproachStep[];
   ecosystemSection?: ServiceSectionCopy;
-  ecosystem: EcosystemItem[];
+  ecosystem?: EcosystemItem[];
   intent?: {
     tag: string;
     title: string;

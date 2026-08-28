@@ -144,21 +144,21 @@ export default function WebDevelopmentPage() {
         heroFlow={data.heroFlow}
       />
 
-      <ServiceSaleSystem nodes={data.saleSystemNodes} />
+      {data.saleSystemNodes && <ServiceSaleSystem nodes={data.saleSystemNodes} />}
 
-      <ServiceTypes types={data.types} />
+      {data.types && <ServiceTypes types={data.types} />}
 
-      <ServiceApproach steps={data.approach} />
+      {data.approach && <ServiceApproach steps={data.approach} />}
 
-      <ServiceEcosystem items={data.ecosystem} />
+      {data.ecosystem && <ServiceEcosystem items={data.ecosystem} />}
 
-      <ServiceProcess steps={data.process} />
+      {data.process && <ServiceProcess steps={data.process} />}
 
       {data.technology && <ServiceTechnology technology={data.technology} />}
 
       <ServiceLeadSystem />
 
-      <ServiceUseCases useCases={data.useCases} />
+      {data.useCases && <ServiceUseCases useCases={data.useCases} />}
 
       {data.included && <ServiceIncludes included={data.included} />}
 

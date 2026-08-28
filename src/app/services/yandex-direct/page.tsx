@@ -108,54 +108,64 @@ export default function YandexDirectPage() {
         heroExample={data.heroExample}
       />
 
-      <ServiceSaleSystem
-        nodes={data.saleSystemNodes}
-        tag={data.saleSystemSection?.tag}
-        title={data.saleSystemSection?.title}
-        description={data.saleSystemSection?.description}
-        flow={data.saleSystemSection?.flow}
-        conclusion={data.saleSystemSection?.conclusion}
-      />
+      {data.saleSystemNodes && (
+        <ServiceSaleSystem
+          nodes={data.saleSystemNodes}
+          tag={data.saleSystemSection?.tag}
+          title={data.saleSystemSection?.title}
+          description={data.saleSystemSection?.description}
+          flow={data.saleSystemSection?.flow}
+          conclusion={data.saleSystemSection?.conclusion}
+        />
+      )}
 
-      <ServiceTypes
-        types={data.types}
-        id={data.typesSection?.id}
-        tag={data.typesSection?.tag}
-        title={data.typesSection?.title}
-        description={data.typesSection?.description}
-      />
+      {data.types && (
+        <ServiceTypes
+          types={data.types}
+          id={data.typesSection?.id}
+          tag={data.typesSection?.tag}
+          title={data.typesSection?.title}
+          description={data.typesSection?.description}
+        />
+      )}
 
-      <ServiceApproach
-        steps={data.approach}
-        id={data.approachSection?.id}
-        tag={data.approachSection?.tag}
-        title={data.approachSection?.title}
-        description={data.approachSection?.description}
-      />
+      {data.approach && (
+        <ServiceApproach
+          steps={data.approach}
+          id={data.approachSection?.id}
+          tag={data.approachSection?.tag}
+          title={data.approachSection?.title}
+          description={data.approachSection?.description}
+        />
+      )}
 
       {data.intent && <ServiceIntent {...data.intent} />}
       {data.comparison && <ServiceComparison {...data.comparison} />}
 
-      <ServiceEcosystem
-        items={data.ecosystem}
-        id={data.ecosystemSection?.id}
-        tag={data.ecosystemSection?.tag}
-        title={data.ecosystemSection?.title}
-        description={data.ecosystemSection?.description}
-        centerLabel={data.ecosystemSection?.centerLabel}
-      />
+      {data.ecosystem && (
+        <ServiceEcosystem
+          items={data.ecosystem}
+          id={data.ecosystemSection?.id}
+          tag={data.ecosystemSection?.tag}
+          title={data.ecosystemSection?.title}
+          description={data.ecosystemSection?.description}
+          centerLabel={data.ecosystemSection?.centerLabel}
+        />
+      )}
 
-      <ServiceProcess
-        steps={data.process}
-        id={data.processSection?.id}
-        tag={data.processSection?.tag}
-        title={data.processSection?.title}
-        description={data.processSection?.description}
-      />
+      {data.process && (
+        <ServiceProcess
+          steps={data.process}
+          id={data.processSection?.id}
+          tag={data.processSection?.tag}
+          title={data.processSection?.title}
+          description={data.processSection?.description}
+        />
+      )}
 
       {data.recurring && <ServiceCycle {...data.recurring} />}
 
-      {data.metrics && (
+      {data.metrics && data.metrics.items && (
         <ServiceTypes
           types={data.metrics.items}
           id={data.metrics.id}
@@ -165,7 +175,7 @@ export default function YandexDirectPage() {
         />
       )}
 
-      {data.principles && (
+      {data.principles && data.principles.items && (
         <ServiceTypes
           types={data.principles.items}
           id={data.principles.id}
@@ -175,9 +185,9 @@ export default function YandexDirectPage() {
         />
       )}
 
-      <ServiceUseCases useCases={data.useCases} />
+      {data.useCases && <ServiceUseCases useCases={data.useCases} />}
 
-      {data.workModels && (
+      {data.workModels && data.workModels.items && (
         <ServiceTypes
           types={data.workModels.items}
           id={data.workModels.id}
@@ -191,7 +201,7 @@ export default function YandexDirectPage() {
         <ServiceLeadSystem
           tag={data.leadSystem.tag}
           title={data.leadSystem.title}
-          description={data.leadSystem.description}
+          description={(data.leadSystem as any).description}
           formula={data.leadSystem.formula}
           ctaLabel={data.leadSystem.ctaLabel}
           ctaHref={data.leadSystem.ctaHref}

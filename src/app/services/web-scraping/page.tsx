@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import { webScrapingData } from '@/data/service-pages'
 
@@ -120,7 +120,7 @@ export default function WebScrapingPage() {
       />
 
       <ServiceDataProblem />
-      <ServiceTypes types={data.types} />
+      {data.types && <ServiceTypes types={data.types} />}
       {data.technology && <ServiceTechnology technology={data.technology} />}
       <ServiceDataPipeline />
       
@@ -131,7 +131,7 @@ export default function WebScrapingPage() {
               {data.ecosystemSection.title}
             </h2>
           </div>
-          <ServiceEcosystem items={data.ecosystem} />
+          {data.ecosystem && <ServiceEcosystem items={data.ecosystem} />}
         </div>
       )}
 
@@ -157,7 +157,7 @@ export default function WebScrapingPage() {
       />
 
       <ServiceDataConfigurator />
-      <ServiceUseCases useCases={data.useCases} />
+      {data.useCases && <ServiceUseCases useCases={data.useCases} />}
       {data.included && <ServiceIncludes included={data.included} />}
       <ServiceDataCompliance />
       <ServiceFAQ faq={data.faq} />

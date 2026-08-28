@@ -20,7 +20,7 @@ interface ServiceHeroProps {
   title: string
   description: string
   ctaPrimary: string
-  ctaSecondary: string
+  ctaSecondary?: string
   ctaSecondaryHref?: string
   heroFlow: FlowNode[]
   heroExample?: string
