@@ -66,7 +66,7 @@ export default function Hero() {
           className="text-display-xl font-bold tracking-tight text-text-primary mb-6"
         >
           <span className="block mb-2">От первого клика до продажи.</span>
-          <div className="h-[1.2em] relative overflow-hidden flex justify-center text-accent-light">
+          <div className="h-[3.5em] min-[360px]:h-[2.4em] lg:h-[1.2em] relative overflow-hidden flex justify-center text-accent-light text-[clamp(2rem,7vw,4rem)] leading-[1.1]">
             <AnimatePresence mode="wait">
               <motion.span
                 key={currentIndex}
@@ -74,7 +74,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={currentIndex < rotators.length - 1 ? { opacity: 0, y: -40 } : undefined}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className="absolute"
+                className="absolute inset-0 flex items-center justify-center px-1"
               >
                 {rotators[currentIndex]}
               </motion.span>
