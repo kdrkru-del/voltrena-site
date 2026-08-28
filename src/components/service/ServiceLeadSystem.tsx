@@ -1,12 +1,17 @@
 'use client'
 
-import React from 'react'
 import SectionHeading from '@/components/ui/SectionHeading'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import Button from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
 
-const formulaSteps = [
+export interface FormulaStep {
+  operator: string
+  label: string
+  isResult?: boolean
+}
+
+const defaultFormulaSteps: FormulaStep[] = [
   { operator: '', label: 'САЙТ' },
   { operator: '+', label: 'Яндекс Директ' },
   { operator: '+', label: 'Аналитика' },
@@ -14,7 +19,23 @@ const formulaSteps = [
   { operator: '=', label: 'СИСТЕМА ПОЛУЧЕНИЯ ЗАЯВОК', isResult: true }
 ]
 
-export default function ServiceLeadSystem() {
+interface ServiceLeadSystemProps {
+  tag?: string
+  title?: string
+  description?: string
+  formula?: FormulaStep[]
+  ctaLabel?: string
+  ctaHref?: string
+}
+
+export default function ServiceLeadSystem({
+  tag,
+  title = 'Сайт может сразу стать системой получения заявок.',
+  description,
+  formula = defaultFormulaSteps,
+  ctaLabel = 'Обсудить систему привлечения клиентов',
+  ctaHref = '#contact',
+}: ServiceLeadSystemProps) {
   return (
     <section className="py-section bg-bg-secondary relative overflow-hidden">
       <div className="absolute inset-0 bg-dot-grid opacity-20 pointer-events-none" />
@@ -22,12 +43,12 @@ export default function ServiceLeadSystem() {
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <ScrollReveal>
-          <SectionHeading title="Сайт может сразу стать системой получения заявок." align="center" />
+          <SectionHeading tag={tag} title={title} subtitle={description} align="center" />
         </ScrollReveal>
 
         <div className="mt-16 max-w-lg mx-auto">
           <div className="flex flex-col">
-            {formulaSteps.map((step, index) => (
+            {formula.map((step, index) => (
               <ScrollReveal key={step.label} delay={0.1 + index * 0.1}>
                 <div 
                   className={cn(
@@ -53,8 +74,8 @@ export default function ServiceLeadSystem() {
 
           <ScrollReveal delay={0.6}>
             <div className="mt-12 flex justify-center">
-              <Button variant="primary" size="lg">
-                Обсудить систему привлечения клиентов
+              <Button variant="primary" size="lg" href={ctaHref}>
+                {ctaLabel}
               </Button>
             </div>
           </ScrollReveal>

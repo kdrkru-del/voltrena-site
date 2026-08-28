@@ -7,20 +7,20 @@ import LeadForm from '@/components/ui/LeadForm';
 export interface ServiceCTAProps {
   title?: string;
   description?: string;
+  benefits?: string[];
 }
 
 export default function ServiceCTA({
   title = 'Расскажите, какой сайт вам нужен.',
   description = 'Опишите задачу — мы предложим структуру, подход и систему вокруг проекта.',
-}: ServiceCTAProps) {
-  const benefits = [
+  benefits = [
     'Ответим в течение рабочего дня',
     'Без навязчивых продаж',
     'Предложим конкретное решение',
-  ];
-
+  ],
+}: ServiceCTAProps) {
   return (
-    <section className="py-section bg-bg-primary relative overflow-hidden">
+    <section id="contact" className="py-section bg-bg-primary relative overflow-hidden scroll-mt-20">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-dot-grid opacity-20 pointer-events-none"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-accent/5 blur-[150px] rounded-full pointer-events-none"></div>

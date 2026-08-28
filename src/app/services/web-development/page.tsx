@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: webDevelopmentData.seo.description,
   },
   alternates: {
-    canonical: '/services/web-development',
+    canonical: 'https://kdrkru-del.github.io/voltrena-site/services/web-development/',
   },
   robots: {
     index: true,
@@ -154,13 +154,13 @@ export default function WebDevelopmentPage() {
 
       <ServiceProcess steps={data.process} />
 
-      <ServiceTechnology technology={data.technology} />
+      {data.technology && <ServiceTechnology technology={data.technology} />}
 
       <ServiceLeadSystem />
 
       <ServiceUseCases useCases={data.useCases} />
 
-      <ServiceIncludes included={data.included} />
+      {data.included && <ServiceIncludes included={data.included} />}
 
       <ServiceFAQ faq={data.faq} />
 

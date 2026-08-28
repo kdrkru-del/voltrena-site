@@ -1,6 +1,5 @@
 'use client'
 
-import { cn } from '@/lib/utils'
 import SectionHeading from '@/components/ui/SectionHeading'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 
@@ -12,13 +11,23 @@ export interface ApproachStep {
 
 interface ServiceApproachProps {
   steps: ApproachStep[]
+  id?: string
+  tag?: string
+  title?: string
+  description?: string
 }
 
-export default function ServiceApproach({ steps }: ServiceApproachProps) {
+export default function ServiceApproach({
+  steps,
+  id,
+  tag,
+  title = 'Начинаем не с дизайна.',
+  description,
+}: ServiceApproachProps) {
   return (
-    <section className="py-section bg-bg-secondary relative overflow-hidden">
+    <section id={id} className="py-section bg-bg-secondary relative overflow-hidden scroll-mt-20">
       <div className="container mx-auto px-4">
-        <SectionHeading title="Начинаем не с дизайна." align="left" />
+        <SectionHeading tag={tag} title={title} subtitle={description} align="left" />
         
         <div className="mt-16 md:mt-24">
           {/* Mobile view: vertical timeline */}

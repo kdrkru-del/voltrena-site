@@ -18,9 +18,21 @@ export interface SaleSystemNode {
 
 interface ServiceSaleSystemProps {
   nodes: SaleSystemNode[]
+  tag?: string
+  title?: string
+  description?: string
+  flow?: string[]
+  conclusion?: string
 }
 
-export default function ServiceSaleSystem({ nodes }: ServiceSaleSystemProps) {
+export default function ServiceSaleSystem({
+  nodes,
+  tag = 'СИСТЕМА',
+  title = 'Сайт — это часть системы продаж.',
+  description,
+  flow = ['Трафик', 'Сайт', 'CRM', 'Аналитика'],
+  conclusion = 'Мы соединяем всё.',
+}: ServiceSaleSystemProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const prefersReducedMotion = useReducedMotion()
   const isMobile = useIsMobile()
@@ -68,15 +80,16 @@ export default function ServiceSaleSystem({ nodes }: ServiceSaleSystemProps) {
       
       <div className="container mx-auto px-4 relative z-10">
         <SectionHeading 
-          tag="СИСТЕМА" 
-          title="Сайт — это часть системы продаж." 
+          tag={tag}
+          title={title}
+          subtitle={description}
           align="left" 
         />
         
         {/* Desktop Flow SVG & Title */}
         <div className="hidden md:block mt-16 mb-20 max-w-4xl">
           <div className="relative h-16 w-full flex items-center justify-between">
-            <div className="absolute top-1/2 left-[10%] right-[10%] h-[2px] -translate-y-1/2 z-0">
+            <div className="absolute top-1/2 left-[4%] right-[4%] h-[2px] -translate-y-1/2 z-0">
               <svg viewBox="0 0 1000 2" preserveAspectRatio="none" className="w-full h-full overflow-visible">
                 <path 
                   className="flow-path text-accent" 
@@ -89,10 +102,10 @@ export default function ServiceSaleSystem({ nodes }: ServiceSaleSystemProps) {
               </svg>
             </div>
             
-            {['Трафик', 'Сайт', 'CRM', 'Аналитика'].map((label, idx) => (
+            {flow.map((label, idx) => (
               <div 
-                key={idx} 
-                className="bg-bg-surface border border-accent/40 text-text-primary px-6 py-2 rounded-full font-mono text-sm z-10 shadow-md"
+                key={`${label}-${idx}`}
+                className="bg-bg-surface border border-accent/40 text-text-primary px-3 lg:px-5 py-2 rounded-full font-mono text-[10px] lg:text-xs z-10 shadow-md whitespace-nowrap"
               >
                 {label}
               </div>
@@ -100,14 +113,14 @@ export default function ServiceSaleSystem({ nodes }: ServiceSaleSystemProps) {
           </div>
           
           <div className="mt-12 text-left">
-            <h3 className="final-text text-heading font-bold text-gradient opacity-0">
-              Мы соединяем всё.
+            <h3 className={cn('final-text text-heading font-bold text-gradient', !prefersReducedMotion && 'opacity-0')}>
+              {conclusion}
             </h3>
           </div>
         </div>
 
         {/* Nodes Grid */}
-        <div className="mt-12 md:mt-0 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className={cn('mt-12 md:mt-0 grid grid-cols-1 md:grid-cols-2 gap-6', nodes.length > 4 && 'lg:grid-cols-3')}>
           {nodes.map((node, i) => (
             <ScrollReveal key={node.id} direction="up" delay={i * 100}>
               <div className="bg-bg-surface border border-border rounded-xl p-6 h-full hover:border-accent/50 transition-colors">
@@ -122,7 +135,7 @@ export default function ServiceSaleSystem({ nodes }: ServiceSaleSystemProps) {
         <div className="md:hidden mt-12">
           <ScrollReveal direction="up">
             <h3 className="text-heading font-bold text-gradient">
-              Мы соединяем всё.
+              {conclusion}
             </h3>
           </ScrollReveal>
         </div>

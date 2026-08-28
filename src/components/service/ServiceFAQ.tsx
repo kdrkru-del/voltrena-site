@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import { cn } from '@/lib/utils';
@@ -19,19 +19,6 @@ export default function ServiceFAQ({ faq }: ServiceFAQProps) {
 
   const toggleAccordion = (index: number) => {
     setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
-  };
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faq.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
   };
 
   return (
@@ -86,11 +73,6 @@ export default function ServiceFAQ({ faq }: ServiceFAQProps) {
           </ScrollReveal>
         </div>
       </div>
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
     </section>
   );
 }

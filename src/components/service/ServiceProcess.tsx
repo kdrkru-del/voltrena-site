@@ -4,24 +4,38 @@ import React, { useEffect, useRef } from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import { useIsMobile } from '@/hooks/useMediaQuery';
-import { registerGSAP, gsap, ScrollTrigger } from '@/animations/gsap-config';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { registerGSAP, gsap } from '@/animations/gsap-config';
+import { cn } from '@/lib/utils';
 
 export interface ServiceProcessStep {
   number: string;
   title: string;
+  description?: string;
 }
 
 export interface ServiceProcessProps {
   steps: ServiceProcessStep[];
+  id?: string;
+  tag?: string;
+  title?: string;
+  description?: string;
 }
 
-export default function ServiceProcess({ steps }: ServiceProcessProps) {
+export default function ServiceProcess({
+  steps,
+  id,
+  tag,
+  title = 'От идеи до работающего сайта.',
+  description,
+}: ServiceProcessProps) {
   const isMobile = useIsMobile();
+  const prefersReducedMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isMobile) return;
+    if (isMobile || prefersReducedMotion) return;
     
     registerGSAP();
 
@@ -50,21 +64,22 @@ export default function ServiceProcess({ steps }: ServiceProcessProps) {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [isMobile]);
+  }, [isMobile, prefersReducedMotion]);
 
   if (isMobile) {
     return (
-      <section className="py-section bg-bg-secondary relative overflow-hidden">
+      <section id={id} className="py-section bg-bg-secondary relative overflow-hidden scroll-mt-20">
         <div className="container mx-auto px-4">
-          <SectionHeading title="От идеи до работающего сайта." align="left" />
+          <SectionHeading tag={tag} title={title} subtitle={description} align="left" />
           <div className="flex flex-col gap-4 mt-8">
             {steps.map((step, i) => (
-              <ScrollReveal key={step.number} delay={i * 0.1}>
+              <ScrollReveal key={step.number} delay={i * 80}>
                 <div className="bg-bg-surface border border-border rounded-xl p-6 relative group">
                   <div className="text-display font-bold font-mono text-accent/20 leading-none mb-2">
                     {step.number}
                   </div>
                   <h3 className="text-base font-semibold text-text-primary">{step.title}</h3>
+                  {step.description && <p className="mt-2 text-sm text-text-secondary">{step.description}</p>}
                 </div>
               </ScrollReveal>
             ))}
@@ -75,9 +90,9 @@ export default function ServiceProcess({ steps }: ServiceProcessProps) {
   }
 
   return (
-    <section ref={sectionRef} className="py-section bg-bg-secondary relative overflow-hidden">
+    <section id={id} ref={sectionRef} className="py-section bg-bg-secondary relative overflow-hidden scroll-mt-20">
       <div className="container mx-auto px-4">
-        <SectionHeading title="От идеи до работающего сайта." align="left" />
+        <SectionHeading tag={tag} title={title} subtitle={description} align="left" />
         
         <div className="relative mt-12 max-w-5xl mx-auto">
           {/* Progress Bar Track */}
@@ -92,11 +107,12 @@ export default function ServiceProcess({ steps }: ServiceProcessProps) {
           <div className="grid grid-cols-3 gap-6 relative">
             {steps.map((step, index) => (
               <React.Fragment key={step.number}>
-                <div className="process-step bg-bg-surface border border-border rounded-xl p-6 relative group opacity-0 translate-y-4">
+                <div className={cn('process-step bg-bg-surface border border-border rounded-xl p-6 relative group', !prefersReducedMotion && 'opacity-0 translate-y-4')}>
                   <div className="text-display font-bold font-mono text-accent/20 leading-none mb-2 transition-colors duration-300 group-hover:text-accent/40">
                     {step.number}
                   </div>
                   <h3 className="text-base font-semibold text-text-primary">{step.title}</h3>
+                  {step.description && <p className="mt-2 text-sm text-text-secondary leading-relaxed">{step.description}</p>}
                   
                   {/* Arrow Right (Except for last item in row) */}
                   {index % 3 !== 2 && index < steps.length - 1 && (
