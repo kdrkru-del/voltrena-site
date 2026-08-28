@@ -18,7 +18,7 @@ export default function ServiceTechnology({ technology }: ServiceTechnologyProps
 
         <div className="mt-12 flex flex-col gap-12">
           {/* Highlights Row */}
-          <ScrollReveal delay={0.1}>
+          <ScrollReveal delay={100}>
             <div className="flex overflow-x-auto pb-4 md:pb-0 md:flex-wrap gap-4 md:gap-8 items-center scrollbar-hide">
               {technology.highlights.map((highlight, index) => (
                 <React.Fragment key={highlight}>
@@ -34,7 +34,7 @@ export default function ServiceTechnology({ technology }: ServiceTechnologyProps
           </ScrollReveal>
 
           {/* Stack Pills */}
-          <ScrollReveal delay={0.2}>
+          <ScrollReveal delay={200}>
             <div className="flex flex-wrap gap-2">
               {technology.stack.map((item) => (
                 <span

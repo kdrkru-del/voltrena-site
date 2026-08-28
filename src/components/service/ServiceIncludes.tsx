@@ -38,7 +38,7 @@ export default function ServiceIncludes({ included }: ServiceIncludesProps) {
           </ScrollReveal>
 
           {/* Extra */}
-          <ScrollReveal direction="up" delay={0.1}>
+          <ScrollReveal direction="up" delay={100}>
             <div className="bg-bg-primary border border-border-light border-dashed rounded-2xl p-8 h-full relative">
               <span className="font-mono text-xs text-accent uppercase mb-4 block tracking-wider">
                 Дополнительные опции

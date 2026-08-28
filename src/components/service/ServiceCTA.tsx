@@ -51,7 +51,7 @@ export default function ServiceCTA({
           </ScrollReveal>
 
           {/* Right Column */}
-          <ScrollReveal direction="left" delay={0.1}>
+          <ScrollReveal direction="left" delay={100}>
             <div className="bg-bg-surface border border-border rounded-2xl p-6 md:p-8 shadow-xl">
               <LeadForm />
             </div>

@@ -72,7 +72,7 @@ export default function ServiceLeadSystem({
             ))}
           </div>
 
-          <ScrollReveal delay={0.6}>
+          <ScrollReveal delay={600}>
             <div className="mt-12 flex justify-center">
               <Button variant="primary" size="lg" href={ctaHref}>
                 {ctaLabel}
