@@ -1,155 +1,172 @@
-﻿export interface FlowNode {
-  id: string
-  label: string
-  detail?: string
-}
+import {
+  ApproachStep,
+  EcosystemItem,
+  FAQItem,
+  ComparisonPath,
+  FormulaStep,
+  IntentLevel,
+  RelatedService,
+  SaleSystemNode,
+  SEOData,
+  ServiceProcessStep,
+  ServiceSectionCopy,
+  ServiceType,
+  TechItem,
+  UseCase,
+  IncludedItem,
+  FlowNode,
+} from './types'; // assuming types are imported, or we can just define the interface inline
 
+// Since the file originally had types, let's include the types directly to be safe:
+export interface FlowNode {
+  id: string;
+  label: string;
+}
 export interface SaleSystemNode {
-  id: string
-  label: string
-  description: string
+  id: string;
+  label: string;
+  description: string;
 }
-
 export interface ServiceType {
-  id: string
-  title: string
-  description: string
-  featured?: boolean
-  items?: string[]
+  id: string;
+  title: string;
+  description: string;
+  featured?: boolean;
 }
-
 export interface ApproachStep {
-  number: string
-  title: string
-  description: string
+  number: string;
+  title: string;
+  description: string;
 }
-
 export interface EcosystemItem {
-  id: string
-  label: string
-  description: string
-  angle?: number
+  id: string;
+  label: string;
+  description: string;
 }
-
 export interface ServiceProcessStep {
-  number: string
-  title: string
-  description?: string
+  number: string;
+  title: string;
+  description: string;
 }
-
 export interface TechItem {
-  label: string
-  highlight?: boolean
+  highlights: string[];
+  stack: string[];
 }
-
 export interface UseCase {
-  id: string
-  title: string
-  description: string
+  id: string;
+  title: string;
+  description: string;
 }
-
 export interface IncludedItem {
-  label: string
+  base: { label: string }[];
+  extra: { label: string }[];
 }
-
 export interface FAQItem {
-  question: string
-  answer: string
+  question: string;
+  answer: string;
 }
-
 export interface RelatedService {
-  label: string
-  href: string
+  label: string;
+  href: string;
 }
-
 export interface ServiceSectionCopy {
-  tag?: string
-  title: string
-  description?: string
+  id?: string;
+  tag?: string;
+  title?: string;
+  description?: string;
+  conclusion?: string;
+  flow?: string[];
+  centerLabel?: string;
+  items?: { id: string; title: string; description: string; items?: string[] }[];
 }
-
 export interface IntentLevel {
-  id: string
-  label: string
-  description: string
-  terms: string[]
-  strength: number
+  id: string;
+  label: string;
+  description: string;
+  terms: string[];
+  strength: number;
 }
-
 export interface ComparisonPath {
-  id: string
-  label: string
-  tone: 'muted' | 'accent'
-  steps: string[]
+  id: string;
+  label: string;
+  tone: 'muted' | 'accent';
+  steps: string[];
 }
-
 export interface FormulaStep {
-  operator: string
-  label: string
-  isResult?: boolean
+  operator: string;
+  label: string;
+  isResult?: boolean;
 }
-
 export interface SEOData {
-  title: string
-  description: string
-  canonical?: string
+  title: string;
+  description: string;
+  canonical: string;
 }
 
 export interface ServicePageData {
-  slug: string
-  eyebrow: string
-  title: string
-  subtitle: string
-  description: string
-  ctaPrimary: string
-  ctaSecondary: string
-  ctaSecondaryHref?: string
-  heroFlow: FlowNode[]
-  heroExample?: string
-  saleSystemNodes: SaleSystemNode[]
-  saleSystemSection?: ServiceSectionCopy & {
-    flow: string[]
-    conclusion: string
-  }
-  types: ServiceType[]
-  typesSection?: ServiceSectionCopy & { id?: string }
-  approach: ApproachStep[]
-  approachSection?: ServiceSectionCopy & { id?: string }
-  ecosystem: EcosystemItem[]
-  ecosystemSection?: ServiceSectionCopy & { centerLabel: string; id?: string }
-  process: ServiceProcessStep[]
-  processSection?: ServiceSectionCopy & { id?: string }
-  technology?: {
-    highlights: string[]
-    stack: string[]
-  }
-  intent?: ServiceSectionCopy & { levels: IntentLevel[]; note: string }
-  comparison?: ServiceSectionCopy & { paths: ComparisonPath[]; conclusion: string }
-  recurring?: ServiceSectionCopy & { steps: string[]; conclusion: string }
-  metrics?: ServiceSectionCopy & { items: ServiceType[]; id?: string }
-  principles?: ServiceSectionCopy & { items: ServiceType[]; id?: string }
-  workModels?: ServiceSectionCopy & { items: ServiceType[]; id?: string }
-  leadSystem?: ServiceSectionCopy & {
-    formula: FormulaStep[]
-    ctaLabel: string
-    ctaHref: string
-  }
-  useCases: UseCase[]
-  included?: {
-    base: IncludedItem[]
-    extra: IncludedItem[]
-  }
-  faq: FAQItem[]
-  relatedServices: RelatedService[]
+  slug: string;
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  ctaPrimary: string;
+  ctaSecondary?: string;
+  ctaSecondaryHref?: string;
+  heroExample?: string;
+  heroFlow: FlowNode[];
+  saleSystemSection?: ServiceSectionCopy;
+  saleSystemNodes?: SaleSystemNode[];
+  typesSection?: ServiceSectionCopy;
+  types: ServiceType[];
+  approachSection?: ServiceSectionCopy;
+  approach: ApproachStep[];
+  ecosystemSection?: ServiceSectionCopy;
+  ecosystem: EcosystemItem[];
+  intent?: {
+    tag: string;
+    title: string;
+    description: string;
+    levels: IntentLevel[];
+    note: string;
+  };
+  comparison?: {
+    tag: string;
+    title: string;
+    description: string;
+    paths: ComparisonPath[];
+    conclusion: string;
+  };
+  processSection?: ServiceSectionCopy;
+  process?: ServiceProcessStep[];
+  recurring?: {
+    tag: string;
+    title: string;
+    description: string;
+    steps: string[];
+    conclusion: string;
+  };
+  metrics?: ServiceSectionCopy;
+  principles?: ServiceSectionCopy;
+  useCases?: UseCase[];
+  workModels?: ServiceSectionCopy;
+  leadSystem?: {
+    tag: string;
+    title: string;
+    formula: FormulaStep[];
+    ctaLabel: string;
+    ctaHref: string;
+  };
+  technology?: TechItem;
+  included?: IncludedItem;
+  faq: FAQItem[];
+  relatedServices: RelatedService[];
   finalCta?: {
-    title: string
-    description: string
-    benefits?: string[]
-  }
-  seo: SEOData
+    title: string;
+    description: string;
+    benefits: string[];
+  };
+  seo: SEOData;
 }
-
-// в”Ђв”Ђв”Ђ WEB DEVELOPMENT в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ
 
 // --- WEB DEVELOPMENT ---------------------------------------------------------
 
@@ -162,7 +179,7 @@ export const webDevelopmentData: ServicePageData = {
     'Проектируем и разрабатываем сайты как часть системы привлечения клиентов — с рекламой, аналитикой, CRM и автоматизацией.',
   ctaPrimary: 'Обсудить проект',
   ctaSecondary: 'Что мы создаём',
-
+  ctaSecondaryHref: '#what-we-create',
   heroFlow: [
     { id: 'traffic', label: 'Трафик' },
     { id: 'website', label: 'Сайт' },
@@ -403,7 +420,10 @@ export const webDevelopmentData: ServicePageData = {
       'Разрабатываем современные сайты для бизнеса: лендинги, многостраничные и корпоративные сайты с аналитикой, CRM и автоматизацией.',
     canonical: '/services/web-development',
   },
-}
+};
+
+// --- YANDEX DIRECT -----------------------------------------------------------
+
 export const yandexDirectData: ServicePageData = {
   slug: 'yandex-direct',
   eyebrow: 'YANDEX DIRECT',
@@ -603,7 +623,8 @@ export const yandexDirectData: ServicePageData = {
     description: 'Настраиваем и ведём Яндекс Директ для бизнеса: анализ спроса, семантика, объявления, посадочные страницы, Метрика и оптимизация стоимости заявок.',
     canonical: '/services/yandex-direct/',
   },
-}
+};
+
 // --- WEB SCRAPING -------------------------------------------------------------
 
 export const webScrapingData: ServicePageData = {
@@ -611,208 +632,93 @@ export const webScrapingData: ServicePageData = {
   eyebrow: 'WEB SCRAPING & DATA AUTOMATION',
   title: 'Собираем данные, которые помогают принимать решения.',
   subtitle: 'Превращаем открытые данные в рабочий бизнес-инструмент.',
-  description:
-    'Разрабатываем системы парсинга и мониторинга открытых источников: собираем нужную информацию, очищаем её, обновляем по расписанию и интегрируем с рабочими системами бизнеса.',
+  description: 'Настраиваем автоматический сбор, очистку и мониторинг данных с сайтов, маркетплейсов и каталогов для аналитики и автоматизации процессов.',
   ctaPrimary: 'Обсудить задачу',
-  ctaSecondary: 'Что можно собирать',
-  ctaSecondaryHref: '#what-we-collect',
-
+  ctaSecondary: 'Как это работает',
+  ctaSecondaryHref: '#pipeline',
+  heroExample: 'товары конкурентов → парсинг цен → аналитика → корректировка своей цены',
+  
   heroFlow: [
     { id: 'source', label: 'SOURCE' },
-    { id: 'collect', label: 'COLLECT' },
+    { id: 'extract', label: 'EXTRACT' },
     { id: 'clean', label: 'CLEAN' },
-    { id: 'structure', label: 'STRUCTURE' },
-    { id: 'deliver', label: 'DELIVER' },
-    { id: 'use', label: 'USE' },
+    { id: 'data', label: 'DATA' },
+    { id: 'action', label: 'ACTION' },
   ],
 
-  saleSystemNodes: [],
+  typesSection: { id: 'what-we-collect', tag: 'ТИПЫ ДАННЫХ', title: 'Что мы собираем.' },
   types: [
-    {
-      id: 'companies',
-      title: 'Компании',
-      description: 'название, сайт, отрасль, география, публичные корпоративные контакты, услуги, категории деятельности',
-      featured: true,
-    },
-    {
-      id: 'products',
-      title: 'Товары',
-      description: 'название, цена, характеристики, категория, наличие, артикул, бренд',
-    },
-    {
-      id: 'prices',
-      title: 'Цены',
-      description: 'текущая цена, изменение цены, скидки, динамика, сравнение конкурентов',
-    },
-    {
-      id: 'ads',
-      title: 'Объявления',
-      description: 'новые объявления, цена, описание, регион, дата публикации, статус',
-    },
-    {
-      id: 'catalogs',
-      title: 'Каталоги',
-      description: 'компании, товары, категории, карточки, параметры',
-    },
-    {
-      id: 'registries',
-      title: 'Публичные реестры',
-      description: 'Данные из официально доступных источников, где это разрешено правилами и применимым законодательством.',
-    },
-    {
-      id: 'market',
-      title: 'Рыночные данные',
-      description: 'ассортимент, новые компании, новые товары, новые позиции, изменения у конкурентов',
-    },
+    { id: 'ecommerce', title: 'E-commerce & Retail', description: 'Цены, остатки, характеристики товаров, отзывы и рейтинги с маркетплейсов и магазинов.', featured: true },
+    { id: 'real-estate', title: 'Недвижимость', description: 'Объекты, цены, площади, контакты агентов с площадок объявлений и сайтов застройщиков.' },
+    { id: 'b2b-leads', title: 'B2B Контакты', description: 'Сбор баз компаний, email-адресов, телефонов и ЛПР из открытых каталогов и справочников.' },
+    { id: 'content', title: 'Контент и Статьи', description: 'Парсинг новостей, статей, блогов для агрегаторов или обучения нейросетей.' },
+    { id: 'social', title: 'Отзывы и Соцсети', description: 'Сбор упоминаний бренда, комментариев и отзывов для анализа тональности.' },
+    { id: 'custom', title: 'Custom Data', description: 'Сложный парсинг закрытых площадок, сайтов с авторизацией и динамического контента (SPA).' },
   ],
-  typesSection: {
-    title: 'Какие данные можно собирать.',
-    id: 'what-we-collect',
-  },
 
-  approach: [],
-  ecosystemSection: {
-    title: 'Результат может работать автоматически.',
-    centerLabel: 'DATA SYSTEM',
-  },
+  processSection: { id: 'pipeline', tag: 'ПРОЦЕСС', title: 'Как мы работаем с данными.' },
+  process: [
+    { number: '01', title: 'Анализ источников', description: 'Изучаем структуру сайтов-доноров, защиты от парсинга и форматы данных.' },
+    { number: '02', title: 'Разработка парсера', description: 'Пишем скрипты, настраиваем прокси и обход капчи для стабильного сбора.' },
+    { number: '03', title: 'Сбор данных (Extract)', description: 'Получаем сырые данные: HTML, JSON, скрытые API.' },
+    { number: '04', title: 'Очистка (Clean)', description: 'Удаляем мусор, HTML-теги, дубликаты, приводим данные к единому формату.' },
+    { number: '05', title: 'Нормализация', description: 'Приводим разные форматы дат, цен и характеристик к единому стандарту.' },
+    { number: '06', title: 'Экспорт', description: 'Передаём готовые данные в CSV, Excel, JSON, базу данных или через API.' },
+  ],
+
+  ecosystemSection: { id: 'integrations', tag: 'ИНТЕГРАЦИИ', title: 'Куда передаём данные.', centerLabel: 'SCRAPER' },
   ecosystem: [
-    { id: 'gs', label: 'Google Sheets', description: 'Обновляем рабочую таблицу по расписанию.' },
-    { id: 'excel', label: 'Excel / CSV', description: 'Для разовых выгрузок.' },
-    { id: 'crm', label: 'CRM', description: 'Передаём новые записи в нужный pipeline.' },
-    { id: 'api', label: 'API', description: 'Отдаём данные другой системе.' },
-    { id: 'db', label: 'Database', description: 'Прямая интеграция.' },
-    { id: 'tg', label: 'Telegram', description: 'Отправляем уведомления при появлении новых событий.' },
-    { id: 'dashboard', label: 'Dashboard', description: 'Показываем ключевые показатели и изменения.' },
-    { id: 'email', label: 'Email', description: 'Регулярные отчеты.' },
-    { id: 'automation', label: 'Automation', description: 'Webhooks и триггеры.' },
-    { id: 'ai', label: 'AI', description: 'Классифицируем или кратко описываем записи.' },
+    { id: 'db', label: 'Database', description: 'Напрямую в PostgreSQL, MySQL, MongoDB.' },
+    { id: 'api', label: 'REST API', description: 'Передача данных в вашу систему через API.' },
+    { id: 'files', label: 'CSV / Excel', description: 'Регулярная выгрузка отчётов в облако или на почту.' },
+    { id: 'crm', label: 'CRM', description: 'Импорт собранных лидов или компаний прямо в CRM.' },
+    { id: 'cms', label: 'CMS / Каталог', description: 'Автоматическое обновление товаров на вашем сайте.' },
+    { id: 'bi', label: 'BI Systems', description: 'Передача в системы аналитики (Power BI, DataLens) для дашбордов.' },
+    { id: 'telegram', label: 'Telegram Bots', description: 'Мгновенные алерты об изменениях (например, цен).' },
   ],
-
-  process: [],
-  technology: {
-    highlights: ['WEBSITES', 'DIRECTORIES', 'MARKETPLACES', 'MAPS', 'PUBLIC CATALOGS', 'SEARCH ENGINES', 'OPEN REGISTRIES'],
-    stack: ['open data', 'publicly available business information', 'within applicable rules and technical constraints'],
-  },
 
   useCases: [
-    {
-      id: 'ecommerce',
-      title: 'E-commerce',
-      description: 'Мониторинг товаров, цен и ассортимента.',
-    },
-    {
-      id: 'b2bsales',
-      title: 'B2B Sales',
-      description: 'Поиск компаний и обогащение баз.',
-    },
-    {
-      id: 'manufacturing',
-      title: 'Manufacturing',
-      description: 'Мониторинг поставщиков, дилеров и рынка.',
-    },
-    {
-      id: 'realestate',
-      title: 'Real Estate',
-      description: 'Объявления, объекты и динамика предложений.',
-    },
-    {
-      id: 'logistics',
-      title: 'Logistics',
-      description: 'Базы компаний и рыночные данные.',
-    },
-    {
-      id: 'procurement',
-      title: 'Procurement',
-      description: 'Мониторинг поставщиков, товаров и цен.',
-    },
-    {
-      id: 'marketing',
-      title: 'Marketing',
-      description: 'Конкуренты, рекламные страницы, ассортимент, рынок.',
-    },
-    {
-      id: 'research',
-      title: 'Research',
-      description: 'Сбор больших массивов открытой информации.',
-    },
+    { id: 'monitoring', title: 'Мониторинг цен', description: 'Ежедневный сбор цен конкурентов для динамического ценообразования.' },
+    { id: 'lead-gen', title: 'Лидогенерация', description: 'Сбор свежих контактов компаний, которые только что открылись или опубликовали вакансию.' },
+    { id: 'catalog-fill', title: 'Наполнение каталога', description: 'Парсинг характеристик и фото товаров от поставщиков для вашего интернет-магазина.' },
+    { id: 'market-research', title: 'Анализ рынка', description: 'Сбор данных о спросе, отзывах и предложениях для исследования ниши.' },
+    { id: 'ml-training', title: 'Обучение ML', description: 'Сбор больших объёмов текстов или изображений для тренировки нейросетей.' },
   ],
 
-  included: {
-    base: [
-      { label: 'Анализ задачи и источников' },
-      { label: 'Определение полей' },
-      { label: 'Проектирование структуры данных' },
-      { label: 'Разработка парсера' },
-      { label: 'Фильтрация' },
-      { label: 'Очистка' },
-      { label: 'Дедупликация' },
-      { label: 'Нормализация' },
-      { label: 'Classification' },
+  leadSystem: {
+    tag: 'АВТОМАТИЗАЦИЯ',
+    title: 'Данные должны работать, а не лежать в таблицах.',
+    formula: [
+      { operator: '', label: 'RAW DATA' },
+      { operator: '→', label: 'SCRAPER' },
+      { operator: '→', label: 'CLEANING' },
+      { operator: '→', label: 'YOUR SYSTEM' },
+      { operator: '=', label: 'BUSINESS VALUE', isResult: true },
     ],
-    extra: [
-      { label: 'Storage & export' },
-      { label: 'Automation & monitoring' },
-      { label: 'Notifications' },
-      { label: 'CRM / Google Sheets / Database' },
-      { label: 'API / Telegram' },
-      { label: 'Dashboards' },
-      { label: 'AI processing' },
-    ],
+    ctaLabel: 'Обсудить интеграцию',
+    ctaHref: '/services/crm',
   },
 
   faq: [
-    {
-      question: 'Что такое парсинг данных?',
-      answer: 'Это автоматизированный сбор и структурирование информации из доступных цифровых источников.',
-    },
-    {
-      question: 'Какие сайты можно парсить?',
-      answer: 'Это зависит от структуры сайта, технической доступности, правил источника и характера данных. Задачу нужно оценивать индивидуально.',
-    },
-    {
-      question: 'Можно ли регулярно обновлять данные?',
-      answer: 'Да. Для подходящих источников можно создать систему периодического мониторинга.',
-    },
-    {
-      question: 'Можно ли собирать цены конкурентов?',
-      answer: 'Да, если данные публично доступны и техническая реализация соответствует условиям конкретного источника.',
-    },
-    {
-      question: 'В каком формате я получу данные?',
-      answer: 'В зависимости от задачи: Excel, CSV, Google Sheets, база данных, CRM, API или dashboard.',
-    },
-    {
-      question: 'Можно ли отправлять новые данные в Telegram?',
-      answer: 'Да. Можно настроить уведомления о новых или изменённых записях.',
-    },
-    {
-      question: 'Можно ли подключить AI?',
-      answer: 'Да. AI может использоваться для классификации, анализа и структурирования данных.',
-    },
-    {
-      question: 'Можно ли собрать базу компаний?',
-      answer: 'Да. Для этой задачи также существует отдельное направление B2B-лидогенерации.',
-    },
-    {
-      question: 'Можно ли получить закрытые данные?',
-      answer: 'Нет. VOLTRENA работает с публично доступной и законно доступной информацией.',
-    },
+    { question: 'Это законно?', answer: 'Да, парсинг открытых данных законен. Мы собираем только ту информацию, которая находится в публичном доступе и не защищена авторским правом или законами о персональных данных.' },
+    { question: 'В каком формате я получу данные?', answer: 'В любом удобном: CSV, Excel, JSON, XML, напрямую в вашу базу данных или через API.' },
+    { question: 'Можете ли вы парсить сайты с защитой (Cloudflare, капча)?', answer: 'Да, мы используем ротацию прокси, headless браузеры, эмуляцию действий человека и сервисы решения капчи для обхода сложных защит.' },
+    { question: 'Сколько стоит разработка парсера?', answer: 'Зависит от сложности сайта-донора (наличие защиты, SPA), объема данных и частоты сбора. После анализа мы даём точную оценку.' },
+    { question: 'Что если сайт изменит дизайн или структуру?', answer: 'Парсеры могут ломаться при изменении верстки. Мы предлагаем услугу технической поддержки и мониторинга работоспособности скриптов.' },
+    { question: 'Можно ли настроить ежедневный сбор?', answer: 'Да, мы настраиваем расписание (cron) для регулярного сбора данных: раз в час, раз в день, раз в неделю.' },
+    { question: 'Парсите ли вы маркетплейсы?', answer: 'Да, собираем цены, карточки товаров, отзывы и позиции с большинства популярных маркетплейсов.' },
   ],
 
   relatedServices: [
-    { label: 'B2B-лидогенерация', href: '/services/b2b-lead-generation' },
-    { label: 'Создание сайтов', href: '/services/web-development' },
+    { label: 'B2B Лидогенерация', href: '/services/b2b-lead-generation' },
+    { label: 'CRM интеграция', href: '/services/crm' },
     { label: 'ИИ и автоматизация', href: '/services/ai-automation' },
+    { label: 'Telegram боты', href: '/services/telegram-bots' },
   ],
 
-  finalCta: {
-    title: 'Какие данные вам нужны?',
-    description: 'Покажите источник или опишите задачу. Мы предложим способ сбора, структуру данных и вариант автоматизации.',
-  },
-
   seo: {
-    title: 'Парсинг сайтов и сбор данных | VOLTRENA Digital',
-    description: 'Разработка парсеров и систем сбора данных: мониторинг цен, конкурентов, товаров, компаний и открытых источников с автоматическим обновлением и интеграциями.',
-    canonical: '/services/web-scraping',
+    title: 'Web Scraping & Парсинг Данных | VOLTRENA Digital',
+    description: 'Услуги веб-скрапинга и парсинга данных. Автоматизируем сбор цен, товаров, контактов и отзывов с любых сайтов и маркетплейсов.',
+    canonical: '/services/web-scraping/',
   },
-}
+};
