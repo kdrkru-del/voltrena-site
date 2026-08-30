@@ -743,3 +743,152 @@ export const webScrapingData: ServicePageData = {
     canonical: '/services/web-scraping/',
   },
 };
+
+// --- AI & AUTOMATION ----------------------------------------------------------
+
+export const aiAutomationData: ServicePageData = {
+  slug: 'ai-automation',
+  eyebrow: 'AI & AUTOMATION',
+  title: 'Автоматизируем процессы, а не просто добавляем AI.',
+  subtitle: 'Автоматизируем работу, которую бизнес до сих пор делает вручную.',
+  description: 'Строим автоматические workflow для продаж, заявок, коммуникаций, документов и данных — с AI, CRM, Telegram и внешними сервисами.',
+  ctaPrimary: 'Обсудить автоматизацию',
+  ctaSecondary: 'Что можно автоматизировать',
+  ctaSecondaryHref: '#what-to-automate',
+
+  heroFlow: [
+    { id: 'event', label: 'EVENT' },
+    { id: 'ai', label: 'AI / LOGIC' },
+    { id: 'decision', label: 'DECISION' },
+    { id: 'action', label: 'ACTION' },
+    { id: 'system', label: 'CRM / TG / EMAIL' },
+  ],
+
+  typesSection: { id: 'what-to-automate', tag: 'АВТОМАТИЗАЦИЯ', title: 'Что можно автоматизировать.' },
+  types: [
+    { id: 'sales', title: 'Продажи', description: 'Обработка заявок, квалификация лидов, создание сделок, распределение по менеджерам, follow-up и напоминания.', featured: true },
+    { id: 'communication', title: 'Коммуникации', description: 'Первичные ответы, маршрутизация обращений, уведомления через Telegram, email и другие каналы.' },
+    { id: 'documents', title: 'Документы', description: 'Извлечение данных, заполнение шаблонов, генерация КП, суммаризация и классификация документов.' },
+    { id: 'data', title: 'Данные', description: 'Сбор, очистка, классификация, enrichment и передача данных между системами.' },
+    { id: 'operations', title: 'Внутренние операции', description: 'Создание задач, уведомления, отчёты, контроль статусов, синхронизация данных между системами.' },
+    { id: 'crm', title: 'CRM Automation', description: 'Автоматическое движение по воронке, создание задач, scoring, напоминания и обновление статусов.' },
+  ],
+
+  processSection: { id: 'how-we-build', tag: 'КАК МЫ ПРОЕКТИРУЕМ', title: 'Сначала процесс. Потом технология.' },
+  process: [
+    { number: '01', title: 'Process', description: 'Разбираем, как работа выполняется сейчас — шаг за шагом.' },
+    { number: '02', title: 'Bottleneck', description: 'Находим повторяющиеся и дорогие ручные действия.' },
+    { number: '03', title: 'Logic', description: 'Определяем правила и условия процесса.' },
+    { number: '04', title: 'Integration', description: 'Определяем системы, данные и точки соединения.' },
+    { number: '05', title: 'Automation', description: 'Строим workflow: triggers, actions, branching.' },
+    { number: '06', title: 'AI Layer', description: 'Добавляем AI только там, где он действительно даёт пользу.' },
+    { number: '07', title: 'Testing', description: 'Проверяем edge cases, ошибки и нестандартные сценарии.' },
+    { number: '08', title: 'Launch', description: 'Запускаем с мониторингом и логированием.' },
+    { number: '09', title: 'Improve', description: 'Анализируем работу процесса и дорабатываем.' },
+  ],
+
+  ecosystemSection: { id: 'integrations', tag: 'ИНТЕГРАЦИИ', title: 'Соединяем сервисы в один процесс.', centerLabel: 'AUTOMATION' },
+  ecosystem: [
+    { id: 'crm', label: 'CRM', description: 'Битрикс24, amoCRM и другие системы через API или webhooks.' },
+    { id: 'telegram', label: 'Telegram', description: 'Боты, уведомления, команды и внутренние рабочие интерфейсы.' },
+    { id: 'email', label: 'Email', description: 'Маршрутизация, классификация, draft reply и follow-up.' },
+    { id: 'sheets', label: 'Google Sheets', description: 'Чтение, запись и автоматическое обновление данных.' },
+    { id: 'db', label: 'Database', description: 'Хранение и передача данных между системами.' },
+    { id: 'ai', label: 'AI Models', description: 'Классификация, извлечение, генерация и суммаризация текста.' },
+    { id: 'api', label: 'API / Webhooks', description: 'Интеграция с любой системой через стандартные протоколы.' },
+    { id: 'website', label: 'Сайт / Форма', description: 'Приём данных с сайта как trigger для automation workflow.' },
+    { id: 'analytics', label: 'Аналитика', description: 'Dashboards, alerts и автоматические отчёты.' },
+  ],
+
+  useCases: [
+    { id: 'sales-teams', title: 'Отделы продаж', description: 'Обработка, квалификация и распределение лидов без ручного труда.' },
+    { id: 'b2b', title: 'B2B', description: 'Работа с базами компаний и автоматизация outreach-процессов.' },
+    { id: 'service-business', title: 'Сервисный бизнес', description: 'Автоматическая обработка заявок и первичное взаимодействие с клиентами.' },
+    { id: 'operations', title: 'Operations', description: 'Внутренние процессы, уведомления и синхронизация данных.' },
+    { id: 'data-heavy', title: 'Data-heavy бизнес', description: 'Сбор, обработка и доставка больших объёмов информации.' },
+    { id: 'management', title: 'Управление', description: 'Автоматические отчёты, alerts и контроль ключевых показателей.' },
+    { id: 'support', title: 'Customer Support', description: 'Первичная обработка типовых обращений и маршрутизация.' },
+  ],
+
+  saleSystemSection: {
+    tag: 'WORKFLOW',
+    title: 'Строим workflow вокруг бизнес-события.',
+    flow: ['TRIGGER', 'LOGIC', 'AI', 'ACTION', 'RESULT'],
+    conclusion: 'AI добавляется только там, где нужно анализировать текст, классифицировать данные или подготовить контент.',
+  },
+  saleSystemNodes: [
+    { id: 'trigger', label: 'TRIGGER', description: 'Новая заявка, email, форма, изменение CRM, новая строка, документ, событие.' },
+    { id: 'logic', label: 'LOGIC', description: 'Проверяем условия: тип, приоритет, канал, ответственный, данные.' },
+    { id: 'ai', label: 'AI', description: 'Классификация, извлечение данных, определение приоритета, подготовка текста.' },
+    { id: 'action', label: 'ACTION', description: 'Создание записи в CRM, задача, уведомление, email, запись в базу.' },
+    { id: 'result', label: 'RESULT', description: 'CRM / Telegram / Email / Database / Dashboard / Manager.' },
+  ],
+
+  included: {
+    base: [
+      { label: 'Анализ процесса' },
+      { label: 'Схема workflow' },
+      { label: 'Определение trigger' },
+      { label: 'Бизнес-логика и условия' },
+      { label: 'API и webhook интеграции' },
+      { label: 'AI layer и prompt design' },
+      { label: 'Data processing' },
+      { label: 'Тестирование и error handling' },
+      { label: 'Логирование и мониторинг' },
+    ],
+    extra: [
+      { label: 'CRM автоматизация' },
+      { label: 'Telegram бот' },
+      { label: 'Email маршрутизация' },
+      { label: 'Document processing' },
+      { label: 'Lead scoring' },
+      { label: 'Knowledge base' },
+      { label: 'Dashboard и alerts' },
+      { label: 'Parser интеграция' },
+    ],
+  },
+
+  leadSystem: {
+    tag: 'AI + DATA',
+    title: 'Собранные данные можно обрабатывать автоматически.',
+    formula: [
+      { operator: '', label: 'RAW DATA' },
+      { operator: 'to', label: 'AI' },
+      { operator: 'to', label: 'Classification · Summary · Priority' },
+      { operator: '=', label: 'CRM / DASHBOARD', isResult: true },
+    ],
+    ctaLabel: 'Парсинг и сбор данных',
+    ctaHref: '/services/web-scraping',
+  },
+
+  faq: [
+    { question: 'Что можно автоматизировать с помощью AI?', answer: 'Процессы, где нужно анализировать текст, классифицировать данные, извлекать информацию, готовить ответы или помогать сотрудникам принимать решения.' },
+    { question: 'Все ли процессы требуют AI?', answer: 'Нет. Многие задачи лучше решаются обычной автоматизацией без AI — быстрее, дешевле и предсказуемее. AI добавляется только там, где он даёт реальную пользу.' },
+    { question: 'Можно ли подключить CRM?', answer: 'Да, если CRM поддерживает необходимую интеграцию или API. Мы работаем с Битрикс24, amoCRM и другими системами.' },
+    { question: 'Можно ли подключить Telegram?', answer: 'Да. Telegram может использоваться для уведомлений, команд и внутренних рабочих интерфейсов.' },
+    { question: 'Можно ли автоматизировать обработку заявок?', answer: 'Да. Система может принимать данные, классифицировать обращение, создавать запись в CRM и уведомлять менеджера.' },
+    { question: 'Может ли AI отвечать клиентам?', answer: 'Да, но сценарий зависит от задачи. Для критичных процессов можно использовать согласование ответа человеком — AI готовит черновик.' },
+    { question: 'Можно ли использовать собственные документы компании?', answer: 'Да. Можно создать AI-ассистента, который работает с подготовленной базой знаний компании.' },
+    { question: 'Можно ли автоматизировать документы?', answer: 'Да. Возможность зависит от формата и структуры документов. Типичные задачи: извлечение данных, заполнение шаблонов, суммаризация.' },
+    { question: 'Можно ли интегрировать существующий парсер?', answer: 'Да. Данные из системы сбора данных можно передавать в дальнейший automation workflow для обработки и использования.' },
+  ],
+
+  finalCta: {
+    title: 'Какой процесс вы хотите автоматизировать?',
+    description: 'Опишите, что сотрудники делают вручную. Мы разберём процесс и предложим архитектуру автоматизации.',
+    benefits: ['Разберём текущий процесс', 'Предложим архитектуру workflow', 'Определим роль AI и интеграций'],
+  },
+
+  relatedServices: [
+    { label: 'Парсинг данных', href: '/services/web-scraping' },
+    { label: 'B2B Лидогенерация', href: '/services/b2b-lead-generation' },
+    { label: 'Telegram боты', href: '/services/telegram-bots' },
+    { label: 'CRM интеграция', href: '/services/crm' },
+  ],
+
+  seo: {
+    title: 'AI и автоматизация бизнеса | VOLTRENA Digital',
+    description: 'Автоматизация бизнес-процессов с AI: обработка заявок, CRM, Telegram, документы, данные, интеграции и автоматические workflow.',
+    canonical: '/services/ai-automation/',
+  },
+};
