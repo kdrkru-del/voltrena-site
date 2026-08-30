@@ -75,9 +75,7 @@ export default function ServiceProcess({
             {steps.map((step, i) => (
               <ScrollReveal key={step.number} delay={i * 80}>
                 <div className="bg-bg-surface border border-border rounded-xl p-6 relative group">
-                  <div className="text-display font-bold font-mono text-accent/20 leading-none mb-2">
-                    {step.number}
-                  </div>
+                  
                   <h3 className="text-base font-semibold text-text-primary">{step.title}</h3>
                   {step.description && <p className="mt-2 text-sm text-text-secondary">{step.description}</p>}
                 </div>
@@ -108,9 +106,7 @@ export default function ServiceProcess({
             {steps.map((step, index) => (
               <React.Fragment key={step.number}>
                 <div className={cn('process-step bg-bg-surface border border-border rounded-xl p-6 relative group', !prefersReducedMotion && 'opacity-0 translate-y-4')}>
-                  <div className="text-display font-bold font-mono text-accent/20 leading-none mb-2 transition-colors duration-300 group-hover:text-accent/40">
-                    {step.number}
-                  </div>
+                  
                   <h3 className="text-base font-semibold text-text-primary">{step.title}</h3>
                   {step.description && <p className="mt-2 text-sm text-text-secondary leading-relaxed">{step.description}</p>}
                   

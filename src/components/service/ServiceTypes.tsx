@@ -44,7 +44,7 @@ export default function ServiceTypes({
                     <h3 className="text-heading font-bold text-text-primary group-hover:text-gradient transition-colors">
                       {featured.title}
                     </h3>
-                    <span className="font-mono text-text-muted text-sm group-hover:text-accent transition-colors">01</span>
+                    
                   </div>
                   <p className="text-text-secondary text-lg md:text-xl max-w-2xl">
                     {featured.description}
@@ -75,7 +75,7 @@ export default function ServiceTypes({
                 >
                   <div className="flex justify-between items-start">
                     <h4 className="text-subheading font-bold text-text-primary z-10">{type.title}</h4>
-                    <span className="font-mono text-text-muted text-xs z-10 group-hover:text-accent transition-colors">{formattedIndex}</span>
+                    
                   </div>
                   
                   <div className="grid grid-rows-[1fr] md:grid-rows-[0fr] md:group-hover:grid-rows-[1fr] md:group-focus:grid-rows-[1fr] transition-[grid-template-rows] duration-300 mt-3 md:mt-0 md:group-hover:mt-4 md:group-focus:mt-4">
