@@ -4,7 +4,13 @@ import SectionHeading from '@/components/ui/SectionHeading'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import { ArrowRight } from 'lucide-react'
 
-const scenarios = [
+export interface ScenarioItem {
+  id: string
+  label: string
+  steps: string[]
+}
+
+const defaultScenarios: ScenarioItem[] = [
   {
     id: 'A',
     label: 'Сценарий A — Заявка с сайта',
@@ -22,20 +28,34 @@ const scenarios = [
   },
 ]
 
-const integrations = [
+const defaultIntegrations = [
   'Website', 'CRM', 'Telegram', 'Email', 'Google Sheets',
   'Database', 'API', 'AI', 'Webhooks', 'Analytics',
 ]
 
-export default function ServiceWorkflowScenarios() {
+interface ServiceWorkflowScenariosProps {
+  tag?: string
+  title?: string
+  subtitle?: string
+  scenarios?: ScenarioItem[]
+  integrations?: string[]
+}
+
+export default function ServiceWorkflowScenarios({
+  tag = 'WORKFLOW',
+  title = 'Соединяем сервисы в один процесс.',
+  subtitle = 'Если у системы есть API — её часто можно встроить в workflow.',
+  scenarios = defaultScenarios,
+  integrations = defaultIntegrations,
+}: ServiceWorkflowScenariosProps) {
   return (
     <section className="py-20 bg-bg-primary">
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <SectionHeading
-            tag="WORKFLOW"
-            title="Соединяем сервисы в один процесс."
-            subtitle="Если у системы есть API — её часто можно встроить в workflow."
+            tag={tag}
+            title={title}
+            subtitle={subtitle}
             align="center"
           />
         </ScrollReveal>
