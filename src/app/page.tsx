@@ -1,52 +1,86 @@
-import dynamic from 'next/dynamic';
-import Hero from '@/components/sections/Hero';
+import type { Metadata } from 'next'
+import Hero from '@/components/sections/Hero'
+import HomeProblemNavigator from '@/components/sections/HomeProblemNavigator'
+import HomeTwoPaths from '@/components/sections/HomeTwoPaths'
+import HomeBreakdownsVsSystem from '@/components/sections/HomeBreakdownsVsSystem'
+import HomePhasedLaunch from '@/components/sections/HomePhasedLaunch'
+import ServiceCTA from '@/components/service/ServiceCTA'
 
-// Lazy load sections below the fold for performance
-const GrowthSystem = dynamic(() => import('@/components/sections/GrowthSystem'), {
-  loading: () => <SectionSkeleton />,
-});
-const Capabilities = dynamic(() => import('@/components/sections/Capabilities'), {
-  loading: () => <SectionSkeleton />,
-});
-const ConnectedSystem = dynamic(() => import('@/components/sections/ConnectedSystem'), {
-  loading: () => <SectionSkeleton />,
-});
-const Solutions = dynamic(() => import('@/components/sections/Solutions'), {
-  loading: () => <SectionSkeleton />,
-});
-const Services = dynamic(() => import('@/components/sections/Services'), {
-  loading: () => <SectionSkeleton />,
-});
-const Cases = dynamic(() => import('@/components/sections/Cases'), {
-  loading: () => <SectionSkeleton />,
-});
-const Process = dynamic(() => import('@/components/sections/Process'), {
-  loading: () => <SectionSkeleton />,
-});
-const FinalCTA = dynamic(() => import('@/components/sections/FinalCTA'), {
-  loading: () => <SectionSkeleton />,
-});
+const siteUrl = 'https://kdrkru-del.github.io/voltrena-site'
 
-function SectionSkeleton() {
-  return (
-    <div className="py-section flex items-center justify-center min-h-[50vh]">
-      <div className="w-8 h-8 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
-    </div>
-  );
+export const metadata: Metadata = {
+  title: 'VOLTRENA Digital — Системы цифрового роста и автоматизации продаж',
+  description: 'Превращаем путь от первого клика до продажи в управляемую систему. Сайты, реклама, CRM, AI-автоматизация и сквозная аналитика.',
+  alternates: { canonical: siteUrl + '/' },
+  openGraph: {
+    title: 'VOLTRENA Digital — Системы цифрового роста и автоматизации продаж',
+    description: 'Превращаем путь от первого клика до продажи в управляемую систему. Сайты, реклама, CRM, AI-автоматизация и сквозная аналитика.',
+    url: siteUrl + '/',
+    type: 'website',
+    locale: 'ru_RU',
+    siteName: 'VOLTRENA Digital',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'VOLTRENA Digital — Системы цифрового роста и автоматизации продаж',
+    description: 'Превращаем путь от первого клика до продажи в управляемую систему. Сайты, реклама, CRM, AI-автоматизация и сквозная аналитика.',
+  },
+  robots: { index: true, follow: true },
 }
 
 export default function HomePage() {
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'VOLTRENA Digital',
+    url: siteUrl + '/',
+    description: 'Агентство цифровых систем роста и автоматизации продаж.',
+  }
+
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'VOLTRENA Digital',
+    url: siteUrl + '/',
+    sameAs: ['https://t.me/voltrena'],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email: 'hello@voltrena.com',
+    },
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+
+      {/* 1. Hero + Системный Flow */}
       <Hero />
-      <GrowthSystem />
-      <Capabilities />
-      <ConnectedSystem />
-      <Solutions />
-      <Services />
-      <Cases />
-      <Process />
-      <FinalCTA />
+
+      {/* 2. Навигатор по бизнес-задаче */}
+      <HomeProblemNavigator />
+
+      {/* 3. Два способа работать с VOLTRENA (Решения vs Услуги) */}
+      <HomeTwoPaths />
+
+      {/* 4. Почему связанная система работает лучше (Разрывы vs Система) */}
+      <HomeBreakdownsVsSystem />
+
+      {/* 5. Поэтапный запуск (3 фазы) */}
+      <HomePhasedLaunch />
+
+      {/* 6. Финальный прямой CTA */}
+      <ServiceCTA
+        mode="directContact"
+        title="С какого участка начнём?"
+        description="Опишите главную проблему в привлечении, продажах или операциях. Мы предложим первую рабочую очередь и покажем, как она встроится в общую систему."
+        benefits={[
+          'Определим главное узкое место',
+          'Предложим границы первой очереди',
+          'Покажем возможную архитектуру развития',
+        ]}
+      />
     </>
-  );
+  )
 }
