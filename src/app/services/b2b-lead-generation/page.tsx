@@ -1,9 +1,10 @@
+import { siteConfig } from '@/config/site'
 import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 
-const siteUrl = 'https://kdrkru-del.github.io/voltrena-site'
+const siteUrl = siteConfig.siteUrl
 
 export const metadata: Metadata = {
   title: 'B2B Лидогенерация | VOLTRENA Digital',

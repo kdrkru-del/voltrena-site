@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { siteConfig } from '@/config/site';
 
 const inter = Inter({
   subsets: ['latin', 'cyrillic'],
@@ -17,7 +18,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'VOLTRENA Digital — Агентство цифрового роста и автоматизации',
+  metadataBase: new URL(siteConfig.siteUrl),
+  title: {
+    default: 'VOLTRENA Digital — Агентство цифрового роста и автоматизации',
+    template: '%s | VOLTRENA Digital',
+  },
   description:
     'Мы создаем цифровые системы, которые находят клиентов, конвертируют лиды и автоматизируют продажи. Сайты, маркетинг, ИИ, автоматизация и данные — в единой системе роста.',
   keywords: [
@@ -32,19 +37,32 @@ export const metadata: Metadata = {
     'автоматизация бизнеса',
     'цифровой маркетинг',
   ],
+  alternates: {
+    canonical: siteConfig.getCanonicalUrl('/'),
+  },
   openGraph: {
     title: 'VOLTRENA Digital — Агентство цифрового роста и автоматизации',
     description:
       'Мы создаем цифровые системы, которые находят клиентов, конвертируют лиды и автоматизируют продажи. Сайты, маркетинг, ИИ, автоматизация и данные — в единой системе роста.',
+    url: siteConfig.getCanonicalUrl('/'),
     type: 'website',
     locale: 'ru_RU',
-    siteName: 'VOLTRENA Digital',
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.getCanonicalUrl('/images/og-image.svg'),
+        width: 1200,
+        height: 630,
+        alt: 'VOLTRENA Digital — Digital Growth Systems',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'VOLTRENA Digital — Агентство цифрового роста и автоматизации',
     description:
       'Мы создаем цифровые системы, которые находят клиентов, конвертируют лиды и автоматизируют продажи. Сайты, маркетинг, ИИ, автоматизация и данные — в единой системе роста.',
+    images: [siteConfig.getCanonicalUrl('/images/og-image.svg')],
   },
   robots: {
     index: true,

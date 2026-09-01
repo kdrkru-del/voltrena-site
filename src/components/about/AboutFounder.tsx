@@ -1,60 +1,83 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+import Button from '@/components/ui/Button'
+import { siteConfig } from '@/config/site'
+import { Send, Shield, Sparkles, MessageCircle } from 'lucide-react'
 
 export default function AboutFounder() {
   return (
-    <section className="py-20 md:py-28 bg-bg-primary relative overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+    <section className="py-20 md:py-28 bg-bg-secondary relative overflow-hidden border-t border-border/40">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-5xl">
         <ScrollReveal>
-          <div className="p-8 sm:p-12 rounded-3xl bg-bg-surface border border-border/80 shadow-2xl">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-              {/* Photo of Roman */}
-              <div className="lg:col-span-5">
-                <div className="relative rounded-2xl overflow-hidden aspect-[3/4] bg-bg-primary border border-border">
-                  <img
-                    src="/voltrena-site/images/team/roman-kornev.jpg"
-                    alt="Роман Корнев — Founder VOLTRENA Digital"
-                    className="w-full h-full object-cover object-center"
-                    loading="lazy"
+          <div className="p-8 sm:p-10 md:p-12 rounded-3xl bg-bg-surface/80 border border-border shadow-2xl relative overflow-hidden">
+            {/* Subtle glow */}
+            <div className="absolute top-0 right-0 w-80 h-80 bg-accent/8 blur-[120px] rounded-full pointer-events-none" />
+
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+              
+              {/* Founder Portrait */}
+              <div className="md:col-span-4 flex flex-col items-center text-center">
+                <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-2xl overflow-hidden border-2 border-accent/40 shadow-xl mb-4">
+                  <Image
+                    src="/images/team/roman-kornev.jpg"
+                    alt="Роман Корнев — основатель VOLTRENA Digital"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 176px, 208px"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-bg-surface via-transparent to-transparent opacity-60" />
+                </div>
+                <h3 className="text-xl font-bold text-text-primary">
+                  Роман Корнев
+                </h3>
+                <p className="font-mono text-xs text-accent mt-1">
+                  Основатель & Технический лидер
+                </p>
+              </div>
+
+              {/* Founder Narrative */}
+              <div className="md:col-span-8 space-y-4 text-left">
+                <span className="inline-block px-3 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs uppercase tracking-widest text-accent font-semibold">
+                  ЛИЧНАЯ ОТВЕТСТВЕННОСТЬ
+                </span>
+                
+                <h2 className="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight">
+                  «Мы не прячемся за аккаунт-менеджерами и сложными отчётами.»
+                </h2>
+
+                <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
+                  VOLTRENA создавалась как агентство инженерного типа. Для нас важно не просто сдать проект по акту, а сделать так, чтобы связка рекламы, сайта, CRM и автоматизации стабильно приносила целевые заявки.
+                </p>
+
+                <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
+                  Я лично участвую в архитектурном проектировании каждой системы, согласовании контрольных точек и проверке сквозной логики.
+                </p>
+
+                {/* Direct Action Buttons */}
+                <div className="pt-4 flex flex-wrap items-center gap-3">
+                  <Button
+                    variant="primary"
+                    size="default"
+                    href={siteConfig.telegramUrl}
+                    className="inline-flex items-center gap-2"
+                  >
+                    <Send className="w-4 h-4 fill-current" />
+                    <span>Написать Роману в Telegram</span>
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    size="default"
+                    href={siteConfig.whatsappUrl}
+                    className="inline-flex items-center gap-2"
+                  >
+                    <MessageCircle className="w-4 h-4 text-emerald-400" />
+                    <span>WhatsApp</span>
+                  </Button>
                 </div>
               </div>
 
-              {/* Text from 1st person */}
-              <div className="lg:col-span-7 flex flex-col justify-between">
-                <div>
-                  <span className="font-mono text-xs text-accent uppercase tracking-widest font-semibold block mb-2">
-                    ОТ ОСНОВАТЕЛЯ
-                  </span>
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-text-primary mb-6">
-                    Ответственность не делегируется.
-                  </h2>
-
-                  <div className="space-y-4 text-xs sm:text-sm md:text-base text-text-secondary leading-relaxed">
-                    <p>
-                      Я лично участвую в стратегии ключевых проектов VOLTRENA Digital и контролирую, чтобы итоговое решение соответствовало бизнес-задаче, ради которой мы начали работу.
-                    </p>
-                    <p>
-                      Мне не близка модель агентства, где клиент сначала общается с сильным специалистом по продажам, после подписания договора получает менеджера, а затем перестаёт понимать, кто на самом деле отвечает за результат.
-                    </p>
-                    <p>
-                      Поэтому мы строим другую модель: небольшая команда, прямое общение, понятная ответственность и глубокое погружение в проект.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="pt-6 mt-8 border-t border-border/60">
-                  <span className="font-bold text-base sm:text-lg text-text-primary block">
-                    Роман Корнев
-                  </span>
-                  <span className="font-mono text-xs text-accent">
-                    Founder, VOLTRENA Digital
-                  </span>
-                </div>
-              </div>
             </div>
           </div>
         </ScrollReveal>

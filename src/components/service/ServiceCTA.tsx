@@ -3,7 +3,9 @@
 import React from 'react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import LeadForm from '@/components/ui/LeadForm';
-import { Send, Mail, CheckCircle2, ArrowRight } from 'lucide-react';
+import { siteConfig } from '@/config/site';
+import { reachGoal } from '@/lib/analytics';
+import { Send, Mail, CheckCircle2, ArrowRight, MessageCircle } from 'lucide-react';
 
 export interface ServiceCTAProps {
   title?: string;
@@ -64,33 +66,50 @@ export default function ServiceCTA({
                       Прямой контакт с техлидом
                     </h3>
                     <p className="text-text-secondary text-sm leading-relaxed">
-                      Обсудим вашу задачу без промежуточных менеджеров, покажем примеры архитектуры и рассчитаем состав первой очереди.
+                      Обсудим вашу задачу без лишних посредников, покажем примеры архитектуры и рассчитаем состав первой очереди.
                     </p>
                   </div>
 
-                  <div className="space-y-3.5 pt-2">
+                  <div className="space-y-3 pt-2">
                     {/* Telegram Primary Contact */}
                     <a
-                      href="https://t.me/voltrena"
+                      href={siteConfig.telegramUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => reachGoal('contact_telegram_click', { origin: 'cta_direct' })}
                       className="flex items-center justify-between p-4 rounded-xl bg-accent text-white font-semibold text-sm md:text-base hover:bg-accent-light transition-all shadow-lg shadow-accent/20 group focus:outline-none focus-visible:ring-2 focus-visible:ring-white min-h-[48px]"
                     >
                       <div className="flex items-center gap-3">
                         <Send className="w-5 h-5 fill-current" />
-                        <span>Написать в Telegram @voltrena</span>
+                        <span>Написать в Telegram {siteConfig.telegramHandle}</span>
                       </div>
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </a>
 
-                    {/* Email Secondary Contact */}
+                    {/* WhatsApp Secondary Contact */}
                     <a
-                      href="mailto:hello@voltrena.com"
+                      href={siteConfig.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => reachGoal('contact_whatsapp_click', { origin: 'cta_direct' })}
+                      className="flex items-center justify-between p-4 rounded-xl bg-bg-primary border border-emerald-500/30 hover:border-emerald-500/60 text-text-primary font-medium text-sm md:text-base transition-colors group focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 min-h-[48px]"
+                    >
+                      <div className="flex items-center gap-3">
+                        <MessageCircle className="w-5 h-5 text-emerald-400" />
+                        <span>WhatsApp {siteConfig.whatsappPhone}</span>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-emerald-400 group-hover:translate-x-1 transition-transform" />
+                    </a>
+
+                    {/* Email Contact */}
+                    <a
+                      href={`mailto:${siteConfig.email}`}
+                      onClick={() => reachGoal('contact_email_click', { origin: 'cta_direct' })}
                       className="flex items-center justify-between p-4 rounded-xl bg-bg-primary border border-border hover:border-accent/40 text-text-primary font-medium text-sm md:text-base transition-colors group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[48px]"
                     >
                       <div className="flex items-center gap-3">
                         <Mail className="w-5 h-5 text-accent" />
-                        <span>hello@voltrena.com</span>
+                        <span>{siteConfig.email}</span>
                       </div>
                       <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-accent group-hover:translate-x-1 transition-transform" />
                     </a>
@@ -98,12 +117,12 @@ export default function ServiceCTA({
 
                   <div className="pt-4 border-t border-border/60 flex items-center justify-between text-xs font-mono text-text-muted">
                     <span>Ответ в течение 1 рабочего дня</span>
-                    <span>Прямой канал</span>
+                    <span>Прямой канал связи</span>
                   </div>
                 </div>
               ) : (
                 <div className="bg-bg-surface border border-border rounded-2xl p-6 md:p-8 shadow-xl">
-                  <LeadForm />
+                  <LeadForm source="service_cta" />
                 </div>
               )}
             </ScrollReveal>

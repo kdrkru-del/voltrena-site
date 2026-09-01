@@ -1,3 +1,4 @@
+import { siteConfig } from '@/config/site'
 import type { Metadata } from 'next'
 import CasesHero from '@/components/cases/CasesHero'
 import CasesSystemMap from '@/components/cases/CasesSystemMap'
@@ -6,7 +7,7 @@ import CaseDetailSections from '@/components/cases/CaseDetailSections'
 import CasesMethod from '@/components/cases/CasesMethod'
 import ServiceCTA from '@/components/service/ServiceCTA'
 
-const siteUrl = 'https://kdrkru-del.github.io/voltrena-site'
+const siteUrl = siteConfig.siteUrl
 
 export const metadata: Metadata = {
   title: 'Кейсы и проекты digital-агентства VOLTRENA',

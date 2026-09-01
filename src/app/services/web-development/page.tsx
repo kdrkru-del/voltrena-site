@@ -1,3 +1,4 @@
+import { siteConfig } from '@/config/site'
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { webDevelopmentData } from '@/data/service-pages';
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
     description: webDevelopmentData.seo.description,
   },
   alternates: {
-    canonical: 'https://kdrkru-del.github.io/voltrena-site/services/web-development/',
+    canonical: '${siteConfig.siteUrl}/services/web-development/',
   },
   robots: {
     index: true,
@@ -84,7 +85,7 @@ const serviceSchema = {
   provider: {
     '@type': 'Organization',
     name: 'VOLTRENA Digital',
-    url: 'https://kdrkru-del.github.io/voltrena-site/',
+    url: '${siteConfig.siteUrl}/',
   },
   description: webDevelopmentData.seo.description,
   serviceType: 'Web Development',
@@ -108,8 +109,8 @@ const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Главная', item: 'https://kdrkru-del.github.io/voltrena-site/' },
-    { '@type': 'ListItem', position: 2, name: 'Услуги', item: 'https://kdrkru-del.github.io/voltrena-site/services' },
+    { '@type': 'ListItem', position: 1, name: 'Главная', item: '${siteConfig.siteUrl}/' },
+    { '@type': 'ListItem', position: 2, name: 'Услуги', item: '${siteConfig.siteUrl}/services' },
     { '@type': 'ListItem', position: 3, name: 'Создание сайтов' },
   ],
 };

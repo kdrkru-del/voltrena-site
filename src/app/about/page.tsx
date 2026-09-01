@@ -1,3 +1,4 @@
+import { siteConfig } from '@/config/site'
 import type { Metadata } from 'next'
 import AboutHero from '@/components/about/AboutHero'
 import AboutManifesto from '@/components/about/AboutManifesto'
@@ -10,7 +11,7 @@ import AboutTechnology from '@/components/about/AboutTechnology'
 import AboutFounder from '@/components/about/AboutFounder'
 import ServiceCTA from '@/components/service/ServiceCTA'
 
-const siteUrl = 'https://kdrkru-del.github.io/voltrena-site'
+const siteUrl = siteConfig.siteUrl
 
 export const metadata: Metadata = {
   title: 'О нас — Команда и принципы агентства VOLTRENA Digital',

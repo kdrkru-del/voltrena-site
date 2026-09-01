@@ -1,3 +1,4 @@
+import { siteConfig } from '@/config/site'
 import type { Metadata } from 'next'
 import SolutionsHubHero from '@/components/solutions-hub/SolutionsHubHero'
 import SolutionsProblemNavigator from '@/components/solutions-hub/SolutionsProblemNavigator'
@@ -10,7 +11,7 @@ import SolutionsWhyVoltrena from '@/components/solutions-hub/SolutionsWhyVoltren
 import SolutionsServicesCrossLink from '@/components/solutions-hub/SolutionsServicesCrossLink'
 import ServiceCTA from '@/components/service/ServiceCTA'
 
-const siteUrl = 'https://kdrkru-del.github.io/voltrena-site'
+const siteUrl = siteConfig.siteUrl
 
 export const metadata: Metadata = {
   title: 'Готовые digital-решения для бизнеса | VOLTRENA Digital',

@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
+import { siteConfig } from '@/config/site'
 import { ArrowDown, ShieldCheck, Layers } from 'lucide-react'
 
 export default function CasesHero() {
@@ -39,7 +40,7 @@ export default function CasesHero() {
 
           {/* CTAs */}
           <div className="flex flex-wrap items-center justify-center gap-3.5 mb-10">
-            <Button variant="primary" size="lg" href="https://t.me/voltrena">
+            <Button variant="primary" size="lg" href={siteConfig.telegramUrl}>
               Разобрать похожую задачу
             </Button>
             <Button variant="secondary" size="lg" href="#cases">

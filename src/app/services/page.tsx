@@ -1,3 +1,4 @@
+import { siteConfig } from '@/config/site'
 import type { Metadata } from 'next'
 import ServicesHubHero from '@/components/services-hub/ServicesHubHero'
 import ServicesGroupGrid from '@/components/services-hub/ServicesGroupGrid'
@@ -8,7 +9,7 @@ import ProofSection from '@/components/cases/ProofSection'
 import ServicesSolutionsCrossLink from '@/components/services-hub/ServicesSolutionsCrossLink'
 import ServiceCTA from '@/components/service/ServiceCTA'
 
-const siteUrl = 'https://kdrkru-del.github.io/voltrena-site'
+const siteUrl = siteConfig.siteUrl
 
 export const metadata: Metadata = {
   title: 'Услуги digital-агентства VOLTRENA | Сайты, реклама, AI, CRM и аналитика',

@@ -1,8 +1,9 @@
+import { siteConfig } from '@/config/site'
 import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import { crmData } from '@/data/service-pages'
 
-const siteUrl = 'https://kdrkru-del.github.io/voltrena-site'
+const siteUrl = siteConfig.siteUrl
 
 export const metadata: Metadata = {
   title: crmData.seo.title,

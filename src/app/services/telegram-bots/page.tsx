@@ -1,10 +1,11 @@
+import { siteConfig } from '@/config/site'
 import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import { telegramBotsData } from '@/data/service-pages'
 
-const siteUrl = 'https://kdrkru-del.github.io/voltrena-site'
+const siteUrl = siteConfig.siteUrl
 
 export const metadata: Metadata = {
   title: telegramBotsData.seo.title,

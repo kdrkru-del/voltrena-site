@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { navigationLinks } from '@/data/navigation';
+import { siteConfig } from '@/config/site';
 
 export default function Footer() {
   return (
@@ -53,20 +54,30 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="mailto:hello@voltrena.com"
-                  className="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200"
-                >
-                  hello@voltrena.com
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://t.me/voltrena"
+                  href={siteConfig.telegramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200"
                 >
-                  Telegram
+                  Telegram {siteConfig.telegramHandle}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={siteConfig.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200"
+                >
+                  WhatsApp {siteConfig.whatsappPhone}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200"
+                >
+                  {siteConfig.email}
                 </a>
               </li>
             </ul>
