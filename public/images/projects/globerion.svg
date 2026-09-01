@@ -1,0 +1,69 @@
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gb-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c0d14" />
+      <stop offset="100%" stop-color="#06070a" />
+    </linearGradient>
+    <linearGradient id="gb-accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#gb-bg)" />
+
+  <!-- World Map Dots / Lines Mock -->
+  <g stroke="rgba(99, 102, 241, 0.08)" stroke-width="1">
+    <line x1="0" y1="100" x2="800" y2="100" />
+    <line x1="0" y1="200" x2="800" y2="200" />
+    <line x1="0" y1="300" x2="800" y2="300" />
+    <line x1="0" y1="400" x2="800" y2="400" />
+    <line x1="160" y1="0" x2="160" y2="500" />
+    <line x1="320" y1="0" x2="320" y2="500" />
+    <line x1="480" y1="0" x2="480" y2="500" />
+    <line x1="640" y1="0" x2="640" y2="500" />
+  </g>
+
+  <!-- Website Header Mock -->
+  <rect x="40" y="30" width="720" height="50" rx="10" fill="rgba(20, 20, 35, 0.8)" stroke="rgba(99, 102, 241, 0.25)" />
+  <text x="65" y="60" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" letter-spacing="1">GLOBERION<tspan fill="#818cf8">GROUP</tspan></text>
+  <text x="360" y="59" font-family="system-ui, sans-serif" font-size="12" fill="#9ca3af">Sourcing · Quality Control · Export · Logistics · Products</text>
+  <rect x="640" y="42" width="105" height="26" rx="6" fill="url(#gb-accent)" />
+  <text x="692" y="59" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">Request Quote</text>
+
+  <!-- Hero Content Mock -->
+  <rect x="40" y="110" width="280" height="24" rx="12" fill="rgba(99, 102, 241, 0.15)" stroke="rgba(99, 102, 241, 0.3)" />
+  <text x="180" y="126" font-family="monospace, sans-serif" font-size="11" font-weight="bold" fill="#a5b4fc" text-anchor="middle">VIETNAM B2B SOURCING &amp; TRADE</text>
+
+  <text x="40" y="175" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" fill="#ffffff">Your Direct Gateway to</text>
+  <text x="40" y="210" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" fill="#818cf8">Reliable Vietnam Manufacturing</text>
+  <text x="40" y="245" font-family="system-ui, sans-serif" font-size="14" fill="#9ca3af">End-to-end supply chain solutions: factory audits, OEM/ODM production &amp; worldwide freight.</text>
+
+  <!-- 3 Business Pillars Grid -->
+  <g transform="translate(40, 275)">
+    <rect width="225" height="180" rx="12" fill="rgba(20, 20, 35, 0.85)" stroke="rgba(99, 102, 241, 0.25)" />
+    <rect x="20" y="20" width="36" height="36" rx="8" fill="rgba(99, 102, 241, 0.15)" />
+    <text x="38" y="43" font-family="system-ui" font-size="16" fill="#818cf8" text-anchor="middle">🏭</text>
+    <text x="20" y="80" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#ffffff">Factory Verification</text>
+    <text x="20" y="105" font-family="system-ui, sans-serif" font-size="11" fill="#9ca3af">On-site audits in Binh Duong &amp; Dong Nai industrial zones. Legal &amp; capacity checks.</text>
+    <text x="20" y="160" font-family="monospace, sans-serif" font-size="10" font-weight="bold" fill="#818cf8">ISO 9001 / BSCI Standards →</text>
+  </g>
+
+  <g transform="translate(285, 275)">
+    <rect width="225" height="180" rx="12" fill="rgba(20, 20, 35, 0.85)" stroke="rgba(99, 102, 241, 0.25)" />
+    <rect x="20" y="20" width="36" height="36" rx="8" fill="rgba(99, 102, 241, 0.15)" />
+    <text x="38" y="43" font-family="system-ui" font-size="16" fill="#818cf8" text-anchor="middle">🔍</text>
+    <text x="20" y="80" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#ffffff">Quality Assurance</text>
+    <text x="20" y="105" font-family="system-ui, sans-serif" font-size="11" fill="#9ca3af">Pre-production, DUPRO, and pre-shipment container loading inspection (AQL 2.5).</text>
+    <text x="20" y="160" font-family="monospace, sans-serif" font-size="10" font-weight="bold" fill="#818cf8">Full Photo &amp; Video Reports →</text>
+  </g>
+
+  <g transform="translate(530, 275)">
+    <rect width="230" height="180" rx="12" fill="rgba(20, 20, 35, 0.85)" stroke="rgba(99, 102, 241, 0.25)" />
+    <rect x="20" y="20" width="36" height="36" rx="8" fill="rgba(99, 102, 241, 0.15)" />
+    <text x="38" y="43" font-family="system-ui" font-size="16" fill="#818cf8" text-anchor="middle">🚢</text>
+    <text x="20" y="80" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#ffffff">Export &amp; Logistics</text>
+    <text x="20" y="105" font-family="system-ui, sans-serif" font-size="11" fill="#9ca3af">FOB / CIF / DDP shipments from Cat Lai &amp; Hai Phong ports to Europe, US &amp; CIS.</text>
+    <text x="20" y="160" font-family="monospace, sans-serif" font-size="10" font-weight="bold" fill="#818cf8">Customs Clearance Support →</text>
+  </g>
+</svg>

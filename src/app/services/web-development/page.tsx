@@ -1,4 +1,4 @@
-import { siteConfig } from '@/config/site'
+import { siteConfig } from '@/config/site';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { webDevelopmentData } from '@/data/service-pages';
@@ -13,15 +13,24 @@ export const metadata: Metadata = {
     description: webDevelopmentData.seo.description,
     type: 'website',
     locale: 'ru_RU',
-    siteName: 'VOLTRENA Digital',
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.getCanonicalUrl('/images/og-image.svg'),
+        width: 1200,
+        height: 630,
+        alt: 'VOLTRENA Digital — Создание сайтов для бизнеса',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: webDevelopmentData.seo.title,
     description: webDevelopmentData.seo.description,
+    images: [siteConfig.getCanonicalUrl('/images/og-image.svg')],
   },
   alternates: {
-    canonical: '${siteConfig.siteUrl}/services/web-development/',
+    canonical: siteConfig.getCanonicalUrl('/services/web-development/'),
   },
   robots: {
     index: true,
@@ -69,6 +78,9 @@ const ServiceUseCases = dynamic(() => import('@/components/service/ServiceUseCas
 const ServiceIncludes = dynamic(() => import('@/components/service/ServiceIncludes'), {
   loading: () => <SectionSkeleton />,
 });
+const SelectedWebsitesShowcase = dynamic(() => import('@/components/service/SelectedWebsitesShowcase'), {
+  loading: () => <SectionSkeleton />,
+});
 const ServiceFAQ = dynamic(() => import('@/components/service/ServiceFAQ'), {
   loading: () => <SectionSkeleton />,
 });
@@ -84,8 +96,8 @@ const serviceSchema = {
   name: 'Создание сайтов для бизнеса',
   provider: {
     '@type': 'Organization',
-    name: 'VOLTRENA Digital',
-    url: '${siteConfig.siteUrl}/',
+    name: siteConfig.name,
+    url: siteConfig.siteUrl,
   },
   description: webDevelopmentData.seo.description,
   serviceType: 'Web Development',
@@ -109,8 +121,8 @@ const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Главная', item: '${siteConfig.siteUrl}/' },
-    { '@type': 'ListItem', position: 2, name: 'Услуги', item: '${siteConfig.siteUrl}/services' },
+    { '@type': 'ListItem', position: 1, name: 'Главная', item: siteConfig.siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'Услуги', item: siteConfig.getCanonicalUrl('/services/') },
     { '@type': 'ListItem', position: 3, name: 'Создание сайтов' },
   ],
 };
@@ -162,6 +174,9 @@ export default function WebDevelopmentPage() {
       {data.useCases && <ServiceUseCases useCases={data.useCases} />}
 
       {data.included && <ServiceIncludes included={data.included} />}
+
+      {/* Selected Websites Showcase (Зелёный Срез, ТехУчёт, GLOBERION GROUP) */}
+      <SelectedWebsitesShowcase />
 
       <ServiceFAQ faq={data.faq} />
 

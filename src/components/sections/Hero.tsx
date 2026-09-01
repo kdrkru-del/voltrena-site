@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { motion, AnimatePresence } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import NodeNetwork from '@/components/ui/NodeNetwork'
-import { CheckCircle2, Activity } from 'lucide-react'
+import { CheckCircle2, Activity, Sparkles } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 
 interface SystemNode {
@@ -14,6 +15,14 @@ interface SystemNode {
   status: string
   detail: string
   tag: string
+}
+
+interface DynamicStatement {
+  id: string
+  prefix: string
+  highlight: string
+  nodeIdx: number
+  isFinalSystemState?: boolean
 }
 
 const systemNodes: SystemNode[] = [
@@ -67,20 +76,74 @@ const systemNodes: SystemNode[] = [
   },
 ]
 
+const dynamicStatements: DynamicStatement[] = [
+  {
+    id: 'websites',
+    prefix: 'Мы создаём',
+    highlight: 'сайты.',
+    nodeIdx: 1, // 02. Сайт
+  },
+  {
+    id: 'demand',
+    prefix: 'Мы приводим',
+    highlight: 'клиентов.',
+    nodeIdx: 0, // 01. Спрос
+  },
+  {
+    id: 'sales_auto',
+    prefix: 'Мы автоматизируем',
+    highlight: 'продажи.',
+    nodeIdx: 4, // 05. Автоматизация (и 04. CRM)
+  },
+  {
+    id: 'data_sync',
+    prefix: 'Мы связываем',
+    highlight: 'данные.',
+    nodeIdx: 5, // 06. Аналитика
+  },
+  {
+    id: 'growth_systems',
+    prefix: 'Мы строим',
+    highlight: 'системы роста.',
+    nodeIdx: 5, // Весь pipeline
+    isFinalSystemState: true,
+  },
+]
+
 export default function Hero() {
   const prefersReducedMotion = useReducedMotion()
-  const [activeIdx, setActiveIdx] = useState(0)
+  const [statementIdx, setStatementIdx] = useState(0)
+  const [userInteracted, setUserInteracted] = useState(false)
 
-  // Calm, cyclic traveling pulse through the 6 nodes
+  // Synchronized statement cycling that drives the system flow
   useEffect(() => {
-    if (prefersReducedMotion) return
-    const timer = setInterval(() => {
-      setActiveIdx((prev) => (prev + 1) % systemNodes.length)
-    }, 2600)
-    return () => clearInterval(timer)
-  }, [prefersReducedMotion])
+    if (prefersReducedMotion || userInteracted) return
 
-  const activeNode = systemNodes[activeIdx]
+    const intervalTime = statementIdx === dynamicStatements.length - 1 ? 6000 : 2500
+
+    const timer = setTimeout(() => {
+      setStatementIdx((prev) => (prev + 1) % dynamicStatements.length)
+    }, intervalTime)
+
+    return () => clearTimeout(timer)
+  }, [statementIdx, prefersReducedMotion, userInteracted])
+
+  const currentStatement = dynamicStatements[statementIdx]
+  const isFinalState = currentStatement.isFinalSystemState
+  const activeNode = systemNodes[currentStatement.nodeIdx]
+
+  // Allow direct interaction with nodes
+  const handleSelectNode = (idx: number) => {
+    setUserInteracted(true)
+    // Find corresponding statement or map directly
+    const matchingStatementIdx = dynamicStatements.findIndex((s) => s.nodeIdx === idx)
+    if (matchingStatementIdx !== -1) {
+      setStatementIdx(matchingStatementIdx)
+    } else {
+      // Map other nodes
+      setStatementIdx(idx === 2 ? 0 : idx === 3 ? 2 : 4)
+    }
+  }
 
   return (
     <section className="relative pt-32 pb-16 md:pt-36 md:pb-24 bg-bg-primary overflow-hidden border-b border-border/40">
@@ -94,7 +157,7 @@ export default function Hero() {
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
           
-          {/* Left Column: Positioning & CTAs (Static, instantly readable) */}
+          {/* Left Column: Positioning & Synchronized Storytelling */}
           <div className="lg:col-span-6 flex flex-col items-start text-left">
             {/* Eyebrow */}
             <div className="mb-4">
@@ -103,14 +166,38 @@ export default function Hero() {
               </span>
             </div>
 
-            {/* H1 - Fully static, high contrast */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold text-text-primary tracking-tight leading-[1.12] mb-6">
-              Превращаем путь от первого клика до продажи в управляемую систему.
+            {/* H1 - Short, punchy, high-contrast headline */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold text-text-primary tracking-tight leading-[1.12] mb-3">
+              От первого контакта<br className="hidden sm:inline" /> до продажи.
             </h1>
 
+            {/* Dynamic Synchronized Statement */}
+            <div className="min-h-[44px] sm:min-h-[48px] md:min-h-[52px] flex items-center mb-5 overflow-hidden w-full">
+              {prefersReducedMotion ? (
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-text-primary">
+                  <span>Мы строим </span>
+                  <span className="text-accent font-bold">системы роста.</span>
+                </div>
+              ) : (
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentStatement.id}
+                    initial={{ opacity: 0, y: 12, filter: 'blur(4px)' }}
+                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, y: -10, filter: 'blur(4px)' }}
+                    transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+                    className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-text-primary"
+                  >
+                    <span>{currentStatement.prefix} </span>
+                    <span className="text-accent font-bold">{currentStatement.highlight}</span>
+                  </motion.div>
+                </AnimatePresence>
+              )}
+            </div>
+
             {/* Supporting text */}
-            <p className="text-base sm:text-lg md:text-xl text-text-secondary leading-relaxed max-w-2xl mb-8">
-              Соединяем сайт, привлечение, CRM, автоматизацию и аналитику — начиная с участка, который сейчас тормозит рост.
+            <p className="text-base sm:text-lg text-text-secondary leading-relaxed max-w-2xl mb-8">
+              Соединяем привлечение, сайт, CRM, автоматизацию и аналитику — начиная с проблемы, которая сейчас ограничивает рост бизнеса.
             </p>
 
             {/* CTAs */}
@@ -139,7 +226,7 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: Living System Flow Visual */}
+          {/* Right Column: Living System Flow Visual (Synchronized with text) */}
           <div className="lg:col-span-6 w-full">
             <div className="p-5 sm:p-7 rounded-2xl bg-bg-surface/85 backdrop-blur-md border border-border/90 shadow-2xl relative overflow-hidden">
               
@@ -154,8 +241,16 @@ export default function Hero() {
                     LIVING SYSTEM FLOW
                   </span>
                 </div>
+                
                 <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-accent/10 border border-accent/20 font-mono text-[11px] text-accent">
-                  <span>Узел {activeNode.step} из 06</span>
+                  {isFinalState ? (
+                    <span className="flex items-center gap-1">
+                      <Sparkles className="w-3 h-3 text-accent" />
+                      <span>Вся система объединена</span>
+                    </span>
+                  ) : (
+                    <span>Узел {activeNode.step} из 06</span>
+                  )}
                 </div>
               </div>
 
@@ -163,15 +258,17 @@ export default function Hero() {
               <div className="mb-6">
                 <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 relative" role="tablist" aria-label="Узлы системы">
                   {systemNodes.map((node, idx) => {
-                    const isActive = idx === activeIdx
-                    const isPast = idx < activeIdx
+                    const isDirectlyActive = idx === currentStatement.nodeIdx
+                    const isPartOfSystem = isFinalState
+                    const isActive = isDirectlyActive || isPartOfSystem
+                    const isPast = idx < currentStatement.nodeIdx
 
                     return (
                       <button
                         key={node.id}
                         role="tab"
                         aria-selected={isActive}
-                        onClick={() => setActiveIdx(idx)}
+                        onClick={() => handleSelectNode(idx)}
                         className={`p-2.5 rounded-xl text-center transition-all duration-300 relative border flex flex-col items-center justify-between min-h-[72px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                           isActive
                             ? 'bg-accent/20 border-accent text-text-primary shadow-[0_0_20px_rgba(99,102,241,0.25)] scale-[1.02]'
@@ -202,46 +299,58 @@ export default function Hero() {
                 </div>
 
                 {/* Connecting Pulse Line */}
-                <div className="w-full bg-bg-primary/80 h-1 rounded-full mt-3 overflow-hidden relative border border-border/40">
+                <div className="w-full bg-bg-primary/80 h-1.5 rounded-full mt-3 overflow-hidden relative border border-border/40">
                   <div
-                    className="h-full bg-accent transition-all duration-500 rounded-full"
-                    style={{ width: `${((activeIdx + 1) / systemNodes.length) * 100}%` }}
+                    className="h-full bg-gradient-to-r from-accent/80 via-accent to-accent-light transition-all duration-500 rounded-full"
+                    style={{
+                      width: isFinalState
+                        ? '100%'
+                        : `${((currentStatement.nodeIdx + 1) / systemNodes.length) * 100}%`,
+                    }}
                   />
                 </div>
               </div>
 
               {/* Active State Card (Living event reflection) */}
               <div className="p-4 sm:p-5 rounded-xl bg-bg-primary/90 border border-accent/30 mb-4 transition-all duration-300 relative overflow-hidden">
-                {/* Subtle soft edge accent glow */}
+                {/* Soft edge accent glow */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 blur-2xl pointer-events-none" />
 
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-[11px] font-mono text-accent uppercase tracking-wider font-semibold">
-                    {activeNode.tag}
+                    {isFinalState ? 'ЕДИНЫЙ КОНТУР РОСТА' : activeNode.tag}
                   </span>
                   <span className="font-mono text-[11px] text-text-muted flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                    Событие активно
+                    {isFinalState ? 'Система синхронизирована' : 'Событие активно'}
                   </span>
                 </div>
 
                 {/* Status headline */}
                 <h3 className="text-base sm:text-lg font-bold text-text-primary mb-2 flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
-                  <span>{activeNode.status}</span>
+                  <span>
+                    {isFinalState
+                      ? 'Все 6 контуров объединены в систему'
+                      : activeNode.status}
+                  </span>
                 </h3>
 
                 {/* Detail */}
                 <p className="text-xs sm:text-sm text-text-secondary leading-relaxed mb-4">
-                  {activeNode.detail}
+                  {isFinalState
+                    ? 'Спрос, конверсионный слой сайта, захват лидов, CRM-воронка, AI-автоматизация и сквозная аналитика работают как единый управляемый механизм.'
+                    : activeNode.detail}
                 </p>
 
                 {/* Flow context footer */}
                 <div className="pt-3 border-t border-border/60 flex items-center justify-between text-[11px] font-mono text-text-muted">
                   <span>Сквозной процесс:</span>
                   <span className="text-accent font-medium">
-                    {activeIdx < systemNodes.length - 1
-                      ? `Передача данных → ${systemNodes[activeIdx + 1].name}`
+                    {isFinalState
+                      ? 'Сквозной цикл активен · От первого контакта до продажи'
+                      : currentStatement.nodeIdx < systemNodes.length - 1
+                      ? `Передача данных → ${systemNodes[currentStatement.nodeIdx + 1].name}`
                       : 'Цикл завершён · Возврат в аналитику'}
                   </span>
                 </div>
@@ -254,9 +363,9 @@ export default function Hero() {
                   {systemNodes.map((node, idx) => (
                     <button
                       key={node.id}
-                      onClick={() => setActiveIdx(idx)}
+                      onClick={() => handleSelectNode(idx)}
                       className={`px-2 py-1 rounded text-[10px] font-mono transition-colors border ${
-                        idx === activeIdx
+                        idx === currentStatement.nodeIdx
                           ? 'bg-accent text-white border-accent font-semibold'
                           : 'bg-bg-primary/80 text-text-muted border-border hover:text-text-primary'
                       }`}
