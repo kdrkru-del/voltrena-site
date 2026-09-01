@@ -4,6 +4,7 @@ import HomeProblemNavigator from '@/components/sections/HomeProblemNavigator'
 import HomeTwoPaths from '@/components/sections/HomeTwoPaths'
 import HomeBreakdownsVsSystem from '@/components/sections/HomeBreakdownsVsSystem'
 import HomePhasedLaunch from '@/components/sections/HomePhasedLaunch'
+import ProofSection from '@/components/cases/ProofSection'
 import ServiceCTA from '@/components/service/ServiceCTA'
 
 const siteUrl = 'https://kdrkru-del.github.io/voltrena-site'
@@ -70,7 +71,10 @@ export default function HomePage() {
       {/* 5. Поэтапный запуск (3 фазы) */}
       <HomePhasedLaunch />
 
-      {/* 6. Финальный прямой CTA */}
+      {/* 6. Примеры работающих систем (Компактный proof-блок) */}
+      <ProofSection />
+
+      {/* 7. Финальный прямой CTA */}
       <ServiceCTA
         mode="directContact"
         title="С какого участка начнём?"

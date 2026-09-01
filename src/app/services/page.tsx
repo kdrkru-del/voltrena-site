@@ -4,6 +4,7 @@ import ServicesGroupGrid from '@/components/services-hub/ServicesGroupGrid'
 import ServicesProblemNavigator from '@/components/services-hub/ServicesProblemNavigator'
 import ServicesConnectionFlow from '@/components/services-hub/ServicesConnectionFlow'
 import ServicesProcess from '@/components/services-hub/ServicesProcess'
+import ProofSection from '@/components/cases/ProofSection'
 import ServicesSolutionsCrossLink from '@/components/services-hub/ServicesSolutionsCrossLink'
 import ServiceCTA from '@/components/service/ServiceCTA'
 
@@ -77,10 +78,13 @@ export default function ServicesPage() {
       {/* 5. Как начинается работа (5 конкретных шагов с результатами) */}
       <ServicesProcess />
 
-      {/* 6. Переход к Solutions */}
+      {/* 6. Компактный Proof-блок с примерами работ */}
+      <ProofSection />
+
+      {/* 7. Переход к Solutions */}
       <ServicesSolutionsCrossLink />
 
-      {/* 7. Финальный прямой CTA */}
+      {/* 8. Финальный прямой CTA */}
       <ServiceCTA
         mode="directContact"
         title="С какой задачи начнём?"

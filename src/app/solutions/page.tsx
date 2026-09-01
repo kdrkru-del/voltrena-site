@@ -5,6 +5,7 @@ import SolutionsCatalog from '@/components/solutions-hub/SolutionsCatalog'
 import SolutionsConnectedArchitecture from '@/components/solutions-hub/SolutionsConnectedArchitecture'
 import SolutionsStartSmall from '@/components/solutions-hub/SolutionsStartSmall'
 import SolutionsProcess from '@/components/solutions-hub/SolutionsProcess'
+import ProofSection from '@/components/cases/ProofSection'
 import SolutionsWhyVoltrena from '@/components/solutions-hub/SolutionsWhyVoltrena'
 import SolutionsServicesCrossLink from '@/components/solutions-hub/SolutionsServicesCrossLink'
 import ServiceCTA from '@/components/service/ServiceCTA'
@@ -78,13 +79,16 @@ export default function SolutionsPage() {
       {/* 6. Регламент работы (5 шагов) */}
       <SolutionsProcess />
 
-      {/* 7. Почему VOLTRENA (Единая ответственность) */}
+      {/* 7. Компактный Proof-блок с примерами работ */}
+      <ProofSection />
+
+      {/* 8. Почему VOLTRENA (Единая ответственность) */}
       <SolutionsWhyVoltrena />
 
-      {/* 8. Cross-link к услугам */}
+      {/* 9. Cross-link к услугам */}
       <SolutionsServicesCrossLink />
 
-      {/* Финальный прямой CTA */}
+      {/* 10. Финальный прямой CTA */}
       <ServiceCTA
         mode="directContact"
         title="Какую задачу нужно решить?"
