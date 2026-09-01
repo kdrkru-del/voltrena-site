@@ -1,162 +1,172 @@
 'use client'
 
 import React from 'react'
-import Link from 'next/link'
 import SectionHeading from '@/components/ui/SectionHeading'
 import ScrollReveal from '@/components/ui/ScrollReveal'
-import { ArrowRight, Sparkles, Check, ArrowUpRight } from 'lucide-react'
+import { ArrowRight, CheckCircle2 } from 'lucide-react'
 
-export interface SolutionItem {
+export interface SolutionData {
   id: string
+  anchor: string
   number: string
   title: string
-  descriptor: string
-  problem: string
+  tag: string
+  problemFit: string
   flow: string
   components: string[]
-  result: string
-  href: string
+  processOutcome: string
+  minimalStart: string
 }
 
-export const solutionsData: SolutionItem[] = [
+export const solutionsList: SolutionData[] = [
   {
-    id: 'lead-generation-system',
+    id: 'digital-sales',
+    anchor: 'solution-digital-sales',
     number: '01',
-    title: 'Lead Generation System',
-    descriptor: 'Система получения и обработки заявок',
-    problem: 'Когда бизнесу нужны новые стабильные входящие обращения и прозрачный контроль стоимости лида.',
-    flow: 'Поисковый спрос → Реклама → Лендинг → Лид → CRM → Менеджер → Аналитика',
-    components: ['Яндекс Директ', 'Конверсионный сайт', 'Внедрение CRM', 'Сквозная аналитика', 'Telegram алерты', 'Автоматизация'],
-    result: 'Управляемый поток целевых заявок с контролем окупаемости (ROMI).',
-    href: '/solutions/lead-generation-system',
+    title: 'Система привлечения клиентов',
+    tag: 'DIGITAL SALES SYSTEM',
+    problemFit: 'Когда нужны новые входящие обращения, а разрозненная реклама не окупается.',
+    flow: 'Спрос → Реклама / Поиск → Сайт → Заявка → CRM → Аналитика',
+    components: ['Яндекс Директ', 'Конверсионный сайт', 'Внедрение CRM', 'Сквозная аналитика', 'Telegram-оповещения'],
+    processOutcome: 'Реклама и сайт работают как единый контур: заявки без задержек попадают в CRM, а аналитика показывает реальную цену закрытой сделки.',
+    minimalStart: 'Контекстная реклама + посадочная страница с прямой интеграцией в CRM.',
   },
   {
-    id: 'b2b-lead-machine',
+    id: 'b2b-pipeline',
+    anchor: 'solution-b2b-pipeline',
     number: '02',
-    title: 'B2B Lead Machine',
-    descriptor: 'Система поиска корпоративных клиентов',
-    problem: 'Когда недостаточно ждать входящих заявок и требуется активный выход на нужные компании и ЛПР.',
-    flow: 'Целевой рынок → Парсинг баз → Обогащение → Скоринг → CRM → Продажи',
-    components: ['Исследование рынка', 'Парсинг данных', 'Обогащение контактов', 'AI Скоринг', 'CRM воронка', 'Outbound Workflow'],
-    result: 'Постоянный процесс генерации B2B-сделок без ручного поиска баз.',
-    href: '/solutions/b2b-lead-machine',
+    title: 'Система B2B-продаж',
+    tag: 'B2B PIPELINE SYSTEM',
+    problemFit: 'Когда входящих заявок недостаточно и требуется системный выход на компании и ЛПР.',
+    flow: 'Рынок → Данные → ICP-фильтр → Контакт → CRM → Сделка',
+    components: ['Парсинг баз компаний', 'Верификация контактов ЛПР', 'AI-скоринг', 'CRM-воронка', 'Outbound-сценарии'],
+    processOutcome: 'Отдел продаж получает регулярный поток квалифицированных контактов нужных компаний без ручного поиска данных в интернете.',
+    minimalStart: 'Сбор и верификация базы контактов по ключевому сегменту рынка.',
   },
   {
-    id: 'ai-sales-manager',
+    id: 'lead-operations',
+    anchor: 'solution-lead-operations',
     number: '03',
-    title: 'AI Sales Manager',
-    descriptor: 'AI-система обработки заявок',
-    problem: 'Когда менеджеры тратят часы на первичные типовые вопросы, долго отвечают и упускают горячих клиентов.',
-    flow: 'Новая заявка → Понимание AI → Квалификация → CRM → Черновик ответа → Менеджер',
-    components: ['AI Модели', 'База знаний', 'CRM интеграция', 'Telegram бот', 'Черновики ответов', 'Авто-роутинг'],
-    result: 'Менеджер подключается к уже квалифицированному лиду с готовым контекстом диалога.',
-    href: '/solutions/ai-sales-manager',
+    title: 'Квалификация и обработка заявок',
+    tag: 'LEAD OPERATIONS SYSTEM',
+    problemFit: 'Когда менеджеры тратят время на нецелевые запросы и долго отвечают клиентам.',
+    flow: 'Заявка → Контекст → Квалификация → Маршрутизация → Менеджер → Контроль',
+    components: ['AI-ассистент по базе знаний', 'Telegram-интерфейс', 'Маршрутизация лидов', 'amoCRM / Битрикс24', 'Контроль регламентов'],
+    processOutcome: 'Каждое обращение моментально проходит первичную классификацию, а менеджер подключается с уже готовым контекстом диалога.',
+    minimalStart: 'AI-квалификатор для первичного разбора входящих заявок.',
   },
   {
-    id: 'sales-automation',
+    id: 'ai-operations',
+    anchor: 'solution-ai-operations',
     number: '04',
-    title: 'Sales Automation System',
-    descriptor: 'Автоматизация отдела продаж',
-    problem: 'Когда лиды есть, но процесс продаж хаотичен: сделки зависают, а сотрудники забывают перезванивать.',
-    flow: 'Лид → CRM → Автозадача → Контроль сроков → Менеджер → Сделка & Оплата',
-    components: ['Архитектура CRM', 'Telegram уведомления', 'Автозадачи', 'Генерация КП и счетов', 'Контроль регламентов', 'Дашборд KPI'],
-    result: 'Каждый лид получает понятное следующее действие без задержек и человеческого фактора.',
-    href: '/solutions/sales-automation',
+    title: 'Автоматизация операционных процессов',
+    tag: 'AI OPERATIONS SYSTEM',
+    problemFit: 'Когда рутинные операции с документами, счетами и отчётами съедают рабочее время.',
+    flow: 'Событие → Правило / AI → Действие → Проверка человеком → Журнал результата',
+    components: ['Workflow-автоматизация (n8n)', 'Автогенерация КП и счетов', 'Telegram-боты для команды', 'Синхронизация баз данных'],
+    processOutcome: 'Повторяющиеся рутинные действия выполняются программно, а сотрудники фокусируются на переговорах и развитии.',
+    minimalStart: 'Автоматизация одного ключевого рутинного процесса в отделе продаж.',
   },
   {
-    id: 'digital-intelligence',
+    id: 'market-intelligence',
+    anchor: 'solution-market-intelligence',
     number: '05',
-    title: 'Digital Intelligence',
-    descriptor: 'Мониторинг рынка и данных',
-    problem: 'Когда бизнесу нужно непрерывно отслеживать цены конкурентов, новые тендеры и динамику рынка.',
-    flow: 'Источники → Мониторинг → Данные → AI Анализ → Сигнал → Алерт & Дашборд',
-    components: ['Web Scraping', 'Мониторинг цен', 'База данных', 'AI Классификация', 'Telegram Алерты', 'BI Дашборд'],
-    result: 'Бизнес мгновенно узнаёт об изменениях цен и появлении новых возможностей на рынке.',
-    href: '/solutions/digital-intelligence',
+    title: 'Мониторинг рынка и данных',
+    tag: 'MARKET INTELLIGENCE SYSTEM',
+    problemFit: 'Когда нужно отслеживать цены конкурентов, появление новых позиций и тендеров.',
+    flow: 'Источники → Сбор → Нормализация → Анализ → Алерт → Решение',
+    components: ['Web Scraping парсеры', 'База данных и ETL', 'Модуль сравнения цен', 'Telegram-алерты', 'BI-дашборд'],
+    processOutcome: 'Руководство получает оперативные сводки об изменениях на рынке и принимает решения на основе проверенных данных.',
+    minimalStart: 'Регулярный сбор и мониторинг цен по ключевым конкурентам.',
   },
 ]
 
 export default function SolutionsCatalog() {
   return (
-    <section id="solutions-catalog" className="py-20 bg-bg-primary relative overflow-hidden scroll-mt-20">
+    <section id="solutions-catalog" className="py-20 md:py-28 bg-bg-primary relative overflow-hidden scroll-mt-24">
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <SectionHeading
             tag="ГОТОВЫЕ СИСТЕМЫ"
-            title="Пять базовых бизнес-решений VOLTRENA."
-            subtitle="Каждая система закрывает конкретную потребность компании: от лидогенерации до автоматизации и аналитики."
+            title="Пять комплексных решений для бизнеса."
+            subtitle="Каждая система проектируется как законченный рабочий процесс с прозрачной ответственностью за всю цепочку."
             align="center"
           />
         </ScrollReveal>
 
-        <div className="mt-16 space-y-8 max-w-5xl mx-auto">
-          {solutionsData.map((sol, i) => (
-            <ScrollReveal key={sol.id} delay={i * 80}>
-              <div className="p-6 md:p-8 rounded-3xl bg-bg-surface border border-border hover:border-accent/50 transition-all duration-300 group shadow-lg flex flex-col justify-between">
-                <div>
-                  {/* Top row: Number & Descriptor */}
-                  <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                    <div className="flex items-center gap-3">
-                      <span className="font-mono text-sm text-accent font-bold px-2.5 py-1 rounded-md bg-accent/10">
-                        {sol.number}
-                      </span>
-                      <span className="text-xs font-mono text-text-muted uppercase tracking-wider font-semibold">
-                        {sol.descriptor}
-                      </span>
-                    </div>
-                    <span className="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 font-semibold">
-                      Production Ready
+        <div className="mt-14 space-y-10 max-w-5xl mx-auto">
+          {solutionsList.map((sol, i) => (
+            <ScrollReveal key={sol.id} delay={i * 60}>
+              <div
+                id={sol.anchor}
+                className="p-6 md:p-8 rounded-2xl bg-bg-surface border border-border/80 hover:border-accent/50 transition-all shadow-lg scroll-mt-28"
+              >
+                {/* Top: Number & Tag */}
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-xs text-accent font-bold px-2 py-0.5 rounded bg-accent/10">
+                      {sol.number}
                     </span>
-                  </div>
-
-                  {/* Title & Problem */}
-                  <h3 className="text-2xl md:text-3xl font-bold text-text-primary group-hover:text-accent transition-colors mb-3">
-                    {sol.title}
-                  </h3>
-                  <p className="text-text-secondary text-sm md:text-base leading-relaxed mb-6 max-w-3xl">
-                    <strong>Когда нужно:</strong> {sol.problem}
-                  </p>
-
-                  {/* Flow Strip */}
-                  <div className="p-4 rounded-xl bg-bg-primary border border-border mb-6">
-                    <span className="text-[11px] font-mono text-accent uppercase tracking-wider block mb-1 font-semibold">
-                      FLOW СИСТЕМЫ:
+                    <span className="text-[11px] font-mono text-text-muted uppercase tracking-wider font-semibold">
+                      {sol.tag}
                     </span>
-                    <p className="text-xs md:text-sm font-mono text-text-primary">
-                      {sol.flow}
-                    </p>
-                  </div>
-
-                  {/* Included Services Stack */}
-                  <div className="mb-6">
-                    <span className="text-xs font-mono text-text-muted uppercase tracking-wider block mb-2">
-                      Что входит в систему:
-                    </span>
-                    <div className="flex flex-wrap gap-2">
-                      {sol.components.map((comp) => (
-                        <span
-                          key={comp}
-                          className="px-3 py-1 rounded-lg bg-bg-surface border border-border text-xs font-mono text-text-secondary"
-                        >
-                          {comp}
-                        </span>
-                      ))}
-                    </div>
                   </div>
                 </div>
 
-                {/* Footer: Result & Action */}
-                <div className="pt-6 border-t border-border/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div className="flex items-center gap-2 text-xs md:text-sm text-text-primary">
-                    <span className="w-2 h-2 rounded-full bg-accent flex-shrink-0" />
-                    <span><strong>Результат:</strong> {sol.result}</span>
-                  </div>
+                {/* Title */}
+                <h3 className="text-2xl sm:text-3xl font-bold text-text-primary mb-3">
+                  {sol.title}
+                </h3>
 
+                {/* Fit */}
+                <p className="text-text-secondary text-xs sm:text-sm leading-relaxed mb-5 max-w-3xl">
+                  <strong>Подходит, если:</strong> {sol.problemFit}
+                </p>
+
+                {/* Flow */}
+                <div className="p-3.5 rounded-xl bg-bg-primary border border-border mb-5">
+                  <span className="text-[10px] font-mono text-accent uppercase tracking-wider block mb-1">
+                    Сквозной Flow:
+                  </span>
+                  <p className="text-xs sm:text-sm font-mono text-text-primary font-medium">
+                    {sol.flow}
+                  </p>
+                </div>
+
+                {/* Components */}
+                <div className="mb-5">
+                  <span className="text-[11px] font-mono text-text-muted uppercase tracking-wider block mb-2">
+                    Ключевые компоненты:
+                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {sol.components.map((c) => (
+                      <span key={c} className="px-2.5 py-1 rounded-md bg-bg-surface border border-border text-xs font-mono text-text-secondary">
+                        {c}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Outcome & Minimal Start Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6 pt-4 border-t border-border/50">
+                  <div className="text-xs text-text-secondary">
+                    <strong className="text-text-primary block mb-0.5">После внедрения:</strong>
+                    {sol.processOutcome}
+                  </div>
+                  <div className="text-xs text-text-secondary">
+                    <strong className="text-accent block mb-0.5">Можно начать с:</strong>
+                    {sol.minimalStart}
+                  </div>
+                </div>
+
+                {/* CTA */}
+                <div className="pt-4 border-t border-border/60 flex items-center justify-between">
+                  <span className="text-xs text-text-muted">Единый контур ответственности</span>
                   <a
                     href="#contact"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent/10 border border-accent/30 text-accent hover:bg-accent hover:text-bg-primary text-xs font-mono font-bold transition-all whitespace-nowrap"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/10 border border-accent/30 text-accent hover:bg-accent hover:text-white text-xs font-semibold transition-all min-h-[40px]"
                   >
-                    <span>Обсудить внедрение</span>
+                    <span>Обсудить это решение</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </a>
                 </div>

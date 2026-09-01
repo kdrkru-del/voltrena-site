@@ -4,15 +4,15 @@ import React from 'react'
 import Link from 'next/link'
 import SectionHeading from '@/components/ui/SectionHeading'
 import ScrollReveal from '@/components/ui/ScrollReveal'
-import { ArrowUpRight, TrendingUp, Code, Cpu, Database, Sparkles, Bot, Layers, BarChart3, Search } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 
-export interface ServiceCardItem {
+export interface ServiceItem {
   id: string
   title: string
-  desc: string
+  problemSolved: string
+  deliverables: string[]
+  flow: string
   href: string
-  flowMetaphor: string
-  capabilities: string[]
 }
 
 export interface ServiceGroup {
@@ -20,66 +20,66 @@ export interface ServiceGroup {
   tag: string
   title: string
   desc: string
-  colorBadge: string
-  services: ServiceCardItem[]
+  badgeColor: string
+  services: ServiceItem[]
 }
 
 const serviceGroups: ServiceGroup[] = [
   {
-    id: 'grow',
-    tag: 'GROW',
+    id: 'attract',
+    tag: 'ATTRACT',
     title: 'Привлечение клиентов',
-    desc: 'Находим платежеспособный спрос и превращаем его в целевые обращения.',
-    colorBadge: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400',
+    desc: 'Находим платежеспособный спрос и конвертируем его в первичные целевые обращения.',
+    badgeColor: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400',
     services: [
       {
         id: 'yandex-direct',
         title: 'Яндекс Директ',
-        desc: 'Контекстная реклама в поиске и РСЯ с оптимизацией по квалифицированным лидам.',
+        problemSolved: 'Привлекает горячий поисковый спрос и масштабирует лиды без слива бюджета.',
+        deliverables: ['Сбор семантики и чистка минус-слов', 'Настройка поисковых и РСЯ кампаний', 'Оптимизация автостратегий по CPL'],
+        flow: 'Поиск → Объявление → Заявка',
         href: '/services/yandex-direct',
-        flowMetaphor: 'Поиск → Объявление → Заявка',
-        capabilities: ['Поисковая реклама', 'РСЯ и ретаргетинг', 'Автостратегии по CPL'],
       },
       {
         id: 'seo-geo',
         title: 'SEO / GEO & AI Search',
-        desc: 'Органическая видимость сайта в классических поисковиках и ответах генеративных нейросетей.',
+        problemSolved: 'Обеспечивает органический трафик из поиска и присутствие в ответах нейросетей.',
+        deliverables: ['Технический и семантический аудит', 'Оптимизация под AI-поиск (GEO)', 'Разметка Schema.org и геосервисы'],
+        flow: 'Запрос → Выдача / AI-ответ',
         href: '/services/seo-geo',
-        flowMetaphor: 'Запрос → Выдача / AI-ответ',
-        capabilities: ['Техническое SEO', 'Generative Engine (GEO)', 'Карты и Schema.org'],
       },
       {
-        id: 'b2b-lead-gen',
+        id: 'b2b-lead-generation',
         title: 'B2B Лидогенерация',
-        desc: 'Автоматизированный поиск корпоративных клиентов, сбор баз компаний и прямой аутрич.',
+        problemSolved: 'Находит корпоративных клиентов и выводит на лиц, принимающих решения.',
+        deliverables: ['Сбор баз компаний по ICP', 'Обогащение и валидация контактов ЛПР', 'Запуск персональных outbound-цепочек'],
+        flow: 'База → Фильтр ЛПР → Сделка',
         href: '/services/b2b-lead-generation',
-        flowMetaphor: 'База → Фильтр ЛПР → Сделка',
-        capabilities: ['Сбор баз по ICP', 'Обогащение контактов', 'Outbound-кампании'],
       },
     ],
   },
   {
-    id: 'build',
-    tag: 'BUILD',
-    title: 'Интерфейсы и продукты',
-    desc: 'Создаём быстрые сайты и Telegram-сервисы, ориентированные на конверсию.',
-    colorBadge: 'border-indigo-500/30 bg-indigo-500/10 text-indigo-400',
+    id: 'convert',
+    tag: 'CONVERT',
+    title: 'Интерфейсы и конверсия',
+    desc: 'Создаём посадочные страницы, корпоративные сайты и приложения внутри Telegram.',
+    badgeColor: 'border-indigo-500/30 bg-indigo-500/10 text-indigo-400',
     services: [
       {
         id: 'web-development',
         title: 'Создание сайтов',
-        desc: 'Лендинги, корпоративные порталы и веб-системы как фундамент продаж.',
+        problemSolved: 'Превращает посетителей в заявки через понятную структуру и высокую скорость.',
+        deliverables: ['Прототипирование и конверсионная структура', 'Быстрая адаптивная вёрстка на Next.js', 'Интеграция с CRM и аналитикой'],
+        flow: 'Архитектура → UI → Конверсия',
         href: '/services/web-development',
-        flowMetaphor: 'Архитектура → UI → Конверсия',
-        capabilities: ['Конверсионные лендинги', 'Многостраничные сайты', 'Синхронизация с CRM'],
       },
       {
         id: 'telegram-bots',
         title: 'Telegram Bots & Mini Apps',
-        desc: 'Рабочие сервисы внутри Telegram: заявки, каталоги, запись и инструменты сотрудников.',
+        problemSolved: 'Упрощает заказ, запись и коммуникацию с клиентами прямо в мессенджере.',
+        deliverables: ['Чат-боты для квалификации лидов', 'Telegram Mini Apps с веб-интерфейсом', 'Уведомления менеджерам о новых заявках'],
+        flow: 'Пользователь → Бот → CRM',
         href: '/services/telegram-bots',
-        flowMetaphor: 'Пользователь → Бот → CRM',
-        capabilities: ['Чат-боты для лидов', 'Telegram Mini Apps', 'Интерфейс для команды'],
       },
     ],
   },
@@ -87,49 +87,49 @@ const serviceGroups: ServiceGroup[] = [
     id: 'automate',
     tag: 'AUTOMATE',
     title: 'Автоматизация процессов',
-    desc: 'Убираем рутину, ускоряем обработку заявок и повышаем продуктивность команды.',
-    colorBadge: 'border-amber-500/30 bg-amber-500/10 text-amber-400',
+    desc: 'Убираем ручные операции, ускоряем ответ лидам и наводим порядок в воронке продаж.',
+    badgeColor: 'border-amber-500/30 bg-amber-500/10 text-amber-400',
     services: [
       {
         id: 'ai-automation',
         title: 'ИИ и автоматизация',
-        desc: 'Автоматические workflow, AI-ассистенты по базе знаний и интеграция систем.',
+        problemSolved: 'Квалифицирует заявки за секунды и выполняет рутинные рабочие сценарии.',
+        deliverables: ['AI-ассистенты по базе знаний компании', 'Автоматические сценарии в n8n / Make', 'Классификация и обработка документов'],
+        flow: 'Триггер → AI-логика → Действие',
         href: '/services/ai-automation',
-        flowMetaphor: 'Триггер → AI-логика → Действие',
-        capabilities: ['Автоматические workflow', 'AI-ассистенты', 'Обработка документов'],
       },
       {
         id: 'crm',
         title: 'Внедрение CRM',
-        desc: 'Настройка amoCRM и Битрикс24: связка с сайтом, рекламой, воронки и автозадачи.',
+        problemSolved: 'Исключает потерю входящих обращений и автоматизирует контроль сделок.',
+        deliverables: ['Настройка этапов воронки и регламентов', 'Подключение сайта, рекламы и телефонии', 'Автоматические задачи и триггеры менеджерам'],
+        flow: 'Лид → Воронка → Выручка',
         href: '/services/crm',
-        flowMetaphor: 'Лид → Воронка → Выручка',
-        capabilities: ['Воронки и регламенты', 'Интеграция каналов', 'Автозадачи менеджерам'],
       },
     ],
   },
   {
     id: 'data',
     tag: 'DATA',
-    title: 'Работа с данными',
-    desc: 'Превращаем сырую информацию в цифры для точных управленческих решений.',
-    colorBadge: 'border-cyan-500/30 bg-cyan-500/10 text-cyan-400',
+    title: 'Данные и управление',
+    desc: 'Собираем внешние данные рынка и сводим сквозные показатели в единые дашборды.',
+    badgeColor: 'border-cyan-500/30 bg-cyan-500/10 text-cyan-400',
     services: [
       {
         id: 'web-scraping',
         title: 'Парсинг и сбор данных',
-        desc: 'Автоматический сбор данных с сайтов, мониторинг цен конкурентов и реестров.',
+        problemSolved: 'Автоматизирует мониторинг цен конкурентов, каталогов и открытых реестров.',
+        deliverables: ['Разработка парсеров под любые сайты', 'Очистка и нормализация потока данных', 'Telegram-алерты об изменении цен'],
+        flow: 'Источник → Данные → Алерт',
         href: '/services/web-scraping',
-        flowMetaphor: 'Источник → Данные → Алерт',
-        capabilities: ['Мониторинг цен', 'Сбор каталогов и баз', 'Алерты об изменениях'],
       },
       {
         id: 'analytics',
         title: 'Сквозная аналитика',
-        desc: 'Связываем рекламные расходы, поведение на сайте и продажи из CRM в дашборд.',
+        problemSolved: 'Показывает реальную окупаемость рекламы от клика до денег в кассе.',
+        deliverables: ['Связка рекламных каналов с CRM и кассой', 'Построение дашбордов ROMI, CPL и CAC', 'Настройка корректной передачи UTM-меток'],
+        flow: 'Сигналы → Дашборд → Решение',
         href: '/services/analytics',
-        flowMetaphor: 'Сигналы → Дашборд → Решение',
-        capabilities: ['Сквозной дашборд', 'Расчёт ROMI и CPL', 'Отчёты и алерты'],
       },
     ],
   },
@@ -137,13 +137,13 @@ const serviceGroups: ServiceGroup[] = [
 
 export default function ServicesGroupGrid() {
   return (
-    <section id="service-groups" className="py-20 bg-bg-primary relative overflow-hidden scroll-mt-20">
+    <section id="service-groups" className="py-20 md:py-28 bg-bg-primary relative overflow-hidden scroll-mt-24">
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <SectionHeading
-            tag="КАТАЛОГ НАПРАВЛЕНИЙ"
-            title="Четыре блока цифровой системы роста."
-            subtitle="Каждая услуга решает конкретную задачу бизнеса и легко стыкуется с остальными в единый механизм."
+            tag="КАТАЛОГ УСЛУГ"
+            title="Девять направлений для управляемого роста."
+            subtitle="Каждая услуга решает конкретную проблему бизнеса и имеет чёткий список результатов."
             align="center"
           />
         </ScrollReveal>
@@ -152,66 +152,66 @@ export default function ServicesGroupGrid() {
           {serviceGroups.map((group, gi) => (
             <div key={group.id} className="relative">
               {/* Group Header */}
-              <ScrollReveal delay={gi * 80}>
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-border/70 gap-3">
-                  <div>
-                    <span className={`inline-block px-3 py-1 rounded-md border font-mono text-xs uppercase font-bold tracking-wider mb-2 ${group.colorBadge}`}>
+              <ScrollReveal delay={gi * 60}>
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-6 pb-3 border-b border-border/80 gap-2">
+                  <div className="flex items-center gap-3">
+                    <span className={`inline-block px-2.5 py-0.5 rounded border font-mono text-[11px] uppercase font-bold tracking-wider ${group.badgeColor}`}>
                       {group.tag}
                     </span>
-                    <h2 className="text-2xl md:text-3xl font-bold text-text-primary">
+                    <h2 className="text-xl sm:text-2xl font-bold text-text-primary">
                       {group.title}
                     </h2>
                   </div>
-                  <p className="text-text-secondary text-sm md:max-w-md">
+                  <p className="text-text-secondary text-xs sm:text-sm max-w-md">
                     {group.desc}
                   </p>
                 </div>
               </ScrollReveal>
 
-              {/* Service Cards in Group */}
-              <div className={`grid grid-cols-1 md:grid-cols-2 ${group.services.length === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-2'} gap-6`}>
+              {/* Service Items Grid */}
+              <div className={`grid grid-cols-1 md:grid-cols-2 ${group.services.length === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-2'} gap-5`}>
                 {group.services.map((service, si) => (
-                  <ScrollReveal key={service.id} delay={si * 100}>
-                    <Link
-                      href={service.href}
-                      className="h-full p-6 md:p-8 rounded-2xl bg-bg-surface border border-border hover:border-accent/50 transition-all duration-300 group flex flex-col justify-between relative overflow-hidden shadow-lg hover:shadow-accent/5"
-                    >
+                  <ScrollReveal key={service.id} delay={si * 70}>
+                    <div className="h-full p-5 sm:p-6 rounded-xl bg-bg-surface/80 border border-border/80 hover:border-accent/50 transition-all flex flex-col justify-between group">
                       <div>
-                        {/* Meta Flow */}
-                        <div className="flex items-center justify-between mb-4">
-                          <span className="text-[11px] font-mono text-accent bg-accent/10 px-2.5 py-1 rounded-md font-semibold">
-                            {service.flowMetaphor}
+                        {/* Title & Flow */}
+                        <div className="flex items-start justify-between gap-3 mb-2.5">
+                          <h3 className="text-lg font-bold text-text-primary group-hover:text-accent transition-colors">
+                            {service.title}
+                          </h3>
+                          <span className="text-[10px] font-mono text-accent bg-accent/10 px-2 py-0.5 rounded font-medium shrink-0">
+                            {service.flow}
                           </span>
-                          <ArrowUpRight className="w-5 h-5 text-text-muted group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                         </div>
 
-                        {/* Title */}
-                        <h3 className="text-xl font-bold text-text-primary group-hover:text-accent transition-colors mb-2">
-                          {service.title}
-                        </h3>
-
-                        {/* Description */}
-                        <p className="text-text-secondary text-sm leading-relaxed mb-6">
-                          {service.desc}
+                        {/* Problem Solved */}
+                        <p className="text-text-secondary text-xs sm:text-sm leading-relaxed mb-4">
+                          {service.problemSolved}
                         </p>
 
-                        {/* Capabilities Pills */}
-                        <div className="space-y-2 mb-6">
-                          {service.capabilities.map((cap) => (
-                            <div key={cap} className="flex items-center gap-2 text-xs text-text-secondary">
-                              <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
-                              <span>{cap}</span>
+                        {/* Deliverables List */}
+                        <div className="space-y-1.5 mb-5 pt-3 border-t border-border/50">
+                          <span className="text-[11px] font-mono text-text-muted uppercase tracking-wider block mb-1">
+                            Что делаем:
+                          </span>
+                          {service.deliverables.map((item) => (
+                            <div key={item} className="flex items-start gap-2 text-xs text-text-secondary">
+                              <span className="w-1 h-1 rounded-full bg-accent mt-1.5 shrink-0" />
+                              <span>{item}</span>
                             </div>
                           ))}
                         </div>
                       </div>
 
-                      {/* Card Footer Link */}
-                      <div className="pt-4 border-t border-border/50 flex items-center justify-between text-xs font-mono text-text-muted group-hover:text-accent transition-colors">
+                      {/* Footer Link */}
+                      <Link
+                        href={service.href}
+                        className="pt-3 border-t border-border/60 flex items-center justify-between text-xs font-mono text-text-primary group-hover:text-accent transition-colors font-medium"
+                      >
                         <span>Подробнее об услуге</span>
-                        <span>→</span>
-                      </div>
-                    </Link>
+                        <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      </Link>
+                    </div>
                   </ScrollReveal>
                 ))}
               </div>

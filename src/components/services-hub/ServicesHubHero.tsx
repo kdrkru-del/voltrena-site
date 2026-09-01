@@ -4,116 +4,85 @@ import React from 'react'
 import Link from 'next/link'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import Button from '@/components/ui/Button'
-import { ArrowRight, ArrowDown } from 'lucide-react'
+import { ArrowDown, Layers } from 'lucide-react'
 
-const mainFlow = [
-  { id: 'traffic', label: 'Трафик', sub: 'Директ / SEO / B2B' },
-  { id: 'website', label: 'Сайт', sub: 'Интерфейс & Конверсия' },
-  { id: 'lead', label: 'Заявка', sub: 'Квалификация' },
-  { id: 'crm', label: 'CRM', sub: 'Воронка сделок' },
-  { id: 'auto', label: 'Автоматизация', sub: 'AI & Telegram' },
-  { id: 'growth', label: 'Аналитика & Рост', sub: 'ROMI & Выручка' },
+const servicePillars = [
+  { id: 'attract', step: '01', title: 'Привлечь', desc: 'Директ, SEO / GEO, B2B-поиск' },
+  { id: 'convert', step: '02', title: 'Конвертировать', desc: 'Сайты, Telegram Mini Apps' },
+  { id: 'automate', step: '03', title: 'Автоматизировать', desc: 'ИИ-ассистенты, CRM-воронки' },
+  { id: 'measure', step: '04', title: 'Измерять', desc: 'Парсинг данных, Сквозная аналитика' },
 ]
 
 export default function ServicesHubHero() {
   return (
-    <section className="relative min-h-[85vh] pt-32 pb-20 bg-bg-primary overflow-hidden flex flex-col justify-center">
-      {/* Background patterns & radial glow */}
-      <div className="absolute inset-0 bg-dot-grid opacity-25 pointer-events-none" />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/8 blur-[140px] rounded-full pointer-events-none" />
+    <section className="relative pt-32 pb-16 md:pt-36 md:pb-24 bg-bg-primary overflow-hidden border-b border-border/40">
+      {/* Subtle Glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-accent/8 blur-[140px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Breadcrumb */}
-          <ScrollReveal delay={50}>
-            <div className="flex items-center justify-center gap-2 font-mono text-xs text-text-muted mb-6">
-              <Link href="/" className="hover:text-text-primary transition-colors">Главная</Link>
-              <span>/</span>
-              <span className="text-accent">Услуги</span>
-            </div>
-          </ScrollReveal>
+          <div className="flex items-center justify-center gap-2 font-mono text-xs text-text-muted mb-5">
+            <Link href="/" className="hover:text-text-primary transition-colors">Главная</Link>
+            <span>/</span>
+            <span className="text-accent">Услуги</span>
+          </div>
 
           {/* Eyebrow */}
-          <ScrollReveal delay={100}>
-            <span className="inline-block px-4 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs uppercase tracking-widest text-accent mb-6 font-semibold">
-              SERVICES & DIGITAL ECOSYSTEM
+          <div className="mb-4">
+            <span className="inline-block px-3.5 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs uppercase tracking-widest text-accent font-semibold">
+              УСЛУГИ / DIGITAL GROWTH STACK
             </span>
-          </ScrollReveal>
+          </div>
 
           {/* H1 */}
-          <ScrollReveal delay={150}>
-            <h1 className="text-display-xl font-bold text-text-primary tracking-tight mb-6">
-              Всё, что нужно для цифровой системы продаж.
-            </h1>
-          </ScrollReveal>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary tracking-tight mb-6 max-w-3xl mx-auto leading-[1.1]">
+            Услуги для каждого участка цифровой системы продаж.
+          </h1>
 
-          {/* Subtitle / Description */}
-          <ScrollReveal delay={200}>
-            <p className="text-lg md:text-xl text-text-secondary leading-relaxed max-w-3xl mx-auto mb-10">
-              От сайта и рекламы до CRM, AI и аналитики. Объединяем инструменты в единую систему, которая привлекает клиентов, обрабатывает заявки и помогает бизнесу расти.
-            </p>
-          </ScrollReveal>
+          {/* Supporting Text */}
+          <p className="text-base sm:text-lg md:text-xl text-text-secondary leading-relaxed max-w-2xl mx-auto mb-8">
+            Можно начать с сайта, рекламы, CRM, автоматизации или аналитики — а затем соединить нужные компоненты в одну управляемую систему.
+          </p>
 
           {/* CTAs */}
-          <ScrollReveal delay={250}>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <Button variant="primary" size="lg" href="#contact">
-                Обсудить задачу
-              </Button>
-              <Button variant="secondary" size="lg" href="#service-groups">
-                Выбрать направление
-              </Button>
-            </div>
-          </ScrollReveal>
+          <div className="flex flex-wrap items-center justify-center gap-3.5 mb-14">
+            <Button variant="primary" size="lg" href="#service-groups">
+              Выбрать услугу
+            </Button>
+            <Button variant="secondary" size="lg" href="#contact">
+              Описать задачу
+            </Button>
+          </div>
         </div>
 
-        {/* Connected System Visual Flow */}
-        <ScrollReveal delay={350}>
-          <div className="mt-16 max-w-5xl mx-auto p-6 md:p-8 rounded-3xl bg-bg-surface border border-border/80 shadow-2xl relative overflow-hidden">
-            <div className="text-center mb-6">
-              <span className="text-xs font-mono uppercase tracking-widest text-accent font-semibold">
-                CONNECTED GROWTH SYSTEM
+        {/* Compact 4-Pillar Map (Instantly readable, lightweight) */}
+        <div className="max-w-5xl mx-auto">
+          <div className="p-4 sm:p-6 rounded-2xl bg-bg-surface/70 border border-border/70 backdrop-blur-sm shadow-xl">
+            <div className="flex items-center justify-between mb-4 px-1">
+              <span className="text-xs font-mono text-text-muted uppercase tracking-wider font-semibold flex items-center gap-1.5">
+                <Layers className="w-3.5 h-3.5 text-accent" />
+                Карта 4 направлений стека
               </span>
-              <p className="text-xs text-text-secondary mt-1">
-                Единая сквозная цепочка: от первого рекламного касания до повторных продаж
-              </p>
+              <span className="text-[11px] font-mono text-accent">9 связанных услуг</span>
             </div>
 
-            {/* Desktop Horizontal Flow */}
-            <div className="hidden lg:grid grid-cols-6 gap-2 relative">
-              {mainFlow.map((node, i) => (
-                <div key={node.id} className="relative flex flex-col items-center text-center">
-                  <div className="w-full p-4 rounded-xl bg-bg-primary border border-border hover:border-accent/50 transition-colors h-full flex flex-col justify-center">
-                    <span className="font-bold text-sm text-text-primary mb-1">{node.label}</span>
-                    <span className="text-[11px] text-text-secondary leading-tight">{node.sub}</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {servicePillars.map((p) => (
+                <div
+                  key={p.id}
+                  className="p-4 rounded-xl bg-bg-primary/80 border border-border/80 flex flex-col justify-between"
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-bold text-sm text-text-primary">{p.title}</span>
+                    <span className="font-mono text-xs text-accent font-semibold">{p.step}</span>
                   </div>
-                  {i < mainFlow.length - 1 && (
-                    <div className="absolute top-1/2 -right-3 -translate-y-1/2 z-10 text-accent/60">
-                      <ArrowRight className="w-4 h-4" />
-                    </div>
-                  )}
+                  <p className="text-xs text-text-secondary leading-relaxed">{p.desc}</p>
                 </div>
               ))}
             </div>
-
-            {/* Mobile Vertical Flow */}
-            <div className="lg:hidden flex flex-col gap-3">
-              {mainFlow.map((node, i) => (
-                <React.Fragment key={node.id}>
-                  <div className="p-4 rounded-xl bg-bg-primary border border-border flex items-center justify-between">
-                    <span className="font-bold text-sm text-text-primary">{node.label}</span>
-                    <span className="text-xs text-text-secondary">{node.sub}</span>
-                  </div>
-                  {i < mainFlow.length - 1 && (
-                    <div className="flex justify-center -my-1 text-accent/50">
-                      <ArrowDown className="w-3.5 h-3.5" />
-                    </div>
-                  )}
-                </React.Fragment>
-              ))}
-            </div>
           </div>
-        </ScrollReveal>
+        </div>
       </div>
     </section>
   )

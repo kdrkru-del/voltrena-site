@@ -4,111 +4,179 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import SectionHeading from '@/components/ui/SectionHeading'
 import ScrollReveal from '@/components/ui/ScrollReveal'
-import { ArrowRight, Check } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Sparkles } from 'lucide-react'
 
-const problems = [
+interface ProblemOption {
+  id: string
+  label: string
+  primaryService: { title: string; href: string; reason: string }
+  secondaryServices: string[]
+  expectedOutcome: string
+}
+
+const problemOptions: ProblemOption[] = [
   {
-    id: 'leads',
-    question: 'Нужны новые заявки и продажи?',
-    recommendations: [
-      { title: 'Яндекс Директ', desc: 'Быстрый запуск целевой рекламы по ключевым фразам', href: '/services/yandex-direct' },
-      { title: 'SEO / GEO & AI Search', desc: 'Органический трафик из поиска и генеративных ответов', href: '/services/seo-geo' },
-      { title: 'B2B Лидогенерация', desc: 'Прямой поиск компаний и выход на ЛПР', href: '/services/b2b-lead-generation' },
-    ],
+    id: 'inbound-leads',
+    label: 'Нужно быстро получать входящие заявки',
+    primaryService: {
+      title: 'Яндекс Директ',
+      href: '/services/yandex-direct',
+      reason: 'Быстрый запуск целевой контекстной рекламы по сформированному поисковому спросу.',
+    },
+    secondaryServices: ['Создание сайтов', 'Внедрение CRM', 'Сквозная аналитика'],
+    expectedOutcome: 'Управляемый поток входящих обращений с прозрачной стоимостью за лид.',
   },
   {
-    id: 'lost',
-    question: 'Есть заявки, но они теряются?',
-    recommendations: [
-      { title: 'Внедрение CRM', desc: 'Единая база клиентов, воронка и контроль звонков', href: '/services/crm' },
-      { title: 'Telegram боты', desc: 'Мгновенное оповещение дежурных менеджеров', href: '/services/telegram-bots' },
-      { title: 'ИИ и автоматизация', desc: 'Автоматическая квалификация и распределение лидов', href: '/services/ai-automation' },
-    ],
+    id: 'organic-geo',
+    label: 'Нужен органический спрос из поиска и AI-ответов',
+    primaryService: {
+      title: 'SEO / GEO & AI Search',
+      href: '/services/seo-geo',
+      reason: 'Оптимизация под алгоритмы классического поиска и генеративные AI-выдачи.',
+    },
+    secondaryServices: ['Создание сайтов', 'Сквозная аналитика'],
+    expectedOutcome: 'Стабильная бесплатная видимость сайта по целевым коммерческим запросам.',
   },
   {
-    id: 'interface',
-    question: 'Нужен современный сайт или интерфейс?',
-    recommendations: [
-      { title: 'Создание сайтов', desc: 'Конверсионные лендинги и корпоративные порталы', href: '/services/web-development' },
-      { title: 'Telegram Mini Apps', desc: 'Полноценные веб-приложения внутри Telegram', href: '/services/telegram-bots' },
-    ],
+    id: 'b2b-outbound',
+    label: 'Нужен выход на B2B-компании',
+    primaryService: {
+      title: 'B2B Лидогенерация',
+      href: '/services/b2b-lead-generation',
+      reason: 'Точечный сбор баз предприятий, поиск прямых контактов ЛПР и запуск аутрича.',
+    },
+    secondaryServices: ['Парсинг данных', 'Внедрение CRM'],
+    expectedOutcome: 'Прямой контакт с лицами, принимающими решения в целевых компаниях.',
   },
   {
-    id: 'data',
-    question: 'Нужны данные о рынке и конкурентах?',
-    recommendations: [
-      { title: 'Парсинг данных', desc: 'Сбор открытых данных и мониторинг цен конкурентов', href: '/services/web-scraping' },
-      { title: 'Сквозная аналитика', desc: 'Дашборды по окупаемости каналов и ROMI', href: '/services/analytics' },
-    ],
+    id: 'new-site',
+    label: 'Нужен новый сайт или интерфейс',
+    primaryService: {
+      title: 'Создание сайтов',
+      href: '/services/web-development',
+      reason: 'Разработка конверсионной посадочной страницы или многостраничного портала.',
+    },
+    secondaryServices: ['Telegram Bots & Mini Apps', 'Внедрение CRM'],
+    expectedOutcome: 'Современный быстрый интерфейс, адаптированный под приём и конверсию трафика.',
   },
   {
-    id: 'routine',
-    question: 'Слишком много повторяющейся рутины?',
-    recommendations: [
-      { title: 'ИИ и автоматизация', desc: 'Автоматические workflow и AI-ассистенты', href: '/services/ai-automation' },
-      { title: 'Внедрение CRM', desc: 'Автогенерация счетов, договоров и КП в 1 клик', href: '/services/crm' },
-      { title: 'Telegram боты', desc: 'Команды и быстрые согласования со смартфона', href: '/services/telegram-bots' },
-    ],
+    id: 'lost-leads',
+    label: 'Нужно перестать терять лиды и ручные операции',
+    primaryService: {
+      title: 'Внедрение CRM',
+      href: '/services/crm',
+      reason: 'Фиксация всех заявок в единой базе, настройка регламентов и автозадач менеджерам.',
+    },
+    secondaryServices: ['ИИ и автоматизация', 'Telegram боты'],
+    expectedOutcome: 'Каждое обращение получает ответственного, регламентный срок и следующий шаг.',
+  },
+  {
+    id: 'market-data',
+    label: 'Нужны данные, мониторинг или прозрачная аналитика',
+    primaryService: {
+      title: 'Сквозная аналитика',
+      href: '/services/analytics',
+      reason: 'Сведение данных рекламных систем, сайта и реальных продаж в единый дашборд.',
+    },
+    secondaryServices: ['Парсинг и сбор данных'],
+    expectedOutcome: 'Полная прозрачность окупаемости маркетинга и цен конкурентов на рынке.',
   },
 ]
 
 export default function ServicesProblemNavigator() {
-  const [activeTab, setActiveTab] = useState(problems[0].id)
-
-  const activeProblem = problems.find((p) => p.id === activeTab) || problems[0]
+  const [activeId, setActiveId] = useState<string>(problemOptions[0].id)
+  const activeOption = problemOptions.find((p) => p.id === activeId) || problemOptions[0]
 
   return (
-    <section className="py-20 bg-bg-primary relative overflow-hidden">
+    <section className="py-20 md:py-28 bg-bg-secondary relative overflow-hidden">
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <SectionHeading
-            tag="НАВИГАТОР"
-            title="Не знаете, какая услуга нужна?"
-            subtitle="Выберите вашу текущую бизнес-задачу — мы покажем подходящие инструменты."
+            tag="НАВИГАТОР ПО ЗАДАЧЕ"
+            title="С какой услуги начать именно вам?"
+            subtitle="Выберите текущую потребность бизнеса — покажем стартовую точку и логику развития."
             align="center"
           />
         </ScrollReveal>
 
-        <div className="mt-16 max-w-5xl mx-auto">
-          {/* Question Tabs */}
-          <div className="flex flex-wrap gap-2.5 justify-center mb-10">
-            {problems.map((p) => (
-              <button
-                key={p.id}
-                onClick={() => setActiveTab(p.id)}
-                className={`px-4 py-2.5 rounded-xl text-xs md:text-sm font-medium transition-all duration-300 border ${
-                  activeTab === p.id
-                    ? 'bg-accent text-bg-primary border-accent font-bold shadow-lg shadow-accent/20'
-                    : 'bg-bg-surface text-text-secondary border-border hover:border-accent/40 hover:text-text-primary'
-                }`}
-              >
-                {p.question}
-              </button>
-            ))}
+        <div className="mt-12 max-w-5xl mx-auto">
+          {/* Selector Buttons */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mb-8" role="tablist" aria-label="Выбор бизнес-задачи">
+            {problemOptions.map((opt) => {
+              const isSelected = activeId === opt.id
+              return (
+                <button
+                  key={opt.id}
+                  role="tab"
+                  aria-selected={isSelected}
+                  aria-pressed={isSelected}
+                  onClick={() => setActiveId(opt.id)}
+                  className={`p-3.5 rounded-xl text-left text-xs sm:text-sm font-medium transition-all duration-200 border min-h-[48px] flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+                    isSelected
+                      ? 'bg-accent/15 border-accent text-text-primary font-semibold shadow-md'
+                      : 'bg-bg-surface text-text-secondary border-border hover:border-border-light hover:text-text-primary'
+                  }`}
+                >
+                  <span>{opt.label}</span>
+                  {isSelected && <span className="w-2 h-2 rounded-full bg-accent shrink-0 ml-2" />}
+                </button>
+              )
+            })}
           </div>
 
-          {/* Active Tab Recommendations */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {activeProblem.recommendations.map((rec) => (
-              <Link
-                key={rec.title}
-                href={rec.href}
-                className="p-6 rounded-2xl bg-bg-surface border border-border hover:border-accent/50 transition-all group flex flex-col justify-between"
-              >
-                <div>
-                  <h3 className="text-lg font-bold text-text-primary group-hover:text-accent transition-colors mb-2">
-                    {rec.title}
-                  </h3>
-                  <p className="text-text-secondary text-sm leading-relaxed mb-6">
-                    {rec.desc}
-                  </p>
+          {/* Active Option Panel */}
+          <div className="p-6 md:p-8 rounded-2xl bg-bg-surface border border-accent/30 shadow-xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {/* Recommended Service */}
+              <div className="lg:col-span-7">
+                <div className="flex items-center gap-2 mb-2">
+                  <Sparkles className="w-4 h-4 text-accent" />
+                  <span className="text-xs font-mono text-accent uppercase tracking-wider font-semibold">
+                    Рекомендуемая стартовая услуга
+                  </span>
                 </div>
-                <div className="flex items-center gap-1.5 text-xs font-mono text-accent font-semibold">
-                  <span>Перейти к услуге</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                <h3 className="text-2xl font-bold text-text-primary mb-3">
+                  {activeOption.primaryService.title}
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed mb-6">
+                  {activeOption.primaryService.reason}
+                </p>
+
+                <div className="p-4 rounded-xl bg-bg-primary border border-border flex items-start gap-3 mb-6">
+                  <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 shrink-0" />
+                  <div className="text-xs sm:text-sm text-text-primary">
+                    <strong className="block text-accent mb-0.5">Ожидаемый результат:</strong>
+                    {activeOption.expectedOutcome}
+                  </div>
                 </div>
-              </Link>
-            ))}
+
+                <Link
+                  href={activeOption.primaryService.href}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-white font-semibold text-xs sm:text-sm hover:bg-accent-light transition-colors min-h-[44px]"
+                >
+                  <span>Перейти к услуге {activeOption.primaryService.title}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+
+              {/* Secondary services stack */}
+              <div className="lg:col-span-5 p-5 rounded-xl bg-bg-primary/70 border border-border/80">
+                <span className="text-xs font-mono text-text-muted uppercase tracking-wider block mb-3 font-semibold">
+                  Что может понадобиться позже:
+                </span>
+                <div className="space-y-2 mb-4">
+                  {activeOption.secondaryServices.map((serviceName) => (
+                    <div key={serviceName} className="flex items-center gap-2 text-xs font-mono text-text-secondary">
+                      <span className="text-accent">+</span>
+                      <span>{serviceName}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-[11px] text-text-muted leading-tight border-t border-border/50 pt-3">
+                  Все компоненты легко стыкуются между собой по мере роста ваших задач.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

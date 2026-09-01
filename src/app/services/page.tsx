@@ -1,5 +1,11 @@
 import type { Metadata } from 'next'
-import dynamic from 'next/dynamic'
+import ServicesHubHero from '@/components/services-hub/ServicesHubHero'
+import ServicesGroupGrid from '@/components/services-hub/ServicesGroupGrid'
+import ServicesProblemNavigator from '@/components/services-hub/ServicesProblemNavigator'
+import ServicesConnectionFlow from '@/components/services-hub/ServicesConnectionFlow'
+import ServicesProcess from '@/components/services-hub/ServicesProcess'
+import ServicesSolutionsCrossLink from '@/components/services-hub/ServicesSolutionsCrossLink'
+import ServiceCTA from '@/components/service/ServiceCTA'
 
 const siteUrl = 'https://kdrkru-del.github.io/voltrena-site'
 
@@ -22,33 +28,6 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
 }
-
-function SectionSkeleton() {
-  return (
-    <div className="py-section flex items-center justify-center min-h-[40vh]" aria-hidden="true">
-      <div className="w-8 h-8 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
-    </div>
-  )
-}
-
-const ServicesHubHero          = dynamic(() => import('@/components/services-hub/ServicesHubHero'),          { loading: () => <SectionSkeleton /> })
-const ServicesConnectedStack    = dynamic(() => import('@/components/services-hub/ServicesConnectedStack'),    { loading: () => <SectionSkeleton /> })
-const ServicesGroupGrid         = dynamic(() => import('@/components/services-hub/ServicesGroupGrid'),         { loading: () => <SectionSkeleton /> })
-const ServicesChains            = dynamic(() => import('@/components/services-hub/ServicesChains'),            { loading: () => <SectionSkeleton /> })
-const ServicesProblemNavigator  = dynamic(() => import('@/components/services-hub/ServicesProblemNavigator'),  { loading: () => <SectionSkeleton /> })
-const ServicesOneSystem         = dynamic(() => import('@/components/services-hub/ServicesOneSystem'),         { loading: () => <SectionSkeleton /> })
-const ServicesSolutionsPreview  = dynamic(() => import('@/components/services-hub/ServicesSolutionsPreview'),  { loading: () => <SectionSkeleton /> })
-const ServiceProcess            = dynamic(() => import('@/components/service/ServiceProcess'),                 { loading: () => <SectionSkeleton /> })
-const ServiceCTA                = dynamic(() => import('@/components/service/ServiceCTA'),                     { loading: () => <SectionSkeleton /> })
-
-const hubProcessSteps = [
-  { number: '01', title: 'Business Goal', description: 'Определяем главную цель бизнеса: привлечение клиентов, автоматизация или наведение порядка в данных.' },
-  { number: '02', title: 'System Audit', description: 'Изучаем текущие каналы, сайт, CRM и выявляем узкие места, где теряются лиды и время.' },
-  { number: '03', title: 'Architecture', description: 'Проектируем взаимосвязанную архитектуру решения: какие инструменты соединяем и по какой логике.' },
-  { number: '04', title: 'Implementation', description: 'Создаём и настраиваем компоненты системы: сайты, рекламу, воронки CRM, ботов и аналитику.' },
-  { number: '05', title: 'Launch', description: 'Запускаем систему в работу, тестируем прохождение всех заявок и обучаем сотрудников.' },
-  { number: '06', title: 'Optimization', description: 'Анализируем сквозные данные, масштабируем эффективные каналы и развиваем систему.' },
-]
 
 export default function ServicesPage() {
   const serviceListSchema = {
@@ -83,43 +62,33 @@ export default function ServicesPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceListSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      {/* Hero */}
+      {/* 1. Hero */}
       <ServicesHubHero />
 
-      {/* Section 4: Инструменты работают сильнее, когда соединены */}
-      <ServicesConnectedStack />
-
-      {/* Section 5 & 6: 4 Группы (GROW, BUILD, AUTOMATE, DATA) и 9 карточек */}
+      {/* 2. Каталог услуг (Основной блок: 4 группы, 9 услуг) */}
       <ServicesGroupGrid />
 
-      {/* Section 7: Как услуги соединяются в цепочки */}
-      <ServicesChains />
-
-      {/* Section 8: С чего начать? Навигатор по задачам */}
+      {/* 3. Навигатор по задаче */}
       <ServicesProblemNavigator />
 
-      {/* Section 9, 10, 12: Один подрядчик вместо пяти & Результат вместо технологий */}
-      <ServicesOneSystem />
+      {/* 4. Как услуги соединяются (3 переключаемых сценария) */}
+      <ServicesConnectionFlow />
 
-      {/* Section 13: Решения preview */}
-      <ServicesSolutionsPreview />
+      {/* 5. Как начинается работа (5 конкретных шагов с результатами) */}
+      <ServicesProcess />
 
-      {/* Section 11: Процесс работы (6 этапов) */}
-      <ServiceProcess
-        steps={hubProcessSteps}
-        tag="ПРОЦЕСС"
-        title="Как мы работаем."
-        description="От формулировки бизнес-цели до запуска и сквозной оптимизации."
-      />
+      {/* 6. Переход к Solutions */}
+      <ServicesSolutionsCrossLink />
 
-      {/* Section 14: Final CTA */}
+      {/* 7. Финальный прямой CTA */}
       <ServiceCTA
+        mode="directContact"
         title="С какой задачи начнём?"
-        description="Опишите, что сейчас не работает или чего не хватает. Мы предложим подходящий набор услуг и архитектуру решения."
+        description="Опишите участок, который сейчас тормозит рост. Мы предложим стартовую услугу и покажем, как она может соединиться с остальной системой."
         benefits={[
-          'Разберём текущие процессы и точки роста',
-          'Предложим архитектуру взаимосвязанной системы',
-          'Рассчитаем этапы запуска и стоимость',
+          'Разберём текущую ситуацию и узкие места',
+          'Подберём стартовую услугу без навязывания лишнего',
+          'Покажем архитектуру возможного расширения',
         ]}
       />
     </>
