@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
-import { CheckCircle2, Activity, ArrowRight, Zap, Radio } from 'lucide-react'
+import NodeNetwork from '@/components/ui/NodeNetwork'
+import { CheckCircle2, Activity } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 
 interface SystemNode {
@@ -83,8 +84,12 @@ export default function Hero() {
 
   return (
     <section className="relative pt-32 pb-16 md:pt-36 md:pb-24 bg-bg-primary overflow-hidden border-b border-border/40">
-      {/* Soft ambient center glow */}
-      <div className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/6 blur-[140px] rounded-full pointer-events-none" />
+      {/* Background animated NodeNetwork layer */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <NodeNetwork className="absolute inset-0 opacity-60 sm:opacity-75 md:opacity-85" />
+        <div className="absolute inset-0 bg-gradient-to-b from-bg-primary/25 via-bg-primary/55 to-bg-primary" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(99,102,241,0.14),transparent_55%)]" />
+      </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
@@ -93,7 +98,7 @@ export default function Hero() {
           <div className="lg:col-span-6 flex flex-col items-start text-left">
             {/* Eyebrow */}
             <div className="mb-4">
-              <span className="inline-block px-3.5 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs uppercase tracking-widest text-accent font-semibold">
+              <span className="inline-block px-3.5 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs uppercase tracking-widest text-accent font-semibold backdrop-blur-sm">
                 VOLTRENA / DIGITAL GROWTH SYSTEMS
               </span>
             </div>
@@ -136,7 +141,7 @@ export default function Hero() {
 
           {/* Right Column: Living System Flow Visual */}
           <div className="lg:col-span-6 w-full">
-            <div className="p-5 sm:p-7 rounded-2xl bg-bg-surface border border-border/90 shadow-2xl relative overflow-hidden">
+            <div className="p-5 sm:p-7 rounded-2xl bg-bg-surface/85 backdrop-blur-md border border-border/90 shadow-2xl relative overflow-hidden">
               
               {/* Header: System Live Status */}
               <div className="flex items-center justify-between pb-4 mb-6 border-b border-border/70">
@@ -169,10 +174,10 @@ export default function Hero() {
                         onClick={() => setActiveIdx(idx)}
                         className={`p-2.5 rounded-xl text-center transition-all duration-300 relative border flex flex-col items-center justify-between min-h-[72px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                           isActive
-                            ? 'bg-accent/15 border-accent text-text-primary shadow-[0_0_20px_rgba(99,102,241,0.25)] scale-[1.02]'
+                            ? 'bg-accent/20 border-accent text-text-primary shadow-[0_0_20px_rgba(99,102,241,0.25)] scale-[1.02]'
                             : isPast
-                            ? 'bg-bg-primary/90 border-accent/30 text-text-secondary'
-                            : 'bg-bg-primary border-border text-text-muted hover:border-border-light hover:text-text-secondary'
+                            ? 'bg-bg-primary/80 border-accent/30 text-text-secondary'
+                            : 'bg-bg-primary/80 border-border text-text-muted hover:border-border-light hover:text-text-secondary'
                         }`}
                       >
                         <span className={`font-mono text-[10px] font-bold block mb-1 ${
@@ -197,7 +202,7 @@ export default function Hero() {
                 </div>
 
                 {/* Connecting Pulse Line */}
-                <div className="w-full bg-bg-primary h-1 rounded-full mt-3 overflow-hidden relative border border-border/40">
+                <div className="w-full bg-bg-primary/80 h-1 rounded-full mt-3 overflow-hidden relative border border-border/40">
                   <div
                     className="h-full bg-accent transition-all duration-500 rounded-full"
                     style={{ width: `${((activeIdx + 1) / systemNodes.length) * 100}%` }}
@@ -206,7 +211,7 @@ export default function Hero() {
               </div>
 
               {/* Active State Card (Living event reflection) */}
-              <div className="p-4 sm:p-5 rounded-xl bg-bg-primary border border-accent/30 mb-4 transition-all duration-300 relative overflow-hidden">
+              <div className="p-4 sm:p-5 rounded-xl bg-bg-primary/90 border border-accent/30 mb-4 transition-all duration-300 relative overflow-hidden">
                 {/* Subtle soft edge accent glow */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 blur-2xl pointer-events-none" />
 
@@ -253,7 +258,7 @@ export default function Hero() {
                       className={`px-2 py-1 rounded text-[10px] font-mono transition-colors border ${
                         idx === activeIdx
                           ? 'bg-accent text-white border-accent font-semibold'
-                          : 'bg-bg-primary text-text-muted border-border hover:text-text-primary'
+                          : 'bg-bg-primary/80 text-text-muted border-border hover:text-text-primary'
                       }`}
                     >
                       {node.name}
