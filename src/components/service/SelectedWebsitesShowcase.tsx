@@ -42,8 +42,8 @@ const projects: SelectedProject[] = [
     number: '02',
     title: 'ТехУчёт',
     label: 'NICHE SERVICE / SEARCH INTENT',
-    url: 'https://techuchet24.ru/',
-    displayDomain: 'techuchet24.ru',
+    url: 'https://tehuchet24.ru/',
+    displayDomain: 'tehuchet24.ru',
     description:
       'Многостраничный сайт специализированного сервиса по регистрации и сопровождению спецтехники в Гостехнадзоре.',
     additionalText:
