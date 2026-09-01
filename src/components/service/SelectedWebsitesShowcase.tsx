@@ -34,7 +34,7 @@ const projects: SelectedProject[] = [
       'Посетитель может выбрать услугу, посмотреть примеры выполненных работ, загрузить фотографии объекта и передать заявку исполнителю с необходимым контекстом.',
     tags: ['Multi-page', 'Local Service', 'Lead Generation', 'Photo Upload', 'Analytics'],
     goal: 'получение и первичная квалификация заявок.',
-    image: '/images/projects/zelenyi-srez.svg',
+    image: '/images/projects/zelenyi-srez.jpg',
     accentColor: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10',
   },
   {
@@ -50,7 +50,7 @@ const projects: SelectedProject[] = [
       'Архитектура сайта разделяет разные поисковые сценарии владельцев техники: постановку на учёт, снятие с учёта, техосмотр, восстановление документов и другие задачи. Страницы связаны с рекламной структурой Яндекс Директа и аналитикой обращений, чтобы посетитель попадал сразу в контекст своей задачи.',
     tags: ['Multi-page', 'Search Intent', 'Yandex Direct', 'Yandex Metrica', 'Lead Tracking'],
     goal: 'превращать нишевой поисковый спрос в целевые обращения.',
-    image: '/images/projects/techuchet.svg',
+    image: '/images/projects/techuchet.jpg',
     accentColor: 'text-blue-400 border-blue-500/30 bg-blue-500/10',
   },
   {
@@ -66,7 +66,7 @@ const projects: SelectedProject[] = [
       'Сайт должен одновременно объяснять сложную модель бизнеса нескольким аудиториям: покупателям, поставщикам, производителям и компаниям, которым нужен партнёр во Вьетнаме. Многостраничная архитектура объединяет направления sourcing, проверки поставщиков, экспорта, импорта, логистики, торгового сопровождения и продуктовых категорий.',
     tags: ['International B2B', 'Multi-page', 'Trade', 'Sourcing', 'Export'],
     goal: 'сформировать доверие и превратить сложную B2B-модель в понятный путь до коммерческого запроса.',
-    image: '/images/projects/globerion.svg',
+    image: '/images/projects/globerion.jpg',
     accentColor: 'text-indigo-400 border-indigo-500/30 bg-indigo-500/10',
   },
 ]
