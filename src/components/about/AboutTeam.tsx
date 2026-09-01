@@ -1,9 +1,9 @@
 'use client'
 
 import React from 'react'
-import Image from 'next/image'
 import SectionHeading from '@/components/ui/SectionHeading'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+import { siteConfig } from '@/config/site'
 
 const teamMembers = [
   {
@@ -12,7 +12,7 @@ const teamMembers = [
     role: 'Основатель / Digital-стратег',
     bio: 'Определяет стратегию проекта, бизнес-архитектуру и контролирует, чтобы технологии, маркетинг и продажи работали на одну задачу.',
     tags: ['Стратегия', 'Архитектура', 'Бизнес'],
-    image: '/voltrena-site/images/team/roman-kornev.jpg',
+    image: '/images/team/roman-kornev.jpg',
   },
   {
     id: 'andrey',
@@ -20,7 +20,7 @@ const teamMembers = [
     role: 'UX/UI & Brand Design',
     bio: 'Проектирует интерфейсы и визуальные системы, которые помогают объяснять продукт, формировать доверие и повышать конверсию.',
     tags: ['UX/UI', 'Brand', 'Design Systems'],
-    image: '/voltrena-site/images/team/andrey-sokolov.jpg',
+    image: '/images/team/andrey-sokolov.jpg',
   },
   {
     id: 'dmitry',
@@ -28,7 +28,7 @@ const teamMembers = [
     role: 'Performance Marketing',
     bio: 'Отвечает за рекламную стратегию, привлечение клиентов, аналитику и оптимизацию экономики рекламных кампаний.',
     tags: ['Yandex Direct', 'Analytics', 'Performance'],
-    image: '/voltrena-site/images/team/dmitry-volkov.jpg',
+    image: '/images/team/dmitry-volkov.jpg',
   },
   {
     id: 'maxim',
@@ -36,7 +36,7 @@ const teamMembers = [
     role: 'AI & Automation',
     bio: 'Проектирует AI-интеграции, автоматизированные процессы, парсинг данных и взаимодействие между бизнес-системами.',
     tags: ['AI', 'Automation', 'API'],
-    image: '/voltrena-site/images/team/maxim-orlov.jpg',
+    image: '/images/team/maxim-orlov.jpg',
   },
 ]
 
@@ -60,7 +60,7 @@ export default function AboutTeam() {
                 {/* Photo container */}
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-bg-primary">
                   <img
-                    src={member.image}
+                    src={siteConfig.getAssetUrl(member.image)}
                     alt={member.name}
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"

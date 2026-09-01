@@ -1,10 +1,9 @@
 'use client'
 
 import React from 'react'
-import Image from 'next/image'
 import ScrollReveal from '@/components/ui/ScrollReveal'
-import SectionHeading from '@/components/ui/SectionHeading'
-import { ExternalLink, CheckCircle2, Globe, Shield, ArrowUpRight, Lock } from 'lucide-react'
+import { siteConfig } from '@/config/site'
+import { ExternalLink, CheckCircle2, ArrowUpRight, Lock } from 'lucide-react'
 
 export interface SelectedProject {
   id: string
@@ -103,6 +102,7 @@ export default function SelectedWebsitesShowcase() {
         <div className="space-y-20 md:space-y-28">
           {projects.map((project, index) => {
             const isEven = index % 2 === 1
+            const assetUrl = siteConfig.getAssetUrl(project.image)
 
             return (
               <ScrollReveal key={project.id} delay={index * 80}>
@@ -121,7 +121,7 @@ export default function SelectedWebsitesShowcase() {
                       className="block group rounded-2xl overflow-hidden bg-bg-surface border border-border/80 hover:border-accent/60 shadow-2xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                     >
                       {/* Browser Chrome Toolbar */}
-                      <div className="px-4 py-3 bg-bg-primary/90 border-b border-border/70 flex items-center justify-between gap-4">
+                      <div className="px-4 py-3 bg-bg-primary/95 border-b border-border/70 flex items-center justify-between gap-4">
                         {/* Traffic light dots */}
                         <div className="flex items-center gap-1.5">
                           <span className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
@@ -144,15 +144,14 @@ export default function SelectedWebsitesShowcase() {
 
                       {/* Mockup Image Area */}
                       <div className="relative aspect-[16/10] w-full bg-bg-primary overflow-hidden">
-                        <Image
-                          src={project.image}
+                        <img
+                          src={assetUrl}
                           alt={`Сайт ${project.title} — разработка VOLTRENA Digital`}
-                          fill
-                          className="object-cover object-top group-hover:scale-[1.015] transition-transform duration-500"
-                          sizes="(max-width: 1024px) 100vw, 650px"
+                          className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
+                          loading="lazy"
                         />
-                        {/* Subtle gradient vignette */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-bg-surface/60 via-transparent to-transparent opacity-60 pointer-events-none" />
+                        {/* Subtle bottom vignette */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-bg-surface/40 via-transparent to-transparent pointer-events-none" />
                       </div>
                     </a>
                   </div>

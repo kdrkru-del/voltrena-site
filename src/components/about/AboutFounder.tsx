@@ -1,11 +1,10 @@
 'use client'
 
 import React from 'react'
-import Image from 'next/image'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import Button from '@/components/ui/Button'
 import { siteConfig } from '@/config/site'
-import { Send, Shield, Sparkles, MessageCircle } from 'lucide-react'
+import { Send, MessageCircle } from 'lucide-react'
 
 export default function AboutFounder() {
   return (
@@ -20,13 +19,12 @@ export default function AboutFounder() {
               
               {/* Founder Portrait */}
               <div className="md:col-span-4 flex flex-col items-center text-center">
-                <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-2xl overflow-hidden border-2 border-accent/40 shadow-xl mb-4">
-                  <Image
-                    src="/images/team/roman-kornev.jpg"
+                <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-2xl overflow-hidden border-2 border-accent/40 shadow-xl mb-4 bg-bg-primary">
+                  <img
+                    src={siteConfig.getAssetUrl('/images/team/roman-kornev.jpg')}
                     alt="Роман Корнев — основатель VOLTRENA Digital"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 176px, 208px"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <h3 className="text-xl font-bold text-text-primary">

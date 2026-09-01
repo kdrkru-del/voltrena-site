@@ -40,4 +40,11 @@ export const siteConfig = {
     if (cleanPath === '/') return `${cleanBase}/`;
     return `${cleanBase}${cleanPath}`;
   },
+
+  // Helper for generating base-aware static asset paths
+  getAssetUrl(pathname: string): string {
+    const cleanPath = pathname.startsWith('/') ? pathname : `/${pathname}`;
+    const base = this.basePath.replace(/\/+$/, '');
+    return `${base}${cleanPath}`;
+  },
 } as const;
