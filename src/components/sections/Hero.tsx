@@ -60,11 +60,11 @@ const systemNodes: SystemNode[] = [
   },
   {
     id: 'automation',
-    name: 'Автоматизация',
-    status: 'Процесс запущен, Telegram-алерт',
+    name: 'Процессы',
+    status: 'Сценарий запущен, Telegram-алерт',
     statusShort: 'Процесс запущен',
-    detail: 'Сценарий классифицирует лид, назначает ответственного и отправляет задачу с дедлайном.',
-    tag: 'Workflow & Алерты',
+    detail: 'Сценарий классифицирует лид, назначает ответственного, маршрутизирует задачу и отправляет уведомление.',
+    tag: 'Workflow & Задачи',
   },
   {
     id: 'analytics',
@@ -87,13 +87,13 @@ const dynamicStatements: DynamicStatement[] = [
     id: 'leads',
     prefix: 'Мы приводим',
     highlight: 'клиентов.',
-    nodeIdx: 2, // Заявка (обращение клиента)
+    nodeIdx: 2, // Заявка
   },
   {
     id: 'sales_auto',
     prefix: 'Мы автоматизируем',
     highlight: 'продажи.',
-    nodeIdx: 4, // Автоматизация
+    nodeIdx: 4, // Процессы (автоматизация, CRM, воркфлоу)
   },
   {
     id: 'data_sync',
@@ -242,7 +242,7 @@ export default function Hero() {
                   </span>
                 </div>
                 
-                {/* Semantic status indicator instead of "Узел 02 из 06" */}
+                {/* Semantic status indicator */}
                 <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-[11px] text-accent">
                   {isFinalState ? (
                     <span className="flex items-center gap-1.5">
@@ -255,7 +255,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Connected Nodes Diagram (6 Clean Semantic Nodes without numbers) */}
+              {/* Connected Nodes Diagram (6 Clean Semantic Nodes: Спрос → Сайт → Заявка → CRM → Процессы → Аналитика) */}
               <div className="mb-6">
                 <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 relative" role="tablist" aria-label="Узлы системы">
                   {systemNodes.map((node, idx) => {
@@ -335,7 +335,7 @@ export default function Hero() {
                 {/* Detail */}
                 <p className="text-xs sm:text-sm text-text-secondary leading-relaxed mb-4">
                   {isFinalState
-                    ? 'Спрос, конверсионный слой сайта, захват лидов, CRM-воронка, AI-автоматизация и сквозная аналитика работают как единый управляемый механизм.'
+                    ? 'Спрос, конверсионный слой сайта, захват лидов, CRM-воронка, автоматизированные процессы и сквозная аналитика работают как единый управляемый механизм.'
                     : activeNode.detail}
                 </p>
 
