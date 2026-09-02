@@ -39,9 +39,7 @@ export default function CasesSystemMap() {
               >
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="font-mono text-[11px] text-accent font-bold">
-                      ШАГ {node.step}
-                    </span>
+                    <span className="w-2 h-2 rounded-full bg-accent/80"></span>
                     {idx < mapNodes.length - 1 && (
                       <ArrowRight className="w-3.5 h-3.5 text-text-muted hidden lg:block" />
                     )}

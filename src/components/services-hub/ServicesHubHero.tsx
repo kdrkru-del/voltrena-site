@@ -75,7 +75,7 @@ export default function ServicesHubHero() {
                 >
                   <div className="flex items-center justify-between mb-2">
                     <span className="font-bold text-sm text-text-primary">{p.title}</span>
-                    <span className="font-mono text-xs text-accent font-semibold">{p.step}</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
                   </div>
                   <p className="text-xs text-text-secondary leading-relaxed">{p.desc}</p>
                 </div>

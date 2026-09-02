@@ -51,7 +51,7 @@ export default function ServiceNoGuarantees() {
                 </ul>
               </div>
               <p className="mt-8 pt-4 border-t border-border text-xs text-text-muted italic">
-                Остерегайтесь агентств, обещающих 100% гарантии в закрытых алгоритмах
+                Остерегайтесь агентств, обещающих гарантированные позиции в закрытых алгоритмах
               </p>
             </div>
           </ScrollReveal>

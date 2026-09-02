@@ -5,14 +5,14 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import NodeNetwork from '@/components/ui/NodeNetwork'
-import { CheckCircle2, Activity, Sparkles } from 'lucide-react'
+import { CheckCircle2, Sparkles } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 
 interface SystemNode {
   id: string
-  step: string
   name: string
   status: string
+  statusShort: string
   detail: string
   tag: string
 }
@@ -28,49 +28,49 @@ interface DynamicStatement {
 const systemNodes: SystemNode[] = [
   {
     id: 'demand',
-    step: '01',
     name: 'Спрос',
     status: 'Поисковый сигнал зафиксирован',
+    statusShort: 'Поисковый сигнал',
     detail: 'Релевантный запрос в поиске или AI. Передача контекста без искажения интента.',
     tag: 'Трафик & Поиск',
   },
   {
     id: 'website',
-    step: '02',
     name: 'Сайт',
     status: 'Сессия открыта, UTM сохранены',
+    statusShort: 'Конверсионный слой',
     detail: 'Посадочная страница отвечает на точную задачу посетителя и удерживает входящие метки.',
     tag: 'Конверсионный слой',
   },
   {
     id: 'lead',
-    step: '03',
     name: 'Заявка',
-    status: 'Форма заполнена без потерь',
+    status: 'Обращение получено без потерь',
+    statusShort: 'Обращение получено',
     detail: 'Контакты, контекст запроса и технические параметры зафиксированы в едином пакете.',
     tag: 'Захват данных',
   },
   {
     id: 'crm',
-    step: '04',
     name: 'CRM',
-    status: 'Сделка создана и обогащена',
+    status: 'Лид в работе и обогащен',
+    statusShort: 'Лид в работе',
     detail: 'Карточка клиента мгновенно создана в воронке продаж с полной историей касаний.',
     tag: 'Управление воронкой',
   },
   {
     id: 'automation',
-    step: '05',
     name: 'Автоматизация',
-    status: 'AI-квалификация и Telegram-алерт',
+    status: 'Процесс запущен, Telegram-алерт',
+    statusShort: 'Процесс запущен',
     detail: 'Сценарий классифицирует лид, назначает ответственного и отправляет задачу с дедлайном.',
     tag: 'Workflow & Алерты',
   },
   {
     id: 'analytics',
-    step: '06',
     name: 'Аналитика',
-    status: 'Данные сведены в сквозной отчёт',
+    status: 'Результат связан в сквозной отчёт',
+    statusShort: 'Результат связан',
     detail: 'Выручка и статус сделки сопоставлены с рекламным источником для расчета окупаемости.',
     tag: 'Сквозной контроль',
   },
@@ -81,25 +81,25 @@ const dynamicStatements: DynamicStatement[] = [
     id: 'websites',
     prefix: 'Мы создаём',
     highlight: 'сайты.',
-    nodeIdx: 1, // 02. Сайт
+    nodeIdx: 1, // Сайт
   },
   {
-    id: 'demand',
+    id: 'leads',
     prefix: 'Мы приводим',
     highlight: 'клиентов.',
-    nodeIdx: 0, // 01. Спрос
+    nodeIdx: 2, // Заявка (обращение клиента)
   },
   {
     id: 'sales_auto',
     prefix: 'Мы автоматизируем',
     highlight: 'продажи.',
-    nodeIdx: 4, // 05. Автоматизация (и 04. CRM)
+    nodeIdx: 4, // Автоматизация
   },
   {
     id: 'data_sync',
     prefix: 'Мы связываем',
     highlight: 'данные.',
-    nodeIdx: 5, // 06. Аналитика
+    nodeIdx: 5, // Аналитика
   },
   {
     id: 'growth_systems',
@@ -135,13 +135,13 @@ export default function Hero() {
   // Allow direct interaction with nodes
   const handleSelectNode = (idx: number) => {
     setUserInteracted(true)
-    // Find corresponding statement or map directly
-    const matchingStatementIdx = dynamicStatements.findIndex((s) => s.nodeIdx === idx)
+    const matchingStatementIdx = dynamicStatements.findIndex((s) => s.nodeIdx === idx && !s.isFinalSystemState)
     if (matchingStatementIdx !== -1) {
       setStatementIdx(matchingStatementIdx)
     } else {
-      // Map other nodes
-      setStatementIdx(idx === 2 ? 0 : idx === 3 ? 2 : 4)
+      if (idx === 0) setStatementIdx(1)
+      else if (idx === 3) setStatementIdx(2)
+      else setStatementIdx(4)
     }
   }
 
@@ -242,19 +242,20 @@ export default function Hero() {
                   </span>
                 </div>
                 
-                <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-accent/10 border border-accent/20 font-mono text-[11px] text-accent">
+                {/* Semantic status indicator instead of "Узел 02 из 06" */}
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-[11px] text-accent">
                   {isFinalState ? (
-                    <span className="flex items-center gap-1">
+                    <span className="flex items-center gap-1.5">
                       <Sparkles className="w-3 h-3 text-accent" />
-                      <span>Вся система объединена</span>
+                      <span>Система объединена</span>
                     </span>
                   ) : (
-                    <span>Узел {activeNode.step} из 06</span>
+                    <span>{activeNode.statusShort}</span>
                   )}
                 </div>
               </div>
 
-              {/* Connected Nodes Diagram (6 Nodes) */}
+              {/* Connected Nodes Diagram (6 Clean Semantic Nodes without numbers) */}
               <div className="mb-6">
                 <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 relative" role="tablist" aria-label="Узлы системы">
                   {systemNodes.map((node, idx) => {
@@ -269,7 +270,7 @@ export default function Hero() {
                         role="tab"
                         aria-selected={isActive}
                         onClick={() => handleSelectNode(idx)}
-                        className={`p-2.5 rounded-xl text-center transition-all duration-300 relative border flex flex-col items-center justify-between min-h-[72px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+                        className={`py-3 px-2 rounded-xl text-center transition-all duration-300 relative border flex flex-col items-center justify-center min-h-[64px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                           isActive
                             ? 'bg-accent/20 border-accent text-text-primary shadow-[0_0_20px_rgba(99,102,241,0.25)] scale-[1.02]'
                             : isPast
@@ -277,21 +278,16 @@ export default function Hero() {
                             : 'bg-bg-primary/80 border-border text-text-muted hover:border-border-light hover:text-text-secondary'
                         }`}
                       >
-                        <span className={`font-mono text-[10px] font-bold block mb-1 ${
-                          isActive ? 'text-accent' : 'text-text-muted'
-                        }`}>
-                          {node.step}
-                        </span>
-                        <span className="text-xs font-semibold block leading-tight">
+                        <span className="text-xs sm:text-[13px] font-semibold block leading-tight">
                           {node.name}
                         </span>
 
                         {/* Active signal indicator dot */}
                         {isActive && (
-                          <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 animate-pulse" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 animate-pulse" />
                         )}
                         {!isActive && (
-                          <span className={`w-1 h-1 rounded-full mt-1.5 ${isPast ? 'bg-accent/40' : 'bg-border'}`} />
+                          <span className={`w-1 h-1 rounded-full mt-2 ${isPast ? 'bg-accent/40' : 'bg-border'}`} />
                         )}
                       </button>
                     )
@@ -331,7 +327,7 @@ export default function Hero() {
                   <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
                   <span>
                     {isFinalState
-                      ? 'Все 6 контуров объединены в систему'
+                      ? 'Все контуры объединены в единую систему'
                       : activeNode.status}
                   </span>
                 </h3>
@@ -358,13 +354,13 @@ export default function Hero() {
 
               {/* Node quick jump buttons */}
               <div className="flex flex-wrap items-center justify-between gap-1.5 pt-1">
-                <span className="font-mono text-[10px] text-text-muted uppercase">Переключить узел:</span>
+                <span className="font-mono text-[10px] text-text-muted uppercase">Узлы системы:</span>
                 <div className="flex flex-wrap gap-1">
                   {systemNodes.map((node, idx) => (
                     <button
                       key={node.id}
                       onClick={() => handleSelectNode(idx)}
-                      className={`px-2 py-1 rounded text-[10px] font-mono transition-colors border ${
+                      className={`px-2.5 py-1 rounded text-[11px] font-mono transition-colors border ${
                         idx === currentStatement.nodeIdx
                           ? 'bg-accent text-white border-accent font-semibold'
                           : 'bg-bg-primary/80 text-text-muted border-border hover:text-text-primary'

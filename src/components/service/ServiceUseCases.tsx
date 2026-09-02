@@ -32,11 +32,7 @@ export default function ServiceUseCases({ useCases }: ServiceUseCasesProps) {
             return (
               <ScrollReveal key={useCase.id} delay={0.1 + index * 0.1}>
                 <div className="group flex flex-col md:flex-row md:items-start gap-4 md:gap-8 py-8 border-b border-border transition-all duration-300 md:hover:border-l-2 md:hover:border-l-accent md:hover:pl-4">
-                  {!isMobile && (
-                    <div className="font-mono text-text-muted/30 text-heading w-16 flex-shrink-0">
-                      {number}
-                    </div>
-                  )}
+                  <div className="w-2 h-2 rounded-full bg-accent/60 mt-3 flex-shrink-0 hidden md:block" />
                   
                   <div className="flex-1">
                     <h3 className="text-subheading font-bold group-hover:text-accent transition-colors duration-300">

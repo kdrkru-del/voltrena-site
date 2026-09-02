@@ -22,7 +22,7 @@ export const solutions: Solution[] = [
     id: 'ai-sales-manager',
     title: 'ИИ Менеджер по продажам',
     components: ['ИИ-агент', 'База знаний', 'CRM', 'Telegram / Сайт', 'Квалификация'],
-    description: 'ИИ-ассистент, который общается с клиентами и квалифицирует лиды 24/7.',
+    description: 'ИИ-ассистент, который общается с клиентами и квалифицирует лиды в режиме реального времени.',
   },
   {
     id: 'digital-intelligence',

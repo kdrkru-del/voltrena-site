@@ -104,9 +104,7 @@ export default function SolutionsCatalog() {
                 {/* Top: Number & Tag */}
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-xs text-accent font-bold px-2 py-0.5 rounded bg-accent/10">
-                      {sol.number}
-                    </span>
+                    
                     <span className="text-[11px] font-mono text-text-muted uppercase tracking-wider font-semibold">
                       {sol.tag}
                     </span>

@@ -164,9 +164,7 @@ export default function SelectedWebsitesShowcase() {
                       <span className={`inline-block px-2.5 py-0.5 rounded border font-mono text-[10px] sm:text-[11px] uppercase font-bold tracking-wider ${project.accentColor}`}>
                         {project.label}
                       </span>
-                      <span className="font-mono text-xs text-text-muted font-bold">
-                        ПРОЕКТ {project.number}
-                      </span>
+                      <span className="font-mono text-xs text-text-muted font-medium">ВЫПОЛНЕННЫЙ ПРОЕКТ</span>
                     </div>
 
                     {/* Title */}
