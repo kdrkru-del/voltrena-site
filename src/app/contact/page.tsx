@@ -193,26 +193,10 @@ export default function ContactPage() {
                 </a>
               </div>
 
-              {/* Response Time Guarantees */}
-              <div className="p-4 sm:p-5 rounded-xl bg-bg-primary border border-border/80 space-y-2.5">
-                <div className="flex items-center gap-2 text-xs font-mono text-text-muted uppercase">
-                  <Clock className="w-4 h-4 text-accent" />
-                  <span>Регламент первого ответа:</span>
-                </div>
-                <div className="space-y-1.5 text-xs text-text-secondary">
-                  <div className="flex items-start gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" />
-                    <span>Отвечаем в течение 1 рабочего дня</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" />
-                    <span>Без навязчивых звонков и спама</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" />
-                    <span>Сразу привлекаем технического специалиста</span>
-                  </div>
-                </div>
+              {/* Response Guarantee */}
+              <div className="p-4 rounded-xl bg-bg-primary border border-border/80 flex items-center gap-3 text-xs text-text-secondary">
+                <Clock className="w-4 h-4 text-accent shrink-0" />
+                <span>Ответим в течение рабочего дня.</span>
               </div>
 
             </div>
@@ -225,7 +209,7 @@ export default function ContactPage() {
                     Форма обратной связи
                   </h2>
                   <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
-                    Заполните поля ниже — мы подготовим предварительное видение решения перед звонком.
+                    Опишите задачу — вернёмся с первым вариантом решения.
                   </p>
                 </div>
 
