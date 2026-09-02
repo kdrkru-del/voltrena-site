@@ -23,7 +23,7 @@ export default function AboutFounder() {
                   <img
                     src={siteConfig.getAssetUrl('/images/team/roman-kornev.jpg')}
                     alt="Роман Корнев — основатель VOLTRENA Digital"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-[50%_15%]"
                     loading="lazy"
                   />
                 </div>

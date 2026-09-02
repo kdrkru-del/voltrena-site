@@ -62,7 +62,7 @@ export default function AboutTeam() {
                   <img
                     src={siteConfig.getAssetUrl(member.image)}
                     alt={member.name}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-[50%_15%] group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-bg-surface via-transparent to-transparent opacity-80" />

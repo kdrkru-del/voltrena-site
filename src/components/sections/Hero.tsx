@@ -201,7 +201,7 @@ export default function Hero() {
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-3.5 mb-8 w-full sm:w-auto">
+            <div className="flex flex-wrap items-center gap-3.5 w-full sm:w-auto">
               <Button variant="primary" size="lg" href="#contact" className="w-full sm:w-auto">
                 Разобрать задачу
               </Button>
@@ -308,7 +308,7 @@ export default function Hero() {
               </div>
 
               {/* Active State Card (Living event reflection) */}
-              <div className="p-4 sm:p-5 rounded-xl bg-bg-primary/90 border border-accent/30 mb-4 transition-all duration-300 relative overflow-hidden">
+              <div className="p-4 sm:p-5 rounded-xl bg-bg-primary/90 border border-accent/30 mb-0 transition-all duration-300 relative overflow-hidden">
                 {/* Soft edge accent glow */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 blur-2xl pointer-events-none" />
 
@@ -349,26 +349,6 @@ export default function Hero() {
                       ? `Передача данных → ${systemNodes[currentStatement.nodeIdx + 1].name}`
                       : 'Цикл завершён · Возврат в аналитику'}
                   </span>
-                </div>
-              </div>
-
-              {/* Node quick jump buttons */}
-              <div className="flex flex-wrap items-center justify-between gap-1.5 pt-1">
-                <span className="font-mono text-[10px] text-text-muted uppercase">Узлы системы:</span>
-                <div className="flex flex-wrap gap-1">
-                  {systemNodes.map((node, idx) => (
-                    <button
-                      key={node.id}
-                      onClick={() => handleSelectNode(idx)}
-                      className={`px-2.5 py-1 rounded text-[11px] font-mono transition-colors border ${
-                        idx === currentStatement.nodeIdx
-                          ? 'bg-accent text-white border-accent font-semibold'
-                          : 'bg-bg-primary/80 text-text-muted border-border hover:text-text-primary'
-                      }`}
-                    >
-                      {node.name}
-                    </button>
-                  ))}
                 </div>
               </div>
 
