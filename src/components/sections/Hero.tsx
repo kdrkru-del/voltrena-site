@@ -209,21 +209,6 @@ export default function Hero() {
                 Посмотреть решения
               </Button>
             </div>
-
-            {/* Competencies row */}
-            <div className="pt-6 border-t border-border/70 w-full">
-              <p className="font-mono text-xs text-text-muted tracking-wide flex flex-wrap items-center gap-x-2 gap-y-1">
-                <span>Сайт</span>
-                <span className="text-accent/60">·</span>
-                <span>Привлечение</span>
-                <span className="text-accent/60">·</span>
-                <span>CRM</span>
-                <span className="text-accent/60">·</span>
-                <span>Автоматизация</span>
-                <span className="text-accent/60">·</span>
-                <span>Аналитика</span>
-              </p>
-            </div>
           </div>
 
           {/* Right Column: Living System Flow Visual (Synchronized with text) */}
@@ -333,23 +318,11 @@ export default function Hero() {
                 </h3>
 
                 {/* Detail */}
-                <p className="text-xs sm:text-sm text-text-secondary leading-relaxed mb-4">
+                <p className="text-xs sm:text-sm text-text-secondary leading-relaxed mb-0">
                   {isFinalState
                     ? 'Спрос, конверсионный слой сайта, захват лидов, CRM-воронка, автоматизированные процессы и сквозная аналитика работают как единый управляемый механизм.'
                     : activeNode.detail}
                 </p>
-
-                {/* Flow context footer */}
-                <div className="pt-3 border-t border-border/60 flex items-center justify-between text-[11px] font-mono text-text-muted">
-                  <span>Сквозной процесс:</span>
-                  <span className="text-accent font-medium">
-                    {isFinalState
-                      ? 'Сквозной цикл активен · От первого контакта до продажи'
-                      : currentStatement.nodeIdx < systemNodes.length - 1
-                      ? `Передача данных → ${systemNodes[currentStatement.nodeIdx + 1].name}`
-                      : 'Цикл завершён · Возврат в аналитику'}
-                  </span>
-                </div>
               </div>
 
             </div>
