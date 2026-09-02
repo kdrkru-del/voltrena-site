@@ -69,7 +69,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200"
                 >
-                  WhatsApp {siteConfig.whatsappPhone}
+                  WhatsApp
                 </a>
               </li>
               <li>

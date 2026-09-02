@@ -86,7 +86,7 @@ export default function ServiceCTA({
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </a>
 
-                    {/* WhatsApp Contact with visible number */}
+                    {/* WhatsApp Action Button */}
                     <a
                       href={siteConfig.whatsappUrl}
                       target="_blank"
@@ -96,12 +96,12 @@ export default function ServiceCTA({
                     >
                       <div className="flex items-center gap-3">
                         <MessageCircle className="w-5 h-5 text-emerald-400" />
-                        <span>WhatsApp: {siteConfig.whatsappPhone}</span>
+                        <span>Написать в WhatsApp</span>
                       </div>
-                      <span className="text-xs font-mono text-emerald-400 group-hover:underline hidden sm:inline">Написать</span>
+                      <ArrowRight className="w-4 h-4 text-emerald-400 group-hover:translate-x-1 transition-transform" />
                     </a>
 
-                    {/* Email Contact with visible email */}
+                    {/* Email Contact with visible email address */}
                     <a
                       href={`mailto:${siteConfig.email}`}
                       onClick={() => reachGoal('contact_email_click', { origin: 'cta_direct' })}
@@ -111,7 +111,7 @@ export default function ServiceCTA({
                         <Mail className="w-5 h-5 text-accent" />
                         <span>{siteConfig.email}</span>
                       </div>
-                      <span className="text-xs font-mono text-accent group-hover:underline hidden sm:inline">Отправить</span>
+                      <span className="text-xs font-mono text-accent group-hover:underline hidden sm:inline">Отправить письмо</span>
                     </a>
                   </div>
 
