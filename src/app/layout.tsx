@@ -40,6 +40,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteConfig.getCanonicalUrl('/'),
   },
+  icons: {
+    icon: [
+      { url: siteConfig.getAssetUrl('/favicon.svg'), type: 'image/svg+xml' },
+      { url: siteConfig.getAssetUrl('/favicon.ico'), sizes: 'any' },
+    ],
+    shortcut: [siteConfig.getAssetUrl('/favicon.svg')],
+    apple: [
+      { url: siteConfig.getAssetUrl('/favicon.svg'), sizes: '180x180', type: 'image/svg+xml' },
+    ],
+  },
   openGraph: {
     title: 'VOLTRENA Digital — Агентство цифрового роста и автоматизации',
     description:

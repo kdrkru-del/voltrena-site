@@ -71,47 +71,47 @@ export default function ServiceCTA({
                   </div>
 
                   <div className="space-y-3 pt-2">
-                    {/* Telegram Primary Contact */}
+                    {/* Telegram Primary Action Button */}
                     <a
                       href={siteConfig.telegramUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => reachGoal('contact_telegram_click', { origin: 'cta_direct' })}
-                      className="flex items-center justify-between p-4 rounded-xl bg-accent text-white font-semibold text-sm md:text-base hover:bg-accent-light transition-all shadow-lg shadow-accent/20 group focus:outline-none focus-visible:ring-2 focus-visible:ring-white min-h-[48px]"
+                      className="flex items-center justify-between p-4 rounded-xl bg-accent text-white font-semibold text-sm md:text-base hover:bg-accent-light transition-all shadow-lg shadow-accent/20 group focus:outline-none focus-visible:ring-2 focus-visible:ring-white min-h-[50px]"
                     >
                       <div className="flex items-center gap-3">
                         <Send className="w-5 h-5 fill-current" />
-                        <span>Написать в Telegram {siteConfig.telegramHandle}</span>
+                        <span>Написать в Telegram</span>
                       </div>
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </a>
 
-                    {/* WhatsApp Secondary Contact */}
+                    {/* WhatsApp Contact with visible number */}
                     <a
                       href={siteConfig.whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => reachGoal('contact_whatsapp_click', { origin: 'cta_direct' })}
-                      className="flex items-center justify-between p-4 rounded-xl bg-bg-primary border border-emerald-500/30 hover:border-emerald-500/60 text-text-primary font-medium text-sm md:text-base transition-colors group focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 min-h-[48px]"
+                      className="flex items-center justify-between p-4 rounded-xl bg-bg-primary border border-emerald-500/30 hover:border-emerald-500/60 text-text-primary font-medium text-sm md:text-base transition-colors group focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 min-h-[50px]"
                     >
                       <div className="flex items-center gap-3">
                         <MessageCircle className="w-5 h-5 text-emerald-400" />
-                        <span>WhatsApp {siteConfig.whatsappPhone}</span>
+                        <span>WhatsApp: {siteConfig.whatsappPhone}</span>
                       </div>
-                      <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-emerald-400 group-hover:translate-x-1 transition-transform" />
+                      <span className="text-xs font-mono text-emerald-400 group-hover:underline hidden sm:inline">Написать</span>
                     </a>
 
-                    {/* Email Contact */}
+                    {/* Email Contact with visible email */}
                     <a
                       href={`mailto:${siteConfig.email}`}
                       onClick={() => reachGoal('contact_email_click', { origin: 'cta_direct' })}
-                      className="flex items-center justify-between p-4 rounded-xl bg-bg-primary border border-border hover:border-accent/40 text-text-primary font-medium text-sm md:text-base transition-colors group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[48px]"
+                      className="flex items-center justify-between p-4 rounded-xl bg-bg-primary border border-border hover:border-accent/40 text-text-primary font-medium text-sm md:text-base transition-colors group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[50px]"
                     >
                       <div className="flex items-center gap-3">
                         <Mail className="w-5 h-5 text-accent" />
                         <span>{siteConfig.email}</span>
                       </div>
-                      <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-accent group-hover:translate-x-1 transition-transform" />
+                      <span className="text-xs font-mono text-accent group-hover:underline hidden sm:inline">Отправить</span>
                     </a>
                   </div>
 
