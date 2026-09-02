@@ -2,11 +2,11 @@ import { siteConfig } from '@/config/site'
 import type { Metadata } from 'next'
 import Hero from '@/components/sections/Hero'
 import HomeProblemNavigator from '@/components/sections/HomeProblemNavigator'
-import HomeTwoPaths from '@/components/sections/HomeTwoPaths'
-import HomeBreakdownsVsSystem from '@/components/sections/HomeBreakdownsVsSystem'
-import HomePhasedLaunch from '@/components/sections/HomePhasedLaunch'
 import ProofSection from '@/components/cases/ProofSection'
-import ServiceCTA from '@/components/service/ServiceCTA'
+import HomeSolutionsShowcase from '@/components/sections/HomeSolutionsShowcase'
+import HomeOneSystemAdvantage from '@/components/sections/HomeOneSystemAdvantage'
+import HomeTeamTrust from '@/components/sections/HomeTeamTrust'
+import HomeFinalContact from '@/components/sections/HomeFinalContact'
 
 const siteUrl = siteConfig.siteUrl
 
@@ -66,35 +66,26 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
 
-      {/* 1. Hero + Системный Flow */}
+      {/* 1. HERO: Позиционирование + Living System Flow */}
       <Hero />
 
-      {/* 2. Навигатор по бизнес-задаче */}
+      {/* 2. PROBLEM NAVIGATOR: Что мешает бизнесу расти? */}
       <HomeProblemNavigator />
 
-      {/* 3. Два способа работать с VOLTRENA (Решения vs Услуги) */}
-      <HomeTwoPaths />
-
-      {/* 4. Почему связанная система работает лучше (Разрывы vs Система) */}
-      <HomeBreakdownsVsSystem />
-
-      {/* 5. Поэтапный запуск (3 фазы) */}
-      <HomePhasedLaunch />
-
-      {/* 6. Примеры работающих систем (Компактный proof-блок) */}
+      {/* 3. PROOF / CASES: Реальные проекты и результаты */}
       <ProofSection />
 
-      {/* 7. Финальный прямой CTA */}
-      <ServiceCTA
-        mode="directContact"
-        title="С какого участка начнём?"
-        description="Опишите главную проблему в привлечении, продажах или операциях. Мы предложим первую рабочую очередь и покажем, как она встроится в общую систему."
-        benefits={[
-          'Определим главное узкое место',
-          'Предложим границы первой очереди',
-          'Покажем возможную архитектуру развития',
-        ]}
-      />
+      {/* 4. SOLUTIONS: Готовые связанные решения */}
+      <HomeSolutionsShowcase />
+
+      {/* 5. SYSTEM ADVANTAGE: Один подрядчик на всю цепочку */}
+      <HomeOneSystemAdvantage />
+
+      {/* 6. TEAM / TRUST: Люди за системой */}
+      <HomeTeamTrust />
+
+      {/* 7. FINAL CONTACT: Прямой контакт и форма */}
+      <HomeFinalContact />
     </>
   )
 }

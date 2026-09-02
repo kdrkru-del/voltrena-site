@@ -4,53 +4,59 @@ import React from 'react'
 import Link from 'next/link'
 import SectionHeading from '@/components/ui/SectionHeading'
 import ScrollReveal from '@/components/ui/ScrollReveal'
-import { ArrowRight, Layers, FileText, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, CheckCircle2 } from 'lucide-react'
 
-const compactCases = [
+const realCases = [
   {
     title: 'ТехУчёт',
-    scope: 'сайт + Яндекс Директ + tracking',
-    desc: 'Нишевой посадочный контур сопровождения в Гостехнадзоре: 6 поисковых групп, 40 фраз, сквозная UTM-разметка.',
+    tag: 'B2B ПРИВЛЕЧЕНИЕ & САЙТ',
+    scope: 'Сайт + Яндекс Директ + CRM',
+    desc: 'Нишевой посадочный контур в сегменте спецтехники и Гостехнадзора: сквозная UTM-разметка, целевые посадочные страницы и моментальная передача лидов в CRM без потерь.',
     href: '/cases/#tehuchet',
   },
   {
     title: 'Зелёный Срез',
-    scope: 'локальный сайт + фото + Telegram delivery',
-    desc: '26 локальных страниц, реальные пары «до / стало», форма с оценкой по фото и доставка заявок через Cloudflare Worker.',
+    tag: 'ЛОКАЛЬНЫЙ СЕРВИС & КОНВЕРСИЯ',
+    scope: 'Локальный сайт + форма с фото + Telegram',
+    desc: 'Гео-структура посадочных страниц, калькулятор быстрой оценки стоимости по фото и доставка заявок напрямую дежурному инженеру в Telegram.',
     href: '/cases/#zelenyi-srez',
   },
   {
     title: 'ГИЭ Групп',
-    scope: 'закупочный shortlist + 16 контрактов',
-    desc: 'Поиск и отбор закупок от 1 млн ₽ без барьера по госопыту. По данным проекта, компания выиграла 16 контрактов (3,5–12 млн ₽).',
+    tag: 'B2B ДАННЫЕ & ЗАКУПКИ',
+    scope: 'Аналитический шорт-лист + 16 контрактов',
+    desc: 'Система поиска и фильтрации профильных закупок от 1 млн ₽ без жестких ограничений по госопыту. 16 выигранных контрактов (3,5–12 млн ₽) на основе подготовленной базы.',
     href: '/cases/#gie-group',
   },
 ]
 
 export default function ProofSection() {
   return (
-    <section className="py-20 md:py-28 bg-bg-secondary relative overflow-hidden border-t border-border/40">
+    <section className="py-20 md:py-28 bg-bg-primary relative overflow-hidden border-t border-border/40">
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
         <ScrollReveal>
           <SectionHeading
             tag="ПРАКТИКА"
-            title="Работы, на которых виден системный подход"
-            subtitle="Эти проекты показывают разные входы: сайт и реклама, локальная заявка с фото, закупочный поиск и отбор возможностей."
+            title="Реальные проекты и результаты."
+            subtitle="Показываем, как работают созданные нами системы на реальных задачах клиентов."
             align="center"
           />
         </ScrollReveal>
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {compactCases.map((c, idx) => (
+          {realCases.map((c, idx) => (
             <ScrollReveal key={c.title} delay={idx * 70}>
-              <div className="h-full p-6 rounded-2xl bg-bg-surface border border-border/80 hover:border-accent/40 transition-all flex flex-col justify-between shadow-lg group">
+              <div className="h-full p-6 sm:p-7 rounded-2xl bg-bg-surface border border-border/80 hover:border-accent/40 transition-all flex flex-col justify-between shadow-lg group">
                 <div>
-                  <span className="font-mono text-xs text-accent font-semibold block mb-1">
-                    {c.scope}
+                  <span className="font-mono text-[11px] text-accent uppercase tracking-wider font-semibold block mb-2">
+                    {c.tag}
                   </span>
-                  <h3 className="text-xl font-bold text-text-primary mb-3">
+                  <h3 className="text-xl font-bold text-text-primary mb-1">
                     {c.title}
                   </h3>
+                  <p className="font-mono text-xs text-text-muted mb-4">
+                    {c.scope}
+                  </p>
                   <p className="text-xs sm:text-sm text-text-secondary leading-relaxed mb-6">
                     {c.desc}
                   </p>
@@ -60,7 +66,7 @@ export default function ProofSection() {
                   href={c.href}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:text-accent-light group-hover:translate-x-1 transition-transform min-h-[44px]"
                 >
-                  <span>Разобрать кейс</span>
+                  <span>Разобрать архитектуру проекта</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
@@ -69,13 +75,13 @@ export default function ProofSection() {
         </div>
 
         {/* Global CTA link */}
-        <ScrollReveal delay={250}>
+        <ScrollReveal delay={200}>
           <div className="mt-10 text-center">
             <Link
               href="/cases/"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent text-white font-semibold text-xs sm:text-sm hover:bg-accent-light transition-colors min-h-[44px]"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-bg-surface border border-border hover:border-accent text-text-primary hover:text-accent font-semibold text-xs sm:text-sm transition-all min-h-[44px]"
             >
-              <span>Смотреть все кейсы</span>
+              <span>Смотреть все кейсы агентства</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
