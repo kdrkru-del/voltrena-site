@@ -12,11 +12,11 @@ export const siteConfig = {
   
   // Site URL configuration with custom domain support
   siteUrl:
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://kdrkru-del.github.io/voltrena-site',
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://voltrena.ru',
   basePath:
     process.env.NEXT_PUBLIC_BASE_PATH !== undefined
       ? process.env.NEXT_PUBLIC_BASE_PATH
-      : (process.env.NODE_ENV === 'production' && !process.env.CUSTOM_DOMAIN ? '/voltrena-site' : ''),
+      : '',
 
   // Verified Contacts
   telegramUrl: 'https://t.me/romanspes',
