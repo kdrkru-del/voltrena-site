@@ -11,11 +11,11 @@ const siteUrl = siteConfig.siteUrl
 
 export const metadata: Metadata = {
   title: 'Кейсы и проекты digital-агентства VOLTRENA',
-  description: 'Кейсы и проекты digital-агентства VOLTRENA: Окна Центр (в разработке: выбор из 5 интерактивных концепций Hero), ТехУчёт (сайт + Яндекс Директ), Зелёный Срез (локальный сервис + Telegram), ГИЭ Групп (B2B закупки).',
+  description: 'Кейсы и проекты digital-агентства VOLTRENA: Окна Центр (в разработке: 5 концепций Hero), ЗемТрак (сайт + медийная реклама спецтехники), ТехУчёт (сайт + Яндекс Директ), Зелёный Срез (локальный сервис + Telegram), ГИЭ Групп (B2B закупки).',
   alternates: { canonical: siteUrl + '/cases/' },
   openGraph: {
     title: 'Кейсы и проекты digital-агентства VOLTRENA',
-    description: 'Кейсы и проекты digital-агентства VOLTRENA: Окна Центр (в разработке: выбор из 5 интерактивных концепций Hero), ТехУчёт (сайт + Яндекс Директ), Зелёный Срез (локальный сервис + Telegram), ГИЭ Групп (B2B закупки).',
+    description: 'Кейсы и проекты digital-агентства VOLTRENA: Окна Центр (в разработке: 5 концепций Hero), ЗемТрак (сайт + медийная реклама спецтехники), ТехУчёт (сайт + Яндекс Директ), Зелёный Срез (локальный сервис + Telegram), ГИЭ Групп (B2B закупки).',
     url: siteUrl + '/cases/',
     type: 'website',
     locale: 'ru_RU',
@@ -40,9 +40,10 @@ export default function CasesPage() {
       '@type': 'ItemList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Окна Центр: выбор направления из 5 концепций Hero', url: siteUrl + '/cases/#okna-center' },
-        { '@type': 'ListItem', position: 2, name: 'ТехУчёт: сайт и реклама Гостехнадзора', url: siteUrl + '/cases/#tehuchet' },
-        { '@type': 'ListItem', position: 3, name: 'Зелёный Срез: локальный сайт и Telegram delivery', url: siteUrl + '/cases/#zelenyi-srez' },
-        { '@type': 'ListItem', position: 4, name: 'ГИЭ Групп: подбор закупок без госопыта', url: siteUrl + '/cases/#gie-group' },
+        { '@type': 'ListItem', position: 2, name: 'ЗемТрак: сайт и медийная реклама спецтехники', url: siteUrl + '/cases/#zemtrak' },
+        { '@type': 'ListItem', position: 3, name: 'ТехУчёт: сайт и реклама Гостехнадзора', url: siteUrl + '/cases/#tehuchet' },
+        { '@type': 'ListItem', position: 4, name: 'Зелёный Срез: локальный сайт и Telegram delivery', url: siteUrl + '/cases/#zelenyi-srez' },
+        { '@type': 'ListItem', position: 5, name: 'ГИЭ Групп: подбор закупок без госопыта', url: siteUrl + '/cases/#gie-group' },
       ],
     },
   }

@@ -16,6 +16,14 @@ const realCases = [
     externalDemoUrl: 'https://kdrkru-del.github.io/okna-center-demo/',
   },
   {
+    title: '«ЗемТрак»',
+    tag: 'САЙТ & МЕДИЙНАЯ РЕКЛАМА',
+    scope: 'Каталог техники + Медийные баннеры + Директ',
+    desc: 'Федеральный сайт-каталог дорожной и строительной техники (краны Zoomlion до 600 т, экскаваторы, фрезы Wirtgen) и запуск медийной и контекстной рекламы.',
+    href: '/cases/#zemtrak',
+    externalDemoUrl: 'https://zemtrak.ru/',
+  },
+  {
     title: 'ТехУчёт',
     tag: 'B2B ПРИВЛЕЧЕНИЕ & САЙТ',
     scope: 'Сайт + Яндекс Директ + CRM',
