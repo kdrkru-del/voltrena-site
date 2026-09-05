@@ -31,7 +31,7 @@ export const siteConfig = {
   leadWebhookUrl: process.env.NEXT_PUBLIC_LEAD_WEBHOOK_URL || '',
 
   // Analytics
-  yandexMetrikaId: process.env.NEXT_PUBLIC_YM_ID || '',
+  yandexMetrikaId: process.env.NEXT_PUBLIC_YM_ID || '112313992',
 
   // Helper for generating absolute canonical URLs
   getCanonicalUrl(pathname: string = '/'): string {
