@@ -57,7 +57,7 @@ export default function HomePage() {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer support',
-      email: 'hello@voltrena.com',
+      email: siteConfig.email,
     },
   }
 

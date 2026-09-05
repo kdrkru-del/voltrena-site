@@ -24,8 +24,8 @@ export const siteConfig = {
   whatsappPhone: '+7 (925) 757-78-88',
   whatsappPhoneRaw: '79257577888',
   whatsappUrl: 'https://wa.me/79257577888',
-  email: 'hello@voltrena.com',
-  leadRecipientEmail: 'hello@voltrena.com',
+  email: 'info@voltrena.ru',
+  leadRecipientEmail: 'info@voltrena.ru',
 
   // Lead Webhook Integration
   leadWebhookUrl: process.env.NEXT_PUBLIC_LEAD_WEBHOOK_URL || '',
