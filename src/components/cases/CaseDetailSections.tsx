@@ -121,8 +121,8 @@ export default function CaseDetailSections() {
                     </div>
                   )}
 
-                  {/* Live Project Banner for ZemTrak */}
-                  {item.id === 'zemtrak' && item.externalDemoUrl && (
+                  {/* Live Project Banner for Live Projects (ZemTrak, TehUchet, Zelenyi Srez) */}
+                  {item.id !== 'okna-center' && item.externalDemoUrl && (
                     <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-accent/15 via-bg-surface to-bg-surface border border-accent/40 shadow-xl relative overflow-hidden">
                       <div className="flex items-center justify-between mb-2">
                         <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase font-semibold text-accent">
@@ -132,10 +132,10 @@ export default function CaseDetailSections() {
                         <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                       </div>
                       <h4 className="text-base font-bold text-text-primary mb-2">
-                        Федеральный сайт-каталог спецтехники «ЗемТрак»
+                        {item.title}
                       </h4>
                       <p className="text-xs text-text-secondary leading-relaxed mb-4">
-                        Многостраничный коммерческий каталог спецтехники с подробными техническими характеристиками, формой экспресс-расчёта аренды и связкой с рекламными кампаниями.
+                        {item.shortDescription}
                       </p>
                       <a
                         href={item.externalDemoUrl}
@@ -143,7 +143,7 @@ export default function CaseDetailSections() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-accent text-white font-semibold text-xs sm:text-sm hover:bg-accent-light transition-all shadow-md shadow-accent/20"
                       >
-                        <span>{item.externalDemoLabel || 'Перейти на сайт zemtrak.ru'}</span>
+                        <span>{item.externalDemoLabel || 'Перейти на сайт'}</span>
                         <ExternalLink className="w-4 h-4" />
                       </a>
                     </div>

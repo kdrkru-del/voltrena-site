@@ -31,8 +31,8 @@ const projects: SelectedProject[] = [
     description:
       'Многостраничный сайт сервиса по спилу и уходу за деревьями в Москве и Московской области. Структура построена вокруг поискового спроса, реальных работ и быстрого перехода пользователя к оценке объекта.',
     additionalText:
-      'Посетитель может выбрать услугу, посмотреть примеры выполненных работ, загрузить фотографии объекта и передать заявку исполнителю с необходимым контекстом.',
-    tags: ['Multi-page', 'Local Service', 'Lead Generation', 'Photo Upload', 'Analytics'],
+      'Посетитель может выбрать услугу, посмотреть примеры выполненных работ, рассчитать смету и передать заявку исполнителю с необходимым контекстом.',
+    tags: ['Multi-page', 'Local Service', 'Lead Generation', 'Fast Estimate', 'Analytics'],
     goal: 'получение и первичная квалификация заявок.',
     image: '/images/projects/zelenyi-srez.jpg',
     accentColor: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10',
