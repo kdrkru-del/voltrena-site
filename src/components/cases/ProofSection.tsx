@@ -4,7 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import SectionHeading from '@/components/ui/SectionHeading'
 import ScrollReveal from '@/components/ui/ScrollReveal'
-import { ArrowRight, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, CheckCircle2, ExternalLink } from 'lucide-react'
 
 const realCases = [
   {
@@ -70,13 +70,27 @@ export default function ProofSection() {
                   </p>
                 </div>
 
-                <Link
-                  href={c.href}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:text-accent-light group-hover:translate-x-1 transition-transform min-h-[44px]"
-                >
-                  <span>Разобрать архитектуру проекта</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+                <div className="flex flex-col gap-2.5 pt-2 border-t border-border/60">
+                  <Link
+                    href={c.href}
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:text-accent-light group-hover:translate-x-0.5 transition-transform"
+                  >
+                    <span>Разобрать проект</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+
+                  {c.externalDemoUrl && (
+                    <a
+                      href={c.externalDemoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-between px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 text-xs font-mono font-medium transition-colors"
+                    >
+                      <span>Тестировать 5 концепций</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                </div>
               </div>
             </ScrollReveal>
           ))}
