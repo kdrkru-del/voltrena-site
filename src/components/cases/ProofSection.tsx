@@ -14,6 +14,7 @@ const realCases = [
     desc: 'Проектирование флагманского сайта компании по премиальному остеклению (Владивосток). Создан интерактивный демо-стенд с 5 концепциями Hero (свет, WebGL, скролл).',
     href: '/cases/#okna-center',
     externalDemoUrl: 'https://kdrkru-del.github.io/okna-center-demo/',
+    externalDemoLabel: 'Тестировать 5 концепций',
   },
   {
     title: '«ЗемТрак»',
@@ -22,6 +23,7 @@ const realCases = [
     desc: 'Федеральный сайт-каталог дорожной и строительной техники (краны Zoomlion до 600 т, экскаваторы, фрезы Wirtgen) и запуск медийной и контекстной рекламы.',
     href: '/cases/#zemtrak',
     externalDemoUrl: 'https://zemtrak.ru/',
+    externalDemoLabel: 'Перейти на сайт zemtrak.ru',
   },
   {
     title: 'ТехУчёт',
@@ -94,7 +96,7 @@ export default function ProofSection() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-between px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 text-xs font-mono font-medium transition-colors"
                     >
-                      <span>Тестировать 5 концепций</span>
+                      <span>{c.externalDemoLabel || 'Открыть проект'}</span>
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   )}

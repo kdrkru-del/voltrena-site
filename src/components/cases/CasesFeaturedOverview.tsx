@@ -65,7 +65,7 @@ export default function CasesFeaturedOverview() {
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-accent text-white hover:bg-accent-light text-xs font-semibold shadow-sm transition-all"
                         >
-                          <span>Смотреть демо 5 концепций</span>
+                          <span>{item.externalDemoLabel || 'Смотреть демо'}</span>
                           <ExternalLink className="w-3.5 h-3.5" />
                         </a>
                       )}

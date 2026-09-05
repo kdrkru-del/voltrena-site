@@ -14,6 +14,7 @@ export interface CaseItem {
   limitations: string
   statusBadge?: string
   externalDemoUrl?: string
+  externalDemoLabel?: string
   demoData?: {
     type: 'ads' | 'delivery' | 'tenderTable'
     badge: string
@@ -52,6 +53,7 @@ export const casesData: CaseItem[] = [
     resultStatement: 'Проект находится в активной фазе: заказчик тестирует интерактивные прототипы в реальном браузере для выбора генерального направления перед финализацией полной структуры сайта.',
     limitations: 'Сайт находится в стадии активной разработки; на текущем этапе для публичного тестирования открыт интерактивный демо-стенд с 5 концепциями первого экрана.',
     externalDemoUrl: 'https://kdrkru-del.github.io/okna-center-demo/',
+    externalDemoLabel: 'Смотреть демо 5 концепций',
     demoData: {
       type: 'delivery',
       badge: 'Стенд 5 концепций первого экрана',
@@ -94,6 +96,7 @@ export const casesData: CaseItem[] = [
     resultStatement: 'Сформирован масштабный коммерческий контур: федеральный сайт-каталог техники закрывает поисковые и тендерные запросы, а медийная и контекстная реклама обеспечивает постоянный входящий поток звонков и прямых b2b-заявок на аренду.',
     limitations: 'Стоимость аренды и подача тралом рассчитываются индивидуально под конкретный объект, сменность и удаленность площадки; работа ведется по официальным договорам с НДС 20%.',
     externalDemoUrl: 'https://zemtrak.ru/',
+    externalDemoLabel: 'Перейти на сайт zemtrak.ru',
     demoData: {
       type: 'ads',
       badge: 'Рекламный контур и каталог техники',
