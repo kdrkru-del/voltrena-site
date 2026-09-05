@@ -8,6 +8,14 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react'
 
 const realCases = [
   {
+    title: '«Окна Центр»',
+    tag: 'В РАЗРАБОТКЕ / 5 КОНЦЕПЦИЙ',
+    scope: 'Сайт + WebGL + Выбор направления',
+    desc: 'Проектирование флагманского сайта компании по премиальному остеклению (Владивосток). Создан интерактивный демо-стенд с 5 концепциями Hero (свет, WebGL, скролл).',
+    href: '/cases/#okna-center',
+    externalDemoUrl: 'https://kdrkru-del.github.io/okna-center-demo/',
+  },
+  {
     title: 'ТехУчёт',
     tag: 'B2B ПРИВЛЕЧЕНИЕ & САЙТ',
     scope: 'Сайт + Яндекс Директ + CRM',
@@ -43,7 +51,7 @@ export default function ProofSection() {
           />
         </ScrollReveal>
 
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
           {realCases.map((c, idx) => (
             <ScrollReveal key={c.title} delay={idx * 70}>
               <div className="h-full p-6 sm:p-7 rounded-2xl bg-bg-surface border border-border/80 hover:border-accent/40 transition-all flex flex-col justify-between shadow-lg group">

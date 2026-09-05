@@ -2,7 +2,7 @@
 
 import React from 'react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
-import { CheckCircle2, AlertCircle, ArrowRight, Layers, Database, Activity } from 'lucide-react'
+import { CheckCircle2, AlertCircle, ArrowRight, Layers, Database, Activity, ExternalLink, Sparkles } from 'lucide-react'
 import { casesData, CaseItem } from '@/data/cases'
 
 export default function CaseDetailSections() {
@@ -18,13 +18,19 @@ export default function CaseDetailSections() {
             <ScrollReveal>
               {/* Header */}
               <div className="max-w-4xl mb-12">
-                <div className="flex items-center gap-3 mb-3">
+                <div className="flex flex-wrap items-center gap-3 mb-3">
                   <span className="font-mono text-xs text-accent font-bold px-2.5 py-1 rounded bg-accent/10 border border-accent/20">
                     КЕЙС 0{idx + 1}
                   </span>
                   <span className="font-mono text-xs text-text-muted uppercase">
                     {item.label}
                   </span>
+                  {item.statusBadge && (
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-[11px] font-semibold">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span>{item.statusBadge}</span>
+                    </span>
+                  )}
                 </div>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-text-primary mb-4">
                   {item.title}
@@ -87,6 +93,34 @@ export default function CaseDetailSections() {
 
                 {/* Right: Demo Artifact & Limitations */}
                 <div className="lg:col-span-5 space-y-6">
+                  {/* Live Demo Banner for In-Progress Project */}
+                  {item.externalDemoUrl && (
+                    <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-accent/15 via-bg-surface to-bg-surface border border-accent/40 shadow-xl relative overflow-hidden">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase font-semibold text-accent">
+                          <Sparkles className="w-3.5 h-3.5" />
+                          <span>Интерактивный стенд</span>
+                        </span>
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                      </div>
+                      <h4 className="text-base font-bold text-text-primary mb-2">
+                        5 концепций Hero для компании «Окна Центр»
+                      </h4>
+                      <p className="text-xs text-text-secondary leading-relaxed mb-4">
+                        Вы можете прямо сейчас протестировать все 5 вариантов первого экрана в реальном браузере: динамику света, WebGL-глубину, панорамные виды Владивостока и эффекты скролла.
+                      </p>
+                      <a
+                        href={item.externalDemoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-accent text-white font-semibold text-xs sm:text-sm hover:bg-accent-light transition-all shadow-md shadow-accent/20"
+                      >
+                        <span>Открыть интерактивное демо (5 концепций)</span>
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    </div>
+                  )}
+
                   {/* Demo/Inspection Box */}
                   {item.demoData && (
                     <div className="p-5 sm:p-6 rounded-2xl bg-bg-surface border border-border/80 shadow-lg">

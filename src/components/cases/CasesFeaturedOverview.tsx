@@ -14,8 +14,8 @@ export default function CasesFeaturedOverview() {
         <ScrollReveal>
           <SectionHeading
             tag="ПРОЕКТЫ"
-            title="Три примера работающих систем"
-            subtitle="Каждый кейс решает конкретную задачу бизнеса через собственный набор инструментов и сквозную связку данных."
+            title="Проекты в разработке и работающие системы"
+            subtitle="Показываем как готовые внедрения, так и проекты в активной разработке, включая интерактивные прототипы на этапе выбора направления."
             align="center"
           />
         </ScrollReveal>
@@ -29,9 +29,17 @@ export default function CasesFeaturedOverview() {
                   {/* Left Column: Info */}
                   <div className="lg:col-span-7 flex flex-col justify-between">
                     <div>
-                      <span className="font-mono text-xs text-accent uppercase tracking-wider block mb-2 font-semibold">
-                        {item.label}
-                      </span>
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
+                        <span className="font-mono text-xs text-accent uppercase tracking-wider font-semibold">
+                          {item.label}
+                        </span>
+                        {item.statusBadge && (
+                          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-[11px] font-semibold">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                            <span>{item.statusBadge}</span>
+                          </span>
+                        )}
+                      </div>
                       <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-3">
                         {item.title}
                       </h3>
@@ -40,8 +48,8 @@ export default function CasesFeaturedOverview() {
                       </p>
                     </div>
 
-                    {/* Action link */}
-                    <div>
+                    {/* Action links */}
+                    <div className="flex flex-wrap items-center gap-4 pt-2">
                       <Link
                         href={`#${item.anchorId}`}
                         className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-accent hover:text-accent-light transition-colors group-hover:translate-x-1 duration-200"
@@ -49,6 +57,18 @@ export default function CasesFeaturedOverview() {
                         <span>Разобрать кейс подробно</span>
                         <ArrowRight className="w-4 h-4" />
                       </Link>
+
+                      {item.externalDemoUrl && (
+                        <a
+                          href={item.externalDemoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-accent text-white hover:bg-accent-light text-xs font-semibold shadow-sm transition-all"
+                        >
+                          <span>Смотреть демо 5 концепций</span>
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      )}
                     </div>
                   </div>
 

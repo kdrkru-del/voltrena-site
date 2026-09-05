@@ -11,11 +11,11 @@ const siteUrl = siteConfig.siteUrl
 
 export const metadata: Metadata = {
   title: 'Кейсы и проекты digital-агентства VOLTRENA',
-  description: 'Примеры работающих систем: ТехУчёт (сайт + Яндекс Директ + tracking), Зелёный Срез (локальный сайт + Telegram delivery), ГИЭ Групп (закупочный поиск).',
+  description: 'Кейсы и проекты digital-агентства VOLTRENA: Окна Центр (в разработке: выбор из 5 интерактивных концепций Hero), ТехУчёт (сайт + Яндекс Директ), Зелёный Срез (локальный сервис + Telegram), ГИЭ Групп (B2B закупки).',
   alternates: { canonical: siteUrl + '/cases/' },
   openGraph: {
     title: 'Кейсы и проекты digital-агентства VOLTRENA',
-    description: 'Примеры работающих систем: ТехУчёт (сайт + Яндекс Директ + tracking), Зелёный Срез (локальный сайт + Telegram delivery), ГИЭ Групп (закупочный поиск).',
+    description: 'Кейсы и проекты digital-агентства VOLTRENA: Окна Центр (в разработке: выбор из 5 интерактивных концепций Hero), ТехУчёт (сайт + Яндекс Директ), Зелёный Срез (локальный сервис + Telegram), ГИЭ Групп (B2B закупки).',
     url: siteUrl + '/cases/',
     type: 'website',
     locale: 'ru_RU',
@@ -39,9 +39,10 @@ export default function CasesPage() {
     mainEntity: {
       '@type': 'ItemList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'ТехУчёт: сайт и реклама Гостехнадзора', url: siteUrl + '/cases/#tehuchet' },
-        { '@type': 'ListItem', position: 2, name: 'Зелёный Срез: локальный сайт и Telegram delivery', url: siteUrl + '/cases/#zelenyi-srez' },
-        { '@type': 'ListItem', position: 3, name: 'ГИЭ Групп: подбор закупок без госопыта', url: siteUrl + '/cases/#gie-group' },
+        { '@type': 'ListItem', position: 1, name: 'Окна Центр: выбор направления из 5 концепций Hero', url: siteUrl + '/cases/#okna-center' },
+        { '@type': 'ListItem', position: 2, name: 'ТехУчёт: сайт и реклама Гостехнадзора', url: siteUrl + '/cases/#tehuchet' },
+        { '@type': 'ListItem', position: 3, name: 'Зелёный Срез: локальный сайт и Telegram delivery', url: siteUrl + '/cases/#zelenyi-srez' },
+        { '@type': 'ListItem', position: 4, name: 'ГИЭ Групп: подбор закупок без госопыта', url: siteUrl + '/cases/#gie-group' },
       ],
     },
   }
