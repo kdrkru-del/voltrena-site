@@ -52,6 +52,7 @@ export default function Header() {
   }, [pathname]);
 
   return (
+    <>
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
@@ -195,11 +196,12 @@ export default function Header() {
           />
         </button>
       </div>
+    </header>
 
-      {/* Mobile menu */}
+      {/* Mobile menu overlay — outside <header> to avoid backdrop-filter stacking context bug on iOS */}
       <div
         className={cn(
-          'lg:hidden fixed inset-0 bg-bg-primary/98 backdrop-blur-xl transition-all duration-500 flex flex-col overflow-y-auto',
+          'lg:hidden fixed inset-0 z-40 bg-bg-primary/98 backdrop-blur-xl transition-all duration-500 flex flex-col overflow-y-auto',
           mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         )}
       >
@@ -262,6 +264,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }
