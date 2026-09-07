@@ -25,13 +25,13 @@ export const siteConfig = {
   whatsappPhoneRaw: '79257577888',
   whatsappUrl: 'https://wa.me/79257577888',
   email: 'info@voltrena.ru',
-  leadRecipientEmail: 'info@voltrena.ru',
+  leadRecipientEmail: 'roman.k@mail.ru',
 
   // Lead Delivery Integration (Email via FormSubmit.co / Webhook)
   leadWebhookUrl: process.env.NEXT_PUBLIC_LEAD_WEBHOOK_URL || '',
   leadEndpoint:
     process.env.NEXT_PUBLIC_LEAD_WEBHOOK_URL ||
-    'https://formsubmit.co/ajax/info@voltrena.ru',
+    'https://formsubmit.co/ajax/roman.k@mail.ru',
 
   // Analytics
   yandexMetrikaId: process.env.NEXT_PUBLIC_YM_ID || '112313992',

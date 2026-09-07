@@ -168,7 +168,7 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
         </div>
         <h3 className="text-xl font-bold text-text-primary mb-2">Заявка принята!</h3>
         <p className="text-text-secondary text-sm leading-relaxed max-w-md mb-6">
-          Информация отправлена на нашу почту {siteConfig.leadRecipientEmail}. Мы изучим контекст вашей задачи и свяжемся с вами в течение рабочего дня.
+          Мы получили вашу заявку, изучим контекст задачи и свяжемся с вами в течение рабочего дня.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <a
