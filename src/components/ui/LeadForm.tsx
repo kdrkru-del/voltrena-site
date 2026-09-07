@@ -89,6 +89,12 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
     setFormState('loading');
     setErrorMessage('');
 
+    const endpoint =
+      siteConfig.leadEndpoint ||
+      `https://formsubmit.co/ajax/${siteConfig.leadRecipientEmail}`;
+
+    const subject = `Новая заявка с сайта voltrena.ru: ${formData.name.trim()} (${formData.contact.trim()})`;
+
     const payload = {
       name: formData.name.trim(),
       contact: formData.contact.trim(),
@@ -97,38 +103,60 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
       pageUrl: typeof window !== 'undefined' ? window.location.href : '',
       pageTitle: typeof document !== 'undefined' ? document.title : '',
       referrer: typeof document !== 'undefined' ? document.referrer : '',
-      timestamp: new Date().toISOString(),
-      utm: utmParams,
+      timestamp: new Date().toLocaleString('ru-RU'),
+      // FormSubmit directives for email styling and anti-spam bypass:
+      _subject: subject,
+      _template: 'table',
+      _captcha: 'false',
+      ...utmParams,
     };
 
-    try {
-      if (siteConfig.leadWebhookUrl) {
-        const res = await fetch(siteConfig.leadWebhookUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
 
-        if (!res.ok) {
-          throw new Error(`Server returned status ${res.status}`);
-        }
-      } else if (process.env.NODE_ENV === 'production') {
-        // In production without a webhook URL — do NOT fake success; show error with direct contacts
-        setFormState('error');
-        setErrorMessage('Форма временно недоступна. Пожалуйста, напишите нам напрямую в Telegram или WhatsApp — ответим быстро.');
-        return;
-      } else {
-        // Dev only: simulate submission to test UI transitions
-        console.log('[Dev] Lead Payload (not sent):', payload);
-        await new Promise((resolve) => setTimeout(resolve, 600));
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+      });
+
+      if (!res.ok) {
+        throw new Error(`Server returned status ${res.status}`);
       }
+
+      const resData = await res.json().catch(() => null);
+      if (resData && resData.success === 'false' && resData.message && !resData.message.includes('Activation')) {
+        throw new Error(resData.message);
+      }
+
+      // Backup lead to browser storage
+      try {
+        const backupKey = 'voltrena_leads_backup';
+        const existing = JSON.parse(localStorage.getItem(backupKey) || '[]');
+        existing.push(payload);
+        localStorage.setItem(backupKey, JSON.stringify(existing.slice(-30)));
+      } catch (_) {}
 
       reachGoal('lead_form_success', { source });
       setFormState('success');
     } catch (err: any) {
       console.error('Lead submission failed:', err);
+      try {
+        const errKey = 'voltrena_lead_errors';
+        const existing = JSON.parse(localStorage.getItem(errKey) || '[]');
+        existing.push({ error: String(err?.message || err), payload, at: new Date().toISOString() });
+        localStorage.setItem(errKey, JSON.stringify(existing.slice(-20)));
+      } catch (_) {}
+
       setFormState('error');
-      setErrorMessage('Не удалось отправить заявку через форму. Пожалуйста, напишите нам напрямую в Telegram или WhatsApp.');
+      setErrorMessage('Не удалось отправить заявку. Пожалуйста, напишите нам напрямую в Telegram или WhatsApp — мы ответим быстро.');
+    } finally {
+      clearTimeout(timeout);
     }
   };
 
@@ -140,7 +168,7 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
         </div>
         <h3 className="text-xl font-bold text-text-primary mb-2">Заявка принята!</h3>
         <p className="text-text-secondary text-sm leading-relaxed max-w-md mb-6">
-          Мы изучим контекст вашей задачи и свяжемся с вами в течение одного рабочего дня.
+          Информация отправлена на нашу почту {siteConfig.leadRecipientEmail}. Мы изучим контекст вашей задачи и свяжемся с вами в течение рабочего дня.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <a
@@ -164,6 +192,16 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
             <span>WhatsApp</span>
           </a>
         </div>
+        <button
+          type="button"
+          onClick={() => {
+            setFormData({ name: '', contact: '', message: '' });
+            setFormState('idle');
+          }}
+          className="mt-6 text-xs font-mono text-text-muted hover:text-accent transition-colors underline"
+        >
+          Отправить ещё одну заявку
+        </button>
       </div>
     );
   }

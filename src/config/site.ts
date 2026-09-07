@@ -27,8 +27,11 @@ export const siteConfig = {
   email: 'info@voltrena.ru',
   leadRecipientEmail: 'info@voltrena.ru',
 
-  // Lead Webhook Integration
+  // Lead Delivery Integration (Email via FormSubmit.co / Webhook)
   leadWebhookUrl: process.env.NEXT_PUBLIC_LEAD_WEBHOOK_URL || '',
+  leadEndpoint:
+    process.env.NEXT_PUBLIC_LEAD_WEBHOOK_URL ||
+    'https://formsubmit.co/ajax/info@voltrena.ru',
 
   // Analytics
   yandexMetrikaId: process.env.NEXT_PUBLIC_YM_ID || '112313992',
