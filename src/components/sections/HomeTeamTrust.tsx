@@ -66,7 +66,21 @@ export default function HomeTeamTrust() {
                     alt={member.name}
                     className={`w-full h-full object-cover ${member.position} group-hover:scale-105 transition-transform duration-500`}
                     loading="lazy"
+                    onError={(e) => {
+                      // Hide broken image and show initials fallback
+                      e.currentTarget.style.display = 'none';
+                      const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                      if (fallback) fallback.style.display = 'flex';
+                    }}
                   />
+                  {/* Initials fallback (shown if image fails to load) */}
+                  <div
+                    className="absolute inset-0 items-center justify-center bg-bg-surface border border-border/60 text-3xl font-bold text-accent select-none"
+                    style={{ display: 'none' }}
+                    aria-hidden="true"
+                  >
+                    {member.name.split(' ').map(n => n[0]).join('')}
+                  </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-bg-surface via-transparent to-transparent opacity-80" />
                 </div>
 

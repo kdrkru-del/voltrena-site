@@ -53,14 +53,24 @@ export default function ScrollReveal({
           element.style.opacity = '1';
           element.style.transform = 'none';
           observer.unobserve(element);
+          clearTimeout(fallbackTimer);
         }
       },
       { threshold, rootMargin: '0px 0px -50px 0px' }
     );
 
+    // Safety fallback: ensure content is always visible even if IntersectionObserver doesn't fire
+    const fallbackTimer = setTimeout(() => {
+      element.style.opacity = '1';
+      element.style.transform = 'none';
+    }, duration + delay + 2000);
+
     observer.observe(element);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallbackTimer);
+    };
   }, [delay, direction, duration, threshold, prefersReducedMotion]);
 
   return (

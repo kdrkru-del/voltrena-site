@@ -263,7 +263,7 @@ export default function Hero() {
                             : 'bg-bg-primary/80 border-border text-text-muted hover:border-border-light hover:text-text-secondary'
                         }`}
                       >
-                        <span className="text-xs sm:text-[13px] font-semibold block leading-tight">
+                        <span className="text-[10px] sm:text-[13px] font-semibold block leading-tight break-words hyphens-auto text-center px-0.5">
                           {node.name}
                         </span>
 

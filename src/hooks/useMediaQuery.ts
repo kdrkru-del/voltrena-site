@@ -3,10 +3,15 @@
 import { useEffect, useState } from 'react';
 
 export function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState(false);
+  // Initialize synchronously on client to avoid SSR hydration mismatch
+  const [matches, setMatches] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    return window.matchMedia(query).matches;
+  });
 
   useEffect(() => {
     const media = window.matchMedia(query);
+    // Sync in case value changed between SSR and hydration
     setMatches(media.matches);
 
     const handler = (event: MediaQueryListEvent) => {

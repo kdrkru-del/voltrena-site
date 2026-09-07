@@ -24,12 +24,12 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* prevents horizontal scroll; placed on html (not body) to avoid iOS Safari fixed-position bug */
 }
 
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  overflow-x: hidden;
 }
 
 /* Selection styling */

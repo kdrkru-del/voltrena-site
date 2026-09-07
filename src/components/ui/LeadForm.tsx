@@ -112,12 +112,14 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
         if (!res.ok) {
           throw new Error(`Server returned status ${res.status}`);
         }
+      } else if (process.env.NODE_ENV === 'production') {
+        // In production without a webhook URL — do NOT fake success; show error with direct contacts
+        setFormState('error');
+        setErrorMessage('Форма временно недоступна. Пожалуйста, напишите нам напрямую в Telegram или WhatsApp — ответим быстро.');
+        return;
       } else {
-        // Fallback transmission logging / local verification when webhook endpoint is awaiting config
-        if (process.env.NODE_ENV !== 'production') {
-          console.log('[Lead Payload Ready for Transmission]:', payload);
-        }
-        // Simulated network tick to verify UI transitions
+        // Dev only: simulate submission to test UI transitions
+        console.log('[Dev] Lead Payload (not sent):', payload);
         await new Promise((resolve) => setTimeout(resolve, 600));
       }
 

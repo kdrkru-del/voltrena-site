@@ -228,7 +228,13 @@ export default function NodeNetwork({ className }: { className?: string }) {
     };
 
     resize();
-    window.addEventListener('resize', resize);
+
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    const debouncedResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resize, 100);
+    };
+    window.addEventListener('resize', debouncedResize);
 
     const handleMouse = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
@@ -255,7 +261,8 @@ export default function NodeNetwork({ className }: { className?: string }) {
 
     return () => {
       cancelAnimationFrame(animationRef.current);
-      window.removeEventListener('resize', resize);
+      clearTimeout(resizeTimer);
+      window.removeEventListener('resize', debouncedResize);
       canvas.removeEventListener('mousemove', handleMouse);
     };
   }, [draw, initNodes, isMobile]);
