@@ -46,11 +46,14 @@ async function run() {
     assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'),'https://voltrena.ru'+route);
     if (route==='/') {
       await page.getByText('Система объединена',{exact:true}).waitFor();
+      await page.locator('footer').scrollIntoViewIfNeeded();
+      await page.locator('h1').scrollIntoViewIfNeeded();
+      await page.locator('img[loading="lazy"]').evaluateAll(images=>Promise.all(images.map(image=>image.decode().catch(()=>{}))));
       await page.screenshot({path:`qa-results/home-${width}.png`,fullPage:true});
       for (const name of ['Спрос','Сайт','Заявка','CRM','Процессы','Аналитика']) {
         const tab=page.getByRole('tab',{name,exact:true});await tab.click();
         assert.equal(await tab.getAttribute('aria-selected'),'true');
-        assert.equal(await page.getByRole('tab',{selected:true}).count(),1);
+        assert.equal(await page.locator('.hero-node-flow').getByRole('tab',{selected:true}).count(),1);
       }
       await page.getByRole('tab',{name:'Спрос',exact:true}).focus();await page.keyboard.press('ArrowRight');
       assert.equal(await page.getByRole('tab',{name:'Сайт',exact:true}).getAttribute('aria-selected'),'true');

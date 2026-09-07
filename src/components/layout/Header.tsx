@@ -249,7 +249,7 @@ export default function Header() {
         ref={menuRef}
         hidden={!mobileOpen}
         className={cn(
-          'lg:hidden fixed inset-0 z-40 bg-bg-primary/98 backdrop-blur-xl transition-[opacity,transform,color,background-color,border-color] duration-500 flex flex-col overflow-y-auto',
+          'lg:hidden fixed inset-0 z-40 bg-bg-primary/[0.98] backdrop-blur-xl transition-[opacity,transform,color,background-color,border-color] duration-500 flex flex-col overflow-y-auto',
           mobileOpen ? 'opacity-100 pointer-events-auto' : '!hidden'
         )}
       >
