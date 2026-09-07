@@ -5,6 +5,8 @@ const path = require('path');
 const assert = require('assert/strict');
 const root = path.resolve('out');
 const results = [];
+const failures = [];
+const watchdog = setTimeout(() => { console.error('QA exceeded five minutes'); process.exit(1); }, 300000);
 const sizes = [[320,568],[375,812],[390,844],[430,932],[768,1024],[820,1180],[1024,1366],[1280,720],[1366,768],[1440,900],[1920,1080]];
 const routes = [...fs.readFileSync('out/sitemap.xml','utf8').matchAll(/<loc>https:\/\/voltrena.ru([^<]*)<\/loc>/g)].map(match => match[1]);
 fs.mkdirSync('qa-results', {recursive:true});
@@ -32,10 +34,12 @@ async function run() {
   // Never send QA submissions to the configured live email endpoint.
   await context.route('https://formsubmit.co/**',r=>r.fulfill({status:503,body:'{}'}));
   const page=await context.newPage();
+  page.setDefaultTimeout(8000);
   const crashes=[];page.on('pageerror',e=>crashes.push(e.message));
   for (const [width,height] of sizes) {
    await page.setViewportSize({width,height});
    for (const route of routes) {
+    try {
     const response=await page.goto(base+route);assert.equal(response.status(),200,route);
     await page.evaluate(()=>document.fonts.ready);
     // Disable the safety clipping to expose actual document overflow.
@@ -48,7 +52,7 @@ async function run() {
       await page.getByText('Система объединена',{exact:true}).waitFor();
       await page.locator('footer').scrollIntoViewIfNeeded();
       await page.locator('h1').scrollIntoViewIfNeeded();
-      await page.locator('img[loading="lazy"]').evaluateAll(images=>Promise.all(images.map(image=>image.decode().catch(()=>{}))));
+      await page.locator('img[loading="lazy"]').evaluateAll(images=>Promise.all(images.map(image=>{image.loading='eager';return image.decode().catch(()=>{});})));
       await page.screenshot({path:`qa-results/home-${width}.png`,fullPage:true});
       for (const name of ['Спрос','Сайт','Заявка','CRM','Процессы','Аналитика']) {
         const tab=page.getByRole('tab',{name,exact:true});await tab.click();
@@ -85,6 +89,7 @@ async function run() {
       assert.ok(!(await form.getByRole('alert').textContent()).includes('@romanspes'));
       assert.equal(await form.getByRole('button',{name:'Обсудить задачу'}).isEnabled(),true);
     }
+    } catch(error) { failures.push({width,height,route,error:String(error)}); }
    }
   }
   assert.deepEqual(crashes,[]);
@@ -114,7 +119,8 @@ async function run() {
   assert.equal(await staticPage.locator('h1').isVisible(),true);await noJS.close();
   const fallback=await browser.newContext();await fallback.addInitScript(()=>{delete window.IntersectionObserver;});
   const fallbackPage=await fallback.newPage();await fallbackPage.goto(base);assert.equal(await fallbackPage.locator('h1').isVisible(),true);await fallback.close();
+  assert.deepEqual(failures,[]);
   console.log(`PASS: ${results.length} route/viewport checks, nodes, menus, form, reduced motion, SSR fallbacks`);
- } finally { fs.writeFileSync('qa-results/results.json',JSON.stringify(results,null,2));fs.rmSync(fixture,{recursive:true,force:true});await browser.close();server.close(); }
+ } finally { clearTimeout(watchdog);fs.writeFileSync('qa-results/results.json',JSON.stringify({results,failures},null,2));fs.rmSync(fixture,{recursive:true,force:true});await browser.close();server.close(); }
 }
-run().catch(error=>{console.error(error);server.close();process.exitCode=1;});
+run().catch(error=>{clearTimeout(watchdog);console.error(error);server.close();process.exitCode=1;});
