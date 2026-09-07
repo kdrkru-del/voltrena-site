@@ -26,13 +26,17 @@ export default function ScrollReveal({
 
   useEffect(() => {
     const element = ref.current;
-    if (!element || prefersReducedMotion) {
+    if (!element || prefersReducedMotion || !('IntersectionObserver' in window)) {
       if (element) {
         element.style.opacity = '1';
         element.style.transform = 'none';
       }
       return;
     }
+
+    // Never hide content that has already been painted in the viewport.
+    // Only prepare unseen content below the fold for a reveal.
+    if (element.getBoundingClientRect().top < window.innerHeight) return;
 
     const directionMap = {
       up: 'translateY(30px)',
@@ -70,6 +74,10 @@ export default function ScrollReveal({
     return () => {
       observer.disconnect();
       clearTimeout(fallbackTimer);
+      element.style.opacity = '1';
+      element.style.transform = 'none';
+      element.style.transition = '';
+      element.style.transitionDelay = '';
     };
   }, [delay, direction, duration, threshold, prefersReducedMotion]);
 

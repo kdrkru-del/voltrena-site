@@ -45,7 +45,24 @@ jobs:
         run: npm ci
         
       - name: Build with Next.js
-        run: npx next build
+        run: npm run build
+
+      - name: Install browser QA tools
+        run: |
+          npm install --prefix /tmp/voltrena-qa playwright@1.58.2 esbuild@0.25.0
+          /tmp/voltrena-qa/node_modules/.bin/playwright install --with-deps chromium
+
+      - name: Responsive and interaction checks
+        env:
+          NODE_PATH: /tmp/voltrena-qa/node_modules
+        run: node .github/qa/responsive.cjs
+
+      - name: Upload QA evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: responsive-qa
+          path: qa-results
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

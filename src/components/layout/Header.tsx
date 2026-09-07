@@ -13,6 +13,9 @@ export default function Header() {
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const servicesButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -24,38 +27,74 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
+    if (!mobileOpen) {
+      setMobileServicesOpen(false);
+      return;
     }
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const background = [document.querySelector('main'), document.querySelector('footer')];
+    background.forEach(element => element?.setAttribute('inert', ''));
+    menuRef.current?.querySelector<HTMLElement>('a, button')?.focus();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { event.preventDefault(); setMobileOpen(false); }
+      if (event.key !== 'Tab') return;
+      const targets = [...Array.from(menuRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])') ?? []), menuButtonRef.current].filter((element): element is HTMLElement => !!element);
+      const index = targets.indexOf(document.activeElement as HTMLElement);
+      event.preventDefault();
+      targets[(index + (event.shiftKey ? -1 : 1) + targets.length) % targets.length]?.focus();
+    };
+    document.addEventListener('keydown', onKeyDown);
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = previousOverflow;
+      background.forEach(element => element?.removeAttribute('inert'));
+      document.removeEventListener('keydown', onKeyDown);
+      menuButtonRef.current?.focus();
     };
   }, [mobileOpen]);
 
+  useEffect(() => {
+    const desktop = window.matchMedia('(min-width: 1024px)');
+    const reset = () => { setMobileOpen(false); setServicesOpen(false); };
+    desktop.addEventListener('change', reset);
+    return () => desktop.removeEventListener('change', reset);
+  }, []);
+
+  useEffect(() => {
+    if (!servicesOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setServicesOpen(false);
+        servicesButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [servicesOpen]);
+
   // Close dropdown on outside click
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
+    const handleClickOutside = (e: PointerEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setServicesOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('pointerdown', handleClickOutside);
+    return () => document.removeEventListener('pointerdown', handleClickOutside);
   }, []);
 
   // Close mobile menu on route change
   useEffect(() => {
     setMobileOpen(false);
     setServicesOpen(false);
+    setMobileServicesOpen(false);
   }, [pathname]);
 
   return (
     <>
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
+        'fixed top-0 left-0 right-0 z-50 transition-colors duration-500',
         scrolled
           ? 'py-3 bg-bg-primary/80 backdrop-blur-xl border-b border-border'
           : 'py-5 bg-transparent'
@@ -83,16 +122,19 @@ export default function Header() {
 
             if (isServices) {
               return (
-                <div key={link.href} className="relative" ref={dropdownRef}>
+                <div key={link.href} className="relative" ref={dropdownRef} onBlur={(event) => {
+                  if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setServicesOpen(false);
+                }}>
                   <button
                     onClick={() => setServicesOpen((v) => !v)}
-                    onMouseEnter={() => setServicesOpen(true)}
+                    ref={servicesButtonRef}
+                    aria-controls="desktop-services"
                     className={cn(
-                      'text-sm transition-colors duration-200 relative group flex items-center gap-1',
+                      'min-h-[44px] inline-flex items-center text-sm transition-colors duration-200 relative group flex items-center gap-1',
                       isActive ? 'text-text-primary' : 'text-text-secondary hover:text-text-primary'
                     )}
                     aria-expanded={servicesOpen}
-                    aria-haspopup="true"
+
                   >
                     {link.label}
                     <svg
@@ -102,14 +144,15 @@ export default function Header() {
                     >
                       <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300" />
+                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-[width] duration-300" />
                   </button>
 
                   {/* Dropdown */}
                   <div
-                    onMouseLeave={() => setServicesOpen(false)}
+                    id="desktop-services"
+                    hidden={!servicesOpen}
                     className={cn(
-                      'absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[420px] bg-bg-primary/95 backdrop-blur-xl border border-border rounded-2xl overflow-hidden shadow-2xl transition-all duration-300',
+                      'absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[420px] bg-bg-primary/95 backdrop-blur-xl border border-border rounded-2xl overflow-hidden shadow-2xl transition-[opacity,transform,color,background-color,border-color] duration-300',
                       servicesOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none -translate-y-2'
                     )}
                   >
@@ -120,7 +163,7 @@ export default function Header() {
                           href={service.href}
                           onClick={() => setServicesOpen(false)}
                           className={cn(
-                            'flex flex-col gap-0.5 px-4 py-3 rounded-xl transition-all duration-200 group',
+                            'flex flex-col gap-0.5 px-4 py-3 rounded-xl transition-[opacity,transform,color,background-color,border-color] duration-200 group',
                             pathname === service.href
                               ? 'bg-accent/10 text-text-primary'
                               : 'hover:bg-bg-surface text-text-secondary hover:text-text-primary'
@@ -139,7 +182,7 @@ export default function Header() {
                       <Link
                         href="/services"
                         onClick={() => setServicesOpen(false)}
-                        className="flex items-center justify-center gap-2 text-xs font-mono text-accent hover:text-accent-light transition-colors py-1"
+                        className="flex items-center justify-center gap-2 text-xs font-mono text-accent hover:text-accent-light transition-colors min-h-[44px] py-1"
                       >
                         Все услуги
                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -157,12 +200,12 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  'text-sm transition-colors duration-200 relative group',
+                  'min-h-[44px] inline-flex items-center text-sm transition-colors duration-200 relative group',
                   isActive ? 'text-text-primary' : 'text-text-secondary hover:text-text-primary'
                 )}
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-[width] duration-300" />
               </Link>
             );
           })}
@@ -177,20 +220,22 @@ export default function Header() {
 
         {/* Mobile menu button */}
         <button
+          ref={menuButtonRef}
+          aria-controls="mobile-navigation"
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden flex flex-col gap-1.5 p-2 relative z-50"
+          className="lg:hidden flex flex-col items-center justify-center min-w-[44px] min-h-[44px] gap-1.5 p-2 relative z-50"
           aria-label={mobileOpen ? 'Закрыть меню' : 'Открыть меню'}
           aria-expanded={mobileOpen}
         >
           <span
             className={cn(
-              'w-6 h-px bg-text-primary transition-all duration-300',
+              'w-6 h-px bg-text-primary transition-transform duration-300',
               mobileOpen && 'rotate-45 translate-y-[4px]'
             )}
           />
           <span
             className={cn(
-              'w-6 h-px bg-text-primary transition-all duration-300',
+              'w-6 h-px bg-text-primary transition-transform duration-300',
               mobileOpen && '-rotate-45 -translate-y-[3px]'
             )}
           />
@@ -200,9 +245,12 @@ export default function Header() {
 
       {/* Mobile menu overlay — outside <header> to avoid backdrop-filter stacking context bug on iOS */}
       <div
+        id="mobile-navigation"
+        ref={menuRef}
+        hidden={!mobileOpen}
         className={cn(
-          'lg:hidden fixed inset-0 z-40 bg-bg-primary/98 backdrop-blur-xl transition-all duration-500 flex flex-col overflow-y-auto',
-          mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          'lg:hidden fixed inset-0 z-40 bg-bg-primary/98 backdrop-blur-xl transition-[opacity,transform,color,background-color,border-color] duration-500 flex flex-col overflow-y-auto',
+          mobileOpen ? 'opacity-100 pointer-events-auto' : '!hidden'
         )}
       >
         <div className="flex-1 flex flex-col px-6 pt-24 pb-8 gap-2">
@@ -215,6 +263,8 @@ export default function Header() {
                   <div key={link.href}>
                     <button
                       onClick={() => setMobileServicesOpen((v) => !v)}
+                      aria-expanded={mobileServicesOpen}
+                      aria-controls="mobile-services"
                       className="w-full flex items-center justify-between py-4 text-xl font-medium text-text-primary border-b border-border"
                     >
                       {link.label}
@@ -227,7 +277,7 @@ export default function Header() {
                       </svg>
                     </button>
                     {mobileServicesOpen && (
-                      <div className="pl-4 py-2 flex flex-col gap-1">
+                      <div id="mobile-services" className="pl-4 py-2 flex flex-col gap-1">
                         {serviceLinks.map((service) => (
                           <Link
                             key={service.href}
@@ -258,7 +308,7 @@ export default function Header() {
           </nav>
 
           <div className="mt-8">
-            <Button href={ctaButton.href} variant="primary" size="lg" className="w-full">
+            <Button href={ctaButton.href} variant="primary" size="lg" className="w-full" onClick={() => setMobileOpen(false)}>
               {ctaButton.label}
             </Button>
           </div>

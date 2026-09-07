@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useId, useRef } from 'react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import { siteConfig } from '@/config/site';
 import { reachGoal } from '@/lib/analytics';
-import { Send, CheckCircle2, AlertCircle, MessageCircle, Mail } from 'lucide-react';
+import { Send, CheckCircle2, AlertCircle, MessageCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export interface LeadFormProps {
@@ -14,6 +14,9 @@ export interface LeadFormProps {
 }
 
 export default function LeadForm({ source = 'direct_form', className }: LeadFormProps) {
+  const formId = useId();
+  const submitting = useRef(false);
+  const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     contact: '',
@@ -37,7 +40,7 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
       const searchParams = new URLSearchParams(window.location.search);
       const params: Record<string, string> = {};
       const trackedKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'yclid', 'gclid'];
-      
+
       trackedKeys.forEach((key) => {
         const val = searchParams.get(key);
         if (val) params[key] = val;
@@ -79,12 +82,17 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
     }
 
     setErrors(newErrors);
+    if (!isValid) {
+      const firstInvalid = (Object.keys(newErrors) as Array<keyof typeof newErrors>).find(key => newErrors[key]);
+      formRef.current?.querySelector<HTMLElement>(`[name="${firstInvalid}"]`)?.focus();
+    }
     return isValid;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validate()) return;
+    if (submitting.current || !validate()) return;
+    submitting.current = true;
 
     setFormState('loading');
     setErrorMessage('');
@@ -130,7 +138,7 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
       }
 
       const resData = await res.json().catch(() => null);
-      if (resData && resData.success === 'false' && resData.message && !resData.message.includes('Activation')) {
+      if (resData && (resData.success === 'false' || resData.success === false)) {
         throw new Error(resData.message);
       }
 
@@ -144,25 +152,26 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
 
       reachGoal('lead_form_success', { source });
       setFormState('success');
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Lead submission failed:', err);
       try {
         const errKey = 'voltrena_lead_errors';
         const existing = JSON.parse(localStorage.getItem(errKey) || '[]');
-        existing.push({ error: String(err?.message || err), payload, at: new Date().toISOString() });
+        existing.push({ error: String(err instanceof Error ? err.message : err), payload, at: new Date().toISOString() });
         localStorage.setItem(errKey, JSON.stringify(existing.slice(-20)));
       } catch (_) {}
 
       setFormState('error');
-      setErrorMessage('Не удалось отправить заявку. Пожалуйста, напишите нам напрямую в Telegram или WhatsApp — мы ответим быстро.');
+      setErrorMessage('Не удалось отправить заявку через форму. Пожалуйста, напишите нам напрямую в Telegram или WhatsApp.');
     } finally {
       clearTimeout(timeout);
+      submitting.current = false;
     }
   };
 
   if (formState === 'success') {
     return (
-      <div className="flex flex-col items-center justify-center text-center py-10 px-4 h-full animate-fade-in">
+      <div role="status" className="flex flex-col items-center justify-center text-center py-10 px-4 h-full animate-fade-in">
         <div className="w-14 h-14 rounded-full bg-accent/20 border border-accent/40 flex items-center justify-center text-accent mb-4">
           <CheckCircle2 className="w-8 h-8" />
         </div>
@@ -176,7 +185,7 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => reachGoal('contact_telegram_click', { origin: 'form_success' })}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/15 border border-accent/30 text-accent hover:bg-accent/25 text-xs font-mono transition-colors"
+            className="inline-flex items-center min-h-[44px] gap-2 px-4 py-2 rounded-lg bg-accent/15 border border-accent/30 text-accent hover:bg-accent/25 text-xs font-mono transition-colors"
           >
             <Send className="w-3.5 h-3.5" />
             <span>Написать в Telegram</span>
@@ -186,7 +195,7 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => reachGoal('contact_whatsapp_click', { origin: 'form_success' })}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/25 text-xs font-mono transition-colors"
+            className="inline-flex items-center min-h-[44px] gap-2 px-4 py-2 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/25 text-xs font-mono transition-colors"
           >
             <MessageCircle className="w-3.5 h-3.5" />
             <span>WhatsApp</span>
@@ -207,9 +216,9 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
   }
 
   return (
-    <form onSubmit={handleSubmit} className={cn('space-y-4 text-left', className)} noValidate>
+    <form ref={formRef} aria-busy={formState === 'loading'} onSubmit={handleSubmit} className={cn('space-y-4 text-left', className)} noValidate>
       {formState === 'error' && (
-        <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs leading-relaxed flex items-start gap-3">
+        <div role="alert" className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs leading-relaxed flex items-start gap-3">
           <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
           <div className="space-y-2">
             <p>{errorMessage}</p>
@@ -219,19 +228,19 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => reachGoal('contact_telegram_click', { origin: 'form_error' })}
-                className="underline font-semibold hover:text-white"
+                className="inline-flex items-center min-h-[44px] underline font-semibold hover:text-white"
               >
-                Telegram {siteConfig.telegramHandle}
+                Написать в Telegram
               </a>
-              <span>·</span>
+
               <a
                 href={siteConfig.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => reachGoal('contact_whatsapp_click', { origin: 'form_error' })}
-                className="underline font-semibold hover:text-white"
+                className="inline-flex items-center min-h-[44px] underline font-semibold hover:text-white"
               >
-                WhatsApp {siteConfig.whatsappPhone}
+                Написать в WhatsApp
               </a>
             </div>
           </div>
@@ -240,53 +249,62 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
 
       {/* Name */}
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="lead-name" className="text-xs font-mono text-text-secondary">
+        <label htmlFor={`${formId}-name`} className="text-xs font-mono text-text-secondary">
           Ваше имя <span className="text-accent">*</span>
         </label>
         <input
           type="text"
-          id="lead-name"
+          id={`${formId}-name`}
+          required
+          aria-invalid={!!errors.name}
+          aria-describedby={errors.name ? `${formId}-name-error` : undefined}
           name="name"
           placeholder="Алексей"
           value={formData.name}
           onChange={handleChange}
           disabled={formState === 'loading'}
           className={cn(
-            'w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent/60 focus:ring-1 focus:ring-accent/30 transition-all text-sm',
+            'w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent/60 focus:ring-1 focus:ring-accent/30 transition-[color,background-color,border-color,box-shadow] text-sm',
             errors.name && 'border-red-400 focus:border-red-400'
           )}
         />
-        {errors.name && <span className="text-xs text-red-400">{errors.name}</span>}
+        {errors.name && <span id={`${formId}-name-error`} className="text-xs text-red-400">{errors.name}</span>}
       </div>
 
       {/* Contact */}
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="lead-contact" className="text-xs font-mono text-text-secondary">
+        <label htmlFor={`${formId}-contact`} className="text-xs font-mono text-text-secondary">
           Телефон, Telegram или Email <span className="text-accent">*</span>
         </label>
         <input
           type="text"
-          id="lead-contact"
+          id={`${formId}-contact`}
+          required
+          aria-invalid={!!errors.contact}
+          aria-describedby={errors.contact ? `${formId}-contact-error` : undefined}
           name="contact"
           placeholder="+7 (999) 000-00-00 или @username"
           value={formData.contact}
           onChange={handleChange}
           disabled={formState === 'loading'}
           className={cn(
-            'w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent/60 focus:ring-1 focus:ring-accent/30 transition-all text-sm',
+            'w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent/60 focus:ring-1 focus:ring-accent/30 transition-[color,background-color,border-color,box-shadow] text-sm',
             errors.contact && 'border-red-400 focus:border-red-400'
           )}
         />
-        {errors.contact && <span className="text-xs text-red-400">{errors.contact}</span>}
+        {errors.contact && <span id={`${formId}-contact-error`} className="text-xs text-red-400">{errors.contact}</span>}
       </div>
 
       {/* Message */}
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="lead-message" className="text-xs font-mono text-text-secondary">
+        <label htmlFor={`${formId}-message`} className="text-xs font-mono text-text-secondary">
           Кратко о задаче <span className="text-accent">*</span>
         </label>
         <textarea
-          id="lead-message"
+          id={`${formId}-message`}
+          required
+          aria-invalid={!!errors.message}
+          aria-describedby={errors.message ? `${formId}-message-error` : undefined}
           name="message"
           placeholder="Например: нужен перезапуск сайта и настройка сквозной аналитики..."
           rows={3}
@@ -294,11 +312,11 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
           onChange={handleChange}
           disabled={formState === 'loading'}
           className={cn(
-            'w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent/60 focus:ring-1 focus:ring-accent/30 transition-all text-sm resize-none',
+            'w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent/60 focus:ring-1 focus:ring-accent/30 transition-[color,background-color,border-color,box-shadow] text-sm resize-none',
             errors.message && 'border-red-400 focus:border-red-400'
           )}
         />
-        {errors.message && <span className="text-xs text-red-400">{errors.message}</span>}
+        {errors.message && <span id={`${formId}-message-error`} className="text-xs text-red-400">{errors.message}</span>}
       </div>
 
       {/* Submit Button */}

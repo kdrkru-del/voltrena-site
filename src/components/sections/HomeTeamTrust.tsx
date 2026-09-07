@@ -14,7 +14,7 @@ const teamMembers = [
     role: 'Основатель / Digital-стратег',
     desc: 'Определяет бизнес-архитектуру, сквозную стратегию и лично контролирует качество реализации.',
     image: '/images/team/roman-kornev.jpg',
-    position: 'object-[50%_15%]',
+    position: 'object-top',
   },
   {
     id: 'andrey',
@@ -58,13 +58,13 @@ export default function HomeTeamTrust() {
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
           {teamMembers.map((member, idx) => (
             <ScrollReveal key={member.id} delay={idx * 60}>
-              <div className="h-full rounded-2xl bg-bg-surface border border-border/80 overflow-hidden shadow-lg hover:border-accent/40 transition-all flex flex-col justify-between group">
+              <div className="h-full rounded-2xl bg-bg-surface border border-border/80 overflow-hidden shadow-lg hover:border-accent/40 transition-colors flex flex-col justify-between group">
                 {/* Image with headroom */}
                 <div className="relative aspect-square w-full overflow-hidden bg-bg-primary">
                   <img
                     src={siteConfig.getAssetUrl(member.image)}
                     alt={member.name}
-                    className={`w-full h-full object-cover ${member.position} group-hover:scale-105 transition-transform duration-500`}
+                    className={`w-full h-full object-cover ${member.position} group-hover:scale-[1.02] transition-transform duration-500`}
                     loading="lazy"
                     onError={(e) => {
                       // Hide broken image and show initials fallback
@@ -108,7 +108,7 @@ export default function HomeTeamTrust() {
           <div className="mt-10 text-center">
             <Link
               href="/about/"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-bg-surface border border-border hover:border-accent text-text-primary hover:text-accent font-semibold text-xs sm:text-sm transition-all min-h-[44px]"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-bg-surface border border-border hover:border-accent text-text-primary hover:text-accent font-semibold text-xs sm:text-sm transition-colors min-h-[44px]"
             >
               <span>Подробнее о принципах команды</span>
               <ArrowRight className="w-4 h-4" />

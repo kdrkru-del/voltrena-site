@@ -68,7 +68,7 @@ export default function ProofSection() {
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
           {realCases.map((c, idx) => (
             <ScrollReveal key={c.title} delay={idx * 70}>
-              <div className="h-full p-6 sm:p-7 rounded-2xl bg-bg-surface border border-border/80 hover:border-accent/40 transition-all flex flex-col justify-between shadow-lg group">
+              <div className="h-full p-6 sm:p-7 rounded-2xl bg-bg-surface border border-border/80 hover:border-accent/40 transition-colors flex flex-col justify-between shadow-lg group">
                 <div>
                   <span className="font-mono text-[11px] text-accent uppercase tracking-wider font-semibold block mb-2">
                     {c.tag}
@@ -115,7 +115,7 @@ export default function ProofSection() {
           <div className="mt-10 text-center">
             <Link
               href="/cases/"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-bg-surface border border-border hover:border-accent text-text-primary hover:text-accent font-semibold text-xs sm:text-sm transition-all min-h-[44px]"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-bg-surface border border-border hover:border-accent text-text-primary hover:text-accent font-semibold text-xs sm:text-sm transition-colors min-h-[44px]"
             >
               <span>Смотреть все кейсы агентства</span>
               <ArrowRight className="w-4 h-4" />

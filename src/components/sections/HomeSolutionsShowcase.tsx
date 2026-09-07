@@ -61,7 +61,7 @@ export default function HomeSolutionsShowcase() {
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {keySolutions.map((sol, idx) => (
             <ScrollReveal key={sol.id} delay={idx * 60}>
-              <div className="h-full p-6 sm:p-8 rounded-2xl bg-bg-surface border border-border/80 hover:border-accent/40 transition-all flex flex-col justify-between shadow-lg group">
+              <div className="h-full p-6 sm:p-8 rounded-2xl bg-bg-surface border border-border/80 hover:border-accent/40 transition-colors flex flex-col justify-between shadow-lg group">
                 <div>
                   <span className="font-mono text-xs text-accent uppercase tracking-wider block mb-2 font-semibold">
                     {sol.tag}

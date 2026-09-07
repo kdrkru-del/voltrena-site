@@ -13,7 +13,7 @@ const inter = Inter({
 });
 
 const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
+  subsets: ['latin', 'cyrillic'],
   variable: '--font-jetbrains',
   display: 'swap',
 });
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     ],
     shortcut: [siteConfig.getAssetUrl('/favicon.svg')],
     apple: [
-      { url: siteConfig.getAssetUrl('/favicon.svg'), sizes: '180x180', type: 'image/svg+xml' },
+      { url: siteConfig.getAssetUrl('/apple-touch-icon.png'), sizes: '180x180', type: 'image/png' },
     ],
   },
   openGraph: {

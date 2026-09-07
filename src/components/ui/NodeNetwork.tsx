@@ -225,6 +225,7 @@ export default function NodeNetwork({ className }: { className?: string }) {
       canvas.style.height = `${rect.height}px`;
 
       initNodes(rect.width, rect.height);
+      if (prefersReducedMotion) draw(ctx, rect.width, rect.height);
     };
 
     resize();
@@ -257,7 +258,7 @@ export default function NodeNetwork({ className }: { className?: string }) {
       animationRef.current = requestAnimationFrame(animate);
     };
 
-    animationRef.current = requestAnimationFrame(animate);
+    if (!prefersReducedMotion) animationRef.current = requestAnimationFrame(animate);
 
     return () => {
       cancelAnimationFrame(animationRef.current);
@@ -265,7 +266,7 @@ export default function NodeNetwork({ className }: { className?: string }) {
       window.removeEventListener('resize', debouncedResize);
       canvas.removeEventListener('mousemove', handleMouse);
     };
-  }, [draw, initNodes, isMobile]);
+  }, [draw, initNodes, isMobile, prefersReducedMotion]);
 
   if (isMobile && prefersReducedMotion) {
     return null;

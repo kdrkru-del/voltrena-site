@@ -1,7 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import Link from 'next/link'
+import React, { useState, useEffect, useId } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import NodeNetwork from '@/components/ui/NodeNetwork'
@@ -113,11 +112,12 @@ const dynamicStatements: DynamicStatement[] = [
 export default function Hero() {
   const prefersReducedMotion = useReducedMotion()
   const [statementIdx, setStatementIdx] = useState(0)
-  const [userInteracted, setUserInteracted] = useState(false)
+  const [selectedNodeIdx, setSelectedNodeIdx] = useState<number | null>(null)
+  const nodeId = useId()
 
   // Synchronized statement cycling that drives the system flow
   useEffect(() => {
-    if (prefersReducedMotion || userInteracted) return
+    if (prefersReducedMotion || selectedNodeIdx !== null) return
 
     const intervalTime = statementIdx === dynamicStatements.length - 1 ? 6000 : 2500
 
@@ -126,24 +126,14 @@ export default function Hero() {
     }, intervalTime)
 
     return () => clearTimeout(timer)
-  }, [statementIdx, prefersReducedMotion, userInteracted])
+  }, [statementIdx, prefersReducedMotion, selectedNodeIdx])
 
-  const currentStatement = dynamicStatements[statementIdx]
-  const isFinalState = currentStatement.isFinalSystemState
-  const activeNode = systemNodes[currentStatement.nodeIdx]
+  const currentStatement = dynamicStatements[prefersReducedMotion ? dynamicStatements.length - 1 : statementIdx]
+  const isFinalState = selectedNodeIdx === null && !!currentStatement.isFinalSystemState
+  const activeNodeIdx = selectedNodeIdx ?? currentStatement.nodeIdx
+  const activeNode = systemNodes[activeNodeIdx]
 
-  // Allow direct interaction with nodes
-  const handleSelectNode = (idx: number) => {
-    setUserInteracted(true)
-    const matchingStatementIdx = dynamicStatements.findIndex((s) => s.nodeIdx === idx && !s.isFinalSystemState)
-    if (matchingStatementIdx !== -1) {
-      setStatementIdx(matchingStatementIdx)
-    } else {
-      if (idx === 0) setStatementIdx(1)
-      else if (idx === 3) setStatementIdx(2)
-      else setStatementIdx(4)
-    }
-  }
+  const handleSelectNode = (idx: number) => setSelectedNodeIdx(idx)
 
   return (
     <section className="relative pt-32 pb-16 md:pt-36 md:pb-24 bg-bg-primary overflow-hidden border-b border-border/40">
@@ -172,7 +162,7 @@ export default function Hero() {
             </h1>
 
             {/* Dynamic Synchronized Statement */}
-            <div className="min-h-[44px] sm:min-h-[48px] md:min-h-[52px] flex items-center mb-5 overflow-hidden w-full">
+            <div className="min-h-[3.6em] text-2xl sm:text-3xl md:text-4xl flex items-center mb-5 overflow-hidden w-full">
               {prefersReducedMotion ? (
                 <div className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-text-primary">
                   <span>Мы строим </span>
@@ -216,7 +206,7 @@ export default function Hero() {
             <div className="p-5 sm:p-7 rounded-2xl bg-bg-surface/85 backdrop-blur-md border border-border/90 shadow-2xl relative overflow-hidden">
               
               {/* Header: System Live Status */}
-              <div className="flex items-center justify-between pb-4 mb-6 border-b border-border/70">
+              <div className="flex flex-wrap items-center justify-between gap-3 pb-4 mb-6 border-b border-border/70">
                 <div className="flex items-center gap-2.5">
                   <span className="relative flex h-2.5 w-2.5">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
@@ -242,20 +232,33 @@ export default function Hero() {
 
               {/* Connected Nodes Diagram (6 Clean Semantic Nodes: Спрос → Сайт → Заявка → CRM → Процессы → Аналитика) */}
               <div className="mb-6">
-                <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 relative" role="tablist" aria-label="Узлы системы">
+                <div className="hero-node-flow grid grid-cols-1 sm:grid-cols-6 gap-5 sm:gap-2 relative" role="tablist" aria-label="Узлы системы">
                   {systemNodes.map((node, idx) => {
-                    const isDirectlyActive = idx === currentStatement.nodeIdx
+                    const isDirectlyActive = idx === activeNodeIdx
                     const isPartOfSystem = isFinalState
                     const isActive = isDirectlyActive || isPartOfSystem
-                    const isPast = idx < currentStatement.nodeIdx
+                    const isPast = selectedNodeIdx === null && idx < activeNodeIdx
 
                     return (
                       <button
                         key={node.id}
                         role="tab"
-                        aria-selected={isActive}
+                        aria-label={node.name}
+                        id={`${nodeId}-${node.id}`}
+                        type="button"
+                        aria-selected={isDirectlyActive}
+                        aria-controls={`${nodeId}-panel`}
+                        tabIndex={isDirectlyActive ? 0 : -1}
+                        onKeyDown={(event) => {
+                          const offsets: Record<string, number> = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }
+                          if (!(event.key in offsets) && event.key !== 'Home' && event.key !== 'End') return
+                          event.preventDefault()
+                          const next = event.key === 'Home' ? 0 : event.key === 'End' ? systemNodes.length - 1 : (idx + offsets[event.key] + systemNodes.length) % systemNodes.length
+                          handleSelectNode(next)
+                          document.getElementById(`${nodeId}-${systemNodes[next].id}`)?.focus()
+                        }}
                         onClick={() => handleSelectNode(idx)}
-                        className={`py-3 px-2 rounded-xl text-center transition-all duration-300 relative border flex flex-col items-center justify-center min-h-[64px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+                        className={`hero-node py-2 sm:py-3 px-2 rounded-xl text-center transition-[color,background-color,border-color,box-shadow,transform] duration-300 relative border flex flex-col items-center justify-center min-h-[44px] sm:min-h-[64px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                           isActive
                             ? 'bg-accent/20 border-accent text-text-primary shadow-[0_0_20px_rgba(99,102,241,0.25)] scale-[1.02]'
                             : isPast
@@ -263,7 +266,7 @@ export default function Hero() {
                             : 'bg-bg-primary/80 border-border text-text-muted hover:border-border-light hover:text-text-secondary'
                         }`}
                       >
-                        <span className="text-[10px] sm:text-[13px] font-semibold block leading-tight break-words hyphens-auto text-center px-0.5">
+                        <span className="text-xs sm:text-[11px] xl:text-[13px] font-semibold block leading-tight break-words hyphens-auto text-center px-0.5">
                           {node.name}
                         </span>
 
@@ -279,25 +282,15 @@ export default function Hero() {
                   })}
                 </div>
 
-                {/* Connecting Pulse Line */}
-                <div className="w-full bg-bg-primary/80 h-1.5 rounded-full mt-3 overflow-hidden relative border border-border/40">
-                  <div
-                    className="h-full bg-gradient-to-r from-accent/80 via-accent to-accent-light transition-all duration-500 rounded-full"
-                    style={{
-                      width: isFinalState
-                        ? '100%'
-                        : `${((currentStatement.nodeIdx + 1) / systemNodes.length) * 100}%`,
-                    }}
-                  />
-                </div>
+
               </div>
 
               {/* Active State Card (Living event reflection) */}
-              <div className="p-4 sm:p-5 rounded-xl bg-bg-primary/90 border border-accent/30 mb-0 transition-all duration-300 relative overflow-hidden">
+              <div role="tabpanel" id={`${nodeId}-panel`} aria-labelledby={`${nodeId}-${activeNode.id}`} tabIndex={0} className="p-4 sm:p-5 rounded-xl bg-bg-primary/90 border border-accent/30 mb-0 relative overflow-hidden">
                 {/* Soft edge accent glow */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 blur-2xl pointer-events-none" />
 
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                   <span className="text-[11px] font-mono text-accent uppercase tracking-wider font-semibold">
                     {isFinalState ? 'ЕДИНЫЙ КОНТУР РОСТА' : activeNode.tag}
                   </span>

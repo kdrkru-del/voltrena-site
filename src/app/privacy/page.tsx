@@ -7,6 +7,18 @@ export const metadata: Metadata = {
   description:
     'Политика обработки и защиты персональных данных пользователей сайта VOLTRENA Digital.',
   alternates: { canonical: siteConfig.getCanonicalUrl('/privacy/') },
+  openGraph: {
+    title: 'Политика конфиденциальности — VOLTRENA Digital',
+    description: 'Политика обработки и защиты персональных данных пользователей сайта VOLTRENA Digital.',
+    url: siteConfig.getCanonicalUrl('/privacy/'),
+    type: 'website',
+    locale: 'ru_RU',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Политика конфиденциальности — VOLTRENA Digital',
+    description: 'Политика обработки и защиты персональных данных пользователей сайта VOLTRENA Digital.',
+  },
   robots: { index: true, follow: true },
 };
 

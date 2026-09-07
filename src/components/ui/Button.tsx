@@ -18,7 +18,7 @@ interface ButtonProps {
 const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
   ({ variant = 'primary', size = 'default', href, children, className, onClick, type = 'button', disabled }, ref) => {
     const baseStyles =
-      'inline-flex items-center justify-center font-medium transition-all duration-300 rounded-lg relative overflow-hidden group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary disabled:opacity-50 disabled:cursor-not-allowed';
+      'inline-flex items-center justify-center font-medium min-h-[44px] transition-[color,background-color,border-color,box-shadow] duration-300 rounded-lg relative overflow-hidden group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary disabled:opacity-50 disabled:cursor-not-allowed';
 
     const variants = {
       primary:
@@ -39,7 +39,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
 
     if (href) {
       return (
-        <Link href={href} className={classes} ref={ref as React.Ref<HTMLAnchorElement>}>
+        <Link href={href} onClick={onClick} className={classes} ref={ref as React.Ref<HTMLAnchorElement>}>
           {children}
           {variant === 'primary' && (
             <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />

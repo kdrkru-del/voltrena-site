@@ -127,3 +127,24 @@ body {
   stroke-dasharray: 4 16;
   animation: data-pulse-flow 3s ease-in-out infinite;
 }
+
+/* Explicit direction without a second, redundant progress indicator. */
+.hero-node:not(:last-child)::after {
+  content: '↓';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 20px;
+  color: var(--text-secondary);
+  pointer-events: none;
+}
+@media (min-width: 640px) {
+  .hero-node:not(:last-child)::after {
+    content: '→'; top: 50%; left: 100%;
+    transform: translateY(-50%); font-size: 10px; width: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .group:hover img { transform: none !important; }
+}

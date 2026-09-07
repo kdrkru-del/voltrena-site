@@ -30,7 +30,7 @@ export default function HomeFinalContact() {
             </div>
 
             {/* Telegram Card */}
-            <div className="p-5 rounded-2xl bg-bg-surface border border-accent/30 shadow-xl flex flex-col justify-between gap-3 group hover:border-accent/60 transition-all">
+            <div className="p-5 rounded-2xl bg-bg-surface border border-accent/30 shadow-xl flex flex-col justify-between gap-3 group hover:border-accent/60 transition-colors">
               <div className="flex items-center gap-3.5">
                 <div className="w-10 h-10 rounded-xl bg-accent/15 border border-accent/30 flex items-center justify-center text-accent shrink-0 group-hover:scale-105 transition-transform">
                   <Send className="w-5 h-5 fill-current" />
@@ -49,7 +49,7 @@ export default function HomeFinalContact() {
                 href={siteConfig.telegramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-accent text-white font-semibold text-sm hover:bg-accent-light transition-all shadow-md shadow-accent/20 min-h-[44px] group/btn"
+                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-accent text-white font-semibold text-sm hover:bg-accent-light transition-colors shadow-md shadow-accent/20 min-h-[44px] group/btn"
               >
                 <span>Написать в Telegram</span>
                 <Send className="w-4 h-4 fill-current group-hover/btn:translate-x-0.5 transition-transform" />
@@ -57,7 +57,7 @@ export default function HomeFinalContact() {
             </div>
 
             {/* WhatsApp Card */}
-            <div className="p-5 rounded-2xl bg-bg-surface border border-border/80 shadow-lg flex flex-col justify-between gap-3 group hover:border-emerald-500/50 transition-all">
+            <div className="p-5 rounded-2xl bg-bg-surface border border-border/80 shadow-lg flex flex-col justify-between gap-3 group hover:border-emerald-500/50 transition-colors">
               <div className="flex items-center gap-3.5">
                 <div className="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 group-hover:scale-105 transition-transform">
                   <MessageCircle className="w-5 h-5" />
@@ -76,7 +76,7 @@ export default function HomeFinalContact() {
                 href={siteConfig.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-bg-primary border border-emerald-500/30 hover:border-emerald-500 hover:bg-emerald-500/10 text-emerald-400 font-semibold text-sm transition-all min-h-[44px] group/btn"
+                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-bg-primary border border-emerald-500/30 hover:border-emerald-500 hover:bg-emerald-500/10 text-emerald-400 font-semibold text-sm transition-colors min-h-[44px] group/btn"
               >
                 <span>Написать в WhatsApp</span>
                 <MessageCircle className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
@@ -84,7 +84,7 @@ export default function HomeFinalContact() {
             </div>
 
             {/* Email Card */}
-            <div className="p-5 rounded-2xl bg-bg-surface border border-border/80 shadow-lg flex flex-col justify-between gap-3 group hover:border-accent/40 transition-all">
+            <div className="p-5 rounded-2xl bg-bg-surface border border-border/80 shadow-lg flex flex-col justify-between gap-3 group hover:border-accent/40 transition-colors">
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-3.5">
                   <div className="w-10 h-10 rounded-xl bg-bg-primary border border-border flex items-center justify-center text-text-secondary group-hover:text-accent transition-colors shrink-0">
@@ -106,7 +106,7 @@ export default function HomeFinalContact() {
 
               <a
                 href={`mailto:${siteConfig.email}`}
-                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-bg-primary border border-border hover:border-accent/50 hover:bg-accent/10 text-text-primary hover:text-accent font-semibold text-sm transition-all min-h-[44px] group/btn"
+                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-bg-primary border border-border hover:border-accent/50 hover:bg-accent/10 text-text-primary hover:text-accent font-semibold text-sm transition-colors min-h-[44px] group/btn"
               >
                 <span>Отправить письмо</span>
                 <Mail className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />

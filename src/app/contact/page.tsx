@@ -102,7 +102,7 @@ export default function ContactPage() {
             <div className="lg:col-span-5 space-y-4">
               
               {/* Telegram Card */}
-              <div className="p-5 sm:p-6 rounded-2xl bg-bg-surface border border-accent/30 shadow-xl flex flex-col justify-between gap-4 group hover:border-accent/60 transition-all relative overflow-hidden">
+              <div className="p-5 sm:p-6 rounded-2xl bg-bg-surface border border-accent/30 shadow-xl flex flex-col justify-between gap-4 group hover:border-accent/60 transition-colors relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-accent/10 blur-xl pointer-events-none" />
                 
                 <div className="flex items-center gap-4">
@@ -123,7 +123,7 @@ export default function ContactPage() {
                   href={siteConfig.telegramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-accent text-white font-semibold text-sm hover:bg-accent-light transition-all shadow-md shadow-accent/20 min-h-[46px] group/btn"
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-accent text-white font-semibold text-sm hover:bg-accent-light transition-colors shadow-md shadow-accent/20 min-h-[46px] group/btn"
                 >
                   <span>Написать в Telegram</span>
                   <Send className="w-4 h-4 fill-current group-hover/btn:translate-x-0.5 transition-transform" />
@@ -131,7 +131,7 @@ export default function ContactPage() {
               </div>
 
               {/* WhatsApp Card */}
-              <div className="p-5 sm:p-6 rounded-2xl bg-bg-surface border border-border/80 shadow-lg flex flex-col justify-between gap-4 group hover:border-emerald-500/50 transition-all">
+              <div className="p-5 sm:p-6 rounded-2xl bg-bg-surface border border-border/80 shadow-lg flex flex-col justify-between gap-4 group hover:border-emerald-500/50 transition-colors">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 group-hover:scale-105 transition-transform">
                     <MessageCircle className="w-6 h-6" />
@@ -150,7 +150,7 @@ export default function ContactPage() {
                   href={siteConfig.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-bg-primary border border-emerald-500/30 hover:border-emerald-500 hover:bg-emerald-500/10 text-emerald-400 font-semibold text-sm transition-all min-h-[46px] group/btn"
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-bg-primary border border-emerald-500/30 hover:border-emerald-500 hover:bg-emerald-500/10 text-emerald-400 font-semibold text-sm transition-colors min-h-[46px] group/btn"
                 >
                   <span>Написать в WhatsApp</span>
                   <MessageCircle className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
@@ -158,7 +158,7 @@ export default function ContactPage() {
               </div>
 
               {/* Email Card */}
-              <div className="p-5 sm:p-6 rounded-2xl bg-bg-surface border border-border/80 shadow-lg flex flex-col justify-between gap-4 group hover:border-accent/40 transition-all">
+              <div className="p-5 sm:p-6 rounded-2xl bg-bg-surface border border-border/80 shadow-lg flex flex-col justify-between gap-4 group hover:border-accent/40 transition-colors">
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-xl bg-bg-primary border border-border flex items-center justify-center text-text-secondary group-hover:text-accent transition-colors shrink-0">
@@ -186,7 +186,7 @@ export default function ContactPage() {
 
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-bg-primary border border-border hover:border-accent/50 hover:bg-accent/10 text-text-primary hover:text-accent font-semibold text-sm transition-all min-h-[46px] group/btn"
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-bg-primary border border-border hover:border-accent/50 hover:bg-accent/10 text-text-primary hover:text-accent font-semibold text-sm transition-colors min-h-[46px] group/btn"
                 >
                   <span>Отправить письмо</span>
                   <Mail className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
