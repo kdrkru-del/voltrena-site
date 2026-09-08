@@ -30,7 +30,7 @@ export default function SectionHeading({
           {tag}
         </span>
       )}
-      <h2 className="text-display font-bold text-text-primary">{title}</h2>
+      <h2 className="text-display font-bold text-text-primary break-words hyphens-auto">{title}</h2>
       {subtitle && (
         <p className={cn('mt-4 md:mt-6 text-lg md:text-xl text-text-secondary max-w-2xl leading-relaxed', align === 'center' && 'mx-auto')}>
           {subtitle}

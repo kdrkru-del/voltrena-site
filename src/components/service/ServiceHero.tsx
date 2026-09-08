@@ -40,14 +40,14 @@ export default function ServiceHero({
   const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
-    if (prefersReducedMotion) return
+    if (prefersReducedMotion || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     
     registerGSAP()
     
     const ctx = gsap.context(() => {
       gsap.fromTo(
         '.hero-flow-node', 
-        { opacity: 0, y: 10 }, 
+        { y: 10 },
         {
           opacity: 1, 
           y: 0,
@@ -67,14 +67,14 @@ export default function ServiceHero({
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: prefersReducedMotion ? 0 : 0.2
       }
     }
   }
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+    show: { opacity: 1, y: 0, transition: { duration: prefersReducedMotion ? 0 : 0.5, ease: "easeOut" } }
   }
 
   return (
@@ -85,8 +85,8 @@ export default function ServiceHero({
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <motion.div 
           className="max-w-5xl mx-auto text-center"
-          variants={prefersReducedMotion ? undefined : containerVariants}
-          initial={prefersReducedMotion ? "show" : "hidden"}
+          variants={containerVariants}
+          initial={false}
           animate="show"
         >
           <motion.div variants={itemVariants} className="mb-6 flex justify-center">
@@ -105,7 +105,7 @@ export default function ServiceHero({
             </div>
           </motion.div>
 
-          <motion.h1 variants={itemVariants} className="text-display-xl font-bold text-text-primary mb-6 tracking-tight">
+          <motion.h1 variants={itemVariants} className="text-display-xl font-bold text-text-primary mb-6 tracking-tight break-words hyphens-auto">
             {title}
           </motion.h1>
 

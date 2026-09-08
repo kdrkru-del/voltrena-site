@@ -43,6 +43,7 @@ async function run() {
     const response=await page.goto(base+route);assert.equal(response.status(),200,route);
     await page.evaluate(()=>document.fonts.ready);
     await page.waitForTimeout(250);
+    assert.equal(await page.locator('h1').evaluate(el=>{for(let node=el;node;node=node.parentElement) if(Number(getComputedStyle(node).opacity)<0.01) return false;return true;}),true,'H1 must remain visible with reduced motion');
     // Disable the safety clipping to expose actual document overflow.
     await page.addStyleTag({content:'html { overflow-x: visible !important; scroll-behavior:auto !important; }'});
     const overflow=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,offenders:Array.from(document.querySelectorAll('h1,h2,h3,p,a,button,input,textarea')).filter(el=>{const r=el.getBoundingClientRect();return r.width && getComputedStyle(el).visibility!=='hidden' && (r.right>innerWidth+1 || r.left < -1) && !el.closest('[hidden]');}).map(el=>({tag:el.tagName,text:el.textContent.slice(0,80)})).slice(0,12)}));
@@ -75,6 +76,8 @@ async function run() {
         assert.equal(await open.evaluate(el=>el===document.activeElement),true);
         await open.click();assert.equal(await services.getAttribute('aria-expanded'),'false');
         await menu.getByRole('link',{name:'О нас',exact:true}).click();
+        await page.waitForURL(/\/about\/?$/);
+        await page.waitForLoadState('load');
         assert.equal(await menu.isVisible(),false);
       } else {
         const services=page.locator('header').getByRole('button',{name:'Услуги',exact:true});await services.click();
