@@ -41,8 +41,9 @@ export function generateStaticParams() {
   return digitalProducts.map((product) => ({ slug: product.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const product = getDigitalProduct(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const product = getDigitalProduct(slug);
   if (!product) return {};
   const title = `${product.title} — готовая цифровая система | VOLTRENA Digital`;
   const description = `${product.summary} ${product.problemFit}`;
@@ -65,8 +66,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-export default function DigitalProductPage({ params }: { params: { slug: string } }) {
-  const product = getDigitalProduct(params.slug);
+export default async function DigitalProductPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const product = getDigitalProduct(slug);
   if (!product) notFound();
 
   const url = `${siteConfig.siteUrl}/solutions/${product.slug}/`;
