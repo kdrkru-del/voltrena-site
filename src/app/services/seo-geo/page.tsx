@@ -16,75 +16,52 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'ru_RU',
     siteName: 'VOLTRENA Digital',
+    images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.svg'), width: 1200, height: 630, alt: 'VOLTRENA — SEO, GEO и видимость в AI-поиске' }],
   },
-  twitter: { card: 'summary_large_image', title: seoGeoData.seo.title, description: seoGeoData.seo.description },
+  twitter: {
+    card: 'summary_large_image',
+    title: seoGeoData.seo.title,
+    description: seoGeoData.seo.description,
+    images: [siteConfig.getCanonicalUrl('/images/og-image.svg')],
+  },
   robots: { index: true, follow: true },
 }
 
 function SectionSkeleton() {
-  return (
-    <div className="py-section flex items-center justify-center min-h-[40vh]" aria-hidden="true">
-      <div className="w-8 h-8 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
-    </div>
-  )
+  return <div className="py-section flex items-center justify-center min-h-[40vh]" aria-hidden="true"><div className="w-8 h-8 border-2 border-accent/30 border-t-accent rounded-full animate-spin" /></div>
 }
 
-const ServiceHero               = dynamic(() => import('@/components/service/ServiceHero'),               { loading: () => <SectionSkeleton /> })
-const ServiceSeoVsGeo            = dynamic(() => import('@/components/service/ServiceSeoVsGeo'),            { loading: () => <SectionSkeleton /> })
-const ServiceTypes              = dynamic(() => import('@/components/service/ServiceTypes'),              { loading: () => <SectionSkeleton /> })
-const ServiceEntitySignals      = dynamic(() => import('@/components/service/ServiceEntitySignals'),      { loading: () => <SectionSkeleton /> })
-const ServiceAiSearchReadiness  = dynamic(() => import('@/components/service/ServiceAiSearchReadiness'),  { loading: () => <SectionSkeleton /> })
-const ServiceContentGap         = dynamic(() => import('@/components/service/ServiceContentGap'),         { loading: () => <SectionSkeleton /> })
-const ServiceBeforeAfter        = dynamic(() => import('@/components/service/ServiceBeforeAfter'),        { loading: () => <SectionSkeleton /> })
-const ServiceEcosystem          = dynamic(() => import('@/components/service/ServiceEcosystem'),          { loading: () => <SectionSkeleton /> })
-const ServiceLeadSystem         = dynamic(() => import('@/components/service/ServiceLeadSystem'),         { loading: () => <SectionSkeleton /> })
-const ServiceProcess            = dynamic(() => import('@/components/service/ServiceProcess'),            { loading: () => <SectionSkeleton /> })
-const ServiceUseCases           = dynamic(() => import('@/components/service/ServiceUseCases'),           { loading: () => <SectionSkeleton /> })
-const ServiceIncludes           = dynamic(() => import('@/components/service/ServiceIncludes'),           { loading: () => <SectionSkeleton /> })
-const ServiceNoGuarantees       = dynamic(() => import('@/components/service/ServiceNoGuarantees'),       { loading: () => <SectionSkeleton /> })
-const ServiceFAQ                = dynamic(() => import('@/components/service/ServiceFAQ'),                { loading: () => <SectionSkeleton /> })
-const ServiceCTA                = dynamic(() => import('@/components/service/ServiceCTA'),                { loading: () => <SectionSkeleton /> })
+const ServiceHero = dynamic(() => import('@/components/service/ServiceHero'), { loading: () => <SectionSkeleton /> })
+const ServiceSeoVsGeo = dynamic(() => import('@/components/service/ServiceSeoVsGeo'), { loading: () => <SectionSkeleton /> })
+const ServiceTypes = dynamic(() => import('@/components/service/ServiceTypes'), { loading: () => <SectionSkeleton /> })
+const ServiceEntitySignals = dynamic(() => import('@/components/service/ServiceEntitySignals'), { loading: () => <SectionSkeleton /> })
+const ServiceAiSearchReadiness = dynamic(() => import('@/components/service/ServiceAiSearchReadiness'), { loading: () => <SectionSkeleton /> })
+const ServiceBeforeAfter = dynamic(() => import('@/components/service/ServiceBeforeAfter'), { loading: () => <SectionSkeleton /> })
+const ServiceEcosystem = dynamic(() => import('@/components/service/ServiceEcosystem'), { loading: () => <SectionSkeleton /> })
+const ServiceProcess = dynamic(() => import('@/components/service/ServiceProcess'), { loading: () => <SectionSkeleton /> })
+const ServiceUseCases = dynamic(() => import('@/components/service/ServiceUseCases'), { loading: () => <SectionSkeleton /> })
+const ServiceIncludes = dynamic(() => import('@/components/service/ServiceIncludes'), { loading: () => <SectionSkeleton /> })
+const ServiceNoGuarantees = dynamic(() => import('@/components/service/ServiceNoGuarantees'), { loading: () => <SectionSkeleton /> })
+const ServiceFAQ = dynamic(() => import('@/components/service/ServiceFAQ'), { loading: () => <SectionSkeleton /> })
+const ServiceCTA = dynamic(() => import('@/components/service/ServiceCTA'), { loading: () => <SectionSkeleton /> })
 
 export default function SeoGeoPage() {
   const data = seoGeoData
 
-  const yandexDirectFormula = [
-    { operator: '', label: 'PAID TRAFFIC (ЯНДЕКС ДИРЕКТ)' },
-    { operator: '+', label: 'ORGANIC TRAFFIC (SEO / GEO)' },
-    { operator: '→', label: 'OPTIMIZED CONVERSION PAGES' },
-    { operator: '=', label: 'MAXIMUM MARKET COVERAGE & LEADS', isResult: true },
-  ]
-
-  const analyticsFormula = [
-    { operator: '', label: 'ORGANIC IMPRESSIONS & VISITS' },
-    { operator: '→', label: 'SEARCH INTENT MATCH' },
-    { operator: '→', label: 'CRM QUALIFIED DEAL' },
-    { operator: '=', label: 'MEASURABLE ORGANIC ROI', isResult: true },
-  ]
-
-  const crmFormula = [
-    { operator: '', label: 'ORGANIC SEARCH LEAD' },
-    { operator: '→', label: 'LANDING PAGE CONVERSION' },
-    { operator: '→', label: 'CRM PIPELINE STATUS' },
-    { operator: '=', label: 'CLOSED SALE & REVENUE', isResult: true },
-  ]
-
   const beforeItems = [
-    'Сайт состоит из 3–5 общих страниц',
-    'Нет посадочных под конкретные услуги',
-    'Поисковые роботы спотыкаются о технические ошибки',
-    'Контент написан общими фразами без фактов',
-    'Отсутствует микроразметка и данные для AI',
-    'Низкая видимость в поиске и отсутствие заявок',
+    'Сайт состоит из нескольких общих страниц без структуры под спрос',
+    'Нет посадочных под конкретные услуги и намерения',
+    'Технические ошибки мешают поисковой индексации',
+    'Контент не даёт поиску и AI достаточно фактов и контекста',
+    'Отсутствует микроразметка и цельный цифровой профиль',
   ]
 
   const afterItems = [
-    'Чёткая структура под все группы поискового спроса',
-    'Выделенные коммерческие страницы услуг и решений',
-    'Безупречный технический фундамент и быстрая загрузка',
-    'Экспертные материалы с фактами, ценами и таблицами',
-    'Внедрена микроразметка Schema.org и цифровой профиль Entity',
-    'Стабильный поток бесплатного органического трафика и лидов',
+    'Структура сайта соответствует группам поискового спроса',
+    'Коммерческие страницы отвечают на конкретные намерения',
+    'Технический фундамент поддерживает индексацию и скорость',
+    'Контент содержит факты, сущности и структуру для поиска и AI',
+    'Органический трафик связан с заявками и дальнейшей воронкой',
   ]
 
   const serviceSchema = {
@@ -100,11 +77,7 @@ export default function SeoGeoPage() {
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: data.faq.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: { '@type': 'Answer', text: item.answer },
-    })),
+    mainEntity: data.faq.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })),
   }
 
   const breadcrumbSchema = {
@@ -112,8 +85,8 @@ export default function SeoGeoPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Главная', item: siteUrl },
-      { '@type': 'ListItem', position: 2, name: 'Услуги', item: siteUrl + '/services' },
-      { '@type': 'ListItem', position: 3, name: 'SEO / GEO и видимость в AI-поиске' },
+      { '@type': 'ListItem', position: 2, name: 'Услуги', item: siteUrl + '/services/' },
+      { '@type': 'ListItem', position: 3, name: 'SEO / GEO и видимость в AI-поиске', item: siteUrl + '/services/seo-geo/' },
     ],
   }
 
@@ -123,131 +96,34 @@ export default function SeoGeoPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      {/* Hero */}
-      <ServiceHero
-        eyebrow={data.eyebrow}
-        title={data.title}
-        description={data.description}
-        ctaPrimary={data.ctaPrimary}
-        ctaSecondary={data.ctaSecondary}
-        ctaSecondaryHref={data.ctaSecondaryHref}
-        heroFlow={data.heroFlow}
-      />
-
-      {/* Section 7: SEO и GEO работают вместе */}
+      <ServiceHero eyebrow={data.eyebrow} title={data.title} description={data.description} ctaPrimary={data.ctaPrimary} ctaSecondary={data.ctaSecondary} ctaSecondaryHref={data.ctaSecondaryHref} heroFlow={data.heroFlow} />
       <ServiceSeoVsGeo />
 
-      {/* Section 8: Спрос и намерения */}
-      {data.types && (
-        <ServiceTypes
-          types={data.types}
-          id={data.typesSection?.id}
-          tag={data.typesSection?.tag}
-          title={data.typesSection?.title}
-        />
-      )}
+      {data.types && <ServiceTypes types={data.types} id={data.typesSection?.id} tag={data.typesSection?.tag} title={data.typesSection?.title} />}
+      {data.ecosystem && <ServiceEcosystem items={data.ecosystem} id={data.ecosystemSection?.id} tag={data.ecosystemSection?.tag} title={data.ecosystemSection?.title} centerLabel={data.ecosystemSection?.centerLabel} />}
 
-      {/* Section 9: Архитектура сайта */}
-      {data.ecosystem && (
-        <ServiceEcosystem
-          items={data.ecosystem}
-          id={data.ecosystemSection?.id}
-          tag={data.ecosystemSection?.tag}
-          title={data.ecosystemSection?.title}
-          centerLabel={data.ecosystemSection?.centerLabel}
-        />
-      )}
-
-      {/* Section 14: Entity & Brand Signals */}
       <ServiceEntitySignals />
-
-      {/* Section 15 & 17: AI Citation Readiness */}
       <ServiceAiSearchReadiness />
 
-      {/* Section 25: Content Gap */}
-      <ServiceContentGap />
-
-      {/* Section 34: Before / After */}
       <ServiceBeforeAfter
         tag="СРАВНЕНИЕ"
         title="Как выглядит сайт без поисковой стратегии и с ней."
-        beforeTitle="BEFORE: Сайт невидим для поиска"
-        beforeSubtitle="Случайные тексты и отсутствие структуры под спрос"
+        beforeTitle="BEFORE: сайт почти не отвечает на спрос"
+        beforeSubtitle="Случайная структура и слабые сигналы для поиска"
         beforeItems={beforeItems}
-        afterTitle="AFTER: Органическая система"
-        afterSubtitle="Понятная архитектура, технический фундамент и видимость в поиске"
+        afterTitle="AFTER: органическая система"
+        afterSubtitle="Структура, технический фундамент и измеримая видимость"
         afterItems={afterItems}
-        conclusion="Органическая видимость — это долгосрочный актив компании, снижающий зависимость от платной рекламы."
+        conclusion="SEO / GEO работает как модуль системы привлечения клиентов: создаёт долгосрочный органический канал и снижает зависимость от одного источника трафика."
       />
 
-      {/* Section 20: SEO + Сайт */}
-      {data.leadSystem && (
-        <ServiceLeadSystem
-          tag={data.leadSystem.tag}
-          title={data.leadSystem.title}
-          formula={data.leadSystem.formula}
-          ctaLabel={data.leadSystem.ctaLabel}
-          ctaHref={data.leadSystem.ctaHref}
-        />
-      )}
-
-      {/* Section 21: SEO + Яндекс Директ */}
-      <ServiceLeadSystem
-        tag="SEO + ЯНДЕКС ДИРЕКТ"
-        title="Реклама даёт заявки сегодня. SEO строит органический поток на будущее."
-        formula={yandexDirectFormula}
-        ctaLabel="Яндекс Директ"
-        ctaHref="/services/yandex-direct"
-      />
-
-      {/* Section 22: SEO + Аналитика */}
-      <ServiceLeadSystem
-        tag="SEO + АНАЛИТИКА"
-        title="Органический рост тоже нужно измерять в цифрах и заявках."
-        formula={analyticsFormula}
-        ctaLabel="Сквозная аналитика"
-        ctaHref="/services/analytics"
-      />
-
-      {/* Section 23: SEO + CRM */}
-      <ServiceLeadSystem
-        tag="SEO + CRM"
-        title="Отслеживаем качество и окупаемость органических лидов."
-        formula={crmFormula}
-        ctaLabel="Внедрение CRM"
-        ctaHref="/services/crm"
-      />
-
-      {/* Section 28: Как мы работаем (9 steps) */}
-      {data.process && (
-        <ServiceProcess
-          steps={data.process}
-          id={data.processSection?.id}
-          tag={data.processSection?.tag}
-          title={data.processSection?.title}
-        />
-      )}
-
-      {/* Section 31: Use Cases */}
+      {data.process && <ServiceProcess steps={data.process} id={data.processSection?.id} tag={data.processSection?.tag} title={data.processSection?.title} />}
       {data.useCases && <ServiceUseCases useCases={data.useCases} />}
-
-      {/* Section 30: Что входит в проект */}
       {data.included && <ServiceIncludes included={data.included} />}
-
-      {/* Section 33: Честный подход (Без пустых гарантий) */}
       <ServiceNoGuarantees />
-
-      {/* Section 35: FAQ */}
       <ServiceFAQ faq={data.faq} />
 
-      {/* Section 36: Final CTA */}
-      {data.finalCta && (
-        <ServiceCTA
-          title={data.finalCta.title}
-          description={data.finalCta.description}
-          benefits={data.finalCta.benefits}
-        />
-      )}
+      {data.finalCta && <ServiceCTA title={data.finalCta.title} description={data.finalCta.description} benefits={data.finalCta.benefits} />}
     </>
   )
 }
