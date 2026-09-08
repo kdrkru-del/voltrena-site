@@ -8,8 +8,8 @@ export interface ServiceNavLink extends NavLink {
 }
 
 export const navigationLinks: NavLink[] = [
-  { label: 'Услуги', href: '/services' },
   { label: 'Решения', href: '/solutions' },
+  { label: 'Услуги', href: '/services' },
   { label: 'Кейсы', href: '/cases' },
   { label: 'О нас', href: '/about' },
   { label: 'Контакты', href: '/contact' },
@@ -28,6 +28,6 @@ export const serviceLinks: ServiceNavLink[] = [
 ];
 
 export const ctaButton = {
-  label: 'Обсудить проект',
-  href: '/contact',
+  label: 'Получить конфигурацию',
+  href: '/solutions',
 } as const;

@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { siteConfig } from '@/config/site';
+import { digitalProducts } from '@/data/digital-products';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
@@ -15,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/services/crm',
     '/services/analytics',
     '/solutions',
+    ...digitalProducts.map((product) => `/solutions/${product.slug}`),
     '/cases',
     '/about',
     '/contact',
@@ -24,6 +26,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((route) => ({
     url: siteConfig.getCanonicalUrl(route ? `${route}/` : '/'),
     changeFrequency: route === '' ? 'weekly' : 'monthly',
-    priority: route === '' ? 1.0 : route.startsWith('/services/') ? 0.8 : 0.7,
+    priority: route === '' ? 1.0 : route.startsWith('/solutions/') ? 0.9 : route.startsWith('/services/') ? 0.8 : 0.7,
   }));
 }
