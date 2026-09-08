@@ -49,7 +49,7 @@ jobs:
       - name: Fail only if critical vulnerabilities remain
         run: npm audit --audit-level=critical
 
-      - name: Verify production build before committing
+      - name: Verify production build with default Next workers
         run: npm run build
 
       - name: Commit tested migration and regenerated lock
