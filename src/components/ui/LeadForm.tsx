@@ -71,7 +71,7 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
     setErrorMessage('');
 
     const endpoint = siteConfig.leadEndpoint || `https://formsubmit.co/ajax/${siteConfig.leadRecipientEmail}`;
-    const subject = `Новая заявка с сайта voltrena.ru: ${formData.name.trim()} (${formData.contact.trim()})`;
+    const subject = `Запрос конфигурации VOLTRENA: ${formData.name.trim()} (${formData.contact.trim()})`;
     const payload = {
       name: formData.name.trim(),
       contact: formData.contact.trim(),
@@ -105,7 +105,7 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
     } catch (err: unknown) {
       console.error('Lead submission failed:', err);
       setFormState('error');
-      setErrorMessage('Не удалось отправить заявку через форму. Пожалуйста, напишите нам напрямую в Telegram или WhatsApp.');
+      setErrorMessage('Не удалось отправить запрос через форму. Пожалуйста, напишите нам напрямую в Telegram или WhatsApp.');
     } finally {
       clearTimeout(timeout);
       submitting.current = false;
@@ -116,19 +116,19 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
     return (
       <div role="status" className="flex flex-col items-center justify-center text-center py-10 px-4 h-full animate-fade-in">
         <div className="w-14 h-14 rounded-full bg-accent/20 border border-accent/40 flex items-center justify-center text-accent mb-4">
-          <CheckCircle2 className="w-8 h-8" />
+          <CheckCircle2 className="w-8 h-8" aria-hidden="true" />
         </div>
-        <h3 className="text-xl font-bold text-text-primary mb-2">Заявка принята!</h3>
-        <p className="text-text-secondary text-sm leading-relaxed max-w-md mb-6">Мы получили вашу заявку, изучим контекст задачи и свяжемся с вами в течение рабочего дня.</p>
+        <h3 className="text-xl font-bold text-text-primary mb-2">Запрос принят</h3>
+        <p className="text-text-secondary text-sm leading-relaxed max-w-md mb-6">Мы получили контекст задачи, изучим его и свяжемся с вами, чтобы предложить подходящую конфигурацию.</p>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <a href={siteConfig.telegramUrl} target="_blank" rel="noopener noreferrer" onClick={() => reachGoal('contact_telegram_click', { origin: 'form_success' })} className="inline-flex items-center min-h-[44px] gap-2 px-4 py-2 rounded-lg bg-accent/15 border border-accent/30 text-accent hover:bg-accent/25 text-xs font-mono transition-colors">
-            <Send className="w-3.5 h-3.5" /><span>Написать в Telegram</span>
+            <Send className="w-3.5 h-3.5" aria-hidden="true" /><span>Написать в Telegram</span>
           </a>
           <a href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={() => reachGoal('contact_whatsapp_click', { origin: 'form_success' })} className="inline-flex items-center min-h-[44px] gap-2 px-4 py-2 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/25 text-xs font-mono transition-colors">
-            <MessageCircle className="w-3.5 h-3.5" /><span>WhatsApp</span>
+            <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" /><span>WhatsApp</span>
           </a>
         </div>
-        <button type="button" onClick={() => { setFormData({ name: '', contact: '', message: '' }); setFormState('idle'); }} className="mt-6 text-xs font-mono text-text-muted hover:text-accent transition-colors underline">Отправить ещё одну заявку</button>
+        <button type="button" onClick={() => { setFormData({ name: '', contact: '', message: '' }); setFormState('idle'); }} className="mt-6 min-h-[44px] px-3 text-xs font-mono text-text-muted hover:text-accent transition-colors underline">Отправить ещё один запрос</button>
       </div>
     );
   }
@@ -137,7 +137,7 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
     <form ref={formRef} aria-busy={formState === 'loading'} onSubmit={handleSubmit} className={cn('space-y-4 text-left', className)} noValidate>
       {formState === 'error' && (
         <div role="alert" className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs leading-relaxed flex items-start gap-3">
-          <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+          <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" aria-hidden="true" />
           <div className="space-y-2"><p>{errorMessage}</p><div className="flex flex-wrap gap-2 pt-1">
             <a href={siteConfig.telegramUrl} target="_blank" rel="noopener noreferrer" onClick={() => reachGoal('contact_telegram_click', { origin: 'form_error' })} className="inline-flex items-center min-h-[44px] underline font-semibold hover:text-white">Написать в Telegram</a>
             <a href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={() => reachGoal('contact_whatsapp_click', { origin: 'form_error' })} className="inline-flex items-center min-h-[44px] underline font-semibold hover:text-white">Написать в WhatsApp</a>
@@ -158,12 +158,12 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor={`${formId}-message`} className="text-xs font-mono text-text-secondary">Кратко о задаче <span className="text-accent">*</span></label>
-        <textarea id={`${formId}-message`} required maxLength={3000} aria-invalid={!!errors.message} aria-describedby={errors.message ? `${formId}-message-error` : undefined} name="message" placeholder="Например: нужен перезапуск сайта и настройка сквозной аналитики..." rows={3} value={formData.message} onChange={handleChange} disabled={formState === 'loading'} className={cn('w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent/60 focus:ring-1 focus:ring-accent/30 transition-[color,background-color,border-color,box-shadow] text-sm resize-none', errors.message && 'border-red-400 focus:border-red-400')} />
+        <label htmlFor={`${formId}-message`} className="text-xs font-mono text-text-secondary">Бизнес-задача <span className="text-accent">*</span></label>
+        <textarea id={`${formId}-message`} required maxLength={3000} aria-invalid={!!errors.message} aria-describedby={errors.message ? `${formId}-message-error` : undefined} name="message" placeholder="Например: нужны целевые заявки, B2B-клиенты или автоматизация обработки обращений..." rows={3} value={formData.message} onChange={handleChange} disabled={formState === 'loading'} className={cn('w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent/60 focus:ring-1 focus:ring-accent/30 transition-[color,background-color,border-color,box-shadow] text-sm resize-none', errors.message && 'border-red-400 focus:border-red-400')} />
         {errors.message && <span id={`${formId}-message-error`} className="text-xs text-red-400">{errors.message}</span>}
       </div>
 
-      <Button type="submit" variant="primary" size="lg" className="w-full mt-2" disabled={formState === 'loading'}>{formState === 'loading' ? 'Отправляем данные...' : 'Обсудить задачу'}</Button>
+      <Button type="submit" variant="primary" size="lg" className="w-full mt-2" disabled={formState === 'loading'}>{formState === 'loading' ? 'Отправляем запрос...' : 'Получить конфигурацию'}</Button>
       <p className="text-[11px] text-text-muted leading-relaxed pt-1 text-center sm:text-left">Нажимая кнопку, вы соглашаетесь с{' '}<Link href="/privacy" className="text-text-secondary hover:text-accent underline transition-colors">Политикой конфиденциальности</Link>{' '}и обработкой персональных данных.</p>
     </form>
   );
