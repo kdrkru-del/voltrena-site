@@ -15,7 +15,7 @@ const server = http.createServer((req,res) => {
   if (!file.startsWith(root + path.sep) && file !== root) {res.writeHead(403).end();return;}
   if (fs.existsSync(file) && fs.statSync(file).isDirectory()) file = path.join(file,'index.html');
   if (!fs.existsSync(file)) {res.writeHead(404).end();return;}
-  const types={'.html':'text/html','.js':'application/javascript','.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.woff2':'font/woff2'};
+  const types={'.html':'text/html','.js':'application/javascript','.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.woff2':'font/woff2'};
   res.setHeader('Content-Type',types[path.extname(file)] || 'application/octet-stream');
   res.end(fs.readFileSync(file));
 });
@@ -31,7 +31,6 @@ async function run() {
  try {
   const context=await browser.newContext({reducedMotion:'reduce'});
   await context.route('https://mc.yandex.ru/**',r=>r.abort());
-  // Never send QA submissions to the configured live email endpoint.
   await context.route('https://formsubmit.co/**',r=>r.fulfill({status:503,body:'{}'}));
   const page=await context.newPage();
   page.setDefaultTimeout(8000);
@@ -44,7 +43,6 @@ async function run() {
     await page.evaluate(()=>document.fonts.ready);
     await page.waitForTimeout(250);
     assert.equal(await page.locator('h1').evaluate(el=>{for(let node=el;node;node=node.parentElement) if(Number(getComputedStyle(node).opacity)<0.01) return false;return true;}),true,'H1 must remain visible with reduced motion');
-    // Disable the safety clipping to expose actual document overflow.
     await page.addStyleTag({content:'html { overflow-x: visible !important; scroll-behavior:auto !important; }'});
     const overflow=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,offenders:Array.from(document.querySelectorAll('h1,h2,h3,p,a,button,input,textarea')).filter(el=>{const r=el.getBoundingClientRect();return r.width && getComputedStyle(el).visibility!=='hidden' && (r.right>innerWidth+1 || r.left < -1) && !el.closest('[hidden]');}).map(el=>({tag:el.tagName,text:el.textContent.slice(0,80)})).slice(0,12)}));
     results.push({route,width,height,overflow});
@@ -55,18 +53,16 @@ async function run() {
     assert.ok(overflow.scroll <= width+1,JSON.stringify(results.at(-1)));
     assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'),'https://voltrena.ru'+route);
     if (route==='/') {
-      await page.getByText('Система объединена',{exact:true}).waitFor();
+      await page.getByRole('heading',{level:1,name:/Цифровые системы/}).waitFor();
+      await page.getByRole('link',{name:'Выбрать систему',exact:true}).waitFor();
+      assert.equal(await page.getByText('SYSTEM ARCHITECTURE',{exact:true}).count(),1);
+      for (const name of ['Система привлечения клиентов','Система B2B-продаж','Квалификация и обработка заявок','Автоматизация операционных процессов','Мониторинг рынка и данных']) {
+        assert.ok(await page.getByRole('link',{name:new RegExp(name)}).count() >= 1);
+      }
       await page.locator('footer').scrollIntoViewIfNeeded();
       await page.locator('h1').scrollIntoViewIfNeeded();
       await page.locator('img[loading="lazy"]').evaluateAll(images=>Promise.all(images.map(image=>{image.loading='eager';return image.decode().catch(()=>{});})));
       await page.screenshot({path:`qa-results/home-${width}.png`,fullPage:true});
-      for (const name of ['Спрос','Сайт','Заявка','CRM','Процессы','Аналитика']) {
-        const tab=page.getByRole('tab',{name,exact:true});await tab.click();
-        assert.equal(await tab.getAttribute('aria-selected'),'true');
-        assert.equal(await page.locator('.hero-node-flow').getByRole('tab',{selected:true}).count(),1);
-      }
-      await page.getByRole('tab',{name:'Спрос',exact:true}).focus();await page.keyboard.press('ArrowRight');
-      assert.equal(await page.getByRole('tab',{name:'Сайт',exact:true}).getAttribute('aria-selected'),'true');
       if(width<1024) {
         const open=page.getByRole('button',{name:'Открыть меню',exact:true});await open.click();
         const menu=page.locator('#mobile-navigation');
@@ -121,14 +117,13 @@ async function run() {
     if(outcome!=='success') assert.equal(await formPage.getByRole('button').isEnabled(),true);
     await formPage.close();
   }
-  // No JavaScript and no IntersectionObserver both retain visible content.
   const noJS=await browser.newContext({javaScriptEnabled:false});const staticPage=await noJS.newPage();await staticPage.goto(base);
   assert.equal(await staticPage.locator('h1').isVisible(),true);await noJS.close();
   const fallback=await browser.newContext();await fallback.addInitScript(()=>{delete window.IntersectionObserver;});
   const fallbackPage=await fallback.newPage();await fallbackPage.goto(base);assert.equal(await fallbackPage.locator('h1').isVisible(),true);await fallback.close();
   assert.deepEqual(failures,[]);
   assert.deepEqual(crashes,[]);
-  console.log(`PASS: ${results.length} route/viewport checks, nodes, menus, form, reduced motion, SSR fallbacks`);
+  console.log(`PASS: ${results.length} route/viewport checks, product hero, menus, form, reduced motion, SSR fallbacks`);
  } finally { clearTimeout(watchdog);fs.writeFileSync('qa-results/results.json',JSON.stringify({results,failures},null,2));fs.rmSync(fixture,{recursive:true,force:true});await browser.close();server.close(); }
 }
 run().catch(error=>{clearTimeout(watchdog);console.error(error);server.close();process.exitCode=1;});
