@@ -3,16 +3,11 @@ const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? process.env.BASE_PATH ?? 
 
 const nextConfig = {
   output: 'export',
-  basePath: basePath,
+  basePath,
   env: { NEXT_PUBLIC_BASE_PATH: basePath },
   trailingSlash: true,
   images: {
     unoptimized: true,
-  },
-  experimental: {
-    cpus: 1,
-    workerThreads: true,
-    webpackBuildWorker: false,
   },
   reactStrictMode: true,
 };
