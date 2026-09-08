@@ -4,51 +4,50 @@ import React from 'react'
 import Link from 'next/link'
 import SectionHeading from '@/components/ui/SectionHeading'
 import ScrollReveal from '@/components/ui/ScrollReveal'
-import { ArrowRight, CheckCircle2, ExternalLink } from 'lucide-react'
+import { ArrowRight, ExternalLink } from 'lucide-react'
 
 const realCases = [
   {
-    title: '«Окна Центр»',
-    tag: 'В РАЗРАБОТКЕ / 5 КОНЦЕПЦИЙ',
-    scope: 'Сайт + WebGL + Выбор направления',
-    desc: 'Проектирование флагманского сайта компании по премиальному остеклению (Владивосток). Создан интерактивный демо-стенд с 5 концепциями Hero (свет, WebGL, скролл).',
-    href: '/cases/#okna-center',
-    externalDemoUrl: 'https://kdrkru-del.github.io/okna-center-demo/',
-    externalDemoLabel: 'Тестировать 5 концепций',
+    title: 'ТехУчёт',
+    system: 'Система привлечения клиентов',
+    systemHref: '/solutions/digital-sales-system/',
+    task: 'Получать целевые обращения по регистрации спецтехники в Гостехнадзоре.',
+    implemented: 'Сайт → Яндекс Директ → UTM → заявка → обработка лида',
+    result: 'Собран единый контур привлечения и фиксации обращений вместо отдельного сайта без связанной воронки.',
+    href: '/cases/#tehuchet',
+    externalDemoUrl: 'https://techuchet24.ru/',
+    externalDemoLabel: 'Открыть techuchet24.ru',
   },
   {
-    title: '«ЗемТрак»',
-    tag: 'САЙТ & МЕДИЙНАЯ РЕКЛАМА',
-    scope: 'Каталог техники + Медийные баннеры + Директ',
-    desc: 'Федеральный сайт-каталог дорожной и строительной техники (краны Zoomlion до 600 т, экскаваторы, фрезы Wirtgen) и запуск медийной и контекстной рекламы.',
+    title: 'ZEMTRAK',
+    system: 'Система привлечения клиентов',
+    systemHref: '/solutions/digital-sales-system/',
+    task: 'Показать парк спецтехники и переводить спрос на аренду в конкретную заявку.',
+    implemented: 'Каталог техники → посадочные сценарии → Директ → заявка',
+    result: 'Сайт перестроен вокруг аренды техники и задач, для которых она нужна, а не вокруг абстрактных подрядных услуг.',
     href: '/cases/#zemtrak',
     externalDemoUrl: 'https://zemtrak.ru/',
-    externalDemoLabel: 'Перейти на сайт zemtrak.ru',
+    externalDemoLabel: 'Открыть zemtrak.ru',
   },
   {
-    title: 'ТехУчёт',
-    tag: 'B2B ПРИВЛЕЧЕНИЕ & САЙТ',
-    scope: 'Сайт + Яндекс Директ + CRM',
-    desc: 'Нишевой посадочный контур в сегменте спецтехники и Гостехнадзора: сквозная UTM-разметка, целевые посадочные страницы и моментальная передача лидов в CRM без потерь.',
-    href: '/cases/#tehuchet',
-    externalDemoUrl: 'https://tehuchet24.ru/',
-    externalDemoLabel: 'Перейти на сайт tehuchet24.ru',
+    title: 'Globerion Group',
+    system: 'B2B Sales / Digital Infrastructure',
+    systemHref: '/solutions/b2b-sales-system/',
+    task: 'Собрать международную B2B-инфраструктуру для поиска и обработки запросов покупателей.',
+    implemented: 'Продуктовая структура → B2B-каталог → запрос → данные → коммуникация',
+    result: 'Цифровая инфраструктура строится вокруг конкретных товарных направлений и B2B-запросов, а не вокруг списка услуг компании.',
+    href: '/cases/',
   },
   {
     title: 'Зелёный Срез',
-    tag: 'ЛОКАЛЬНЫЙ СЕРВИС & КОНВЕРСИЯ',
-    scope: 'Локальный сайт + онлайн-заявка + Telegram',
-    desc: 'Гео-структура посадочных страниц, калькулятор быстрой оценки стоимости и доставка заявок напрямую дежурному инженеру в Telegram.',
+    system: 'Система привлечения клиентов',
+    systemHref: '/solutions/digital-sales-system/',
+    task: 'Получать локальные заявки на спил и обслуживание деревьев в Москве и области.',
+    implemented: 'Гео-страницы → форма → оценка задачи → Telegram',
+    result: 'Короткий путь от локального спроса до обращения исполнителю без лишних промежуточных действий.',
     href: '/cases/#zelenyi-srez',
     externalDemoUrl: 'https://zelsrez.ru/',
-    externalDemoLabel: 'Перейти на сайт zelsrez.ru',
-  },
-  {
-    title: 'ГИЭ Групп',
-    tag: 'B2B ДАННЫЕ & ЗАКУПКИ',
-    scope: 'Аналитический шорт-лист + 16 контрактов',
-    desc: 'Система поиска и фильтрации профильных закупок от 1 млн ₽ без жестких ограничений по госопыту. 16 выигранных контрактов (3,5–12 млн ₽) на основе подготовленной базы.',
-    href: '/cases/#gie-group',
+    externalDemoLabel: 'Открыть zelsrez.ru',
   },
 ]
 
@@ -58,66 +57,61 @@ export default function ProofSection() {
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
         <ScrollReveal>
           <SectionHeading
-            tag="ПРАКТИКА"
-            title="Реальные проекты и результаты."
-            subtitle="Показываем, как работают созданные нами системы на реальных задачах клиентов."
+            tag="СИСТЕМЫ В РАБОТЕ"
+            title="Не просто что сделали. Какую систему собрали."
+            subtitle="Каждый кейс показываем через бизнес-задачу, архитектуру решения и результат — чтобы было понятно, как продуктовая система работает на практике."
             align="center"
           />
         </ScrollReveal>
 
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {realCases.map((c, idx) => (
             <ScrollReveal key={c.title} delay={idx * 70}>
-              <div className="h-full p-6 sm:p-7 rounded-2xl bg-bg-surface border border-border/80 hover:border-accent/40 transition-colors flex flex-col justify-between shadow-lg group">
+              <article className="h-full p-6 sm:p-7 rounded-2xl bg-bg-surface border border-border/80 hover:border-accent/40 transition-colors flex flex-col justify-between shadow-lg group min-w-0">
                 <div>
-                  <span className="font-mono text-[11px] text-accent uppercase tracking-wider font-semibold block mb-2">
-                    {c.tag}
-                  </span>
-                  <h3 className="text-xl font-bold text-text-primary mb-1">
-                    {c.title}
-                  </h3>
-                  <p className="font-mono text-xs text-text-muted mb-4">
-                    {c.scope}
-                  </p>
-                  <p className="text-xs sm:text-sm text-text-secondary leading-relaxed mb-6">
-                    {c.desc}
-                  </p>
+                  <Link href={c.systemHref} className="font-mono text-[11px] text-accent uppercase tracking-wider font-semibold inline-flex items-center gap-1.5 mb-3 hover:text-accent-light">
+                    {c.system}
+                    <ArrowRight className="w-3 h-3" aria-hidden="true" />
+                  </Link>
+                  <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-5">{c.title}</h3>
+
+                  <div className="space-y-4 mb-6">
+                    <div>
+                      <span className="font-mono text-[10px] uppercase tracking-wider text-text-muted block mb-1.5">Задача</span>
+                      <p className="text-sm text-text-secondary leading-relaxed">{c.task}</p>
+                    </div>
+                    <div>
+                      <span className="font-mono text-[10px] uppercase tracking-wider text-text-muted block mb-1.5">Что внедрено</span>
+                      <p className="text-sm text-text-primary leading-relaxed break-words">{c.implemented}</p>
+                    </div>
+                    <div className="rounded-xl bg-bg-primary border border-border/70 p-4">
+                      <span className="font-mono text-[10px] uppercase tracking-wider text-accent block mb-1.5">Результат</span>
+                      <p className="text-sm text-text-secondary leading-relaxed">{c.result}</p>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="flex flex-col gap-2.5 pt-2 border-t border-border/60">
-                  <Link
-                    href={c.href}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:text-accent-light group-hover:translate-x-0.5 transition-transform"
-                  >
-                    <span>Разобрать проект</span>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 pt-4 border-t border-border/60">
+                  <Link href={c.href} className="inline-flex min-h-[44px] items-center gap-1.5 text-xs font-semibold text-accent hover:text-accent-light">
+                    Разобрать кейс
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
-
                   {c.externalDemoUrl && (
-                    <a
-                      href={c.externalDemoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-between px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 text-xs font-mono font-medium transition-colors"
-                    >
-                      <span>{c.externalDemoLabel || 'Открыть проект'}</span>
+                    <a href={c.externalDemoUrl} target="_blank" rel="noopener noreferrer" className="sm:ml-auto inline-flex min-h-[44px] items-center gap-2 text-xs font-mono text-text-secondary hover:text-text-primary">
+                      {c.externalDemoLabel}
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   )}
                 </div>
-              </div>
+              </article>
             </ScrollReveal>
           ))}
         </div>
 
-        {/* Global CTA link */}
         <ScrollReveal delay={200}>
           <div className="mt-10 text-center">
-            <Link
-              href="/cases/"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-bg-surface border border-border hover:border-accent text-text-primary hover:text-accent font-semibold text-xs sm:text-sm transition-colors min-h-[44px]"
-            >
-              <span>Смотреть все кейсы агентства</span>
+            <Link href="/cases/" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-bg-surface border border-border hover:border-accent text-text-primary hover:text-accent font-semibold text-xs sm:text-sm transition-colors min-h-[44px]">
+              <span>Смотреть все кейсы</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
