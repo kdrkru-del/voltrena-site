@@ -1,0 +1,43 @@
+name: Upgrade Next.js to supported LTS
+
+on:
+  push:
+    branches: ["master"]
+    paths:
+      - ".github/workflows/upgrade-next15.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install supported Next.js and React versions
+        run: |
+          npm install --save-exact next@15.5.24 react@19.2.0 react-dom@19.2.0
+          npm install --save-dev --save-exact eslint-config-next@15.5.24 @types/react@19 @types/react-dom@19
+
+      - name: Verify production build before committing
+        run: npm run build
+
+      - name: Commit regenerated dependency lock
+        run: |
+          rm .github/workflows/upgrade-next15.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json .github/workflows/upgrade-next15.yml
+          git commit -m "chore: upgrade Next.js to 15.5.24 security LTS"
+          git push origin master
