@@ -5,6 +5,7 @@ import HomeProblemNavigator from '@/components/sections/HomeProblemNavigator'
 import ProofSection from '@/components/cases/ProofSection'
 import HomeSolutionsShowcase from '@/components/sections/HomeSolutionsShowcase'
 import HomeOneSystemAdvantage from '@/components/sections/HomeOneSystemAdvantage'
+import HomeTechnologyBuildingBlocks from '@/components/sections/HomeTechnologyBuildingBlocks'
 import HomeTeamTrust from '@/components/sections/HomeTeamTrust'
 import HomeFinalContact from '@/components/sections/HomeFinalContact'
 
@@ -42,6 +43,7 @@ export default function HomePage() {
       <ProofSection />
       <HomeProblemNavigator />
       <HomeOneSystemAdvantage />
+      <HomeTechnologyBuildingBlocks />
       <HomeTeamTrust />
       <HomeFinalContact />
     </>
