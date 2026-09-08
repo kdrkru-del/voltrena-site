@@ -37,13 +37,18 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
 
     const classes = cn(baseStyles, variants[variant], sizes[size], className);
 
+    const shine = variant === 'primary' ? (
+      <span
+        aria-hidden="true"
+        className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none"
+      />
+    ) : null;
+
     if (href) {
       return (
         <Link href={href} onClick={onClick} className={classes} ref={ref as React.Ref<HTMLAnchorElement>}>
           {children}
-          {variant === 'primary' && (
-            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
-          )}
+          {shine}
         </Link>
       );
     }
@@ -51,9 +56,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
     return (
       <button type={type} className={classes} onClick={onClick} disabled={disabled} ref={ref as React.Ref<HTMLButtonElement>}>
         {children}
-        {variant === 'primary' && (
-          <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
-        )}
+        {shine}
       </button>
     );
   }

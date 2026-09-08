@@ -27,8 +27,11 @@ export default function ServiceCTA({
   return (
     <section id="contact" className="py-20 md:py-28 bg-bg-primary relative overflow-hidden scroll-mt-24">
       {/* Background Effects */}
-      <div className="absolute inset-0 bg-dot-grid opacity-15 pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 blur-[160px] rounded-full pointer-events-none" />
+      <div aria-hidden="true" className="absolute inset-0 bg-dot-grid opacity-15 pointer-events-none" />
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-1/2 mx-auto -translate-y-1/2 w-full max-w-[600px] aspect-square bg-accent/5 blur-[160px] rounded-full pointer-events-none"
+      />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center max-w-6xl mx-auto">

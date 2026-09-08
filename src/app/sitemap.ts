@@ -21,11 +21,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/privacy',
   ];
 
-  const lastModified = new Date();
-
   return routes.map((route) => ({
     url: siteConfig.getCanonicalUrl(route ? `${route}/` : '/'),
-    lastModified,
     changeFrequency: route === '' ? 'weekly' : 'monthly',
     priority: route === '' ? 1.0 : route.startsWith('/services/') ? 0.8 : 0.7,
   }));

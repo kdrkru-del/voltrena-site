@@ -17,35 +17,22 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
   const formId = useId();
   const submitting = useRef(false);
   const formRef = useRef<HTMLFormElement>(null);
-  const [formData, setFormData] = useState({
-    name: '',
-    contact: '',
-    message: '',
-  });
-
-  const [errors, setErrors] = useState({
-    name: '',
-    contact: '',
-    message: '',
-  });
-
+  const [formData, setFormData] = useState({ name: '', contact: '', message: '' });
+  const [errors, setErrors] = useState({ name: '', contact: '', message: '' });
   const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [utmParams, setUtmParams] = useState<Record<string, string>>({});
 
-  // Capture UTM parameters and context on mount
   useEffect(() => {
     if (typeof window === 'undefined') return;
     try {
       const searchParams = new URLSearchParams(window.location.search);
       const params: Record<string, string> = {};
       const trackedKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'yclid', 'gclid'];
-
       trackedKeys.forEach((key) => {
         const val = searchParams.get(key);
         if (val) params[key] = val;
       });
-
       setUtmParams(params);
     } catch (e) {
       console.warn('Could not parse URL params', e);
@@ -55,9 +42,7 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    if (errors[name as keyof typeof errors]) {
-      setErrors((prev) => ({ ...prev, [name]: '' }));
-    }
+    if (errors[name as keyof typeof errors]) setErrors((prev) => ({ ...prev, [name]: '' }));
     if (formState === 'error') {
       setFormState('idle');
       setErrorMessage('');
@@ -67,24 +52,13 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
   const validate = () => {
     let isValid = true;
     const newErrors = { name: '', contact: '', message: '' };
-
-    if (!formData.name.trim()) {
-      newErrors.name = 'Пожалуйста, укажите ваше имя';
-      isValid = false;
-    }
-    if (!formData.contact.trim()) {
-      newErrors.contact = 'Укажите телефон, Telegram или email для связи';
-      isValid = false;
-    }
-    if (!formData.message.trim()) {
-      newErrors.message = 'Опишите кратко вашу задачу';
-      isValid = false;
-    }
-
+    if (!formData.name.trim()) { newErrors.name = 'Пожалуйста, укажите ваше имя'; isValid = false; }
+    if (!formData.contact.trim()) { newErrors.contact = 'Укажите телефон, Telegram или email для связи'; isValid = false; }
+    if (!formData.message.trim()) { newErrors.message = 'Опишите кратко вашу задачу'; isValid = false; }
     setErrors(newErrors);
     if (!isValid) {
-      const firstInvalid = (Object.keys(newErrors) as Array<keyof typeof newErrors>).find(key => newErrors[key]);
-      formRef.current?.querySelector<HTMLElement>(`[name="${firstInvalid}"]`)?.focus();
+      const firstInvalid = (Object.keys(newErrors) as Array<keyof typeof newErrors>).find((key) => newErrors[key]);
+      if (firstInvalid) formRef.current?.querySelector<HTMLElement>(`[name="${firstInvalid}"]`)?.focus();
     }
     return isValid;
   };
@@ -93,26 +67,20 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
     e.preventDefault();
     if (submitting.current || !validate()) return;
     submitting.current = true;
-
     setFormState('loading');
     setErrorMessage('');
 
-    const endpoint =
-      siteConfig.leadEndpoint ||
-      `https://formsubmit.co/ajax/${siteConfig.leadRecipientEmail}`;
-
+    const endpoint = siteConfig.leadEndpoint || `https://formsubmit.co/ajax/${siteConfig.leadRecipientEmail}`;
     const subject = `Новая заявка с сайта voltrena.ru: ${formData.name.trim()} (${formData.contact.trim()})`;
-
     const payload = {
       name: formData.name.trim(),
       contact: formData.contact.trim(),
       message: formData.message.trim(),
-      source: source,
+      source,
       pageUrl: typeof window !== 'undefined' ? window.location.href : '',
       pageTitle: typeof document !== 'undefined' ? document.title : '',
       referrer: typeof document !== 'undefined' ? document.referrer : '',
       timestamp: new Date().toLocaleString('ru-RU'),
-      // FormSubmit directives for email styling and anti-spam bypass:
       _subject: subject,
       _template: 'table',
       _captcha: 'false',
@@ -125,42 +93,17 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
     try {
       const res = await fetch(endpoint, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(payload),
         signal: controller.signal,
       });
-
-      if (!res.ok) {
-        throw new Error(`Server returned status ${res.status}`);
-      }
-
+      if (!res.ok) throw new Error(`Server returned status ${res.status}`);
       const resData = await res.json().catch(() => null);
-      if (resData && (resData.success === 'false' || resData.success === false)) {
-        throw new Error(resData.message);
-      }
-
-      // Backup lead to browser storage
-      try {
-        const backupKey = 'voltrena_leads_backup';
-        const existing = JSON.parse(localStorage.getItem(backupKey) || '[]');
-        existing.push(payload);
-        localStorage.setItem(backupKey, JSON.stringify(existing.slice(-30)));
-      } catch (_) {}
-
+      if (resData && (resData.success === 'false' || resData.success === false)) throw new Error(resData.message);
       reachGoal('lead_form_success', { source });
       setFormState('success');
     } catch (err: unknown) {
       console.error('Lead submission failed:', err);
-      try {
-        const errKey = 'voltrena_lead_errors';
-        const existing = JSON.parse(localStorage.getItem(errKey) || '[]');
-        existing.push({ error: String(err instanceof Error ? err.message : err), payload, at: new Date().toISOString() });
-        localStorage.setItem(errKey, JSON.stringify(existing.slice(-20)));
-      } catch (_) {}
-
       setFormState('error');
       setErrorMessage('Не удалось отправить заявку через форму. Пожалуйста, напишите нам напрямую в Telegram или WhatsApp.');
     } finally {
@@ -176,41 +119,16 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
           <CheckCircle2 className="w-8 h-8" />
         </div>
         <h3 className="text-xl font-bold text-text-primary mb-2">Заявка принята!</h3>
-        <p className="text-text-secondary text-sm leading-relaxed max-w-md mb-6">
-          Мы получили вашу заявку, изучим контекст задачи и свяжемся с вами в течение рабочего дня.
-        </p>
+        <p className="text-text-secondary text-sm leading-relaxed max-w-md mb-6">Мы получили вашу заявку, изучим контекст задачи и свяжемся с вами в течение рабочего дня.</p>
         <div className="flex flex-wrap items-center justify-center gap-3">
-          <a
-            href={siteConfig.telegramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => reachGoal('contact_telegram_click', { origin: 'form_success' })}
-            className="inline-flex items-center min-h-[44px] gap-2 px-4 py-2 rounded-lg bg-accent/15 border border-accent/30 text-accent hover:bg-accent/25 text-xs font-mono transition-colors"
-          >
-            <Send className="w-3.5 h-3.5" />
-            <span>Написать в Telegram</span>
+          <a href={siteConfig.telegramUrl} target="_blank" rel="noopener noreferrer" onClick={() => reachGoal('contact_telegram_click', { origin: 'form_success' })} className="inline-flex items-center min-h-[44px] gap-2 px-4 py-2 rounded-lg bg-accent/15 border border-accent/30 text-accent hover:bg-accent/25 text-xs font-mono transition-colors">
+            <Send className="w-3.5 h-3.5" /><span>Написать в Telegram</span>
           </a>
-          <a
-            href={siteConfig.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => reachGoal('contact_whatsapp_click', { origin: 'form_success' })}
-            className="inline-flex items-center min-h-[44px] gap-2 px-4 py-2 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/25 text-xs font-mono transition-colors"
-          >
-            <MessageCircle className="w-3.5 h-3.5" />
-            <span>WhatsApp</span>
+          <a href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={() => reachGoal('contact_whatsapp_click', { origin: 'form_success' })} className="inline-flex items-center min-h-[44px] gap-2 px-4 py-2 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/25 text-xs font-mono transition-colors">
+            <MessageCircle className="w-3.5 h-3.5" /><span>WhatsApp</span>
           </a>
         </div>
-        <button
-          type="button"
-          onClick={() => {
-            setFormData({ name: '', contact: '', message: '' });
-            setFormState('idle');
-          }}
-          className="mt-6 text-xs font-mono text-text-muted hover:text-accent transition-colors underline"
-        >
-          Отправить ещё одну заявку
-        </button>
+        <button type="button" onClick={() => { setFormData({ name: '', contact: '', message: '' }); setFormState('idle'); }} className="mt-6 text-xs font-mono text-text-muted hover:text-accent transition-colors underline">Отправить ещё одну заявку</button>
       </div>
     );
   }
@@ -220,124 +138,33 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
       {formState === 'error' && (
         <div role="alert" className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs leading-relaxed flex items-start gap-3">
           <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
-          <div className="space-y-2">
-            <p>{errorMessage}</p>
-            <div className="flex flex-wrap gap-2 pt-1">
-              <a
-                href={siteConfig.telegramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => reachGoal('contact_telegram_click', { origin: 'form_error' })}
-                className="inline-flex items-center min-h-[44px] underline font-semibold hover:text-white"
-              >
-                Написать в Telegram
-              </a>
-
-              <a
-                href={siteConfig.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => reachGoal('contact_whatsapp_click', { origin: 'form_error' })}
-                className="inline-flex items-center min-h-[44px] underline font-semibold hover:text-white"
-              >
-                Написать в WhatsApp
-              </a>
-            </div>
-          </div>
+          <div className="space-y-2"><p>{errorMessage}</p><div className="flex flex-wrap gap-2 pt-1">
+            <a href={siteConfig.telegramUrl} target="_blank" rel="noopener noreferrer" onClick={() => reachGoal('contact_telegram_click', { origin: 'form_error' })} className="inline-flex items-center min-h-[44px] underline font-semibold hover:text-white">Написать в Telegram</a>
+            <a href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={() => reachGoal('contact_whatsapp_click', { origin: 'form_error' })} className="inline-flex items-center min-h-[44px] underline font-semibold hover:text-white">Написать в WhatsApp</a>
+          </div></div>
         </div>
       )}
 
-      {/* Name */}
       <div className="flex flex-col gap-1.5">
-        <label htmlFor={`${formId}-name`} className="text-xs font-mono text-text-secondary">
-          Ваше имя <span className="text-accent">*</span>
-        </label>
-        <input
-          type="text"
-          id={`${formId}-name`}
-          required
-          aria-invalid={!!errors.name}
-          aria-describedby={errors.name ? `${formId}-name-error` : undefined}
-          name="name"
-          placeholder="Алексей"
-          value={formData.name}
-          onChange={handleChange}
-          disabled={formState === 'loading'}
-          className={cn(
-            'w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent/60 focus:ring-1 focus:ring-accent/30 transition-[color,background-color,border-color,box-shadow] text-sm',
-            errors.name && 'border-red-400 focus:border-red-400'
-          )}
-        />
+        <label htmlFor={`${formId}-name`} className="text-xs font-mono text-text-secondary">Ваше имя <span className="text-accent">*</span></label>
+        <input type="text" id={`${formId}-name`} required maxLength={120} autoComplete="name" aria-invalid={!!errors.name} aria-describedby={errors.name ? `${formId}-name-error` : undefined} name="name" placeholder="Алексей" value={formData.name} onChange={handleChange} disabled={formState === 'loading'} className={cn('w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent/60 focus:ring-1 focus:ring-accent/30 transition-[color,background-color,border-color,box-shadow] text-sm', errors.name && 'border-red-400 focus:border-red-400')} />
         {errors.name && <span id={`${formId}-name-error`} className="text-xs text-red-400">{errors.name}</span>}
       </div>
 
-      {/* Contact */}
       <div className="flex flex-col gap-1.5">
-        <label htmlFor={`${formId}-contact`} className="text-xs font-mono text-text-secondary">
-          Телефон, Telegram или Email <span className="text-accent">*</span>
-        </label>
-        <input
-          type="text"
-          id={`${formId}-contact`}
-          required
-          aria-invalid={!!errors.contact}
-          aria-describedby={errors.contact ? `${formId}-contact-error` : undefined}
-          name="contact"
-          placeholder="+7 (999) 000-00-00 или @username"
-          value={formData.contact}
-          onChange={handleChange}
-          disabled={formState === 'loading'}
-          className={cn(
-            'w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent/60 focus:ring-1 focus:ring-accent/30 transition-[color,background-color,border-color,box-shadow] text-sm',
-            errors.contact && 'border-red-400 focus:border-red-400'
-          )}
-        />
+        <label htmlFor={`${formId}-contact`} className="text-xs font-mono text-text-secondary">Телефон, Telegram или Email <span className="text-accent">*</span></label>
+        <input type="text" id={`${formId}-contact`} required maxLength={180} autoComplete="email" aria-invalid={!!errors.contact} aria-describedby={errors.contact ? `${formId}-contact-error` : undefined} name="contact" placeholder="+7 (999) 000-00-00 или @username" value={formData.contact} onChange={handleChange} disabled={formState === 'loading'} className={cn('w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent/60 focus:ring-1 focus:ring-accent/30 transition-[color,background-color,border-color,box-shadow] text-sm', errors.contact && 'border-red-400 focus:border-red-400')} />
         {errors.contact && <span id={`${formId}-contact-error`} className="text-xs text-red-400">{errors.contact}</span>}
       </div>
 
-      {/* Message */}
       <div className="flex flex-col gap-1.5">
-        <label htmlFor={`${formId}-message`} className="text-xs font-mono text-text-secondary">
-          Кратко о задаче <span className="text-accent">*</span>
-        </label>
-        <textarea
-          id={`${formId}-message`}
-          required
-          aria-invalid={!!errors.message}
-          aria-describedby={errors.message ? `${formId}-message-error` : undefined}
-          name="message"
-          placeholder="Например: нужен перезапуск сайта и настройка сквозной аналитики..."
-          rows={3}
-          value={formData.message}
-          onChange={handleChange}
-          disabled={formState === 'loading'}
-          className={cn(
-            'w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent/60 focus:ring-1 focus:ring-accent/30 transition-[color,background-color,border-color,box-shadow] text-sm resize-none',
-            errors.message && 'border-red-400 focus:border-red-400'
-          )}
-        />
+        <label htmlFor={`${formId}-message`} className="text-xs font-mono text-text-secondary">Кратко о задаче <span className="text-accent">*</span></label>
+        <textarea id={`${formId}-message`} required maxLength={3000} aria-invalid={!!errors.message} aria-describedby={errors.message ? `${formId}-message-error` : undefined} name="message" placeholder="Например: нужен перезапуск сайта и настройка сквозной аналитики..." rows={3} value={formData.message} onChange={handleChange} disabled={formState === 'loading'} className={cn('w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent/60 focus:ring-1 focus:ring-accent/30 transition-[color,background-color,border-color,box-shadow] text-sm resize-none', errors.message && 'border-red-400 focus:border-red-400')} />
         {errors.message && <span id={`${formId}-message-error`} className="text-xs text-red-400">{errors.message}</span>}
       </div>
 
-      {/* Submit Button */}
-      <Button
-        type="submit"
-        variant="primary"
-        size="lg"
-        className="w-full mt-2"
-        disabled={formState === 'loading'}
-      >
-        {formState === 'loading' ? 'Отправляем данные...' : 'Обсудить задачу'}
-      </Button>
-
-      {/* Privacy Notice */}
-      <p className="text-[11px] text-text-muted leading-relaxed pt-1 text-center sm:text-left">
-        Нажимая кнопку, вы соглашаетесь с{' '}
-        <Link href="/privacy" className="text-text-secondary hover:text-accent underline transition-colors">
-          Политикой конфиденциальности
-        </Link>{' '}
-        и обработкой персональных данных.
-      </p>
+      <Button type="submit" variant="primary" size="lg" className="w-full mt-2" disabled={formState === 'loading'}>{formState === 'loading' ? 'Отправляем данные...' : 'Обсудить задачу'}</Button>
+      <p className="text-[11px] text-text-muted leading-relaxed pt-1 text-center sm:text-left">Нажимая кнопку, вы соглашаетесь с{' '}<Link href="/privacy" className="text-text-secondary hover:text-accent underline transition-colors">Политикой конфиденциальности</Link>{' '}и обработкой персональных данных.</p>
     </form>
   );
 }
