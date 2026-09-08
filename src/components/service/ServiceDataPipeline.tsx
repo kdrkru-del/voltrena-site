@@ -26,12 +26,12 @@ export default function ServiceDataPipeline() {
         </ScrollReveal>
 
         <div className="mt-16">
-          <div className="flex flex-col lg:flex-row items-stretch justify-between gap-4 relative">
+          <div className="flex flex-col xl:flex-row items-stretch justify-between gap-4 relative">
             {/* Connecting line for desktop */}
-            <div className="hidden lg:block absolute top-10 left-0 w-full h-0.5 bg-border z-0"></div>
+            <div className="hidden xl:block absolute top-10 left-0 w-full h-0.5 bg-border z-0"></div>
             
             {pipelineSteps.map((step, index) => (
-              <ScrollReveal key={step.id} delay={index * 0.1} className="w-full lg:w-auto relative z-10 flex-1 flex flex-col">
+              <ScrollReveal key={step.id} delay={index * 0.1} className="w-full xl:w-auto relative z-10 flex-1 flex flex-col">
                 <div className="flex flex-col items-center bg-bg-surface p-4 rounded-xl border border-border hover:border-accent transition-colors group flex-1">
                   <div className="w-12 h-12 rounded-full bg-bg-secondary border-2 border-border flex items-center justify-center text-text-secondary group-hover:bg-accent group-hover:text-bg-primary group-hover:border-accent font-bold mb-4 transition-all">
                     {step.id}
@@ -42,7 +42,7 @@ export default function ServiceDataPipeline() {
                 
                 {/* Mobile connecting line */}
                 {index < pipelineSteps.length - 1 && (
-                  <div className="lg:hidden w-0.5 h-6 bg-border mx-auto my-2"></div>
+                  <div className="xl:hidden w-0.5 h-6 bg-border mx-auto my-2"></div>
                 )}
               </ScrollReveal>
             ))}

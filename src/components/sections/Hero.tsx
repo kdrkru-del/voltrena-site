@@ -145,10 +145,10 @@ export default function Hero() {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 xl:gap-10 items-center">
           
           {/* Left Column: Positioning & Synchronized Storytelling */}
-          <div className="lg:col-span-6 flex flex-col items-start text-left">
+          <div className="xl:col-span-6 flex flex-col items-start text-left">
             {/* Eyebrow */}
             <div className="mb-4">
               <span className="inline-block px-3.5 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs uppercase tracking-widest text-accent font-semibold backdrop-blur-sm">
@@ -202,7 +202,7 @@ export default function Hero() {
           </div>
 
           {/* Right Column: Living System Flow Visual (Synchronized with text) */}
-          <div className="lg:col-span-6 w-full">
+          <div className="xl:col-span-6 w-full">
             <div className="p-5 sm:p-7 rounded-2xl bg-bg-surface/85 backdrop-blur-md border border-border/90 shadow-2xl relative overflow-hidden">
               
               {/* Header: System Live Status */}
@@ -258,7 +258,7 @@ export default function Hero() {
                           document.getElementById(`${nodeId}-${systemNodes[next].id}`)?.focus()
                         }}
                         onClick={() => handleSelectNode(idx)}
-                        className={`hero-node py-2 sm:py-3 px-2 rounded-xl text-center transition-[color,background-color,border-color,box-shadow,transform] duration-300 relative border flex flex-col items-center justify-center min-h-[44px] sm:min-h-[64px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+                        className={`hero-node py-2 sm:py-3 px-1 rounded-xl text-center transition-[color,background-color,border-color,box-shadow,transform] duration-300 relative border flex flex-col items-center justify-center min-h-[44px] sm:min-h-[64px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                           isActive
                             ? 'bg-accent/20 border-accent text-text-primary shadow-[0_0_20px_rgba(99,102,241,0.25)] scale-[1.02]'
                             : isPast
@@ -266,7 +266,7 @@ export default function Hero() {
                             : 'bg-bg-primary/80 border-border text-text-muted hover:border-border-light hover:text-text-secondary'
                         }`}
                       >
-                        <span className="text-xs sm:text-[11px] xl:text-[13px] font-semibold block leading-tight break-words hyphens-auto text-center px-0.5">
+                        <span className="text-xs sm:text-[13px] font-semibold block leading-tight whitespace-nowrap text-center">
                           {node.name}
                         </span>
 

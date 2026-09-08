@@ -35,17 +35,22 @@ async function run() {
   await context.route('https://formsubmit.co/**',r=>r.fulfill({status:503,body:'{}'}));
   const page=await context.newPage();
   page.setDefaultTimeout(8000);
-  const crashes=[];page.on('pageerror',e=>crashes.push(e.message));
+  const crashes=[];page.on('pageerror',e=>crashes.push({route:page.url(),error:e.message}));
   for (const [width,height] of sizes) {
    await page.setViewportSize({width,height});
    for (const route of routes) {
     try {
     const response=await page.goto(base+route);assert.equal(response.status(),200,route);
     await page.evaluate(()=>document.fonts.ready);
+    await page.waitForTimeout(250);
     // Disable the safety clipping to expose actual document overflow.
     await page.addStyleTag({content:'html { overflow-x: visible !important; scroll-behavior:auto !important; }'});
     const overflow=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,offenders:Array.from(document.querySelectorAll('h1,h2,h3,p,a,button,input,textarea')).filter(el=>{const r=el.getBoundingClientRect();return r.width && getComputedStyle(el).visibility!=='hidden' && (r.right>innerWidth+1 || r.left < -1) && !el.closest('[hidden]');}).map(el=>({tag:el.tagName,text:el.textContent.slice(0,80)})).slice(0,12)}));
     results.push({route,width,height,overflow});
+    if (overflow.scroll > width+1) {
+      overflow.sources = await page.evaluate(()=>Array.from(document.querySelectorAll('div,span,li,svg')).filter(el=>{const r=el.getBoundingClientRect();return r.width && (r.right>innerWidth+1 || r.left < -1) && !el.closest('[hidden]');}).map(el=>({tag:el.tagName,class:el.getAttribute('class'),text:el.textContent.slice(0,80),right:el.getBoundingClientRect().right})).slice(0,30));
+      await page.screenshot({path:`qa-results/overflow-${route.replaceAll('/','_')}-${width}.png`,fullPage:true});
+    }
     assert.ok(overflow.scroll <= width+1,JSON.stringify(results.at(-1)));
     assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'),'https://voltrena.ru'+route);
     if (route==='/') {
@@ -92,7 +97,6 @@ async function run() {
     } catch(error) { failures.push({width,height,route,error:String(error)}); }
    }
   }
-  assert.deepEqual(crashes,[]);
   for (const outcome of ['success','http-error','network-error','activation-error','timeout']) {
     const formPage=await context.newPage();let submissions=0;
     await formPage.route('**/__qa_lead',async route=>{
@@ -120,6 +124,7 @@ async function run() {
   const fallback=await browser.newContext();await fallback.addInitScript(()=>{delete window.IntersectionObserver;});
   const fallbackPage=await fallback.newPage();await fallbackPage.goto(base);assert.equal(await fallbackPage.locator('h1').isVisible(),true);await fallback.close();
   assert.deepEqual(failures,[]);
+  assert.deepEqual(crashes,[]);
   console.log(`PASS: ${results.length} route/viewport checks, nodes, menus, form, reduced motion, SSR fallbacks`);
  } finally { clearTimeout(watchdog);fs.writeFileSync('qa-results/results.json',JSON.stringify({results,failures},null,2));fs.rmSync(fixture,{recursive:true,force:true});await browser.close();server.close(); }
 }

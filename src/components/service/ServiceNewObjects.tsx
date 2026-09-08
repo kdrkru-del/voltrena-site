@@ -53,16 +53,16 @@ export default function ServiceNewObjects() {
                 При появлении новой записи система может:
               </h3>
               
-              <div className="flex flex-col md:flex-row gap-8 md:gap-4 justify-between items-center relative">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:flex xl:flex-row gap-8 xl:gap-4 justify-between items-center relative">
                 {/* Horizontal line for desktop connecting items */}
-                <div className="hidden md:block absolute top-1/2 left-8 right-8 h-px bg-border -translate-y-1/2 z-0"></div>
+                <div className="hidden xl:block absolute top-1/2 left-8 right-8 h-px bg-border -translate-y-1/2 z-0"></div>
                 
                 {actions.map((action, i) => (
-                  <div key={i} className="flex flex-col items-center gap-4 relative z-10 w-full md:w-auto">
+                  <div key={i} className="flex flex-col items-center gap-4 relative z-10 w-full min-w-0 xl:w-auto">
                     <div className="w-16 h-16 bg-bg-primary border border-border rounded-2xl flex items-center justify-center shadow-sm text-accent">
                       <action.icon size={28} />
                     </div>
-                    <div className="bg-bg-primary border border-border px-4 py-2 rounded-lg text-sm font-medium text-text-primary whitespace-nowrap shadow-sm">
+                    <div className="bg-bg-primary border border-border px-4 py-2 rounded-lg text-sm font-medium text-text-primary max-w-full break-words shadow-sm">
                       {action.label}
                     </div>
                   </div>
