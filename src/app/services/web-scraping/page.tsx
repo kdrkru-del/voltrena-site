@@ -16,8 +16,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'ru_RU',
     siteName: 'VOLTRENA Digital',
+    images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.svg'), width: 1200, height: 630, alt: 'VOLTRENA — парсинг и сбор данных' }],
   },
-  twitter: { card: 'summary_large_image', title: webScrapingData.seo.title, description: webScrapingData.seo.description },
+  twitter: {
+    card: 'summary_large_image',
+    title: webScrapingData.seo.title,
+    description: webScrapingData.seo.description,
+    images: [siteConfig.getCanonicalUrl('/images/og-image.svg')],
+  },
   robots: { index: true, follow: true },
 }
 
@@ -29,33 +35,21 @@ function SectionSkeleton() {
   )
 }
 
-const ServiceHero           = dynamic(() => import('@/components/service/ServiceHero'),           { loading: () => <SectionSkeleton /> })
-const ServiceDataProblem     = dynamic(() => import('@/components/service/ServiceDataProblem'),    { loading: () => <SectionSkeleton /> })
-const ServiceTypes           = dynamic(() => import('@/components/service/ServiceTypes'),          { loading: () => <SectionSkeleton /> })
-const ServiceDataPipeline    = dynamic(() => import('@/components/service/ServiceDataPipeline'),   { loading: () => <SectionSkeleton /> })
-const ServiceEcosystem       = dynamic(() => import('@/components/service/ServiceEcosystem'),      { loading: () => <SectionSkeleton /> })
-const ServiceDataMonitoring  = dynamic(() => import('@/components/service/ServiceDataMonitoring'), { loading: () => <SectionSkeleton /> })
-const ServicePriceMonitoring = dynamic(() => import('@/components/service/ServicePriceMonitoring'),{ loading: () => <SectionSkeleton /> })
-const ServiceMarketSignals   = dynamic(() => import('@/components/service/ServiceMarketSignals'),  { loading: () => <SectionSkeleton /> })
-const ServiceNewObjects      = dynamic(() => import('@/components/service/ServiceNewObjects'),     { loading: () => <SectionSkeleton /> })
-const ServiceLeadSystem      = dynamic(() => import('@/components/service/ServiceLeadSystem'),     { loading: () => <SectionSkeleton /> })
-const ServiceDataEnrichment  = dynamic(() => import('@/components/service/ServiceDataEnrichment'), { loading: () => <SectionSkeleton /> })
-const ServiceDataConfigurator= dynamic(() => import('@/components/service/ServiceDataConfigurator'),{ loading: () => <SectionSkeleton /> })
-const ServiceDataCompliance  = dynamic(() => import('@/components/service/ServiceDataCompliance'), { loading: () => <SectionSkeleton /> })
-const ServiceUseCases        = dynamic(() => import('@/components/service/ServiceUseCases'),       { loading: () => <SectionSkeleton /> })
-const ServiceIncludes        = dynamic(() => import('@/components/service/ServiceIncludes'),       { loading: () => <SectionSkeleton /> })
-const ServiceFAQ             = dynamic(() => import('@/components/service/ServiceFAQ'),            { loading: () => <SectionSkeleton /> })
-const ServiceCTA             = dynamic(() => import('@/components/service/ServiceCTA'),            { loading: () => <SectionSkeleton /> })
+const ServiceHero = dynamic(() => import('@/components/service/ServiceHero'), { loading: () => <SectionSkeleton /> })
+const ServiceDataProblem = dynamic(() => import('@/components/service/ServiceDataProblem'), { loading: () => <SectionSkeleton /> })
+const ServiceTypes = dynamic(() => import('@/components/service/ServiceTypes'), { loading: () => <SectionSkeleton /> })
+const ServiceDataPipeline = dynamic(() => import('@/components/service/ServiceDataPipeline'), { loading: () => <SectionSkeleton /> })
+const ServiceEcosystem = dynamic(() => import('@/components/service/ServiceEcosystem'), { loading: () => <SectionSkeleton /> })
+const ServiceDataMonitoring = dynamic(() => import('@/components/service/ServiceDataMonitoring'), { loading: () => <SectionSkeleton /> })
+const ServiceLeadSystem = dynamic(() => import('@/components/service/ServiceLeadSystem'), { loading: () => <SectionSkeleton /> })
+const ServiceUseCases = dynamic(() => import('@/components/service/ServiceUseCases'), { loading: () => <SectionSkeleton /> })
+const ServiceIncludes = dynamic(() => import('@/components/service/ServiceIncludes'), { loading: () => <SectionSkeleton /> })
+const ServiceDataCompliance = dynamic(() => import('@/components/service/ServiceDataCompliance'), { loading: () => <SectionSkeleton /> })
+const ServiceFAQ = dynamic(() => import('@/components/service/ServiceFAQ'), { loading: () => <SectionSkeleton /> })
+const ServiceCTA = dynamic(() => import('@/components/service/ServiceCTA'), { loading: () => <SectionSkeleton /> })
 
 export default function WebScrapingPage() {
   const data = webScrapingData
-
-  const aiFormula = [
-    { operator: '', label: 'RAW DATA' },
-    { operator: 'to', label: 'AI' },
-    { operator: 'to', label: 'classification · tagging · summarization · scoring' },
-    { operator: '=', label: 'STRUCTURED DATA', isResult: true },
-  ]
 
   const serviceSchema = {
     '@context': 'https://schema.org',
@@ -82,8 +76,8 @@ export default function WebScrapingPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Главная', item: siteUrl },
-      { '@type': 'ListItem', position: 2, name: 'Услуги', item: siteUrl + '/services' },
-      { '@type': 'ListItem', position: 3, name: 'Парсинг и сбор данных' },
+      { '@type': 'ListItem', position: 2, name: 'Услуги', item: siteUrl + '/services/' },
+      { '@type': 'ListItem', position: 3, name: 'Парсинг и сбор данных', item: siteUrl + '/services/web-scraping/' },
     ],
   }
 
@@ -127,9 +121,6 @@ export default function WebScrapingPage() {
       )}
 
       <ServiceDataMonitoring />
-      <ServicePriceMonitoring />
-      <ServiceMarketSignals />
-      <ServiceNewObjects />
 
       {data.leadSystem && (
         <ServiceLeadSystem
@@ -141,21 +132,9 @@ export default function WebScrapingPage() {
         />
       )}
 
-      <ServiceDataEnrichment />
-
-      <ServiceLeadSystem
-        title="AI помогает обработать большие массивы данных."
-        formula={aiFormula}
-      />
-
-      <ServiceDataConfigurator />
-
       {data.useCases && <ServiceUseCases useCases={data.useCases} />}
-
       {data.included && <ServiceIncludes included={data.included} />}
-
       <ServiceDataCompliance />
-
       <ServiceFAQ faq={data.faq} />
 
       {data.finalCta && (
