@@ -45,8 +45,8 @@ export default function ServiceDataProblem() {
         </div>
 
         <ScrollReveal delay={400}>
-          <div className="mt-20 text-center">
-            <h2 className="text-4xl md:text-5xl font-black bg-clip-text text-transparent bg-gradient-to-r from-accent to-blue-500">
+          <div className="mt-20 text-center min-w-0">
+            <h2 className="text-4xl md:text-5xl font-black bg-clip-text text-transparent bg-gradient-to-r from-accent to-blue-500 break-words hyphens-auto max-w-full">
               Мы автоматизируем этот процесс.
             </h2>
           </div>
