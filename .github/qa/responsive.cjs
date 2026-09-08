@@ -82,7 +82,7 @@ async function run() {
       }
     }
     if(route==='/contact/' && width===390) {
-      const form=page.locator('form');await form.getByRole('button',{name:'Обсудить задачу'}).click();
+      const form=page.locator('form');await form.getByRole('button',{name:'Получить конфигурацию'}).click();
       for(const name of ['name','contact','message']) {
         const field=form.locator(`[name="${name}"]`);assert.equal(await field.getAttribute('aria-invalid'),'true');
         assert.ok(await page.locator(`[id="${await field.getAttribute('aria-describedby')}"]`).textContent());
@@ -91,7 +91,7 @@ async function run() {
       await form.locator('[name="contact"]').press('Enter');
       await form.getByRole('alert').waitFor();
       assert.ok(!(await form.getByRole('alert').textContent()).includes('@romanspes'));
-      assert.equal(await form.getByRole('button',{name:'Обсудить задачу'}).isEnabled(),true);
+      assert.equal(await form.getByRole('button',{name:'Получить конфигурацию'}).isEnabled(),true);
     }
     } catch(error) { failures.push({width,height,route,error:String(error)}); }
    }
