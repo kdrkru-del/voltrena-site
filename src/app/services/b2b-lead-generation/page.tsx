@@ -189,7 +189,6 @@ export default function B2BLeadGenerationPage() {
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <div className="max-w-3xl mx-auto text-center">
-              <p className="text-sm font-mono tracking-widest text-accent/70 uppercase mb-4">WEB SCRAPING</p>
               <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-6">
                 Данные для B2B продаж начинаются с парсинга.
               </h2>

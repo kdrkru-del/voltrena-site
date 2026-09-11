@@ -24,7 +24,7 @@ const systemFlowSteps: SystemFlowStep[] = [
   {
     id: 'websites',
     name: 'Сайт',
-    statementPrefix: 'Мы создаём',
+    statementPrefix: 'Создаём',
     statementHighlight: 'сайты.',
     statusShort: 'Конверсионный слой',
     statusTitle: 'Конверсионный интерфейс под задачу',
@@ -34,7 +34,7 @@ const systemFlowSteps: SystemFlowStep[] = [
   {
     id: 'leads',
     name: 'Спрос',
-    statementPrefix: 'Мы приводим',
+    statementPrefix: 'Приводим',
     statementHighlight: 'клиентов.',
     statusShort: 'Привлечение спроса',
     statusTitle: 'Управляемый поток целевых заявок',
@@ -44,7 +44,7 @@ const systemFlowSteps: SystemFlowStep[] = [
   {
     id: 'automation',
     name: 'Продажи',
-    statementPrefix: 'Мы автоматизируем',
+    statementPrefix: 'Автоматизируем',
     statementHighlight: 'продажи.',
     statusShort: 'Автоматизация воронки',
     statusTitle: 'Мгновенный разбор и квалификация',
@@ -54,7 +54,7 @@ const systemFlowSteps: SystemFlowStep[] = [
   {
     id: 'data',
     name: 'Данные',
-    statementPrefix: 'Мы связываем',
+    statementPrefix: 'Связываем',
     statementHighlight: 'данные.',
     statusShort: 'Сквозной учёт',
     statusTitle: 'Сквозная аналитика и сбор данных',
@@ -64,7 +64,7 @@ const systemFlowSteps: SystemFlowStep[] = [
   {
     id: 'growth',
     name: 'Система',
-    statementPrefix: 'Мы строим',
+    statementPrefix: 'Строим',
     statementHighlight: 'системы роста.',
     statusShort: 'Единая система',
     statusTitle: 'Все модули объединены в систему',
@@ -119,7 +119,7 @@ export default function Hero() {
             </h1>
 
             {/* Large Animated Statement rotating smoothly in-place under «Цифровые системы» */}
-            <div className="relative h-12 sm:h-14 md:h-16 xl:h-20 mb-5 flex items-center overflow-hidden">
+            <div className="relative min-h-[3rem] sm:min-h-[3.5rem] md:min-h-[4rem] xl:min-h-[4.5rem] mb-5 flex items-center">
               {!prefersReducedMotion ? (
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -128,15 +128,15 @@ export default function Hero() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.28, ease: 'easeInOut' }}
-                    className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-extrabold tracking-tight text-text-primary whitespace-nowrap"
+                    className="text-2xl sm:text-3xl md:text-4xl xl:text-[2.65rem] 2xl:text-5xl font-extrabold tracking-tight text-text-primary leading-tight break-words"
                   >
                     <span>{currentStep.statementPrefix} </span>
                     <span className="text-accent font-bold">{currentStep.statementHighlight}</span>
                   </motion.div>
                 </AnimatePresence>
               ) : (
-                <div className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-extrabold tracking-tight text-text-primary whitespace-nowrap">
-                  <span>Мы строим </span>
+                <div className="text-2xl sm:text-3xl md:text-4xl xl:text-[2.65rem] 2xl:text-5xl font-extrabold tracking-tight text-text-primary leading-tight break-words">
+                  <span>Строим </span>
                   <span className="text-accent font-bold">системы роста.</span>
                 </div>
               )}
