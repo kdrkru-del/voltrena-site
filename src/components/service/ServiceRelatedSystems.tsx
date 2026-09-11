@@ -49,7 +49,6 @@ export default function ServiceRelatedSystems({ serviceSlug }: { serviceSlug: st
                   <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider text-accent font-semibold">
                     {product.tag}
                   </span>
-                  <span className="font-mono text-[10px] text-text-muted">{product.number}</span>
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold text-text-primary mb-3 break-words">
                   {product.title}

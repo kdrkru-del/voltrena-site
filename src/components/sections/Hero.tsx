@@ -107,12 +107,12 @@ export default function Hero() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {[
-                    ['01', 'Выбрать задачу'],
-                    ['02', 'Получить конфигурацию'],
-                    ['03', 'Запустить первую очередь'],
-                  ].map(([number, label]) => (
-                    <div key={number} className="rounded-xl bg-bg-primary/70 border border-border/80 px-4 py-3 min-w-0">
-                      <span className="font-mono text-[10px] text-accent block mb-1">{number}</span>
+                    'Выбрать задачу',
+                    'Получить конфигурацию',
+                    'Запустить первую очередь',
+                  ].map((label) => (
+                    <div key={label} className="rounded-xl bg-bg-primary/70 border border-border/80 px-4 py-3 min-w-0">
+                      <div className="w-2 h-2 rounded-full bg-accent mb-2" />
                       <span className="text-xs sm:text-sm font-semibold text-text-secondary break-words">{label}</span>
                     </div>
                   ))}

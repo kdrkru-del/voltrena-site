@@ -26,7 +26,6 @@ export default function HomeSolutionsShowcase() {
                 <div>
                   <div className="flex items-center justify-between gap-4 mb-3">
                     <span className="font-mono text-xs text-accent uppercase tracking-wider font-semibold">{product.tag}</span>
-                    <span className="font-mono text-[11px] text-text-muted">{product.number}</span>
                   </div>
                   <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-3">{product.title}</h3>
                   <p className="text-sm text-text-secondary leading-relaxed mb-5">{product.summary}</p>
