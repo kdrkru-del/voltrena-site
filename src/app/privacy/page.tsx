@@ -27,21 +27,6 @@ export default function PrivacyPage() {
     <section className="relative pt-32 pb-20 md:pt-36 md:pb-28 bg-bg-primary overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-4xl">
         
-        {/* Breadcrumbs */}
-        <div className="flex items-center gap-2 font-mono text-xs text-text-muted mb-6">
-          <Link href="/" className="hover:text-text-primary transition-colors">
-            Главная
-          </Link>
-          <span>/</span>
-          <span className="text-accent">Политика конфиденциальности</span>
-        </div>
-
-        <div className="mb-4">
-          <span className="inline-block px-3.5 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs uppercase tracking-widest text-accent font-semibold">
-            LEGAL / DATA PRIVACY
-          </span>
-        </div>
-
         <h1 className="text-3xl sm:text-4xl font-bold text-text-primary tracking-tight mb-8">
           Политика конфиденциальности и обработки персональных данных
         </h1>

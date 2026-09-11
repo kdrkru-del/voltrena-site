@@ -113,35 +113,29 @@ export default function Hero() {
           
           {/* Left Column: Heading with Dynamic Rotating Statement, CTAs & Product Links */}
           <div className="xl:col-span-6 min-w-0">
-            <div className="mb-4">
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent/10 border border-accent/20 font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] text-accent font-semibold backdrop-blur-sm">
-                VOLTRENA / DIGITAL SYSTEMS
-              </span>
-            </div>
-
             {/* Static Primary Heading */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-black text-text-primary tracking-tight leading-[1.05] mb-2 break-words hyphens-auto">
               Цифровые системы.
             </h1>
 
-            {/* Large Animated Statement rotating directly under «Цифровые системы» */}
-            <div className="min-h-[56px] sm:min-h-[68px] md:min-h-[80px] mb-5 flex items-center">
+            {/* Large Animated Statement rotating smoothly in-place under «Цифровые системы» */}
+            <div className="relative h-12 sm:h-14 md:h-16 xl:h-20 mb-5 flex items-center overflow-hidden">
               {!prefersReducedMotion ? (
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentStep.id}
-                    initial={{ opacity: 0, y: 14, filter: 'blur(4px)' }}
-                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                    exit={{ opacity: 0, y: -12, filter: 'blur(4px)' }}
-                    transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-extrabold tracking-tight text-text-primary"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.28, ease: 'easeInOut' }}
+                    className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-extrabold tracking-tight text-text-primary whitespace-nowrap"
                   >
                     <span>{currentStep.statementPrefix} </span>
                     <span className="text-accent font-bold">{currentStep.statementHighlight}</span>
                   </motion.div>
                 </AnimatePresence>
               ) : (
-                <div className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-extrabold tracking-tight text-text-primary">
+                <div className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-extrabold tracking-tight text-text-primary whitespace-nowrap">
                   <span>Мы строим </span>
                   <span className="text-accent font-bold">системы роста.</span>
                 </div>

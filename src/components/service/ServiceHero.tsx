@@ -89,16 +89,6 @@ export default function ServiceHero({
           initial={false}
           animate="show"
         >
-          <motion.div variants={itemVariants} className="mb-6 flex justify-center">
-            <nav aria-label="Хлебные крошки" className="font-mono text-[10px] sm:text-xs text-text-muted tracking-wide flex items-center gap-2">
-              <Link href="/" className="hover:text-accent transition-colors">Главная</Link>
-              <span>/</span>
-              <Link href="/services" className="hover:text-accent transition-colors">Услуги</Link>
-              <span>/</span>
-              <span className="text-text-secondary">{eyebrow}</span>
-            </nav>
-          </motion.div>
-
           <motion.div variants={itemVariants}>
             <div className="font-mono text-xs tracking-[0.2em] uppercase text-accent mb-4">
               {eyebrow}

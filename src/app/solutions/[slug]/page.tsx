@@ -142,14 +142,6 @@ export default async function DigitalProductPage({ params }: { params: Promise<{
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 bg-bg-primary overflow-hidden border-b border-border/50">
         <div aria-hidden="true" className="absolute inset-0 bg-dot-grid opacity-20 pointer-events-none" />
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10">
-          <nav aria-label="Хлебные крошки" className="mb-8 text-xs font-mono text-text-muted flex flex-wrap items-center gap-2">
-            <Link href="/" className="hover:text-accent transition-colors">Главная</Link>
-            <span aria-hidden="true">/</span>
-            <Link href="/solutions/" className="hover:text-accent transition-colors">Решения</Link>
-            <span aria-hidden="true">/</span>
-            <span className="text-text-secondary">{product.title}</span>
-          </nav>
-
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             <div className="lg:col-span-7 min-w-0">
               <span className="inline-block px-3 py-1 rounded-md bg-accent/10 border border-accent/20 font-mono text-xs uppercase tracking-widest text-accent mb-5 font-semibold">{product.tag}</span>

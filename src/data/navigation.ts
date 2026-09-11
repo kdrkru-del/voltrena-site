@@ -11,7 +11,13 @@ export const navigationLinks: NavLink[] = [
   { label: 'Решения', href: '/solutions' },
   { label: 'Услуги', href: '/services' },
   { label: 'Кейсы', href: '/cases' },
-  { label: 'О нас', href: '/about' },
+];
+
+export const footerLinks: NavLink[] = [
+  { label: 'Решения', href: '/solutions' },
+  { label: 'Услуги', href: '/services' },
+  { label: 'Кейсы', href: '/cases' },
+  { label: 'О компании', href: '/about' },
   { label: 'Контакты', href: '/contact' },
 ];
 
@@ -28,6 +34,6 @@ export const serviceLinks: ServiceNavLink[] = [
 ];
 
 export const ctaButton = {
-  label: 'Получить конфигурацию',
-  href: '/solutions',
+  label: 'Обсудить проект',
+  href: '/contact',
 } as const;

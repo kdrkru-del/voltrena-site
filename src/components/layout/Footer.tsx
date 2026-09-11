@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { navigationLinks } from '@/data/navigation';
+import { footerLinks } from '@/data/navigation';
 import { siteConfig } from '@/config/site';
 
 export default function Footer() {
@@ -32,7 +32,7 @@ export default function Footer() {
             </h3>
             <nav aria-label="Footer navigation">
               <ul className="space-y-3">
-                {navigationLinks.map((link) => (
+                {footerLinks.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}

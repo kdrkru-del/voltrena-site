@@ -70,22 +70,8 @@ export default function ContactPage() {
 
         <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-6xl">
           
-          {/* Breadcrumbs & Header */}
+          {/* Header */}
           <div className="max-w-3xl mb-12 sm:mb-16">
-            <div className="flex items-center gap-2 font-mono text-xs text-text-muted mb-4">
-              <Link href="/" className="hover:text-text-primary transition-colors">
-                Главная
-              </Link>
-              <span>/</span>
-              <span className="text-accent">Контакты</span>
-            </div>
-
-            <div className="mb-4">
-              <span className="inline-block px-3.5 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs uppercase tracking-widest text-accent font-semibold">
-                КОНТАКТ / VOLTRENA DIGITAL
-              </span>
-            </div>
-
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary tracking-tight leading-[1.15] mb-6">
               Расскажите, что сейчас мешает бизнесу расти.
             </h1>

@@ -21,20 +21,6 @@ export default function ServicesHubHero() {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Breadcrumb */}
-          <div className="flex items-center justify-center gap-2 font-mono text-xs text-text-muted mb-5">
-            <Link href="/" className="hover:text-text-primary transition-colors">Главная</Link>
-            <span>/</span>
-            <span className="text-accent">Услуги</span>
-          </div>
-
-          {/* Eyebrow */}
-          <div className="mb-4">
-            <span className="inline-block px-3.5 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs uppercase tracking-widest text-accent font-semibold">
-              УСЛУГИ / DIGITAL GROWTH STACK
-            </span>
-          </div>
-
           {/* H1 */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary tracking-tight mb-6 max-w-3xl mx-auto leading-[1.1]">
             Услуги для каждого участка цифровой системы продаж.
