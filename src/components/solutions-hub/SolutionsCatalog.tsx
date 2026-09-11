@@ -23,7 +23,6 @@ export default function SolutionsCatalog() {
               <article id={`solution-${product.id}`} className="h-full p-6 md:p-8 rounded-2xl bg-bg-surface border border-border/80 hover:border-accent/50 transition-colors shadow-lg scroll-mt-28 flex flex-col min-w-0">
                 <div className="flex items-center justify-between gap-4 mb-4">
                   <span className="text-[11px] font-mono text-accent uppercase tracking-wider font-semibold">{product.tag}</span>
-                  <span className="text-xs font-mono text-text-muted">{product.number}</span>
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl font-bold text-text-primary mb-3 break-words hyphens-auto">{product.title}</h3>

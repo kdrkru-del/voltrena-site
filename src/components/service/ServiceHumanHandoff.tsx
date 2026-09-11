@@ -36,11 +36,11 @@ export default function ServiceHumanHandoff() {
                 </h3>
                 <div className="space-y-4 text-sm text-text-secondary mt-6">
                   <div className="p-4 rounded-xl bg-bg-primary border border-border">
-                    <p className="font-mono text-xs text-accent font-bold mb-1">СИТУАЦИЯ 1: СТАНДАРТНЫЙ СЦЕНАРИЙ</p>
+                    <p className="font-mono text-xs text-accent font-bold mb-1">СТАНДАРТНЫЙ СЦЕНАРИЙ</p>
                     <p className="text-text-secondary">Бот проводит пользователя по алгоритму и сохраняет результат в CRM.</p>
                   </div>
                   <div className="p-4 rounded-xl bg-bg-primary border border-accent/30 bg-accent/5">
-                    <p className="font-mono text-xs text-accent font-bold mb-1">СИТУАЦИЯ 2: НУЖЕН ЧЕЛОВЕК</p>
+                    <p className="font-mono text-xs text-accent font-bold mb-1">НУЖЕН ЧЕЛОВЕК</p>
                     <p className="text-text-primary font-medium">Бот моментально передаёт чат свободному оператору, сохраняя всю историю диалога.</p>
                   </div>
                 </div>

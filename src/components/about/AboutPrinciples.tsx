@@ -6,22 +6,22 @@ import ScrollReveal from '@/components/ui/ScrollReveal'
 
 const principles = [
   {
-    num: '01',
+    id: 'architecture',
     title: 'Архитектура до дизайна',
     desc: 'Сначала фиксируем бизнес-логику, пользовательский путь, данные и связи между системами. Только после этого проектируем интерфейс.',
   },
   {
-    num: '02',
+    id: 'direct-contact',
     title: 'Прямой контакт',
     desc: 'Клиент должен иметь возможность обсуждать ключевые решения со специалистами, которые непосредственно работают над системой.',
   },
   {
-    num: '03',
+    id: 'transparent-infra',
     title: 'Прозрачная инфраструктура',
     desc: 'Клиент получает доступ к инфраструктуре проекта, документации и результатам разработки — без искусственной привязки к агентству.',
   },
   {
-    num: '04',
+    id: 'pragmatic-ai',
     title: 'Прагматичный AI',
     desc: 'Мы используем AI там, где он действительно экономит время, снижает стоимость операции или повышает качество процесса.',
     punch: 'AI — инструмент. Не стратегия.',
@@ -43,12 +43,10 @@ export default function AboutPrinciples() {
 
         <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {principles.map((p, idx) => (
-            <ScrollReveal key={p.num} delay={idx * 70}>
+            <ScrollReveal key={p.id} delay={idx * 70}>
               <div className="h-full p-6 sm:p-8 rounded-2xl bg-bg-surface border border-border/80 hover:border-accent/40 transition-colors flex flex-col justify-between">
                 <div>
-                  <span className="font-mono text-xs text-accent font-bold mb-3 block">
-                    ПРИНЦИП {p.num}
-                  </span>
+                  <span className="w-2 h-2 rounded-full bg-accent mb-3 block" />
                   <h3 className="text-xl font-bold text-text-primary mb-3">
                     {p.title}
                   </h3>

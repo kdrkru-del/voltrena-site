@@ -11,7 +11,7 @@ export default function AboutStartWithProblem() {
           <div className="space-y-12">
             {/* Tag */}
             <span className="inline-block px-3.5 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs uppercase tracking-widest text-accent font-semibold">
-              ПРИНЦИП 01 / ФОКУС НА ЗАДАЧЕ
+              ПРИНЦИП: ФОКУС НА ЗАДАЧЕ
             </span>
 
             {/* Big statements */}

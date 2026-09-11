@@ -6,31 +6,31 @@ import ScrollReveal from '@/components/ui/ScrollReveal'
 
 const steps = [
   {
-    number: '01',
+    id: 'diagnostic',
     title: 'Диагностика задачи и процессов',
     desc: 'Фиксируем целевой бизнес-результат и анализируем текущий путь клиента от первого клика до сделки.',
     deliverable: 'Карта сквозного пути и узких мест',
   },
   {
-    number: '02',
+    id: 'architecture',
     title: 'Архитектура решения',
     desc: 'Проектируем связи между рекламой, сайтом, CRM и автоматизацией. Определяем границы первой очереди.',
     deliverable: 'Спецификация архитектуры и связей',
   },
   {
-    number: '03',
+    id: 'implementation',
     title: 'Реализация компонентов',
     desc: 'Разрабатываем интерфейсы, настраиваем рекламные кампании, воронки CRM, AI-модули и парсеры.',
     deliverable: 'Готовые рабочие компоненты системы',
   },
   {
-    number: '04',
+    id: 'integration',
     title: 'Интеграция и сквозной тест',
     desc: 'Связываем компоненты через API и webhooks. Проводим сквозное тестирование сценариев прохождения лида.',
     deliverable: 'Проверенная непрерывная цепочка данных',
   },
   {
-    number: '05',
+    id: 'scaling',
     title: 'Измерение и развитие',
     desc: 'Запускаем систему в боевой режим, замеряем окупаемость и расширяем функциональность следующей очереди.',
     deliverable: 'Сквозной дашборд и план масштабирования',
@@ -52,12 +52,10 @@ export default function SolutionsProcess() {
 
         <div className="mt-14 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
           {steps.map((step, idx) => (
-            <ScrollReveal key={step.number} delay={idx * 60}>
+            <ScrollReveal key={step.id} delay={idx * 60}>
               <div className="h-full p-5 rounded-xl bg-bg-surface border border-border/80 hover:border-accent/40 transition-colors flex flex-col justify-between">
                 <div>
-                  <span className="font-mono text-xs text-accent font-bold mb-2 block">
-                    ШАГ {step.number}
-                  </span>
+                  <span className="w-2 h-2 rounded-full bg-accent/80 mb-3 block" />
                   <h3 className="text-base font-bold text-text-primary mb-2">
                     {step.title}
                   </h3>

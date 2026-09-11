@@ -6,12 +6,12 @@ import ScrollReveal from '@/components/ui/ScrollReveal'
 import { Layers } from 'lucide-react'
 
 const architectureNodes = [
-  { id: 'source', label: '1. Источник спроса / данных', desc: 'Реклама, поиск, базы, парсинг' },
-  { id: 'interface', label: '2. Интерфейс контакта', desc: 'Сайт, лендинг, Telegram бот' },
-  { id: 'qualification', label: '3. Квалификация и скоринг', desc: 'AI-ассистент, регламенты, формы' },
-  { id: 'crm', label: '4. CRM и процесс продаж', desc: 'Воронка сделок, автозадачи' },
-  { id: 'automation', label: '5. Автоматизация операций', desc: 'Workflow n8n, счета, документы' },
-  { id: 'analytics', label: '6. Аналитика и сигналы', desc: 'Сквозной дашборд, ROMI, алерты' },
+  { id: 'source', label: 'Источник спроса / данных', desc: 'Реклама, поиск, базы, парсинг' },
+  { id: 'interface', label: 'Интерфейс контакта', desc: 'Сайт, лендинг, Telegram бот' },
+  { id: 'qualification', label: 'Квалификация и скоринг', desc: 'AI-ассистент, регламенты, формы' },
+  { id: 'crm', label: 'CRM и процесс продаж', desc: 'Воронка сделок, автозадачи' },
+  { id: 'automation', label: 'Автоматизация операций', desc: 'Workflow n8n, счета, документы' },
+  { id: 'analytics', label: 'Аналитика и сигналы', desc: 'Сквозной дашборд, ROMI, алерты' },
 ]
 
 export default function SolutionsConnectedArchitecture() {

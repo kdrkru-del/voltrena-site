@@ -6,19 +6,19 @@ import ScrollReveal from '@/components/ui/ScrollReveal'
 
 const phases = [
   {
-    phase: '01',
+    id: 'bottleneck',
     title: 'Найти узкое место',
     desc: 'Диагностика воронки, аудит потерь и запуск первоочередного рабочего узла.',
     deliverables: ['Карта текущего процесса', 'Схема первой очереди'],
   },
   {
-    phase: '02',
+    id: 'connect',
     title: 'Соединить соседние процессы',
     desc: 'Подключение CRM, сквозной передачи данных, автоматических сценариев и уведомлений.',
     deliverables: ['Работающий сквозной сценарий', 'Список измеряемых событий'],
   },
   {
-    phase: '03',
+    id: 'measure',
     title: 'Измерить и развить',
     desc: 'Оценка окупаемости, устранение трения и подключение следующих компонентов системы.',
     deliverables: ['Сквозной отчёт по результатам', 'Backlog следующего этапа'],
@@ -40,12 +40,10 @@ export default function HomePhasedLaunch() {
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {phases.map((p, idx) => (
-            <ScrollReveal key={p.phase} delay={idx * 80}>
+            <ScrollReveal key={p.id} delay={idx * 80}>
               <div className="h-full p-6 rounded-2xl bg-bg-surface border border-border/80 hover:border-accent/40 transition-colors flex flex-col justify-between">
                 <div>
-                  <span className="font-mono text-xs text-accent font-bold mb-3 block">
-                    ЭТАП {p.phase}
-                  </span>
+                  <span className="w-2 h-2 rounded-full bg-accent mb-3 block" />
                   <h3 className="text-lg font-bold text-text-primary mb-2">
                     {p.title}
                   </h3>

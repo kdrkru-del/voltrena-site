@@ -6,19 +6,19 @@ import ScrollReveal from '@/components/ui/ScrollReveal'
 
 const phases = [
   {
-    phase: 'Фаза 1',
+    id: 'critical',
     title: 'Критичный участок',
     desc: 'Запускаем первоочередной рабочий узел, решающий самую острую боль (например, поток заявок или наведение порядка в CRM).',
     outcome: 'Быстрый осязаемый запуск первой очереди без переплаты за избыточный стек.',
   },
   {
-    phase: 'Фаза 2',
+    id: 'connections',
     title: 'Связи и данные',
     desc: 'Подключаем соседние процессы: передачу UTM в CRM, автоматические задачи менеджерам и сквозные отчёты о продажах.',
     outcome: 'Устранение потерь на стыках между маркетингом, продажами и обработкой.',
   },
   {
-    phase: 'Фаза 3',
+    id: 'scaling',
     title: 'Масштабирование',
     desc: 'Расширяем систему: подключаем AI-квалификацию, Telegram Mini Apps, парсинг рынка и масштабируем бюджет.',
     outcome: 'Управляемый рост на базе проверенных и работающих процессов.',
@@ -40,12 +40,10 @@ export default function SolutionsStartSmall() {
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {phases.map((p, idx) => (
-            <ScrollReveal key={p.phase} delay={idx * 80}>
+            <ScrollReveal key={p.id} delay={idx * 80}>
               <div className="h-full p-6 rounded-2xl bg-bg-surface border border-border/80 hover:border-accent/40 transition-colors flex flex-col justify-between">
                 <div>
-                  <span className="font-mono text-xs text-accent font-bold mb-3 block">
-                    {p.phase}
-                  </span>
+                  <span className="w-2 h-2 rounded-full bg-accent mb-3 block" />
                   <h3 className="text-lg font-bold text-text-primary mb-2">
                     {p.title}
                   </h3>

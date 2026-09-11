@@ -5,12 +5,12 @@ import ScrollReveal from '@/components/ui/ScrollReveal'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
 
 const mapNodes = [
-  { step: '01', name: 'Спрос', desc: 'Поисковые запросы, реклама или реестры' },
-  { step: '02', name: 'Интерфейс', desc: 'Посадочная страница с точным оффером' },
-  { step: '03', name: 'Заявка', desc: 'Форма с UTM и параметрами заказа' },
-  { step: '04', name: 'Данные', desc: 'Сквозная аналитика и разметка целей' },
-  { step: '05', name: 'Операции', desc: 'Telegram алерты, CRM и квалификация' },
-  { step: '06', name: 'Результат', desc: 'Продажа, контракт или окупаемость' },
+  { id: 'demand', name: 'Спрос', desc: 'Поисковые запросы, реклама или реестры' },
+  { id: 'interface', name: 'Интерфейс', desc: 'Посадочная страница с точным оффером' },
+  { id: 'lead', name: 'Заявка', desc: 'Форма с UTM и параметрами заказа' },
+  { id: 'data', name: 'Данные', desc: 'Сквозная аналитика и разметка целей' },
+  { id: 'operations', name: 'Операции', desc: 'Telegram алерты, CRM и квалификация' },
+  { id: 'result', name: 'Результат', desc: 'Продажа, контракт или окупаемость' },
 ]
 
 export default function CasesSystemMap() {
@@ -34,7 +34,7 @@ export default function CasesSystemMap() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 max-w-6xl mx-auto">
             {mapNodes.map((node, idx) => (
               <div
-                key={node.step}
+                key={node.id}
                 className="p-4 rounded-xl bg-bg-surface border border-border/80 flex flex-col justify-between"
               >
                 <div>

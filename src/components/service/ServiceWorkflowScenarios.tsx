@@ -13,17 +13,17 @@ export interface ScenarioItem {
 const defaultScenarios: ScenarioItem[] = [
   {
     id: 'A',
-    label: 'Сценарий A — Заявка с сайта',
+    label: 'Сценарий: Заявка с сайта',
     steps: ['Website Form', 'Automation', 'CRM Deal', 'Telegram', 'Manager'],
   },
   {
     id: 'B',
-    label: 'Сценарий B — Email в задачу',
+    label: 'Сценарий: Email в задачу',
     steps: ['Email', 'AI', 'Classification', 'CRM Task', 'Notification'],
   },
   {
     id: 'C',
-    label: 'Сценарий C — Data → Dashboard',
+    label: 'Сценарий: Data → Dashboard',
     steps: ['Parser / DB', 'AI Processing', 'Dashboard', 'Alert'],
   },
 ]

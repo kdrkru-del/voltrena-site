@@ -29,7 +29,7 @@ export default function AboutHonestAdvice() {
       <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
         <ScrollReveal>
           <SectionHeading
-            tag="ПРИНЦИП 02"
+            tag="ПРИНЦИП: ЦЕЛЕСООБРАЗНОСТЬ"
             title="Иногда лучший совет — ничего не переделывать."
             subtitle="Мы ориентируемся на целесообразность для бизнеса, а не на максимальный чек разработки."
             align="center"

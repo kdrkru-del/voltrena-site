@@ -6,31 +6,31 @@ import ScrollReveal from '@/components/ui/ScrollReveal'
 
 const steps = [
   {
-    number: '01',
+    id: 'diagnostic',
     title: 'Диагностика',
     desc: 'Фиксируем бизнес-задачу, разбираем текущую воронку и определяем главное узкое место.',
     deliverable: 'Карта процесса и узких мест',
   },
   {
-    number: '02',
+    id: 'architecture',
     title: 'Архитектура',
     desc: 'Определяем границы первой очереди, список нужных инструментов и правила их связки.',
     deliverable: 'Схема связей и ТЗ первого этапа',
   },
   {
-    number: '03',
+    id: 'implementation',
     title: 'Реализация',
     desc: 'Создаём или настраиваем выбранный компонент: лендинг, кампанию, CRM или AI-сценарий.',
     deliverable: 'Настроенный рабочий компонент',
   },
   {
-    number: '04',
+    id: 'integration',
     title: 'Интеграция и проверка',
     desc: 'Тестируем прохождение тестовых заявок, передачу меток и корректность триггеров.',
     deliverable: 'Сквозной тест передачи лидов',
   },
   {
-    number: '05',
+    id: 'scaling',
     title: 'Измерение и развитие',
     desc: 'Оцениваем фактический результат, устраняем трения и подключаем следующий участок.',
     deliverable: 'Отчёт о результатах и план масштабирования',
@@ -52,12 +52,10 @@ export default function ServicesProcess() {
 
         <div className="mt-14 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
           {steps.map((step, idx) => (
-            <ScrollReveal key={step.number} delay={idx * 60}>
+            <ScrollReveal key={step.id} delay={idx * 60}>
               <div className="h-full p-5 rounded-xl bg-bg-surface border border-border/80 hover:border-accent/40 transition-colors flex flex-col justify-between">
                 <div>
-                  <span className="font-mono text-xs text-accent font-bold mb-2 block">
-                    ШАГ {step.number}
-                  </span>
+                  <span className="w-2 h-2 rounded-full bg-accent/80 mb-3 block" />
                   <h3 className="text-base font-bold text-text-primary mb-2">
                     {step.title}
                   </h3>

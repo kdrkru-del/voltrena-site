@@ -82,17 +82,17 @@ export default function TelegramBotsPage() {
   const customScenarios = [
     {
       id: 'A',
-      label: 'Сценарий 01 — Заявка и продажи',
+      label: 'Сценарий: Заявка и продажи',
       steps: ['Website / Telegram Bot', 'CRM Deal', 'Telegram Alert', 'Manager Call', 'Confirmation'],
     },
     {
       id: 'B',
-      label: 'Сценарий 02 — Мониторинг рынка',
+      label: 'Сценарий: Мониторинг рынка',
       steps: ['Web Scraper', 'Price Change Alert', 'Telegram Channel', 'Decision Maker'],
     },
     {
       id: 'C',
-      label: 'Сценарий 03 — AI-ассистент',
+      label: 'Сценарий: AI-ассистент',
       steps: ['User Query', 'AI Knowledge Layer', 'Instant Answer', 'Human Handoff (if needed)'],
     },
   ]

@@ -24,10 +24,8 @@ export default function ServiceCycle({ tag, title, description, steps, conclusio
             {steps.map((step, index) => (
               <ScrollReveal key={step} delay={index * 75}>
                 <div className="group h-full min-h-28 rounded-xl border border-border bg-bg-surface p-5 hover:border-accent/50 transition-colors relative overflow-hidden">
-                  <span className="absolute right-4 top-3 font-mono text-3xl font-bold text-accent/10 group-hover:text-accent/20 transition-colors">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <p className="relative z-10 pr-8 text-sm font-medium text-text-primary leading-relaxed">{step}</p>
+                  <div className="w-2 h-2 rounded-full bg-accent/80 mb-3" />
+                  <p className="relative z-10 text-sm font-medium text-text-primary leading-relaxed">{step}</p>
                   <div className="absolute inset-x-0 bottom-0 h-px bg-accent/70 -translate-x-full group-hover:translate-x-0 transition-transform duration-700" />
                 </div>
               </ScrollReveal>

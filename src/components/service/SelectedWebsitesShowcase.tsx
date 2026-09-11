@@ -7,7 +7,6 @@ import { ExternalLink, CheckCircle2, ArrowUpRight, Lock } from 'lucide-react'
 
 export interface SelectedProject {
   id: string
-  number: string
   title: string
   label: string
   url: string
@@ -23,7 +22,6 @@ export interface SelectedProject {
 const projects: SelectedProject[] = [
   {
     id: 'zelenyi-srez',
-    number: '01',
     title: 'Зелёный Срез',
     label: 'LOCAL SERVICE / LEAD GENERATION',
     url: 'https://zelsrez.ru/',
@@ -37,7 +35,6 @@ const projects: SelectedProject[] = [
   },
   {
     id: 'techuchet',
-    number: '02',
     title: 'ТехУчёт',
     label: 'NICHE SERVICE / SEARCH INTENT',
     url: 'https://techuchet24.ru/',
@@ -51,7 +48,6 @@ const projects: SelectedProject[] = [
   },
   {
     id: 'globerion',
-    number: '03',
     title: 'GLOBERION GROUP',
     label: 'INTERNATIONAL B2B / TRADE',
     url: 'https://globeriongroup.com/',

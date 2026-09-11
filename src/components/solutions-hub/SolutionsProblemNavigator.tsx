@@ -122,9 +122,9 @@ export default function SolutionsProblemNavigator() {
                 Узлы системы:
               </span>
               <div className="flex flex-wrap gap-1.5">
-                {activeItem.nodes.map((node, idx) => (
+                {activeItem.nodes.map((node) => (
                   <span key={node} className="px-2.5 py-1 rounded-md bg-bg-primary border border-border text-xs font-mono text-text-primary">
-                    {idx + 1}. {node}
+                    {node}
                   </span>
                 ))}
               </div>

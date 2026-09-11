@@ -63,13 +63,9 @@ export default function ServiceTypes({
               </div>
             )}
             
-            {others.map((type, i) => {
-              const index = featured ? i + 2 : i + 1
-              const formattedIndex = index < 10 ? `0${index}` : `${index}`
-
-              return (
-                <div 
-                  key={type.id} 
+            {others.map((type) => (
+              <div 
+                key={type.id} 
                   tabIndex={0}
                   className="bg-bg-surface border border-border hover:border-accent/40 focus-visible:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 rounded-xl p-5 md:p-6 transition-all duration-300 group flex flex-col relative overflow-hidden cursor-default"
                 >
@@ -96,8 +92,7 @@ export default function ServiceTypes({
                     </div>
                   </div>
                 </div>
-              )
-            })}
+              ))}
           </div>
         </ScrollReveal>
       </div>

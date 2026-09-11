@@ -20,7 +20,7 @@ export default function CaseDetailSections() {
               <div className="max-w-4xl mb-12">
                 <div className="flex flex-wrap items-center gap-3 mb-3">
                   <span className="font-mono text-xs text-accent font-bold px-2.5 py-1 rounded bg-accent/10 border border-accent/20">
-                    КЕЙС 0{idx + 1}
+                    КЕЙС
                   </span>
                   <span className="font-mono text-xs text-text-muted uppercase">
                     {item.label}

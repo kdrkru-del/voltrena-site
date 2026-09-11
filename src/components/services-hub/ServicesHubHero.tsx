@@ -7,10 +7,10 @@ import Button from '@/components/ui/Button'
 import { ArrowDown, Layers } from 'lucide-react'
 
 const servicePillars = [
-  { id: 'attract', step: '01', title: 'Привлечь', desc: 'Директ, SEO / GEO, B2B-поиск' },
-  { id: 'convert', step: '02', title: 'Конвертировать', desc: 'Сайты, Telegram Mini Apps' },
-  { id: 'automate', step: '03', title: 'Автоматизировать', desc: 'ИИ-ассистенты, CRM-воронки' },
-  { id: 'measure', step: '04', title: 'Измерять', desc: 'Парсинг данных, Сквозная аналитика' },
+  { id: 'attract', title: 'Привлечь', desc: 'Директ, SEO / GEO, B2B-поиск' },
+  { id: 'convert', title: 'Конвертировать', desc: 'Сайты, Telegram Mini Apps' },
+  { id: 'automate', title: 'Автоматизировать', desc: 'ИИ-ассистенты, CRM-воронки' },
+  { id: 'measure', title: 'Измерять', desc: 'Парсинг данных, Сквозная аналитика' },
 ]
 
 export default function ServicesHubHero() {
