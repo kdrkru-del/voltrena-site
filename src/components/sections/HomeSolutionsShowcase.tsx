@@ -12,9 +12,8 @@ export default function HomeSolutionsShowcase() {
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
         <ScrollReveal>
           <SectionHeading
-            tag="ГОТОВЫЕ СИСТЕМЫ"
-            title="Сначала выберите результат, а не набор услуг."
-            subtitle="VOLTRENA собирает связанные цифровые системы под конкретную бизнес-задачу. Каждую можно изучить как отдельный продукт и запустить с первой очереди."
+            title="Готовые цифровые системы для бизнеса."
+            subtitle="Выберите результат под задачу компании и запустите первую очередь без лишних затрат."
             align="center"
           />
         </ScrollReveal>
@@ -24,15 +23,8 @@ export default function HomeSolutionsShowcase() {
             <ScrollReveal key={product.id} delay={idx * 60}>
               <article className="h-full p-6 sm:p-8 rounded-2xl bg-bg-surface border border-border/80 hover:border-accent/40 transition-colors flex flex-col justify-between shadow-lg group">
                 <div>
-                  <div className="flex items-center justify-between gap-4 mb-3">
-                    <span className="font-mono text-xs text-accent uppercase tracking-wider font-semibold">{product.tag}</span>
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-3">{product.title}</h3>
-                  <p className="text-sm text-text-secondary leading-relaxed mb-5">{product.summary}</p>
-                  <div className="p-3.5 rounded-xl bg-bg-primary border border-border/80 mb-5">
-                    <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider block mb-1.5">Подходит, если</span>
-                    <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">{product.problemFit}</p>
-                  </div>
+                  <h3 className="text-2xl font-bold text-text-primary mb-3">{product.title}</h3>
+                  <p className="text-sm sm:text-base text-text-secondary leading-relaxed mb-6">{product.summary}</p>
                 </div>
 
                 <div>

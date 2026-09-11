@@ -30,7 +30,6 @@ export default function SolutionsWhyVoltrena() {
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <SectionHeading
-            tag="ПОДХОД К РАБОТЕ"
             title="Единая ответственность за всю систему."
             subtitle="Когда сайт, реклама, CRM и автоматизация делаются отдельно — никто не отвечает за итоговую окупаемость. Мы соединяем всё в один контур."
             align="center"

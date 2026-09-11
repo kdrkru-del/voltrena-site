@@ -11,9 +11,8 @@ export default function HomeOneSystemAdvantage() {
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
         <ScrollReveal>
           <SectionHeading
-            tag="СИСТЕМНОЕ ПРЕИМУЩЕСТВО"
             title="Один подрядчик на всю цепочку."
-            subtitle="Мы отвечаем не только за отдельные инструменты, но и за связи между ними."
+            subtitle="Отвечаем за конечный результат и бесшовную передачу данных от рекламы до CRM."
             align="center"
           />
         </ScrollReveal>

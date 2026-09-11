@@ -43,7 +43,6 @@ export default function SolutionsProcess() {
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <SectionHeading
-            tag="РЕГЛАМЕНТ РАБОТЫ"
             title="От постановки задачи к работающей системе."
             subtitle="Пошаговый процесс создания и внедрения комплексных цифровых решений."
             align="center"

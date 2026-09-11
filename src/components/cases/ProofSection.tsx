@@ -57,9 +57,8 @@ export default function ProofSection() {
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
         <ScrollReveal>
           <SectionHeading
-            tag="СИСТЕМЫ В РАБОТЕ"
-            title="Не просто что сделали. Какую систему собрали."
-            subtitle="Каждый кейс показываем через бизнес-задачу, архитектуру решения и результат — чтобы было понятно, как продуктовая система работает на практике."
+            title="Работающие системы клиентов."
+            subtitle="Реальные проекты с измеримым результатом в привлечении заявок и продажах."
             align="center"
           />
         </ScrollReveal>

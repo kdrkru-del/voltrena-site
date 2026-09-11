@@ -17,7 +17,7 @@ interface ProblemOption {
 const problemOptions: ProblemOption[] = [
   {
     id: 'inbound-leads',
-    label: 'Нужно быстро получать входящие заявки',
+    label: 'Быстрый поток заявок',
     primaryService: {
       title: 'Яндекс Директ',
       href: '/services/yandex-direct',
@@ -28,7 +28,7 @@ const problemOptions: ProblemOption[] = [
   },
   {
     id: 'organic-geo',
-    label: 'Нужен органический спрос из поиска и AI-ответов',
+    label: 'SEO и поиск клиентов',
     primaryService: {
       title: 'SEO / GEO & AI Search',
       href: '/services/seo-geo',
@@ -39,7 +39,7 @@ const problemOptions: ProblemOption[] = [
   },
   {
     id: 'b2b-outbound',
-    label: 'Нужен выход на B2B-компании',
+    label: 'Прямой B2B-выход',
     primaryService: {
       title: 'B2B Лидогенерация',
       href: '/services/b2b-lead-generation',
@@ -50,7 +50,7 @@ const problemOptions: ProblemOption[] = [
   },
   {
     id: 'new-site',
-    label: 'Нужен новый сайт или интерфейс',
+    label: 'Новый сайт или сервис',
     primaryService: {
       title: 'Создание сайтов',
       href: '/services/web-development',
@@ -61,7 +61,7 @@ const problemOptions: ProblemOption[] = [
   },
   {
     id: 'lost-leads',
-    label: 'Нужно перестать терять лиды и ручные операции',
+    label: 'Контроль лидов в CRM',
     primaryService: {
       title: 'Внедрение CRM',
       href: '/services/crm',
@@ -72,7 +72,7 @@ const problemOptions: ProblemOption[] = [
   },
   {
     id: 'market-data',
-    label: 'Нужны данные, мониторинг или прозрачная аналитика',
+    label: 'Сквозная аналитика',
     primaryService: {
       title: 'Сквозная аналитика',
       href: '/services/analytics',
@@ -92,8 +92,7 @@ export default function ServicesProblemNavigator() {
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <SectionHeading
-            tag="НАВИГАТОР ПО ЗАДАЧЕ"
-            title="С какой услуги начать именно вам?"
+            title="С какой услуги начать решение задачи?"
             subtitle="Выберите текущую потребность бизнеса — покажем стартовую точку и логику развития."
             align="center"
           />
@@ -101,7 +100,7 @@ export default function ServicesProblemNavigator() {
 
         <div className="mt-12 max-w-5xl mx-auto">
           {/* Selector Buttons */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mb-8" role="tablist" aria-label="Выбор бизнес-задачи">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8" role="tablist" aria-label="Выбор бизнес-задачи">
             {problemOptions.map((opt) => {
               const isSelected = activeId === opt.id
               return (
@@ -111,14 +110,13 @@ export default function ServicesProblemNavigator() {
                   aria-selected={isSelected}
                   aria-pressed={isSelected}
                   onClick={() => setActiveId(opt.id)}
-                  className={`p-3.5 rounded-xl text-left text-xs sm:text-sm font-medium transition-all duration-200 border min-h-[48px] flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+                  className={`p-4 rounded-xl text-center text-sm sm:text-base font-bold transition-all duration-200 border min-h-[52px] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                     isSelected
-                      ? 'bg-accent/15 border-accent text-text-primary font-semibold shadow-md'
+                      ? 'bg-accent/20 border-accent text-accent-light shadow-lg scale-[1.02]'
                       : 'bg-bg-surface text-text-secondary border-border hover:border-border-light hover:text-text-primary'
                   }`}
                 >
                   <span>{opt.label}</span>
-                  {isSelected && <span className="w-2 h-2 rounded-full bg-accent shrink-0 ml-2" />}
                 </button>
               )
             })}

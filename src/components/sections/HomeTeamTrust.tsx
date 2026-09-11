@@ -48,7 +48,6 @@ export default function HomeTeamTrust() {
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
         <ScrollReveal>
           <SectionHeading
-            tag="КОМАНДА"
             title="За каждой системой стоят люди."
             subtitle="Прямой контакт со специалистами, принимающими решения по проекту, без посредников и лишних звеньев."
             align="center"

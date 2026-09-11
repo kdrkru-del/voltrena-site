@@ -31,7 +31,6 @@ export default function SolutionsStartSmall() {
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <SectionHeading
-            tag="ПОЭТАПНЫЙ РОСТ"
             title="Не обязательно внедрять всё сразу."
             subtitle="Мы проектируем систему на перспективу, но внедряем поэтапно — начиная с того, что нужно бизнесу прямо сейчас."
             align="center"

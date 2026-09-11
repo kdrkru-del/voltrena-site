@@ -20,9 +20,8 @@ export default function SolutionsConnectedArchitecture() {
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <SectionHeading
-            tag="ОБЩАЯ АРХИТЕКТУРА"
             title="Каждое решение строится из шести базовых узлов."
-            subtitle="Разница между отдельной услугой и решением в том, что в решении все узлы изначально спроектированы для совместной работы."
+            subtitle="В готовом решении все узлы изначально спроектированы для совместной работы."
             align="center"
           />
         </ScrollReveal>

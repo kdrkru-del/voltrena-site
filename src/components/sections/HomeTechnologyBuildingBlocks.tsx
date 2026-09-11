@@ -10,9 +10,8 @@ export default function HomeTechnologyBuildingBlocks() {
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
         <ScrollReveal>
           <SectionHeading
-            tag="ТЕХНОЛОГИИ"
-            title="Из чего собираются цифровые системы."
-            subtitle="Сайт, реклама, CRM, AI, парсинг и аналитика — это не отдельные продукты VOLTRENA, а модули, которые подключаются к нужной бизнес-системе."
+            title="Модули цифровых систем."
+            subtitle="Сайт, реклама, CRM, AI, парсинг и аналитика, объединяемые в единую инфраструктуру компании."
             align="center"
           />
         </ScrollReveal>
@@ -25,7 +24,6 @@ export default function HomeTechnologyBuildingBlocks() {
                 className="group h-full min-w-0 rounded-2xl bg-bg-surface border border-border/80 p-5 sm:p-6 flex flex-col justify-between hover:border-accent/45 transition-colors"
               >
                 <div>
-                  <span className="font-mono text-[10px] text-accent uppercase tracking-wider block mb-2">МОДУЛЬ СИСТЕМЫ</span>
                   <h3 className="text-lg font-bold text-text-primary mb-2 break-words">{service.label}</h3>
                   <p className="text-sm text-text-secondary leading-relaxed">{service.description}</p>
                 </div>
