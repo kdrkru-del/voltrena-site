@@ -71,8 +71,8 @@ async function run() {
         await page.keyboard.press('Escape');assert.equal(await menu.isVisible(),false);
         assert.equal(await open.evaluate(el=>el===document.activeElement),true);
         await open.click();assert.equal(await services.getAttribute('aria-expanded'),'false');
-        await menu.getByRole('link',{name:'О нас',exact:true}).click();
-        await page.waitForURL(/\/about\/?$/);
+        await menu.getByRole('link',{name:'Кейсы',exact:true}).click();
+        await page.waitForURL(/\/cases\/?$/);
         await page.waitForLoadState('load');
         assert.equal(await menu.isVisible(),false);
       } else {
