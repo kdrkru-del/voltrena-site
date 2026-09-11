@@ -40,9 +40,9 @@ export default function ServiceIncludes({ included }: ServiceIncludesProps) {
           {/* Extra */}
           <ScrollReveal direction="up" delay={100}>
             <div className="bg-bg-primary border border-border-light border-dashed rounded-2xl p-8 h-full relative">
-              <span className="font-mono text-xs text-accent uppercase mb-4 block tracking-wider">
+              <h3 className="text-xl font-bold text-text-primary mb-6">
                 Дополнительные опции
-              </span>
+              </h3>
               <ul className="space-y-4">
                 {included.extra.map((item, index) => (
                   <li key={index} className="flex items-start gap-3">

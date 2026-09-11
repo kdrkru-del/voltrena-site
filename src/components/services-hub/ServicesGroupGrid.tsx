@@ -141,7 +141,6 @@ export default function ServicesGroupGrid() {
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <SectionHeading
-            tag="КАТАЛОГ УСЛУГ"
             title="Девять направлений для управляемого роста."
             subtitle="Каждая услуга решает конкретную проблему бизнеса и имеет чёткий список результатов."
             align="center"
@@ -154,14 +153,9 @@ export default function ServicesGroupGrid() {
               {/* Group Header */}
               <ScrollReveal delay={gi * 60}>
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-6 pb-3 border-b border-border/80 gap-2">
-                  <div className="flex items-center gap-3">
-                    <span className={`inline-block px-2.5 py-0.5 rounded border font-mono text-[11px] uppercase font-bold tracking-wider ${group.badgeColor}`}>
-                      {group.tag}
-                    </span>
-                    <h2 className="text-xl sm:text-2xl font-bold text-text-primary">
-                      {group.title}
-                    </h2>
-                  </div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-text-primary">
+                    {group.title}
+                  </h2>
                   <p className="text-text-secondary text-xs sm:text-sm max-w-md">
                     {group.desc}
                   </p>
@@ -174,15 +168,10 @@ export default function ServicesGroupGrid() {
                   <ScrollReveal key={service.id} delay={si * 70}>
                     <div className="h-full p-5 sm:p-6 rounded-xl bg-bg-surface/80 border border-border/80 hover:border-accent/50 transition-all flex flex-col justify-between group">
                       <div>
-                        {/* Title & Flow */}
-                        <div className="flex items-start justify-between gap-3 mb-2.5">
-                          <h3 className="text-lg font-bold text-text-primary group-hover:text-accent transition-colors">
-                            {service.title}
-                          </h3>
-                          <span className="text-[10px] font-mono text-accent bg-accent/10 px-2 py-0.5 rounded font-medium shrink-0">
-                            {service.flow}
-                          </span>
-                        </div>
+                        {/* Title */}
+                        <h3 className="text-xl font-bold text-text-primary group-hover:text-accent transition-colors mb-3">
+                          {service.title}
+                        </h3>
 
                         {/* Problem Solved */}
                         <p className="text-text-secondary text-xs sm:text-sm leading-relaxed mb-4">
@@ -191,9 +180,6 @@ export default function ServicesGroupGrid() {
 
                         {/* Deliverables List */}
                         <div className="space-y-1.5 mb-5 pt-3 border-t border-border/50">
-                          <span className="text-[11px] font-mono text-text-muted uppercase tracking-wider block mb-1">
-                            Что делаем:
-                          </span>
                           {service.deliverables.map((item) => (
                             <div key={item} className="flex items-start gap-2 text-xs text-text-secondary">
                               <span className="w-1 h-1 rounded-full bg-accent mt-1.5 shrink-0" />

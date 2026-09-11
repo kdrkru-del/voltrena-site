@@ -43,7 +43,6 @@ export default function ServicesProcess() {
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <SectionHeading
-            tag="ПРОЦЕСС РАБОТЫ"
             title="Как начинается работа над услугой."
             subtitle="Понятный предсказуемый регламент: от фиксации задачи до проверки результата."
             align="center"

@@ -89,12 +89,6 @@ export default function ServiceHero({
           initial={false}
           animate="show"
         >
-          <motion.div variants={itemVariants}>
-            <div className="font-mono text-xs tracking-[0.2em] uppercase text-accent mb-4">
-              {eyebrow}
-            </div>
-          </motion.div>
-
           <motion.h1 variants={itemVariants} className="text-display-xl font-bold text-text-primary mb-6 tracking-tight break-words hyphens-auto">
             {title}
           </motion.h1>

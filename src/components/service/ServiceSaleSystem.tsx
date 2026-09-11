@@ -27,7 +27,7 @@ interface ServiceSaleSystemProps {
 
 export default function ServiceSaleSystem({
   nodes,
-  tag = 'СИСТЕМА',
+  tag,
   title = 'Сайт — это часть системы продаж.',
   description,
   flow = ['Трафик', 'Сайт', 'CRM', 'Аналитика'],

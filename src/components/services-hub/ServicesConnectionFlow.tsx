@@ -62,7 +62,6 @@ export default function ServicesConnectionFlow() {
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <SectionHeading
-            tag="СВЯЗАННЫЙ СТЕК"
             title="Как услуги соединяются в рабочий процесс."
             subtitle="Каждый компонент усиливает соседний. Выберите сценарий, чтобы увидеть путь данных."
             align="center"
@@ -96,9 +95,9 @@ export default function ServicesConnectionFlow() {
           {/* Interactive Flow Visual */}
           <div className="p-6 md:p-8 rounded-2xl bg-bg-surface border border-border shadow-xl">
             <div className="text-center mb-8">
-              <span className="text-xs font-mono text-accent uppercase tracking-widest font-semibold block mb-1">
+              <h3 className="text-xl font-bold text-text-primary mb-1">
                 {activeScenario.title}
-              </span>
+              </h3>
               <p className="text-sm text-text-secondary">
                 {activeScenario.descriptor}
               </p>

@@ -45,14 +45,6 @@ export default function ServicesHubHero() {
         {/* Compact 4-Pillar Map (Instantly readable, lightweight) */}
         <div className="max-w-5xl mx-auto">
           <div className="p-4 sm:p-6 rounded-2xl bg-bg-surface/70 border border-border/70 backdrop-blur-sm shadow-xl">
-            <div className="flex items-center justify-between mb-4 px-1">
-              <span className="text-xs font-mono text-text-muted uppercase tracking-wider font-semibold flex items-center gap-1.5">
-                <Layers className="w-3.5 h-3.5 text-accent" />
-                Карта 4 направлений стека
-              </span>
-              <span className="text-[11px] font-mono text-accent">9 связанных услуг</span>
-            </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               {servicePillars.map((p) => (
                 <div

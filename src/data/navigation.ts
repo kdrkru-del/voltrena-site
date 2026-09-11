@@ -11,6 +11,8 @@ export const navigationLinks: NavLink[] = [
   { label: 'Решения', href: '/solutions' },
   { label: 'Услуги', href: '/services' },
   { label: 'Кейсы', href: '/cases' },
+  { label: 'О нас', href: '/about' },
+  { label: 'Контакты', href: '/contact' },
 ];
 
 export const footerLinks: NavLink[] = [
