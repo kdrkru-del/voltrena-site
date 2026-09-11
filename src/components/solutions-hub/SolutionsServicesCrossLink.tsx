@@ -12,9 +12,6 @@ export default function SolutionsServicesCrossLink() {
         <ScrollReveal>
           <div className="max-w-4xl mx-auto p-6 sm:p-8 rounded-2xl bg-bg-surface/60 border border-border/80 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
             <div>
-              <span className="text-xs font-mono text-accent uppercase tracking-widest font-semibold block mb-1.5">
-                ОТДЕЛЬНЫЕ КОМПЕТЕНЦИИ
-              </span>
               <h2 className="text-lg sm:text-xl font-bold text-text-primary max-w-xl">
                 Хотите выбрать отдельный компонент системы? Смотрите каталог всех услуг.
               </h2>

@@ -32,7 +32,7 @@ export default function ServiceIntent({ tag, title, description, levels, note }:
               <article className="h-full rounded-2xl border border-border bg-bg-surface p-6 md:p-8 hover:border-accent/40 transition-colors">
                 <div className="flex items-center justify-between gap-4 mb-6">
                   <div className="w-2 h-2 rounded-full bg-accent" />
-                  <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted">
+                  <span className="text-xs text-text-muted">
                     Коммерческий сигнал
                   </span>
                 </div>

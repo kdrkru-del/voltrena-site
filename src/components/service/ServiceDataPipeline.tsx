@@ -4,14 +4,14 @@ import SectionHeading from '@/components/ui/SectionHeading'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 
 const pipelineSteps = [
-  { id: 1, title: 'SOURCE', desc: 'Определяем источник' },
-  { id: 2, title: 'EXTRACT', desc: 'Получаем нужные поля' },
-  { id: 3, title: 'VALIDATE', desc: 'Проверяем формат и структуру' },
-  { id: 4, title: 'CLEAN', desc: 'Удаляем лишнее' },
-  { id: 5, title: 'NORMALIZE', desc: 'Приводим к единому виду' },
-  { id: 6, title: 'DEDUPLICATE', desc: 'Удаляем повторы' },
-  { id: 7, title: 'CLASSIFY', desc: 'Разделяем по категориям' },
-  { id: 8, title: 'DELIVER', desc: 'Передаём в систему' }
+  { id: 1, title: 'Источник', desc: 'Определяем источник' },
+  { id: 2, title: 'Сбор', desc: 'Получаем нужные поля' },
+  { id: 3, title: 'Валидация', desc: 'Проверяем формат и структуру' },
+  { id: 4, title: 'Очистка', desc: 'Удаляем лишнее' },
+  { id: 5, title: 'Нормализация', desc: 'Приводим к единому виду' },
+  { id: 6, title: 'Дедупликация', desc: 'Удаляем повторы' },
+  { id: 7, title: 'Классификация', desc: 'Разделяем по категориям' },
+  { id: 8, title: 'Передача', desc: 'Передаём в систему' }
 ];
 
 export default function ServiceDataPipeline() {
@@ -36,7 +36,7 @@ export default function ServiceDataPipeline() {
                   <div className="w-12 h-12 rounded-full bg-bg-secondary border-2 border-border flex items-center justify-center text-text-secondary group-hover:bg-accent group-hover:text-bg-primary group-hover:border-accent font-bold mb-4 transition-all">
                     {step.id}
                   </div>
-                  <h4 className="text-sm font-bold text-text-primary mb-2 text-center uppercase tracking-wider">{step.title}</h4>
+                  <h4 className="text-sm font-bold text-text-primary mb-2 text-center">{step.title}</h4>
                   <p className="text-xs text-text-secondary text-center leading-tight">{step.desc}</p>
                 </div>
                 

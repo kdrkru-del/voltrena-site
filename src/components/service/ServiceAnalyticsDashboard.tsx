@@ -40,14 +40,9 @@ export default function ServiceAnalyticsDashboard() {
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-xs font-mono text-text-secondary uppercase tracking-wider">Сквозной контроль воронки</span>
+                    <span className="text-xs text-text-secondary font-medium">Сквозной контроль воронки</span>
                   </div>
                   <h3 className="text-xl font-bold text-text-primary mt-1">Сквозная аналитика маркетинга и продаж</h3>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-mono px-3 py-1.5 rounded-lg bg-bg-primary border border-border text-accent font-semibold">
-                    ПРИМЕР ДАШБОРДА
-                  </span>
                 </div>
               </div>
 
@@ -73,8 +68,8 @@ export default function ServiceAnalyticsDashboard() {
 
               {/* Channel Performance Table */}
               <div className="overflow-x-auto">
-                <div className="text-xs font-mono text-accent uppercase tracking-wider mb-3 flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4" />
+                <div className="text-sm font-semibold text-text-primary mb-3 flex items-center gap-2">
+                  <BarChart3 className="w-4 h-4 text-accent" />
                   Эффективность рекламных каналов
                 </div>
                 <table className="w-full text-left text-sm">

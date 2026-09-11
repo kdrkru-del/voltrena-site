@@ -27,7 +27,7 @@ export default function AboutManifesto() {
                 <div>
                   <div className="flex items-center gap-2 mb-4">
                     <XCircle className="w-5 h-5 text-red-400 shrink-0" />
-                    <span className="font-mono text-xs text-red-400 uppercase tracking-widest font-semibold">
+                    <span className="text-sm text-red-400 font-semibold">
                       Фрагментированный подход
                     </span>
                   </div>
@@ -70,8 +70,8 @@ export default function AboutManifesto() {
                 <div>
                   <div className="flex items-center gap-2 mb-4">
                     <CheckCircle2 className="w-5 h-5 text-accent shrink-0" />
-                    <span className="font-mono text-xs text-accent uppercase tracking-widest font-semibold">
-                      VOLTRENA SYSTEM
+                    <span className="text-sm text-accent font-semibold">
+                      Единая система VOLTRENA
                     </span>
                   </div>
                   <h3 className="text-xl font-bold text-text-primary mb-4">

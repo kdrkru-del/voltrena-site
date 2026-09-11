@@ -30,7 +30,7 @@ export default function ServiceDataMonitoring() {
               </p>
               
               <div className="space-y-3">
-                <div className="text-sm font-medium text-text-primary uppercase tracking-wider mb-2">Примеры задач:</div>
+                <div className="text-sm font-semibold text-text-primary mb-2">Примеры задач:</div>
                 <div className="flex items-center text-text-secondary gap-3">
                   <Search size={18} className="text-accent" /> Анализ рынка
                 </div>
@@ -65,7 +65,7 @@ export default function ServiceDataMonitoring() {
               </p>
 
               <div className="space-y-3">
-                <div className="text-sm font-medium text-text-primary uppercase tracking-wider mb-2">Как это работает:</div>
+                <div className="text-sm font-semibold text-text-primary mb-2">Как это работает:</div>
                 <div className="flex items-center text-text-secondary gap-3">
                   <Search size={18} className="text-accent" /> Проверяет источники
                 </div>

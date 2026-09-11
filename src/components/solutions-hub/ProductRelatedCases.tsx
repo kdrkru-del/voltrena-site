@@ -52,8 +52,7 @@ export default function ProductRelatedCases({ productSlug }: { productSlug: stri
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-4">
-            <span className="font-mono text-xs text-accent uppercase tracking-wider font-semibold">ПРАКТИКА</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mt-3 mb-4 break-words hyphens-auto">Где этот принцип уже используется.</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4 break-words hyphens-auto">Где этот принцип уже используется.</h2>
             <p className="text-sm text-text-secondary leading-relaxed">Показываем только реальные проекты, которые действительно связаны с логикой этой системы.</p>
           </div>
 

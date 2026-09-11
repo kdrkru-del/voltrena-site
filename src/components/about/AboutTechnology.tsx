@@ -48,9 +48,9 @@ export default function AboutTechnology() {
           {techGroups.map((group, idx) => (
             <ScrollReveal key={group.category} delay={idx * 60}>
               <div className="p-5 sm:p-6 rounded-2xl bg-bg-surface border border-border/80">
-                <span className="font-mono text-xs text-accent font-bold uppercase tracking-wider block mb-3">
+                <h3 className="text-base font-bold text-text-primary mb-3">
                   {group.category}
-                </span>
+                </h3>
                 <div className="flex flex-wrap gap-2">
                   {group.items.map((item) => (
                     <span

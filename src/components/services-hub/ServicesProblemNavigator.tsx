@@ -129,7 +129,7 @@ export default function ServicesProblemNavigator() {
               <div className="lg:col-span-7">
                 <div className="flex items-center gap-2 mb-2">
                   <Sparkles className="w-4 h-4 text-accent" />
-                  <span className="text-xs font-mono text-accent uppercase tracking-wider font-semibold">
+                  <span className="text-xs text-accent font-semibold">
                     Рекомендуемая стартовая услуга
                   </span>
                 </div>
@@ -159,7 +159,7 @@ export default function ServicesProblemNavigator() {
 
               {/* Secondary services stack */}
               <div className="lg:col-span-5 p-5 rounded-xl bg-bg-primary/70 border border-border/80">
-                <span className="text-xs font-mono text-text-muted uppercase tracking-wider block mb-3 font-semibold">
+                <span className="text-xs text-text-muted block mb-3 font-semibold">
                   Что может понадобиться позже:
                 </span>
                 <div className="space-y-2 mb-4">

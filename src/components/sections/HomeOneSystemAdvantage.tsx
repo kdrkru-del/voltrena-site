@@ -23,7 +23,7 @@ export default function HomeOneSystemAdvantage() {
           <ScrollReveal direction="right" delay={0}>
             <div className="h-full p-6 sm:p-8 rounded-2xl bg-bg-surface/50 border border-border/70 flex flex-col justify-between">
               <div>
-                <div className="flex items-center gap-2 mb-4 text-red-400 font-mono text-xs uppercase font-semibold">
+                <div className="flex items-center gap-2 mb-4 text-red-400 font-semibold text-sm">
                   <XCircle className="w-4 h-4" />
                   <span>Разрозненный подход</span>
                 </div>
@@ -66,7 +66,7 @@ export default function HomeOneSystemAdvantage() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 blur-2xl pointer-events-none" />
 
               <div>
-                <div className="flex items-center gap-2 mb-4 text-accent font-mono text-xs uppercase font-semibold">
+                <div className="flex items-center gap-2 mb-4 text-accent font-semibold text-sm">
                   <CheckCircle2 className="w-4 h-4" />
                   <span>Единый контур VOLTRENA</span>
                 </div>

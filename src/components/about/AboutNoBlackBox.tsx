@@ -18,9 +18,6 @@ export default function AboutNoBlackBox() {
       <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
         <ScrollReveal>
           <div className="p-8 sm:p-12 rounded-3xl bg-bg-surface border border-accent/30 shadow-2xl relative overflow-hidden">
-            <span className="font-mono text-xs text-accent uppercase tracking-widest font-semibold block mb-3">
-              ПРОЗРАЧНОСТЬ
-            </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary tracking-tight mb-4">
               Без чёрного ящика.
             </h2>
@@ -30,9 +27,6 @@ export default function AboutNoBlackBox() {
             </p>
 
             <div className="space-y-3.5 mb-10">
-              <span className="text-xs font-mono text-text-muted uppercase tracking-wider block mb-2">
-                Клиент всегда точно понимает:
-              </span>
               {checkpoints.map((cp, idx) => (
                 <div key={idx} className="flex items-center gap-3">
                   <CheckCircle2 className="w-5 h-5 text-accent shrink-0" />

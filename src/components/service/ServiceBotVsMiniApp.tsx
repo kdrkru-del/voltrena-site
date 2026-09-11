@@ -44,7 +44,7 @@ export default function ServiceBotVsMiniApp() {
                   <MessageSquare className="w-6 h-6" />
                 </div>
                 <h3 className="text-2xl font-bold text-text-primary mb-2">Telegram Bot</h3>
-                <p className="text-xs font-mono text-accent uppercase tracking-widest mb-6">
+                <p className="text-sm font-semibold text-accent mb-4">
                   Интерфейс: сообщения, кнопки, команды
                 </p>
                 <p className="text-text-secondary text-sm mb-6 leading-relaxed">
@@ -68,15 +68,12 @@ export default function ServiceBotVsMiniApp() {
           {/* Telegram Mini App Card */}
           <ScrollReveal delay={200}>
             <div className="p-8 rounded-2xl bg-bg-surface border border-accent/30 bg-gradient-to-b from-bg-surface to-bg-secondary h-full flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute top-0 right-0 px-4 py-1.5 bg-accent text-bg-primary text-xs font-mono font-bold rounded-bl-xl uppercase tracking-wider">
-                Web inside Telegram
-              </div>
               <div>
                 <div className="inline-flex p-3 rounded-xl border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 mb-6">
                   <LayoutGrid className="w-6 h-6" />
                 </div>
                 <h3 className="text-2xl font-bold text-text-primary mb-2">Telegram Mini App</h3>
-                <p className="text-xs font-mono text-cyan-400 uppercase tracking-widest mb-6">
+                <p className="text-sm font-semibold text-cyan-400 mb-4">
                   Интерфейс: полноценное веб-приложение
                 </p>
                 <p className="text-text-secondary text-sm mb-6 leading-relaxed">

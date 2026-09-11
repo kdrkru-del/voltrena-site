@@ -19,9 +19,6 @@ export default function CasesSystemMap() {
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
         <ScrollReveal>
           <div className="max-w-3xl mb-10 text-left sm:text-center sm:mx-auto">
-            <span className="font-mono text-xs text-accent uppercase tracking-widest font-semibold block mb-2">
-              КОММЕРЧЕСКИЙ КОНТУР
-            </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
               Как мы оцениваем готовность системы
             </h2>

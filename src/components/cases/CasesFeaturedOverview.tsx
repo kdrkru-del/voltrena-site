@@ -71,7 +71,7 @@ export default function CasesFeaturedOverview() {
 
                   {/* Right Column: Key metrics */}
                   <div className="lg:col-span-5 p-4 sm:p-5 rounded-xl bg-bg-primary border border-border/80">
-                    <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider block mb-3 font-semibold">
+                    <span className="text-xs text-text-muted block mb-3 font-medium">
                       Подтверждённые параметры проекта:
                     </span>
                     <div className="grid grid-cols-2 gap-3">

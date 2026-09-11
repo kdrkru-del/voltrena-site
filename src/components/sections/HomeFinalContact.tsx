@@ -14,9 +14,6 @@ export default function HomeFinalContact() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           <div className="lg:col-span-5 space-y-4 min-w-0">
             <div>
-              <span className="inline-block px-3.5 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs uppercase tracking-widest text-accent font-semibold mb-4">
-                ПОДБОР КОНФИГУРАЦИИ
-              </span>
               <h2 className="text-3xl sm:text-4xl font-bold text-text-primary tracking-tight leading-[1.15] mb-3 break-words hyphens-auto">
                 Какую задачу нужно решить?
               </h2>

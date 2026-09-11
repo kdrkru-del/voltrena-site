@@ -9,11 +9,6 @@ export default function AboutStartWithProblem() {
       <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
         <ScrollReveal>
           <div className="space-y-12">
-            {/* Tag */}
-            <span className="inline-block px-3.5 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs uppercase tracking-widest text-accent font-semibold">
-              ПРИНЦИП: ФОКУС НА ЗАДАЧЕ
-            </span>
-
             {/* Big statements */}
             <div className="space-y-3">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary tracking-tight">

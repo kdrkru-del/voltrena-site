@@ -37,7 +37,7 @@ export default function ServiceNoGuarantees() {
           <ScrollReveal delay={100}>
             <div className="p-8 rounded-2xl bg-bg-surface border border-red-500/20 h-full flex flex-col justify-between">
               <div>
-                <div className="flex items-center gap-2 mb-6 text-red-400 font-mono text-sm font-bold uppercase tracking-wider">
+                <div className="flex items-center gap-2 mb-6 text-red-400 text-base font-bold">
                   <XCircle className="w-5 h-5" />
                   Чего мы не обещаем
                 </div>
@@ -60,7 +60,7 @@ export default function ServiceNoGuarantees() {
           <ScrollReveal delay={200}>
             <div className="p-8 rounded-2xl bg-bg-surface border border-accent/30 bg-accent/5 h-full flex flex-col justify-between">
               <div>
-                <div className="flex items-center gap-2 mb-6 text-accent font-mono text-sm font-bold uppercase tracking-wider">
+                <div className="flex items-center gap-2 mb-6 text-accent text-base font-bold">
                   <CheckCircle2 className="w-5 h-5" />
                   Что мы делаем на практике
                 </div>

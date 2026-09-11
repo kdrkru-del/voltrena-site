@@ -71,9 +71,9 @@ export default function AboutTeam() {
                 {/* Content */}
                 <div className="p-6 sm:p-8 flex flex-col justify-between flex-1">
                   <div>
-                    <span className="font-mono text-xs text-accent uppercase tracking-wider block mb-1 font-semibold">
+                    <div className="text-xs text-accent font-semibold mb-1">
                       {member.role}
-                    </span>
+                    </div>
                     <h3 className="text-2xl font-bold text-text-primary mb-3">
                       {member.name}
                     </h3>

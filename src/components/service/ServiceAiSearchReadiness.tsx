@@ -43,7 +43,6 @@ export default function ServiceAiSearchReadiness() {
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <SectionHeading
-            tag="AI CITATION READINESS"
             title="AI-поиск предпочитает понятную и структурированную информацию."
             subtitle="Принципы подготовки контента, который с высокой вероятностью используется генеративными системами в качестве источника."
             align="center"

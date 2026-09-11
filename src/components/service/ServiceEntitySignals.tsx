@@ -43,7 +43,6 @@ export default function ServiceEntitySignals() {
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <SectionHeading
-            tag="ЦИФРОВОЙ ПРОФИЛЬ"
             title="Поиску нужно понимать, кто вы."
             subtitle="Чем последовательнее бизнес представлен в сети, тем проще поисковым системам и AI-агентам связать информацию о вашем бренде."
             align="center"

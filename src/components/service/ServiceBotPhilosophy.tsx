@@ -19,7 +19,6 @@ export default function ServiceBotPhilosophy() {
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <SectionHeading
-            tag="ПОДХОД"
             title="Сначала задача. Потом бот."
             subtitle="Telegram — это интерфейс. Бизнесу нужен не сам бот, а конкретный результат."
             align="center"

@@ -182,12 +182,12 @@ export default function Hero() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
                     <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent" />
                   </span>
-                  <span className="font-mono text-[11px] sm:text-xs uppercase tracking-wider text-text-primary font-semibold">
-                    SYSTEM ARCHITECTURE
+                  <span className="text-xs text-text-primary font-semibold">
+                    Интерактивная архитектура
                   </span>
                 </div>
                 
-                <span className="font-mono text-[10px] sm:text-[11px] text-accent uppercase tracking-wider flex items-center gap-1.5">
+                <span className="text-xs text-accent flex items-center gap-1.5 font-medium">
                   {isFinalState ? (
                     <>
                       <Sparkles className="w-3 h-3 text-accent" />
@@ -253,11 +253,8 @@ export default function Hero() {
                 <div className="rounded-2xl bg-bg-primary border border-accent/25 p-5 sm:p-6 mb-4 transition-all duration-300 relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 blur-2xl pointer-events-none" />
 
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-accent font-semibold">
-                      {currentStep.tag}
-                    </span>
-                    <span className="font-mono text-[10px] text-text-muted flex items-center gap-1.5">
+                  <div className="flex items-center justify-end mb-3">
+                    <span className="text-xs text-text-muted flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                       {isFinalState ? 'Система синхронизирована' : 'Событие активно'}
                     </span>

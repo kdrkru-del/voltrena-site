@@ -14,17 +14,17 @@ const defaultScenarios: ScenarioItem[] = [
   {
     id: 'A',
     label: 'Сценарий: Заявка с сайта',
-    steps: ['Website Form', 'Automation', 'CRM Deal', 'Telegram', 'Manager'],
+    steps: ['Форма на сайте', 'Автоматизация', 'Сделка в CRM', 'Telegram', 'Менеджер'],
   },
   {
     id: 'B',
     label: 'Сценарий: Email в задачу',
-    steps: ['Email', 'AI', 'Classification', 'CRM Task', 'Notification'],
+    steps: ['Email письмо', 'AI анализ', 'Классификация', 'Задача в CRM', 'Уведомление'],
   },
   {
     id: 'C',
-    label: 'Сценарий: Data → Dashboard',
-    steps: ['Parser / DB', 'AI Processing', 'Dashboard', 'Alert'],
+    label: 'Сценарий: Данные в дашборд',
+    steps: ['Сбор данных / БД', 'AI обработка', 'Дашборд', 'Оповещение'],
   },
 ]
 
@@ -65,9 +65,9 @@ export default function ServiceWorkflowScenarios({
           {scenarios.map((scenario, si) => (
             <ScrollReveal key={scenario.id} delay={si * 100}>
               <div className="p-6 rounded-2xl bg-bg-surface border border-border hover:border-accent/30 transition-colors">
-                <p className="text-xs font-mono text-accent/70 uppercase tracking-widest mb-4">
+                <h3 className="text-base font-bold text-text-primary mb-3">
                   {scenario.label}
-                </p>
+                </h3>
                 <div className="flex flex-wrap items-center gap-2">
                   {scenario.steps.map((step, i) => (
                     <div key={step} className="flex items-center gap-2">
@@ -88,9 +88,9 @@ export default function ServiceWorkflowScenarios({
         {/* Integration nodes */}
         <ScrollReveal delay={400}>
           <div className="mt-16 max-w-4xl mx-auto">
-            <p className="text-center text-sm font-mono text-text-secondary/60 uppercase tracking-widest mb-8">
+            <h3 className="text-center text-lg font-bold text-text-primary mb-8">
               Системы, с которыми можно работать
-            </p>
+            </h3>
             <div className="flex flex-wrap gap-3 justify-center">
               {integrations.map((name) => (
                 <span

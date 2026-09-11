@@ -53,7 +53,7 @@ export default function HomePhasedLaunch() {
                 </div>
 
                 <div className="pt-4 border-t border-border/50 space-y-1.5">
-                  <span className="text-[10px] font-mono text-text-muted uppercase tracking-wider block mb-1">
+                  <span className="text-xs text-text-muted block mb-1">
                     Артефакты этапа:
                   </span>
                   {p.deliverables.map((item) => (

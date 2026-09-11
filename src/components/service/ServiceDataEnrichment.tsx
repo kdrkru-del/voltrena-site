@@ -4,14 +4,14 @@ import SectionHeading from '@/components/ui/SectionHeading'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 
 const blocks = [
-  "Company Name",
-  "Website",
-  "Industry",
-  "Location",
-  "Products",
-  "Public Business Contacts",
-  "Company Summary",
-  "Classification"
+  "Название компании",
+  "Сайт компании",
+  "Отрасль и специализация",
+  "Регион / География",
+  "Продукты и услуги",
+  "Открытые контакты",
+  "Сводка о бизнесе",
+  "Квалификация лида"
 ];
 
 export default function ServiceDataEnrichment() {
@@ -49,8 +49,8 @@ export default function ServiceDataEnrichment() {
             <ScrollReveal delay={blocks.length * 0.15 + 0.2}>
               <div className="relative z-10 mx-auto w-full max-w-md mt-8">
                 <div className="bg-gradient-to-r from-accent/20 to-blue-500/20 border-2 border-accent py-5 px-8 rounded-xl text-center shadow-lg shadow-accent/10">
-                  <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent to-blue-500 uppercase tracking-widest">
-                    Complete Record
+                  <span className="text-lg md:text-xl font-bold text-text-primary">
+                    Единый обогащенный профиль
                   </span>
                 </div>
               </div>

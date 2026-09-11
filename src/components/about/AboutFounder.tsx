@@ -37,10 +37,6 @@ export default function AboutFounder() {
 
               {/* Founder Narrative */}
               <div className="md:col-span-8 space-y-4 text-left">
-                <span className="inline-block px-3 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs uppercase tracking-widest text-accent font-semibold">
-                  ЛИЧНАЯ ОТВЕТСТВЕННОСТЬ
-                </span>
-                
                 <h2 className="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight">
                   «Мы не прячемся за аккаунт-менеджерами и сложными отчётами.»
                 </h2>

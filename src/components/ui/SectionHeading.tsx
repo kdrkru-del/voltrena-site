@@ -25,11 +25,6 @@ export default function SectionHeading({
         className
       )}
     >
-      {tag && (
-        <span className="inline-block font-mono text-xs tracking-[0.2em] uppercase text-accent mb-4 md:mb-6">
-          {tag}
-        </span>
-      )}
       <h2 className="text-display font-bold text-text-primary break-words hyphens-auto">{title}</h2>
       {subtitle && (
         <p className={cn('mt-4 md:mt-6 text-lg md:text-xl text-text-secondary max-w-2xl leading-relaxed', align === 'center' && 'mx-auto')}>

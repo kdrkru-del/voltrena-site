@@ -157,8 +157,7 @@ export default function ServiceHero({
               {heroExample && (
                 <ScrollReveal direction="up" delay={600}>
                   <div className="mt-8 max-w-3xl mx-auto rounded-xl border border-border bg-bg-surface/70 px-4 py-3 text-center">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">Пример механики</span>
-                    <p className="mt-2 text-xs sm:text-sm text-text-secondary leading-relaxed">{heroExample}</p>
+                    <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">{heroExample}</p>
                   </div>
                 </ScrollReveal>
               )}

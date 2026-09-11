@@ -21,15 +21,15 @@ export default function ServicePriceMonitoring() {
             <div className="bg-bg-surface border border-border rounded-3xl p-8 md:p-12 mb-16 relative">
               <div className="flex flex-col md:flex-row gap-6 justify-between items-center mb-8">
                 <div className="px-6 py-4 bg-bg-primary border border-border rounded-xl text-center w-full md:w-auto shadow-sm">
-                  <div className="text-sm text-text-secondary mb-1">Competitor A</div>
+                  <div className="text-sm text-text-secondary mb-1">Конкурент A</div>
                   <div className="font-mono text-xl font-medium text-text-primary">12 500 ₽</div>
                 </div>
                 <div className="px-6 py-4 bg-bg-primary border border-border rounded-xl text-center w-full md:w-auto shadow-sm">
-                  <div className="text-sm text-text-secondary mb-1">Competitor B</div>
+                  <div className="text-sm text-text-secondary mb-1">Конкурент B</div>
                   <div className="font-mono text-xl font-medium text-text-primary">11 900 ₽</div>
                 </div>
                 <div className="px-6 py-4 bg-bg-primary border border-border rounded-xl text-center w-full md:w-auto shadow-sm">
-                  <div className="text-sm text-text-secondary mb-1">Competitor C</div>
+                  <div className="text-sm text-text-secondary mb-1">Конкурент C</div>
                   <div className="font-mono text-xl font-medium text-text-primary">13 100 ₽</div>
                 </div>
               </div>
@@ -46,7 +46,7 @@ export default function ServicePriceMonitoring() {
                 <div className="flex items-center gap-4 px-6 py-4 bg-accent/10 border border-accent/20 rounded-xl w-full md:w-auto">
                   <TrendingDown className="text-accent" size={24} />
                   <div>
-                    <div className="text-sm text-accent font-medium uppercase tracking-wider mb-1">Price Change</div>
+                    <div className="text-xs text-accent font-semibold mb-1">Изменение цены</div>
                     <div className="text-text-primary font-medium">Снижение цены у B</div>
                   </div>
                 </div>
@@ -57,7 +57,7 @@ export default function ServicePriceMonitoring() {
                 <div className="flex items-center gap-4 px-6 py-4 bg-bg-primary border border-border rounded-xl w-full md:w-auto shadow-sm">
                   <Bell className="text-accent" size={24} />
                   <div>
-                    <div className="text-sm text-text-secondary mb-1">Alert / Dashboard</div>
+                    <div className="text-sm text-text-secondary mb-1">Оповещение</div>
                     <div className="text-text-primary font-medium">Уведомление менеджеру</div>
                   </div>
                 </div>

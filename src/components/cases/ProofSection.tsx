@@ -72,15 +72,15 @@ export default function ProofSection() {
 
                   <div className="space-y-4 mb-6">
                     <div>
-                      <span className="font-mono text-[10px] uppercase tracking-wider text-text-muted block mb-1.5">Задача</span>
+                      <span className="text-xs text-text-muted block mb-1.5 font-medium">Задача</span>
                       <p className="text-sm text-text-secondary leading-relaxed">{c.task}</p>
                     </div>
                     <div>
-                      <span className="font-mono text-[10px] uppercase tracking-wider text-text-muted block mb-1.5">Что внедрено</span>
+                      <span className="text-xs text-text-muted block mb-1.5 font-medium">Что внедрено</span>
                       <p className="text-sm text-text-primary leading-relaxed break-words">{c.implemented}</p>
                     </div>
                     <div className="rounded-xl bg-bg-primary border border-border/70 p-4">
-                      <span className="font-mono text-[10px] uppercase tracking-wider text-accent block mb-1.5">Результат</span>
+                      <span className="text-xs text-accent block mb-1.5 font-semibold">Результат</span>
                       <p className="text-sm text-text-secondary leading-relaxed">{c.result}</p>
                     </div>
                   </div>

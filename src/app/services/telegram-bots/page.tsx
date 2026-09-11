@@ -52,48 +52,48 @@ export default function TelegramBotsPage() {
   const data = telegramBotsData
 
   const aiTelegramFormula = [
-    { operator: '', label: 'TELEGRAM MESSAGE' },
-    { operator: '→', label: 'AI UNDERSTANDING' },
-    { operator: '→', label: 'KNOWLEDGE BASE / CLASSIFICATION' },
-    { operator: '=', label: 'PRECISE ANSWER / ROUTING', isResult: true },
+    { operator: '', label: 'Сообщение в Telegram' },
+    { operator: '→', label: 'Понимание запроса (AI)' },
+    { operator: '→', label: 'База знаний и классификация' },
+    { operator: '=', label: 'Точный ответ или маршрутизация', isResult: true },
   ]
 
   const dataTelegramFormula = [
-    { operator: '', label: 'DATA SOURCE' },
-    { operator: '→', label: 'MONITORING PIPELINE' },
-    { operator: '→', label: 'CHANGE DETECTED' },
-    { operator: '=', label: 'TELEGRAM ALERT TO MANAGER', isResult: true },
+    { operator: '', label: 'Источник данных' },
+    { operator: '→', label: 'Контур мониторинга' },
+    { operator: '→', label: 'Фиксация изменений' },
+    { operator: '=', label: 'Уведомление менеджеру в Telegram', isResult: true },
   ]
 
   const b2bTelegramFormula = [
-    { operator: '', label: 'B2B LEAD DISCOVERY' },
-    { operator: '→', label: 'QUALIFICATION & ENRICHMENT' },
-    { operator: '→', label: 'TELEGRAM LEAD CARD' },
-    { operator: '=', label: 'FAST OUTREACH BY SALES', isResult: true },
+    { operator: '', label: 'Поиск B2B-контактов' },
+    { operator: '→', label: 'Квалификация и обогащение' },
+    { operator: '→', label: 'Карточка лида в Telegram' },
+    { operator: '=', label: 'Быстрый контакт менеджера', isResult: true },
   ]
 
   const websiteTelegramFormula = [
-    { operator: '', label: 'WEBSITE LEAD / ACTION' },
-    { operator: '→', label: 'TELEGRAM MINI APP / BOT' },
-    { operator: '→', label: 'CRM SYSTEM' },
-    { operator: '=', label: 'CONNECTED DIGITAL SYSTEM', isResult: true },
+    { operator: '', label: 'Действие на сайте' },
+    { operator: '→', label: 'Telegram бот / Mini App' },
+    { operator: '→', label: 'Сделка в CRM' },
+    { operator: '=', label: 'Единая цифровая система', isResult: true },
   ]
 
   const customScenarios = [
     {
       id: 'A',
       label: 'Сценарий: Заявка и продажи',
-      steps: ['Website / Telegram Bot', 'CRM Deal', 'Telegram Alert', 'Manager Call', 'Confirmation'],
+      steps: ['Сайт / Telegram бот', 'Сделка в CRM', 'Алерт в Telegram', 'Звонок менеджера', 'Подтверждение'],
     },
     {
       id: 'B',
       label: 'Сценарий: Мониторинг рынка',
-      steps: ['Web Scraper', 'Price Change Alert', 'Telegram Channel', 'Decision Maker'],
+      steps: ['Сбор данных', 'Оповещение об изменении цены', 'Telegram-канал', 'Принятие решения'],
     },
     {
       id: 'C',
       label: 'Сценарий: AI-ассистент',
-      steps: ['User Query', 'AI Knowledge Layer', 'Instant Answer', 'Human Handoff (if needed)'],
+      steps: ['Вопрос клиента', 'База знаний AI', 'Мгновенный ответ', 'Перевод на оператора (при необходимости)'],
     },
   ]
 

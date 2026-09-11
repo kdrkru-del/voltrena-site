@@ -57,7 +57,7 @@ export default function HomeBreakdownsVsSystem() {
                 <div className="lg:col-span-6 p-4 rounded-xl bg-bg-primary border border-accent/20 flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-[11px] font-mono text-accent uppercase tracking-wider block mb-0.5 font-semibold">
+                    <span className="text-xs text-accent block mb-0.5 font-semibold">
                       Решение VOLTRENA:
                     </span>
                     <p className="text-xs sm:text-sm text-text-primary font-medium leading-relaxed">

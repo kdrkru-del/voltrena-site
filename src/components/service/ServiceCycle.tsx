@@ -35,7 +35,6 @@ export default function ServiceCycle({ tag, title, description, steps, conclusio
           <div className="mt-7 flex items-center justify-center gap-3 text-accent" aria-hidden="true">
             <span className="h-px w-14 bg-accent/30" />
             <span className="h-3 w-3 rounded-full bg-accent animate-pulse-slow shadow-[0_0_18px_rgba(99,102,241,0.8)]" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em]">цикл</span>
             <span className="h-px w-14 bg-accent/30" />
           </div>
         </div>

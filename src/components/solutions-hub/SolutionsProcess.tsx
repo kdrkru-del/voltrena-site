@@ -64,7 +64,7 @@ export default function SolutionsProcess() {
                 </div>
 
                 <div className="pt-3 border-t border-border/60">
-                  <span className="text-[10px] font-mono text-text-muted uppercase tracking-wider block mb-0.5">
+                  <span className="text-xs text-text-muted block mb-0.5">
                     Выход этапа:
                   </span>
                   <span className="text-xs text-text-primary font-medium">

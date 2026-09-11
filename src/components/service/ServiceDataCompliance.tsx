@@ -36,7 +36,7 @@ export default function ServiceDataCompliance() {
                 <span className="text-4xl md:text-5xl font-bold text-text-secondary line-through mb-2 decoration-2">
                   1 000 000
                 </span>
-                <span className="text-text-secondary uppercase tracking-widest text-sm">
+                <span className="text-text-secondary text-sm font-medium">
                   сырых строк
                 </span>
               </div>
@@ -47,7 +47,7 @@ export default function ServiceDataCompliance() {
                 <span className="text-4xl md:text-5xl font-bold text-accent mb-2">
                   10 000
                 </span>
-                <span className="text-text-primary uppercase tracking-widest text-sm font-medium">
+                <span className="text-text-primary text-sm font-medium">
                   структурированных записей
                 </span>
               </div>

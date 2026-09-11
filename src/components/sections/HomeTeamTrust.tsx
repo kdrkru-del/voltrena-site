@@ -86,9 +86,9 @@ export default function HomeTeamTrust() {
                 {/* Info */}
                 <div className="p-5 flex flex-col justify-between flex-1">
                   <div>
-                    <span className="font-mono text-[11px] text-accent uppercase tracking-wider block mb-1 font-semibold">
+                    <div className="text-xs text-accent font-semibold mb-1">
                       {member.role}
-                    </span>
+                    </div>
                     <h3 className="text-lg font-bold text-text-primary mb-2">
                       {member.name}
                     </h3>

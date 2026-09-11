@@ -46,9 +46,6 @@ export default function ServiceCTA({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center max-w-6xl mx-auto">
             <div className="lg:col-span-6">
               <ScrollReveal direction="right" delay={0}>
-                <span className="inline-block px-3 py-1 rounded-md bg-accent/10 border border-accent/20 font-mono text-xs uppercase tracking-widest text-accent mb-4 font-semibold">
-                  КОНФИГУРАЦИЯ / СВЯЗЬ С КОМАНДОЙ
-                </span>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mb-4 tracking-tight break-words hyphens-auto">{title}</h2>
                 <p className="text-text-secondary text-base md:text-lg leading-relaxed mb-8">{description}</p>
                 <ul className="space-y-3.5">

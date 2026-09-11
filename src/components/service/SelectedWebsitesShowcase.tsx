@@ -68,7 +68,6 @@ export default function SelectedWebsitesShowcase() {
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-6xl">
         <ScrollReveal>
           <div className="max-w-3xl mb-16 md:mb-20">
-            <div className="mb-4"><span className="inline-block px-3.5 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs uppercase tracking-widest text-accent font-semibold">SELECTED WEBSITES</span></div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary tracking-tight leading-[1.15] mb-6">Сайты, созданные<br className="hidden sm:inline" /> под реальные бизнес-задачи.</h2>
             <p className="text-base sm:text-lg text-text-secondary leading-relaxed">Локальный сервис, специализированная услуга и международный B2B-бизнес требуют разной архитектуры. Поэтому мы начинаем не с шаблона, а с задачи, аудитории и пути клиента.</p>
           </div>
@@ -112,7 +111,6 @@ export default function SelectedWebsitesShowcase() {
         <ScrollReveal delay={150}>
           <div className="mt-24 md:mt-32 p-8 sm:p-10 md:p-12 rounded-3xl bg-bg-surface/70 border border-border text-center max-w-4xl mx-auto relative overflow-hidden shadow-xl">
             <div className="absolute top-0 right-0 w-64 h-64 bg-accent/6 blur-3xl pointer-events-none" aria-hidden="true" />
-            <span className="inline-block px-3 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs uppercase tracking-widest text-accent font-semibold mb-4">ЕДИНЫЙ ПРИНЦИП ПРОЕКТИРОВАНИЯ</span>
             <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-text-primary tracking-tight mb-5">Разные рынки. Разные задачи. Один принцип.</h3>
             <p className="text-text-secondary text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto">Мы сначала определяем, кто должен прийти на сайт, что этот человек должен понять и какое действие совершить. И только после этого проектируем структуру, интерфейс и техническую реализацию.</p>
           </div>

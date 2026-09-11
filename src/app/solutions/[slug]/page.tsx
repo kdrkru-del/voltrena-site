@@ -144,7 +144,6 @@ export default async function DigitalProductPage({ params }: { params: Promise<{
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             <div className="lg:col-span-7 min-w-0">
-              <span className="inline-block px-3 py-1 rounded-md bg-accent/10 border border-accent/20 font-mono text-xs uppercase tracking-widest text-accent mb-5 font-semibold">{product.tag}</span>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-text-primary leading-[1.05] break-words hyphens-auto mb-6">{product.title}</h1>
               <p className="text-lg sm:text-xl text-text-secondary leading-relaxed max-w-3xl mb-8">{product.summary}</p>
               <div className="flex flex-col sm:flex-row gap-3">
@@ -154,10 +153,10 @@ export default async function DigitalProductPage({ params }: { params: Promise<{
             </div>
 
             <aside className="lg:col-span-5 p-6 rounded-2xl bg-bg-surface border border-border/80 shadow-xl min-w-0">
-              <span className="font-mono text-[11px] uppercase tracking-wider text-accent block mb-3">Для какой задачи</span>
+              <h3 className="text-base font-bold text-text-primary mb-2">Для какой задачи</h3>
               <p className="text-sm sm:text-base text-text-secondary leading-relaxed mb-6">{product.problemFit}</p>
               <div className="pt-5 border-t border-border/60">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-text-muted block mb-2">Можно начать с</span>
+                <h4 className="text-xs font-semibold text-text-muted mb-2">Можно начать с</h4>
                 <p className="text-sm text-text-primary leading-relaxed">{product.minimalStart}</p>
               </div>
             </aside>
@@ -169,13 +168,12 @@ export default async function DigitalProductPage({ params }: { params: Promise<{
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             <div className="lg:col-span-4">
-              <span className="font-mono text-xs text-accent uppercase tracking-wider font-semibold">SYSTEM FLOW</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mt-3 mb-4">Как работает система.</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Как работает система.</h2>
               <p className="text-text-secondary text-sm leading-relaxed">Связанный процесс с понятным входом, передачей данных и измеримым результатом.</p>
             </div>
             <div className="lg:col-span-8 p-6 md:p-8 rounded-2xl bg-bg-primary border border-border/80 min-w-0">
               <p className="font-mono text-sm sm:text-base md:text-lg text-text-primary leading-relaxed break-words">{product.flow}</p>
-              <div className="mt-6 pt-6 border-t border-border/60"><span className="font-mono text-[11px] text-text-muted uppercase tracking-wider block mb-2">Результат</span><p className="text-text-secondary leading-relaxed">{product.outcome}</p></div>
+              <div className="mt-6 pt-6 border-t border-border/60"><span className="text-xs text-text-muted block mb-2 font-medium">Результат</span><p className="text-text-secondary leading-relaxed">{product.outcome}</p></div>
             </div>
           </div>
         </div>
@@ -185,33 +183,31 @@ export default async function DigitalProductPage({ params }: { params: Promise<{
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="p-6 md:p-8 rounded-2xl bg-bg-surface border border-border/80">
-              <span className="font-mono text-xs text-accent uppercase tracking-wider font-semibold">Состав системы</span>
-              <h2 className="text-2xl md:text-3xl font-bold text-text-primary mt-3 mb-6">Из каких модулей состоит.</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-6">Из каких модулей состоит.</h2>
               <ul className="space-y-3">{product.components.map((item) => <li key={item} className="flex items-start gap-3 text-sm text-text-secondary"><CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-0.5" /><span>{item}</span></li>)}</ul>
             </div>
             <div className="p-6 md:p-8 rounded-2xl bg-bg-surface border border-border/80">
-              <span className="font-mono text-xs text-accent uppercase tracking-wider font-semibold">Что получает клиент</span>
-              <h2 className="text-2xl md:text-3xl font-bold text-text-primary mt-3 mb-6">Результат проекта.</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-6">Результат проекта.</h2>
               <ul className="space-y-3">{product.deliverables.map((item) => <li key={item} className="flex items-start gap-3 text-sm text-text-secondary"><CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-0.5" /><span>{item}</span></li>)}</ul>
             </div>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-            <div className="p-6 rounded-2xl bg-bg-secondary border border-border/70"><span className="font-mono text-[11px] text-text-muted uppercase tracking-wider block mb-4">Кому подходит</span><div className="flex flex-wrap gap-2">{product.idealFor.map((item) => <span key={item} className="px-3 py-2 rounded-lg bg-bg-surface border border-border text-xs text-text-secondary">{item}</span>)}</div></div>
-            <div className="p-6 rounded-2xl bg-bg-secondary border border-border/70"><span className="font-mono text-[11px] text-text-muted uppercase tracking-wider block mb-4">Возможные интеграции</span><div className="flex flex-wrap gap-2">{product.integrations.map((item) => <span key={item} className="px-3 py-2 rounded-lg bg-bg-surface border border-border text-xs text-text-secondary">{item}</span>)}</div></div>
+            <div className="p-6 rounded-2xl bg-bg-secondary border border-border/70"><span className="text-xs text-text-muted block mb-4 font-medium">Кому подходит</span><div className="flex flex-wrap gap-2">{product.idealFor.map((item) => <span key={item} className="px-3 py-2 rounded-lg bg-bg-surface border border-border text-xs text-text-secondary">{item}</span>)}</div></div>
+            <div className="p-6 rounded-2xl bg-bg-secondary border border-border/70"><span className="text-xs text-text-muted block mb-4 font-medium">Возможные интеграции</span><div className="flex flex-wrap gap-2">{product.integrations.map((item) => <span key={item} className="px-3 py-2 rounded-lg bg-bg-surface border border-border text-xs text-text-secondary">{item}</span>)}</div></div>
           </div>
         </div>
       </section>
 
       <section className="py-16 md:py-24 bg-bg-secondary border-b border-border/40">
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
-          <div className="max-w-3xl mb-10"><span className="font-mono text-xs text-accent uppercase tracking-wider font-semibold">LAUNCH MODEL</span><h2 className="text-3xl md:text-4xl font-bold text-text-primary mt-3 mb-4">Как можно начать.</h2><p className="text-text-secondary leading-relaxed">Не требуется запускать весь контур сразу. Конфигурация расширяется по мере подтверждения результата.</p></div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">{launchTiers.map((tier, index) => <article key={tier.code} className={`rounded-2xl p-6 border min-w-0 ${index === 0 ? 'bg-accent/10 border-accent/35' : 'bg-bg-surface border-border/80'}`}><span className="font-mono text-xs text-accent uppercase tracking-wider font-semibold">{tier.code}</span><h3 className="text-xl font-bold text-text-primary mt-3 mb-3">{tier.title}</h3><p className="text-sm text-text-secondary leading-relaxed mb-5 break-words">{tier.description}</p><p className="text-xs text-text-muted leading-relaxed pt-4 border-t border-border/60">{tier.note}</p></article>)}</div>
+          <div className="max-w-3xl mb-10"><h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Как можно начать.</h2><p className="text-text-secondary leading-relaxed">Не требуется запускать весь контур сразу. Конфигурация расширяется по мере подтверждения результата.</p></div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">{launchTiers.map((tier, index) => <article key={tier.code} className={`rounded-2xl p-6 border min-w-0 ${index === 0 ? 'bg-accent/10 border-accent/35' : 'bg-bg-surface border-border/80'}`}><h3 className="text-xl font-bold text-text-primary mb-3">{tier.title}</h3><p className="text-sm text-text-secondary leading-relaxed mb-5 break-words">{tier.description}</p><p className="text-xs text-text-muted leading-relaxed pt-4 border-t border-border/60">{tier.note}</p></article>)}</div>
         </div>
       </section>
 
-      {services.length > 0 && <section className="py-16 md:py-24 bg-bg-primary border-b border-border/40"><div className="container mx-auto px-4 sm:px-6 max-w-6xl"><div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start"><div className="lg:col-span-4"><span className="font-mono text-xs text-accent uppercase tracking-wider font-semibold">Технологии системы</span><h2 className="text-3xl md:text-4xl font-bold text-text-primary mt-3 mb-4">Связанные услуги.</h2><p className="text-sm text-text-secondary leading-relaxed">Это строительные блоки системы, а не отдельная продуктовая логика.</p></div><div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-3">{services.map((service) => <Link key={service.href} href={service.href} className="group min-h-[56px] rounded-xl bg-bg-surface border border-border/80 px-4 py-3 flex items-center justify-between gap-3 hover:border-accent/45 transition-colors"><span className="text-sm font-semibold text-text-primary">{service.title}</span><ArrowRight className="w-4 h-4 text-text-muted group-hover:text-accent group-hover:translate-x-1 transition-all shrink-0" /></Link>)}</div></div></div></section>}
+      {services.length > 0 && <section className="py-16 md:py-24 bg-bg-primary border-b border-border/40"><div className="container mx-auto px-4 sm:px-6 max-w-6xl"><div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start"><div className="lg:col-span-4"><h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Связанные услуги.</h2><p className="text-sm text-text-secondary leading-relaxed">Это строительные блоки системы, а не отдельная продуктовая логика.</p></div><div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-3">{services.map((service) => <Link key={service.href} href={service.href} className="group min-h-[56px] rounded-xl bg-bg-surface border border-border/80 px-4 py-3 flex items-center justify-between gap-3 hover:border-accent/45 transition-colors"><span className="text-sm font-semibold text-text-primary">{service.title}</span><ArrowRight className="w-4 h-4 text-text-muted group-hover:text-accent group-hover:translate-x-1 transition-all shrink-0" /></Link>)}</div></div></div></section>}
 
-      <section className="py-16 md:py-24 bg-bg-secondary border-b border-border/40"><div className="container mx-auto px-4 sm:px-6 max-w-4xl"><span className="font-mono text-xs text-accent uppercase tracking-wider font-semibold">FAQ</span><h2 className="text-3xl md:text-4xl font-bold text-text-primary mt-3 mb-8">Частые вопросы.</h2><div className="space-y-4">{faq.map((item) => <details key={item.question} className="group rounded-2xl bg-bg-surface border border-border/80 p-5 sm:p-6"><summary className="cursor-pointer list-none font-semibold text-text-primary pr-6">{item.question}</summary><p className="text-sm text-text-secondary leading-relaxed mt-4">{item.answer}</p></details>)}</div></div></section>
+      <section className="py-16 md:py-24 bg-bg-secondary border-b border-border/40"><div className="container mx-auto px-4 sm:px-6 max-w-4xl"><h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-8">Частые вопросы.</h2><div className="space-y-4">{faq.map((item) => <details key={item.question} className="group rounded-2xl bg-bg-surface border border-border/80 p-5 sm:p-6"><summary className="cursor-pointer list-none font-semibold text-text-primary pr-6">{item.question}</summary><p className="text-sm text-text-secondary leading-relaxed mt-4">{item.answer}</p></details>)}</div></div></section>
 
       <ServiceCTA mode="directContact" title={`Собрать ${product.title.toLowerCase()} под ваш процесс?`} description="Опишите текущий процесс, ограничения и желаемый результат. Мы определим состав первой очереди и точки интеграции." benefits={['Не заставляем внедрять весь контур сразу','Фиксируем входы, выходы и ответственность каждого узла','Проектируем решение вокруг существующего процесса бизнеса']} />
     </>
