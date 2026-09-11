@@ -71,7 +71,7 @@ export default function ServiceWorkflowScenarios({
                 <div className="flex flex-wrap items-center gap-2">
                   {scenario.steps.map((step, i) => (
                     <div key={step} className="flex items-center gap-2">
-                      <span className="px-3 py-1.5 rounded-lg bg-bg-primary border border-border text-sm font-mono text-text-primary whitespace-nowrap">
+                      <span className="px-2.5 sm:px-3 py-1.5 rounded-lg bg-bg-primary border border-border text-xs sm:text-sm font-mono text-text-primary break-words max-w-full">
                         {step}
                       </span>
                       {i < scenario.steps.length - 1 && (
