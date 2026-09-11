@@ -1,14 +1,95 @@
+'use client'
+
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { ArrowRight, CheckCircle2 } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowRight, CheckCircle2, Sparkles } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import NodeNetwork from '@/components/ui/NodeNetwork'
 import { digitalProducts } from '@/data/digital-products'
+import { useReducedMotion } from '@/hooks/useReducedMotion'
 
-const systemFlow = ['Задача', 'Система', 'Интеграции', 'Данные', 'Результат']
+interface SystemFlowStep {
+  id: string
+  name: string
+  statusShort: string
+  statusTitle: string
+  detail: string
+  tag: string
+}
+
+const systemFlowSteps: SystemFlowStep[] = [
+  {
+    id: 'task',
+    name: 'Задача',
+    statusShort: 'Бизнес-задача',
+    statusTitle: 'Фиксация ключевого ограничения',
+    detail: 'Начинаем с бизнес-цели: где сейчас теряются клиенты, какие процессы выполняются вручную и какую метрику нужно вырастить.',
+    tag: 'ФОКУС НА ЗАДАЧЕ',
+  },
+  {
+    id: 'system',
+    name: 'Система',
+    statusShort: 'Архитектура',
+    statusTitle: 'Проектирование контура',
+    detail: 'Подбираем готовую конфигурацию цифровой системы: сайт, реклама, CRM и автоматизация связываются в понятную структуру.',
+    tag: 'АРХИТЕКТУРА РЕШЕНИЯ',
+  },
+  {
+    id: 'integrations',
+    name: 'Интеграции',
+    statusShort: 'Связка модулей',
+    statusTitle: 'Бесшовная передача данных',
+    detail: 'Каналы трафика, формы сайта, CRM-воронка и Telegram-боты синхронизируются через API и вебхуки без потери лидов.',
+    tag: 'ИНТЕГРАЦИОННЫЙ СЛОЙ',
+  },
+  {
+    id: 'data',
+    name: 'Данные',
+    statusShort: 'Сквозной учёт',
+    statusTitle: 'Прозрачная аналитика',
+    detail: 'Каждое обращение сохраняет UTM-метки, источник и путь до сделки. Вы видите реальную окупаемость каждого вложенного рубля.',
+    tag: 'КОНТРОЛЬ & АНАЛИТИКА',
+  },
+  {
+    id: 'result',
+    name: 'Результат',
+    statusShort: 'Единый контур',
+    statusTitle: 'Все модули объединены в систему',
+    detail: 'Спрос, сайт, захват лидов, CRM-воронка, автоматизация и аналитика работают как единый управляемый механизм роста.',
+    tag: 'ЕДИНЫЙ КОНТУР РОСТА',
+  },
+]
 
 export default function Hero() {
+  const prefersReducedMotion = useReducedMotion()
+  const [activeStepIdx, setActiveStepIdx] = useState(0)
+  const [userInteracted, setUserInteracted] = useState(false)
+
+  // Auto-cycle through flow steps unless user interacted or prefers reduced motion
+  useEffect(() => {
+    if (prefersReducedMotion || userInteracted) return
+
+    const intervalTime = activeStepIdx === systemFlowSteps.length - 1 ? 5000 : 2500
+
+    const timer = setTimeout(() => {
+      setActiveStepIdx((prev) => (prev + 1) % systemFlowSteps.length)
+    }, intervalTime)
+
+    return () => clearTimeout(timer)
+  }, [activeStepIdx, prefersReducedMotion, userInteracted])
+
+  const currentStep = systemFlowSteps[activeStepIdx]
+  const isFinalState = activeStepIdx === systemFlowSteps.length - 1
+
+  const handleSelectStep = (idx: number) => {
+    setUserInteracted(true)
+    setActiveStepIdx(idx)
+  }
+
   return (
     <section className="relative pt-28 pb-14 sm:pt-32 sm:pb-18 md:pt-36 md:pb-24 bg-bg-primary overflow-hidden border-b border-border/40">
+      {/* Background animated NodeNetwork canvas */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <NodeNetwork className="absolute inset-0 opacity-45 sm:opacity-60 md:opacity-70" />
         <div className="absolute inset-0 bg-gradient-to-b from-bg-primary/30 via-bg-primary/70 to-bg-primary" />
@@ -17,17 +98,43 @@ export default function Hero() {
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">
         <div className="grid grid-cols-1 xl:grid-cols-12 gap-10 xl:gap-12 items-center">
+          
+          {/* Left Column: Heading, Tag, CTAs & Product Links */}
           <div className="xl:col-span-6 min-w-0">
-            <div className="mb-5">
+            <div className="mb-4">
               <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent/10 border border-accent/20 font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] text-accent font-semibold backdrop-blur-sm">
                 VOLTRENA / DIGITAL SYSTEMS
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-[4.15rem] font-black text-text-primary tracking-tight leading-[1.03] mb-6 break-words hyphens-auto">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-[4.15rem] font-black text-text-primary tracking-tight leading-[1.03] mb-4 break-words hyphens-auto">
               Цифровые системы
               <span className="block text-accent">для бизнеса.</span>
             </h1>
+
+            {/* Dynamic live badge */}
+            <div className="h-8 mb-5 flex items-center">
+              {!prefersReducedMotion ? (
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentStep.id}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.3 }}
+                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs text-accent"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                    <span>{currentStep.tag}: {currentStep.statusShort}</span>
+                  </motion.div>
+                </AnimatePresence>
+              ) : (
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs text-accent">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                  <span>{currentStep.tag}: {currentStep.statusShort}</span>
+                </div>
+              )}
+            </div>
 
             <p className="text-base sm:text-lg md:text-xl text-text-secondary leading-relaxed max-w-2xl mb-7">
               Привлечение клиентов, B2B-продажи, обработка заявок, AI-автоматизация и мониторинг данных — как готовые связанные системы, а не набор разрозненных услуг.
@@ -58,53 +165,111 @@ export default function Hero() {
             </div>
           </div>
 
+          {/* Right Column: Interactive Living System Architecture Card */}
           <div className="xl:col-span-6 min-w-0">
             <div className="rounded-2xl sm:rounded-3xl bg-bg-surface/88 backdrop-blur-md border border-border/90 shadow-2xl overflow-hidden">
+              
+              {/* Header: Architecture Status */}
               <div className="flex flex-wrap items-center justify-between gap-3 px-5 sm:px-7 py-4 border-b border-border/70 bg-bg-primary/50">
                 <div className="flex items-center gap-2.5 min-w-0">
                   <span className="relative flex h-2.5 w-2.5 shrink-0">
-                    <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-50" />
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
                     <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent" />
                   </span>
                   <span className="font-mono text-[11px] sm:text-xs uppercase tracking-wider text-text-primary font-semibold">
                     SYSTEM ARCHITECTURE
                   </span>
                 </div>
-                <span className="font-mono text-[10px] sm:text-[11px] text-accent uppercase tracking-wider">
-                  от задачи до результата
+                
+                <span className="font-mono text-[10px] sm:text-[11px] text-accent uppercase tracking-wider flex items-center gap-1.5">
+                  {isFinalState ? (
+                    <>
+                      <Sparkles className="w-3 h-3 text-accent" />
+                      <span>Система объединена</span>
+                    </>
+                  ) : (
+                    <span>{currentStep.statusShort}</span>
+                  )}
                 </span>
               </div>
 
               <div className="p-5 sm:p-7">
-                <div className="grid grid-cols-1 sm:grid-cols-5 gap-2.5 mb-6" aria-label="Логика цифровой системы">
-                  {systemFlow.map((step, index) => (
-                    <div key={step} className="relative min-w-0">
-                      <div className="rounded-xl border border-border bg-bg-primary px-3 py-3 min-h-[62px] flex flex-col justify-center text-center">
-                        <span className="font-mono text-[10px] text-text-muted mb-1">0{index + 1}</span>
-                        <span className="text-xs sm:text-[13px] font-semibold text-text-primary break-words">{step}</span>
-                      </div>
-                      {index < systemFlow.length - 1 && (
-                        <span className="hidden sm:block absolute -right-2 top-1/2 -translate-y-1/2 z-10 text-accent text-xs" aria-hidden="true">→</span>
-                      )}
-                    </div>
-                  ))}
+                {/* Interactive Steps Grid (No numbers) */}
+                <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 relative mb-2" role="tablist" aria-label="Логика цифровой системы">
+                  {systemFlowSteps.map((step, idx) => {
+                    const isActive = idx === activeStepIdx || isFinalState
+                    const isDirectlyActive = idx === activeStepIdx
+                    const isPast = idx < activeStepIdx
+
+                    return (
+                      <button
+                        key={step.id}
+                        role="tab"
+                        aria-selected={isActive}
+                        onClick={() => handleSelectStep(idx)}
+                        className={`py-3 px-2 rounded-xl text-center transition-all duration-300 relative border flex flex-col items-center justify-center min-h-[64px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+                          isDirectlyActive
+                            ? 'bg-accent/20 border-accent text-text-primary shadow-[0_0_20px_rgba(99,102,241,0.25)] scale-[1.02]'
+                            : isPast
+                            ? 'bg-bg-primary/80 border-accent/30 text-text-secondary'
+                            : 'bg-bg-primary/80 border-border text-text-muted hover:border-border-light hover:text-text-secondary'
+                        }`}
+                      >
+                        <span className="text-xs sm:text-[13px] font-semibold block leading-tight break-words hyphens-auto text-center px-0.5">
+                          {step.name}
+                        </span>
+
+                        {/* Active indicator dot */}
+                        {isDirectlyActive && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 animate-pulse" />
+                        )}
+                        {!isDirectlyActive && (
+                          <span className={`w-1 h-1 rounded-full mt-1.5 ${isPast ? 'bg-accent/50' : 'bg-border'}`} />
+                        )}
+                      </button>
+                    )
+                  })}
                 </div>
 
-                <div className="rounded-2xl bg-bg-primary border border-accent/25 p-5 sm:p-6 mb-4">
-                  <div className="flex items-start gap-3 mb-4">
-                    <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" aria-hidden="true" />
-                    <div className="min-w-0">
-                      <span className="font-mono text-[10px] uppercase tracking-wider text-accent block mb-1.5">Принцип VOLTRENA</span>
-                      <h2 className="text-lg sm:text-xl font-bold text-text-primary leading-tight break-words">
-                        Не продаём инструмент отдельно от результата.
-                      </h2>
-                    </div>
+                {/* Connecting Progress Line */}
+                <div className="w-full bg-bg-primary h-1.5 rounded-full mb-6 overflow-hidden relative border border-border/40">
+                  <div
+                    className="h-full bg-gradient-to-r from-accent/80 via-accent to-accent-light transition-all duration-500 rounded-full"
+                    style={{
+                      width: isFinalState
+                        ? '100%'
+                        : `${((activeStepIdx + 1) / systemFlowSteps.length) * 100}%`,
+                    }}
+                  />
+                </div>
+
+                {/* Dynamic Active Step Details Card */}
+                <div className="rounded-2xl bg-bg-primary border border-accent/25 p-5 sm:p-6 mb-4 transition-all duration-300 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 blur-2xl pointer-events-none" />
+
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-accent font-semibold">
+                      {currentStep.tag}
+                    </span>
+                    <span className="font-mono text-[10px] text-text-muted flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      {isFinalState ? 'Система синхронизирована' : 'Событие активно'}
+                    </span>
                   </div>
+
+                  <div className="flex items-start gap-3 mb-2">
+                    <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" aria-hidden="true" />
+                    <h2 className="text-base sm:text-lg font-bold text-text-primary leading-tight break-words">
+                      {currentStep.statusTitle}
+                    </h2>
+                  </div>
+
                   <p className="text-sm text-text-secondary leading-relaxed">
-                    Сайт, реклама, CRM, AI, парсинг и аналитика становятся модулями одной архитектуры. Начинаем с бизнес-задачи и собираем только тот контур, который нужен для её решения.
+                    {currentStep.detail}
                   </p>
                 </div>
 
+                {/* 3 Steps without numbers */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {[
                     'Выбрать задачу',
@@ -120,6 +285,7 @@ export default function Hero() {
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

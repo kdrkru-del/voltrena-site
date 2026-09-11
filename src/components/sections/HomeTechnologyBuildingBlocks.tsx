@@ -25,7 +25,7 @@ export default function HomeTechnologyBuildingBlocks() {
                 className="group h-full min-w-0 rounded-2xl bg-bg-surface border border-border/80 p-5 sm:p-6 flex flex-col justify-between hover:border-accent/45 transition-colors"
               >
                 <div>
-                  <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider block mb-2">BUILDING BLOCK {String(index + 1).padStart(2, '0')}</span>
+                  <span className="font-mono text-[10px] text-accent uppercase tracking-wider block mb-2">МОДУЛЬ СИСТЕМЫ</span>
                   <h3 className="text-lg font-bold text-text-primary mb-2 break-words">{service.label}</h3>
                   <p className="text-sm text-text-secondary leading-relaxed">{service.description}</p>
                 </div>
