@@ -95,8 +95,7 @@ export default function SelectedWebsitesShowcase() {
                     </a>
                   </div>
 
-                  <div className={`lg:col-span-5 space-y-5 text-left ${isEven ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
-                    <div className="flex flex-wrap items-center justify-between gap-2"><span className={`inline-block px-2.5 py-0.5 rounded border font-mono text-[10px] sm:text-[11px] uppercase font-bold tracking-wider ${project.accentColor}`}>{project.label}</span><span className="font-mono text-xs text-text-muted font-medium">ВЫПОЛНЕННЫЙ ПРОЕКТ</span></div>
+                  <div className={`lg:col-span-5 space-y-4 text-left ${isEven ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
                     <h3 className="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight">{project.title}</h3>
                     <p className="text-text-secondary text-sm sm:text-base leading-relaxed">{project.description}</p>
                     <p className="text-text-secondary text-xs sm:text-sm leading-relaxed">{project.additionalText}</p>

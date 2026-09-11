@@ -29,17 +29,14 @@ export default function CasesFeaturedOverview() {
                   {/* Left Column: Info */}
                   <div className="lg:col-span-7 flex flex-col justify-between">
                     <div>
-                      <div className="flex flex-wrap items-center gap-2 mb-2">
-                        <span className="font-mono text-xs text-accent uppercase tracking-wider font-semibold">
-                          {item.label}
-                        </span>
-                        {item.statusBadge && (
+                      {item.statusBadge && (
+                        <div className="mb-2">
                           <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-[11px] font-semibold">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                             <span>{item.statusBadge}</span>
                           </span>
-                        )}
-                      </div>
+                        </div>
+                      )}
                       <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-3">
                         {item.title}
                       </h3>

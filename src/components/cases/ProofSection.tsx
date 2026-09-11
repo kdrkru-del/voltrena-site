@@ -69,11 +69,7 @@ export default function ProofSection() {
             <ScrollReveal key={c.title} delay={idx * 70}>
               <article className="h-full p-6 sm:p-7 rounded-2xl bg-bg-surface border border-border/80 hover:border-accent/40 transition-colors flex flex-col justify-between shadow-lg group min-w-0">
                 <div>
-                  <Link href={c.systemHref} className="font-mono text-[11px] text-accent uppercase tracking-wider font-semibold inline-flex items-center gap-1.5 mb-3 hover:text-accent-light">
-                    {c.system}
-                    <ArrowRight className="w-3 h-3" aria-hidden="true" />
-                  </Link>
-                  <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-5">{c.title}</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-4">{c.title}</h3>
 
                   <div className="space-y-4 mb-6">
                     <div>

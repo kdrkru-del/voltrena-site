@@ -12,6 +12,8 @@ import { useReducedMotion } from '@/hooks/useReducedMotion'
 interface SystemFlowStep {
   id: string
   name: string
+  statementPrefix: string
+  statementHighlight: string
   statusShort: string
   statusTitle: string
   detail: string
@@ -20,43 +22,53 @@ interface SystemFlowStep {
 
 const systemFlowSteps: SystemFlowStep[] = [
   {
-    id: 'task',
-    name: 'Задача',
-    statusShort: 'Бизнес-задача',
-    statusTitle: 'Фиксация ключевого ограничения',
-    detail: 'Начинаем с бизнес-цели: где сейчас теряются клиенты, какие процессы выполняются вручную и какую метрику нужно вырастить.',
-    tag: 'ФОКУС НА ЗАДАЧЕ',
+    id: 'websites',
+    name: 'Сайт',
+    statementPrefix: 'Мы создаём',
+    statementHighlight: 'сайты.',
+    statusShort: 'Конверсионный слой',
+    statusTitle: 'Конверсионный интерфейс под задачу',
+    detail: 'Проектируем посадочные страницы, корпоративные сайты и каталоги, удерживающие входящий трафик и UTM-метки.',
+    tag: 'САЙТ И КОНВЕРСИЯ',
   },
   {
-    id: 'system',
-    name: 'Система',
-    statusShort: 'Архитектура',
-    statusTitle: 'Проектирование контура',
-    detail: 'Подбираем готовую конфигурацию цифровой системы: сайт, реклама, CRM и автоматизация связываются в понятную структуру.',
-    tag: 'АРХИТЕКТУРА РЕШЕНИЯ',
+    id: 'leads',
+    name: 'Спрос',
+    statementPrefix: 'Мы приводим',
+    statementHighlight: 'клиентов.',
+    statusShort: 'Привлечение спроса',
+    statusTitle: 'Управляемый поток целевых заявок',
+    detail: 'Запускаем контекстную рекламу в Яндекс Директе, SEO/GEO и точечный B2B-поиск без искажения коммерческого интента.',
+    tag: 'ТРАФИК И ЛИДОГЕНЕРАЦИЯ',
   },
   {
-    id: 'integrations',
-    name: 'Интеграции',
-    statusShort: 'Связка модулей',
-    statusTitle: 'Бесшовная передача данных',
-    detail: 'Каналы трафика, формы сайта, CRM-воронка и Telegram-боты синхронизируются через API и вебхуки без потери лидов.',
-    tag: 'ИНТЕГРАЦИОННЫЙ СЛОЙ',
+    id: 'automation',
+    name: 'Продажи',
+    statementPrefix: 'Мы автоматизируем',
+    statementHighlight: 'продажи.',
+    statusShort: 'Автоматизация воронки',
+    statusTitle: 'Мгновенный разбор и квалификация',
+    detail: 'AI-ассистенты, Telegram-боты и CRM моментально подхватывают обращения и передают менеджеру готовый контекст.',
+    tag: 'CRM И АВТОМАТИЗАЦИЯ',
   },
   {
     id: 'data',
     name: 'Данные',
+    statementPrefix: 'Мы связываем',
+    statementHighlight: 'данные.',
     statusShort: 'Сквозной учёт',
-    statusTitle: 'Прозрачная аналитика',
-    detail: 'Каждое обращение сохраняет UTM-метки, источник и путь до сделки. Вы видите реальную окупаемость каждого вложенного рубля.',
-    tag: 'КОНТРОЛЬ & АНАЛИТИКА',
+    statusTitle: 'Сквозная аналитика и сбор данных',
+    detail: 'Парсинг открытых данных рынка, вебхуки и сведение данных рекламы с фактической выручкой в единый отчёт.',
+    tag: 'АНАЛИТИКА И ПАРСИНГ',
   },
   {
-    id: 'result',
-    name: 'Результат',
-    statusShort: 'Единый контур',
+    id: 'growth',
+    name: 'Система',
+    statementPrefix: 'Мы строим',
+    statementHighlight: 'системы роста.',
+    statusShort: 'Единая система',
     statusTitle: 'Все модули объединены в систему',
-    detail: 'Спрос, сайт, захват лидов, CRM-воронка, автоматизация и аналитика работают как единый управляемый механизм роста.',
+    detail: 'Спрос, сайт, захват лидов, CRM-воронка, автоматизация и сквозная аналитика работают как единый механизм роста.',
     tag: 'ЕДИНЫЙ КОНТУР РОСТА',
   },
 ]
@@ -70,7 +82,7 @@ export default function Hero() {
   useEffect(() => {
     if (prefersReducedMotion || userInteracted) return
 
-    const intervalTime = activeStepIdx === systemFlowSteps.length - 1 ? 5000 : 2500
+    const intervalTime = activeStepIdx === systemFlowSteps.length - 1 ? 5000 : 2600
 
     const timer = setTimeout(() => {
       setActiveStepIdx((prev) => (prev + 1) % systemFlowSteps.length)
@@ -99,7 +111,7 @@ export default function Hero() {
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">
         <div className="grid grid-cols-1 xl:grid-cols-12 gap-10 xl:gap-12 items-center">
           
-          {/* Left Column: Heading, Tag, CTAs & Product Links */}
+          {/* Left Column: Heading with Dynamic Rotating Statement, CTAs & Product Links */}
           <div className="xl:col-span-6 min-w-0">
             <div className="mb-4">
               <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent/10 border border-accent/20 font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] text-accent font-semibold backdrop-blur-sm">
@@ -107,31 +119,31 @@ export default function Hero() {
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-[4.15rem] font-black text-text-primary tracking-tight leading-[1.03] mb-4 break-words hyphens-auto">
-              Цифровые системы
-              <span className="block text-accent">для бизнеса.</span>
+            {/* Static Primary Heading */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-black text-text-primary tracking-tight leading-[1.05] mb-2 break-words hyphens-auto">
+              Цифровые системы.
             </h1>
 
-            {/* Dynamic live badge */}
-            <div className="h-8 mb-5 flex items-center">
+            {/* Large Animated Statement rotating directly under «Цифровые системы» */}
+            <div className="min-h-[56px] sm:min-h-[68px] md:min-h-[80px] mb-5 flex items-center">
               {!prefersReducedMotion ? (
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentStep.id}
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -6 }}
-                    transition={{ duration: 0.3 }}
-                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs text-accent"
+                    initial={{ opacity: 0, y: 14, filter: 'blur(4px)' }}
+                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, y: -12, filter: 'blur(4px)' }}
+                    transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+                    className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-extrabold tracking-tight text-text-primary"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                    <span>{currentStep.tag}: {currentStep.statusShort}</span>
+                    <span>{currentStep.statementPrefix} </span>
+                    <span className="text-accent font-bold">{currentStep.statementHighlight}</span>
                   </motion.div>
                 </AnimatePresence>
               ) : (
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs text-accent">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                  <span>{currentStep.tag}: {currentStep.statusShort}</span>
+                <div className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-extrabold tracking-tight text-text-primary">
+                  <span>Мы строим </span>
+                  <span className="text-accent font-bold">системы роста.</span>
                 </div>
               )}
             </div>
@@ -165,11 +177,11 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: Interactive Living System Architecture Card */}
+          {/* Right Column: Interactive Living System Architecture Card (No numbers) */}
           <div className="xl:col-span-6 min-w-0">
             <div className="rounded-2xl sm:rounded-3xl bg-bg-surface/88 backdrop-blur-md border border-border/90 shadow-2xl overflow-hidden">
               
-              {/* Header: Architecture Status */}
+              {/* Header: Architecture Live Status */}
               <div className="flex flex-wrap items-center justify-between gap-3 px-5 sm:px-7 py-4 border-b border-border/70 bg-bg-primary/50">
                 <div className="flex items-center gap-2.5 min-w-0">
                   <span className="relative flex h-2.5 w-2.5 shrink-0">
@@ -194,7 +206,7 @@ export default function Hero() {
               </div>
 
               <div className="p-5 sm:p-7">
-                {/* Interactive Steps Grid (No numbers) */}
+                {/* Connected Interactive Nodes (No numbers) */}
                 <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 relative mb-2" role="tablist" aria-label="Логика цифровой системы">
                   {systemFlowSteps.map((step, idx) => {
                     const isActive = idx === activeStepIdx || isFinalState
