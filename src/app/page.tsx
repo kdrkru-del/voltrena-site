@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     images: [siteConfig.getCanonicalUrl('/images/og-image.svg')],
   },
   robots: { index: true, follow: true },
+  other: {
+    'mailru-domain': 'DxRmBd6fQAwzmUtk',
+  },
 }
 
 export default function HomePage() {
