@@ -118,8 +118,11 @@ export default function Hero() {
               Цифровые системы.
             </h1>
 
-            {/* Large Animated Statement rotating smoothly in-place under «Цифровые системы» (Strictly fixed height + absolute positioning to completely eliminate any jumping) */}
-            <div className="relative h-12 sm:h-14 md:h-16 xl:h-20 mb-5 flex items-center overflow-hidden">
+            {/* Large Animated Statement rotating smoothly in-place under «Цифровые системы» (fixed height + absolute positioning prevents vertical jumps) */}
+            <div
+              data-testid="hero-statement-wrapper"
+              className="relative h-12 sm:h-14 md:h-16 xl:h-20 mb-5 flex items-center overflow-hidden"
+            >
               {!prefersReducedMotion ? (
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -128,15 +131,15 @@ export default function Hero() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.28, ease: 'easeInOut' }}
-                    className="absolute inset-0 flex items-center text-xl sm:text-2xl md:text-3xl xl:text-[2.35rem] 2xl:text-[2.85rem] font-extrabold tracking-tight text-text-primary whitespace-nowrap"
+                    className="absolute inset-0 flex items-center gap-x-2 text-lg sm:text-2xl md:text-3xl xl:text-[2rem] 2xl:text-[2rem] font-extrabold tracking-tight text-text-primary whitespace-nowrap"
                   >
-                    <span>{currentStep.statementPrefix} </span>
+                    <span>{currentStep.statementPrefix}</span>
                     <span className="text-accent font-bold">{currentStep.statementHighlight}</span>
                   </motion.div>
                 </AnimatePresence>
               ) : (
-                <div className="absolute inset-0 flex items-center text-xl sm:text-2xl md:text-3xl xl:text-[2.35rem] 2xl:text-[2.85rem] font-extrabold tracking-tight text-text-primary whitespace-nowrap">
-                  <span>Мы строим </span>
+                <div className="absolute inset-0 flex items-center gap-x-2 text-lg sm:text-2xl md:text-3xl xl:text-[2rem] 2xl:text-[2rem] font-extrabold tracking-tight text-text-primary whitespace-nowrap">
+                  <span>Мы строим</span>
                   <span className="text-accent font-bold">системы роста.</span>
                 </div>
               )}

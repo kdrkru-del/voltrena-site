@@ -80,6 +80,34 @@ async function run() {
         assert.equal(await page.locator('#desktop-services').isVisible(),true);
         await page.keyboard.press('Escape');assert.equal(await page.locator('#desktop-services').isVisible(),false);
       }
+      // --- Regression: Hero statement must not be clipped at any desktop viewport ---
+      if (width >= 1024) {
+        const stepNames = ['Сайт','Спрос','Продажи','Данные','Система'];
+        const expectedTexts = [
+          'Мы создаём сайты.',
+          'Мы приводим клиентов.',
+          'Мы автоматизируем продажи.',
+          'Мы связываем данные.',
+          'Мы строим системы роста.',
+        ];
+        for (let i = 0; i < stepNames.length; i++) {
+          await page.getByRole('tab',{name:stepNames[i],exact:true}).click();
+          await page.waitForTimeout(350); // allow AnimatePresence transition
+          // Verify wrapper does not clip content horizontally
+          const clipped = await page.locator('[data-testid="hero-statement-wrapper"]').evaluate(el => {
+            const inner = el.firstElementChild;
+            if (!inner) return false;
+            return inner.scrollWidth > inner.clientWidth + 1;
+          });
+          assert.equal(clipped, false, `Hero statement clipped at width=${width} step="${stepNames[i]}"`);
+          // Verify full text content is present in DOM for step Продажи
+          if (stepNames[i] === 'Продажи') {
+            const text = await page.locator('[data-testid="hero-statement-wrapper"]').textContent();
+            assert.ok(text && text.includes('Мы автоматизируем') && text.includes('продажи.'),
+              `Hero "Продажи" text missing or incomplete at width=${width}: got "${text}"`);
+          }
+        }
+      }
     }
     if(route==='/contact/' && width===390) {
       const form=page.locator('form');await form.getByRole('button',{name:'Получить конфигурацию'}).click();
