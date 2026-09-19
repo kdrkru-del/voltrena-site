@@ -57,7 +57,7 @@ const projects: SelectedProject[] = [
     tags: ['International B2B', 'Multi-page', 'Trade', 'Sourcing', 'Export'],
     goal: 'сформировать доверие и превратить сложную B2B-модель в понятный путь до коммерческого запроса.',
     image: '/images/projects/globerion.jpg',
-    accentColor: 'text-indigo-400 border-indigo-500/30 bg-indigo-500/10',
+    accentColor: 'text-mint border-mint/30 bg-mint/10',
   },
 ]
 

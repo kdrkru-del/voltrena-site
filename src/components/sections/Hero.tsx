@@ -105,7 +105,8 @@ export default function Hero() {
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <NodeNetwork className="absolute inset-0 opacity-45 sm:opacity-60 md:opacity-70" />
         <div className="absolute inset-0 bg-gradient-to-b from-bg-primary/30 via-bg-primary/70 to-bg-primary" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_55%_32%,rgba(99,102,241,0.13),transparent_48%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_60%_20%,rgba(215,255,79,0.07),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_80%,rgba(101,214,194,0.06),transparent_50%)]" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">
@@ -218,7 +219,7 @@ export default function Hero() {
                         onClick={() => handleSelectStep(idx)}
                         className={`py-3 px-2 rounded-xl text-center transition-all duration-300 relative border flex flex-col items-center justify-center min-h-[64px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                           isDirectlyActive
-                            ? 'bg-accent/20 border-accent text-text-primary shadow-[0_0_20px_rgba(99,102,241,0.25)] scale-[1.02]'
+                            ? 'bg-accent/15 border-accent text-text-primary shadow-[0_0_18px_rgba(215,255,79,0.20)] scale-[1.02]'
                             : isPast
                             ? 'bg-bg-primary/80 border-accent/30 text-text-secondary'
                             : 'bg-bg-primary/80 border-border text-text-muted hover:border-border-light hover:text-text-secondary'

@@ -3,15 +3,18 @@
 @tailwind utilities;
 
 :root {
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #12121a;
-  --bg-surface: #1a1a25;
-  --text-primary: #f0f0f5;
-  --text-secondary: #8888a0;
-  --accent: #6366f1;
-  --accent-light: #818cf8;
-  --accent-glow: rgba(99, 102, 241, 0.2);
-  --accent-glow-strong: rgba(99, 102, 241, 0.4);
+  --bg-primary: #111315;
+  --bg-secondary: #181c1d;
+  --bg-surface: #222827;
+  --text-primary: #f5f4ed;
+  --text-secondary: #c0c4bd;
+  --accent: #d7ff4f;
+  --accent-light: #e5ff82;
+  --accent-glow: rgba(215, 255, 79, 0.22);
+  --accent-glow-strong: rgba(215, 255, 79, 0.45);
+  --mint: #65d6c2;
+  --mint-glow: rgba(101, 214, 194, 0.18);
+  --border: #303936;
 }
 
 * {
@@ -34,8 +37,8 @@ body {
 
 /* Selection styling */
 ::selection {
-  background-color: rgba(99, 102, 241, 0.3);
-  color: #fff;
+  background-color: rgba(215, 255, 79, 0.28);
+  color: #111315;
 }
 
 /* Scrollbar styling */

@@ -41,7 +41,7 @@ export default function ServiceComparison({ tag, title, description, paths, conc
                   <span
                     className={cn(
                       'h-2.5 w-2.5 rounded-full',
-                      path.tone === 'accent' ? 'bg-accent shadow-[0_0_12px_rgba(99,102,241,0.7)]' : 'bg-text-muted'
+                      path.tone === 'accent' ? 'bg-accent shadow-[0_0_10px_rgba(215,255,79,0.55)]' : 'bg-text-muted'
                     )}
                     aria-hidden="true"
                   />

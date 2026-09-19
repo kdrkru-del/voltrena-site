@@ -42,7 +42,7 @@ export default function ServiceIntent({ tag, title, description, levels, note }:
 
                 <div className="mt-6 h-1 rounded-full bg-bg-primary overflow-hidden" aria-label={`Условная сила коммерческого намерения: ${level.strength}%`}>
                   <div
-                    className="h-full rounded-full bg-accent shadow-[0_0_16px_rgba(99,102,241,0.5)]"
+                    className="h-full rounded-full bg-accent shadow-[0_0_14px_rgba(215,255,79,0.40)]"
                     style={{ width: `${level.strength}%` }}
                   />
                 </div>

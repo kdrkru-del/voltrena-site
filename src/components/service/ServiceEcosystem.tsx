@@ -80,7 +80,7 @@ export default function ServiceEcosystem({
                 y2={`${item.y}%`}
                 className={cn(
                   "transition-colors duration-300",
-                  activeItem === item.id ? "stroke-accent/60" : "stroke-[rgba(99,102,241,0.15)]"
+                  activeItem === item.id ? "stroke-accent/60" : "stroke-[rgba(101,214,194,0.15)]"
                 )}
                 strokeWidth="1.5"
                 strokeDasharray="4 4"
@@ -89,7 +89,7 @@ export default function ServiceEcosystem({
           </svg>
 
           {/* Center Circle */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-bg-surface border border-accent/40 flex items-center justify-center shadow-[0_0_15px_rgba(99,102,241,0.2)]">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-bg-surface border border-accent/40 flex items-center justify-center shadow-[0_0_14px_rgba(215,255,79,0.15)]">
             <span className="px-2 text-center font-mono text-[10px] sm:text-xs text-accent animate-pulse">{centerLabel}</span>
           </div>
 

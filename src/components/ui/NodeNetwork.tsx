@@ -56,8 +56,8 @@ const CONNECTIONS: Omit<Connection, 'pulseOffset' | 'pulseSpeed'>[] = [
   { from: 'data', to: 'sales' },
 ];
 
-const ACCENT_COLOR = '#6366f1';
-const ACCENT_LIGHT = '#818cf8';
+const ACCENT_COLOR = '#d7ff4f';
+const ACCENT_LIGHT = '#65d6c2';
 
 export default function NodeNetwork({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -136,7 +136,7 @@ export default function NodeNetwork({ className }: { className?: string }) {
         ctx.beginPath();
         ctx.moveTo(fromNode.x, fromNode.y);
         ctx.lineTo(toNode.x, toNode.y);
-        ctx.strokeStyle = 'rgba(99, 102, 241, 0.12)';
+        ctx.strokeStyle = 'rgba(101, 214, 194, 0.10)';
         ctx.lineWidth = 1;
         ctx.stroke();
       });
@@ -155,8 +155,8 @@ export default function NodeNetwork({ className }: { className?: string }) {
           const py = fromNode.y + (toNode.y - fromNode.y) * pulse.progress;
 
           const gradient = ctx.createRadialGradient(px, py, 0, px, py, 6);
-          gradient.addColorStop(0, 'rgba(129, 140, 248, 0.8)');
-          gradient.addColorStop(1, 'rgba(129, 140, 248, 0)');
+          gradient.addColorStop(0, 'rgba(215, 255, 79, 0.75)');
+          gradient.addColorStop(1, 'rgba(215, 255, 79, 0)');
 
           ctx.beginPath();
           ctx.arc(px, py, 6, 0, Math.PI * 2);
@@ -178,8 +178,8 @@ export default function NodeNetwork({ className }: { className?: string }) {
           node.y + floatY,
           node.radius * 2.5
         );
-        glowGradient.addColorStop(0, 'rgba(99, 102, 241, 0.08)');
-        glowGradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
+        glowGradient.addColorStop(0, 'rgba(215, 255, 79, 0.07)');
+        glowGradient.addColorStop(1, 'rgba(215, 255, 79, 0)');
         ctx.beginPath();
         ctx.arc(node.x, node.y + floatY, node.radius * 2.5, 0, Math.PI * 2);
         ctx.fillStyle = glowGradient;
@@ -188,9 +188,9 @@ export default function NodeNetwork({ className }: { className?: string }) {
         // Node circle
         ctx.beginPath();
         ctx.arc(node.x, node.y + floatY, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(18, 18, 26, 0.9)';
+        ctx.fillStyle = 'rgba(34, 40, 39, 0.92)';
         ctx.fill();
-        ctx.strokeStyle = 'rgba(99, 102, 241, 0.3)';
+        ctx.strokeStyle = 'rgba(101, 214, 194, 0.28)';
         ctx.lineWidth = 1;
         ctx.stroke();
 

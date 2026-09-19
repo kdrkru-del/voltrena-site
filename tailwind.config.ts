@@ -10,27 +10,32 @@ const config: Config = {
     extend: {
       colors: {
         bg: {
-          primary: '#0a0a0f',
-          secondary: '#12121a',
-          surface: '#1a1a25',
-          'surface-hover': '#22222f',
+          primary: '#111315',
+          secondary: '#181c1d',
+          surface: '#222827',
+          'surface-hover': '#2d3432',
         },
         text: {
-          primary: '#f0f0f5',
-          secondary: '#8888a0',
-          muted: '#85859d',
+          primary: '#f5f4ed',
+          secondary: '#c0c4bd',
+          muted: '#a7aba4',
         },
         accent: {
-          DEFAULT: '#6366f1',
-          light: '#818cf8',
-          dark: '#4f46e5',
-          glow: 'rgba(99, 102, 241, 0.2)',
-          'glow-strong': 'rgba(99, 102, 241, 0.4)',
+          DEFAULT: '#d7ff4f',
+          light: '#e5ff82',
+          dark: '#b9df32',
+          glow: 'rgba(215, 255, 79, 0.22)',
+          'glow-strong': 'rgba(215, 255, 79, 0.45)',
+        },
+        mint: {
+          DEFAULT: '#65d6c2',
+          muted: '#3f8f86',
+          glow: 'rgba(101, 214, 194, 0.18)',
         },
         border: {
-          DEFAULT: 'rgba(255, 255, 255, 0.05)',
-          light: 'rgba(255, 255, 255, 0.1)',
-          accent: 'rgba(99, 102, 241, 0.3)',
+          DEFAULT: '#303936',
+          light: '#46514b',
+          accent: 'rgba(215, 255, 79, 0.45)',
         },
       },
       fontFamily: {

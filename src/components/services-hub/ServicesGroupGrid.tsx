@@ -63,7 +63,7 @@ const serviceGroups: ServiceGroup[] = [
     tag: 'CONVERT',
     title: 'Интерфейсы и конверсия',
     desc: 'Создаём посадочные страницы, корпоративные сайты и приложения внутри Telegram.',
-    badgeColor: 'border-indigo-500/30 bg-indigo-500/10 text-indigo-400',
+    badgeColor: 'border-mint/30 bg-mint/10 text-mint',
     services: [
       {
         id: 'web-development',

@@ -5,7 +5,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal'
 
 const stages = [
   { label: 'Трафик и Клики', value: '100%', sub: 'Показы объявлений, переходы из Директа, SEO и Telegram', color: 'bg-accent/30 border-accent/40' },
-  { label: 'Посещения сайта', value: 'Поведение', sub: 'Изучение предложения, просмотр цен, кейсов и условий', color: 'bg-indigo-500/30 border-indigo-500/40' },
+  { label: 'Посещения сайта', value: 'Поведение', sub: 'Изучение предложения, просмотр цен, кейсов и условий', color: 'bg-mint/30 border-mint/40' },
   { label: 'Первичные заявки', value: 'Конверсия', sub: 'Заполнение формы, звонок или запуск Telegram-бота', color: 'bg-blue-500/30 border-blue-500/40' },
   { label: 'Квалифицированные лиды', value: 'Качество', sub: 'Проверка соответствия профилю клиента в CRM', color: 'bg-cyan-500/30 border-cyan-500/40' },
   { label: 'Сделки и Оплата', value: 'Выручка', sub: 'Закрытие сделки, поступление денег на расчётный счёт', color: 'bg-emerald-500/30 border-emerald-500/40' },

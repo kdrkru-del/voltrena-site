@@ -31,7 +31,7 @@ export default function ServiceClicksVsSales() {
               const Icon = step.icon
               return (
                 <ScrollReveal key={step.title} delay={i * 80}>
-                  <div className={`h-full p-5 rounded-2xl bg-bg-surface border flex flex-col justify-between relative transition-all duration-300 ${step.isTarget ? 'border-accent shadow-[0_0_20px_rgba(99,102,241,0.15)] bg-gradient-to-b from-bg-surface to-accent/5' : 'border-border hover:border-accent/40'}`}>
+                  <div className={`h-full p-5 rounded-2xl bg-bg-surface border flex flex-col justify-between relative transition-all duration-300 ${step.isTarget ? 'border-accent shadow-[0_0_20px_rgba(215,255,79,0.12)] bg-gradient-to-b from-bg-surface to-accent/5' : 'border-border hover:border-accent/40'}`}>
                     <div>
                       <div className={`p-3 rounded-xl inline-flex mb-4 ${step.isTarget ? 'bg-accent text-bg-primary font-bold' : 'bg-bg-primary text-accent border border-border'}`}>
                         <Icon className="w-5 h-5" />
