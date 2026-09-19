@@ -41,7 +41,7 @@ export default function ServiceComparison({ tag, title, description, paths, conc
                   <span
                     className={cn(
                       'h-2.5 w-2.5 rounded-full',
-                      path.tone === 'accent' ? 'bg-accent shadow-[0_0_8px_rgba(200,239,75,0.45)]' : 'bg-text-muted'
+                      path.tone === 'accent' ? 'bg-accent shadow-[0_0_8px_rgba(62,119,120,0.30)]' : 'bg-text-muted'
                     )}
                     aria-hidden="true"
                   />
@@ -51,7 +51,7 @@ export default function ServiceComparison({ tag, title, description, paths, conc
                 <div className="flex flex-col">
                   {path.steps.map((step, index) => (
                     <React.Fragment key={`${path.id}-${index}`}>
-                      <div className="rounded-xl border border-border bg-bg-primary/70 px-4 py-4 text-sm md:text-base text-text-primary">
+                      <div className="rounded-xl border border-border bg-bg-surface px-4 py-4 text-sm md:text-base text-text-primary">
                         {step}
                       </div>
                       {index < path.steps.length - 1 && (

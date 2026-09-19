@@ -121,7 +121,7 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
         <h3 className="text-xl font-bold text-text-primary mb-2">Запрос принят</h3>
         <p className="text-text-secondary text-sm leading-relaxed max-w-md mb-6">Мы получили контекст задачи, изучим его и свяжемся с вами, чтобы предложить подходящую конфигурацию.</p>
         <div className="flex flex-wrap items-center justify-center gap-3">
-          <a href={siteConfig.telegramUrl} target="_blank" rel="noopener noreferrer" onClick={() => reachGoal('contact_telegram_click', { origin: 'form_success' })} className="inline-flex items-center min-h-[44px] gap-2 px-4 py-2 rounded-lg bg-accent/15 border border-accent/30 text-accent hover:bg-accent/25 text-xs font-mono transition-colors">
+          <a href={siteConfig.telegramUrl} target="_blank" rel="noopener noreferrer" onClick={() => reachGoal('contact_telegram_click', { origin: 'form_success' })} className="inline-flex items-center min-h-[44px] gap-2 px-4 py-2 rounded-lg bg-accent/10 border border-accent/30 text-accent hover:bg-accent/20 text-xs font-mono transition-colors">
             <Send className="w-3.5 h-3.5" aria-hidden="true" /><span>Написать в Telegram</span>
           </a>
           <a href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={() => reachGoal('contact_whatsapp_click', { origin: 'form_success' })} className="inline-flex items-center min-h-[44px] gap-2 px-4 py-2 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/25 text-xs font-mono transition-colors">
@@ -146,19 +146,19 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
       )}
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor={`${formId}-name`} className="text-xs font-mono text-text-secondary">Ваше имя <span className="text-accent">*</span></label>
+        <label htmlFor={`${formId}-name`} className="text-xs font-mono text-text-secondary">Ваше имя <span className="text-cta">*</span></label>
         <input type="text" id={`${formId}-name`} required maxLength={120} autoComplete="name" aria-invalid={!!errors.name} aria-describedby={errors.name ? `${formId}-name-error` : undefined} name="name" placeholder="Алексей" value={formData.name} onChange={handleChange} disabled={formState === 'loading'} className={cn('w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/22 transition-[color,background-color,border-color,box-shadow] text-sm', errors.name && 'border-red-400 focus:border-red-400')} />
         {errors.name && <span id={`${formId}-name-error`} className="text-xs text-red-400">{errors.name}</span>}
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor={`${formId}-contact`} className="text-xs font-mono text-text-secondary">Телефон, Telegram или Email <span className="text-accent">*</span></label>
+        <label htmlFor={`${formId}-contact`} className="text-xs font-mono text-text-secondary">Телефон, Telegram или Email <span className="text-cta">*</span></label>
         <input type="text" id={`${formId}-contact`} required maxLength={180} autoComplete="email" aria-invalid={!!errors.contact} aria-describedby={errors.contact ? `${formId}-contact-error` : undefined} name="contact" placeholder="+7 (999) 000-00-00 или @username" value={formData.contact} onChange={handleChange} disabled={formState === 'loading'} className={cn('w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/22 transition-[color,background-color,border-color,box-shadow] text-sm', errors.contact && 'border-red-400 focus:border-red-400')} />
         {errors.contact && <span id={`${formId}-contact-error`} className="text-xs text-red-400">{errors.contact}</span>}
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor={`${formId}-message`} className="text-xs font-mono text-text-secondary">Бизнес-задача <span className="text-accent">*</span></label>
+        <label htmlFor={`${formId}-message`} className="text-xs font-mono text-text-secondary">Бизнес-задача <span className="text-cta">*</span></label>
         <textarea id={`${formId}-message`} required maxLength={3000} aria-invalid={!!errors.message} aria-describedby={errors.message ? `${formId}-message-error` : undefined} name="message" placeholder="Например: нужны целевые заявки, B2B-клиенты или автоматизация обработки обращений..." rows={3} value={formData.message} onChange={handleChange} disabled={formState === 'loading'} className={cn('w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/22 transition-[color,background-color,border-color,box-shadow] text-sm resize-none', errors.message && 'border-red-400 focus:border-red-400')} />
         {errors.message && <span id={`${formId}-message-error`} className="text-xs text-red-400">{errors.message}</span>}
       </div>

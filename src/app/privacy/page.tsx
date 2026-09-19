@@ -31,7 +31,7 @@ export default function PrivacyPage() {
           Политика конфиденциальности и обработки персональных данных
         </h1>
 
-        <div className="prose prose-invert max-w-none space-y-8 text-text-secondary text-sm sm:text-base leading-relaxed">
+        <div className="prose max-w-none space-y-8 text-text-secondary text-sm sm:text-base leading-relaxed">
           
           <div>
             <h2 className="text-xl font-bold text-text-primary mb-3">

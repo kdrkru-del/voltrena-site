@@ -30,7 +30,7 @@ const serviceGroups: ServiceGroup[] = [
     tag: 'ATTRACT',
     title: 'Привлечение клиентов',
     desc: 'Находим целевой спрос и конвертируем его в первичные обращения.',
-    badgeColor: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400',
+    badgeColor: 'border-accent/30 bg-accent/10 text-accent',
     services: [
       {
         id: 'yandex-direct',
@@ -63,7 +63,7 @@ const serviceGroups: ServiceGroup[] = [
     tag: 'CONVERT',
     title: 'Интерфейсы и конверсия',
     desc: 'Создаём посадочные страницы, корпоративные сайты и приложения внутри Telegram.',
-    badgeColor: 'border-mint/30 bg-mint/10 text-mint',
+    badgeColor: 'border-cta/30 bg-cta/10 text-cta',
     services: [
       {
         id: 'web-development',
@@ -88,7 +88,7 @@ const serviceGroups: ServiceGroup[] = [
     tag: 'AUTOMATE',
     title: 'Автоматизация процессов',
     desc: 'Убираем ручные операции, ускоряем ответ лидам и наводим порядок в воронке продаж.',
-    badgeColor: 'border-warm/30 bg-warm/10 text-warm',
+    badgeColor: 'border-accent/30 bg-accent/10 text-accent',
     services: [
       {
         id: 'ai-automation',
@@ -113,7 +113,7 @@ const serviceGroups: ServiceGroup[] = [
     tag: 'DATA',
     title: 'Данные и управление',
     desc: 'Собираем внешние данные рынка и сводим сквозные показатели в единые дашборды.',
-    badgeColor: 'border-mint/30 bg-mint/10 text-mint',
+    badgeColor: 'border-cta/30 bg-cta/10 text-cta',
     services: [
       {
         id: 'web-scraping',
@@ -153,9 +153,14 @@ export default function ServicesGroupGrid() {
               {/* Group Header */}
               <ScrollReveal delay={gi * 60}>
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-6 pb-3 border-b border-border/80 gap-2">
-                  <h2 className="text-xl sm:text-2xl font-bold text-text-primary">
-                    {group.title}
-                  </h2>
+                  <div className="flex items-center gap-3">
+                    <span className={`text-[10px] font-mono font-bold tracking-wider px-2 py-0.5 rounded border ${group.badgeColor}`}>
+                      {group.tag}
+                    </span>
+                    <h2 className="text-xl sm:text-2xl font-bold text-text-primary">
+                      {group.title}
+                    </h2>
+                  </div>
                   <p className="text-text-secondary text-xs sm:text-sm max-w-md">
                     {group.desc}
                   </p>
@@ -166,7 +171,7 @@ export default function ServicesGroupGrid() {
               <div className={`grid grid-cols-1 md:grid-cols-2 ${group.services.length === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-2'} gap-5`}>
                 {group.services.map((service, si) => (
                   <ScrollReveal key={service.id} delay={si * 70}>
-                    <div className="h-full p-5 sm:p-6 rounded-xl bg-bg-surface/80 border border-border/80 hover:border-accent/50 transition-all flex flex-col justify-between group">
+                    <div className="h-full p-5 sm:p-6 rounded-xl bg-bg-surface border border-border hover:border-accent transition-all duration-200 flex flex-col justify-between group shadow-sm">
                       <div>
                         {/* Title */}
                         <h3 className="text-xl font-bold text-text-primary group-hover:text-accent transition-colors mb-3">

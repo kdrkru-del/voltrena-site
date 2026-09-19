@@ -18,15 +18,15 @@ interface ButtonProps {
 const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
   ({ variant = 'primary', size = 'default', href, children, className, onClick, type = 'button', disabled }, ref) => {
     const baseStyles =
-      'inline-flex items-center justify-center font-medium min-h-[44px] transition-[color,background-color,border-color,box-shadow] duration-300 rounded-lg relative overflow-hidden group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary disabled:opacity-50 disabled:cursor-not-allowed';
+      'inline-flex items-center justify-center font-medium min-h-[44px] transition-[color,background-color,border-color,box-shadow] duration-300 rounded-lg relative overflow-hidden group focus:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary disabled:opacity-50 disabled:cursor-not-allowed';
 
     const variants = {
       primary:
-        'bg-accent text-bg-primary font-semibold hover:bg-accent-light active:bg-accent-dark shadow-md shadow-accent/15 hover:shadow-accent/25',
+        'bg-cta text-[#FFFDF8] font-semibold hover:bg-cta-light active:bg-cta-dark shadow-sm shadow-cta/20 hover:shadow-md hover:shadow-cta/30',
       secondary:
         'bg-transparent text-text-primary border border-border-light hover:border-accent hover:bg-bg-surface-hover',
       ghost:
-        'bg-transparent text-text-secondary hover:text-accent hover:bg-bg-surface',
+        'bg-transparent text-text-secondary hover:text-accent hover:bg-bg-surface-hover',
     };
 
     const sizes = {

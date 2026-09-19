@@ -105,8 +105,8 @@ export default function Hero() {
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <NodeNetwork className="absolute inset-0 opacity-32 sm:opacity-42 md:opacity-48" />
         <div className="absolute inset-0 bg-gradient-to-b from-bg-primary/30 via-bg-primary/70 to-bg-primary" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_60%_20%,rgba(200,239,75,0.05),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_80%,rgba(101,205,184,0.04),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_60%_20%,rgba(62,119,120,0.06),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_80%,rgba(201,133,77,0.05),transparent_50%)]" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">
@@ -164,7 +164,7 @@ export default function Hero() {
                 <Link
                   key={product.id}
                   href={`/solutions/${product.slug}/`}
-                  className="group min-w-0 flex items-center justify-between gap-3 rounded-xl border border-border/80 bg-bg-surface/65 px-4 py-3 hover:border-accent/40 hover:bg-bg-surface transition-colors min-h-[52px]"
+                  className="group min-w-0 flex items-center justify-between gap-3 rounded-xl border border-border bg-bg-surface px-4 py-3 hover:border-accent hover:bg-bg-surface-hover transition-colors min-h-[52px] shadow-sm"
                 >
                   <span className="min-w-0 text-sm font-semibold text-text-primary leading-tight break-words">
                     {product.title}
@@ -177,10 +177,10 @@ export default function Hero() {
 
           {/* Right Column: Interactive Living System Architecture Card (No numbers) */}
           <div className="xl:col-span-6 min-w-0">
-            <div className="rounded-2xl sm:rounded-3xl bg-bg-surface/88 backdrop-blur-md border border-border/90 shadow-2xl overflow-hidden">
+            <div className="rounded-2xl sm:rounded-3xl bg-bg-surface border border-border shadow-xl overflow-hidden">
               
               {/* Header: Architecture Live Status */}
-              <div className="flex flex-wrap items-center justify-between gap-3 px-5 sm:px-7 py-4 border-b border-border/70 bg-bg-primary/50">
+              <div className="flex flex-wrap items-center justify-between gap-3 px-5 sm:px-7 py-4 border-b border-border bg-bg-secondary/60">
                 <div className="flex items-center gap-2.5 min-w-0">
                   <span className="relative flex h-2.5 w-2.5 shrink-0">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
@@ -219,10 +219,10 @@ export default function Hero() {
                         onClick={() => handleSelectStep(idx)}
                         className={`py-3 px-2 rounded-xl text-center transition-all duration-300 relative border flex flex-col items-center justify-center min-h-[64px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                           isDirectlyActive
-                            ? 'bg-accent/15 border-accent text-text-primary shadow-[0_0_16px_rgba(200,239,75,0.18)] scale-[1.02]'
+                            ? 'bg-accent/10 border-accent text-accent font-bold shadow-sm scale-[1.02]'
                             : isPast
-                            ? 'bg-bg-primary/80 border-accent/30 text-text-secondary'
-                            : 'bg-bg-primary/80 border-border text-text-muted hover:border-border-light hover:text-text-secondary'
+                            ? 'bg-bg-surface border-accent/40 text-text-secondary'
+                            : 'bg-bg-surface border-border text-text-muted hover:border-border-light hover:text-text-secondary'
                         }`}
                       >
                         <span className="text-xs sm:text-[13px] font-semibold block leading-tight break-words hyphens-auto text-center px-0.5">
@@ -242,9 +242,9 @@ export default function Hero() {
                 </div>
 
                 {/* Connecting Progress Line */}
-                <div className="w-full bg-bg-primary h-1.5 rounded-full mb-6 overflow-hidden relative border border-border/40">
+                <div className="w-full bg-bg-secondary h-1.5 rounded-full mb-6 overflow-hidden relative border border-border/40">
                   <div
-                    className="h-full bg-gradient-to-r from-accent/80 via-accent to-accent-light transition-all duration-500 rounded-full"
+                    className="h-full bg-gradient-to-r from-accent via-accent-light to-cta transition-all duration-500 rounded-full"
                     style={{
                       width: isFinalState
                         ? '100%'
@@ -254,12 +254,12 @@ export default function Hero() {
                 </div>
 
                 {/* Dynamic Active Step Details Card */}
-                <div className="rounded-2xl bg-bg-primary border border-accent/25 p-5 sm:p-6 mb-4 transition-all duration-300 relative overflow-hidden min-h-[152px] sm:min-h-[140px] flex flex-col justify-center">
+                <div className="rounded-2xl bg-bg-primary/70 border border-border p-5 sm:p-6 mb-4 transition-all duration-300 relative overflow-hidden min-h-[152px] sm:min-h-[140px] flex flex-col justify-center">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 blur-2xl pointer-events-none" />
 
                   <div className="flex items-center justify-end mb-3">
                     <span className="text-xs text-text-muted flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent" />
                       {isFinalState ? 'Система синхронизирована' : 'Событие активно'}
                     </span>
                   </div>
@@ -283,8 +283,8 @@ export default function Hero() {
                     'Получить конфигурацию',
                     'Запустить первую очередь',
                   ].map((label) => (
-                    <div key={label} className="rounded-xl bg-bg-primary/70 border border-border/80 px-4 py-3 min-w-0">
-                      <div className="w-2 h-2 rounded-full bg-accent mb-2" />
+                    <div key={label} className="rounded-xl bg-bg-surface border border-border px-4 py-3 min-w-0 shadow-sm">
+                      <div className="w-2 h-2 rounded-full bg-cta mb-2" />
                       <span className="text-xs sm:text-sm font-semibold text-text-secondary break-words">{label}</span>
                     </div>
                   ))}

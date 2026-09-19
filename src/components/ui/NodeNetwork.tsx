@@ -56,9 +56,9 @@ const CONNECTIONS: Omit<Connection, 'pulseOffset' | 'pulseSpeed'>[] = [
   { from: 'data', to: 'sales' },
 ];
 
-const ACCENT_COLOR = '#C8EF4B';
-const ACCENT_LIGHT = '#DFFF78';
-const MINT_COLOR = '#65CDB8';
+const ACCENT_COLOR = '#3E7778';
+const ACCENT_LIGHT = '#5A9692';
+const CTA_COLOR = '#C9854D';
 
 export default function NodeNetwork({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -137,7 +137,7 @@ export default function NodeNetwork({ className }: { className?: string }) {
         ctx.beginPath();
         ctx.moveTo(fromNode.x, fromNode.y);
         ctx.lineTo(toNode.x, toNode.y);
-        ctx.strokeStyle = 'rgba(101, 205, 184, 0.07)';
+        ctx.strokeStyle = 'rgba(142, 170, 165, 0.28)';
         ctx.lineWidth = 1;
         ctx.stroke();
       });
@@ -155,12 +155,12 @@ export default function NodeNetwork({ className }: { className?: string }) {
           const px = fromNode.x + (toNode.x - fromNode.x) * pulse.progress;
           const py = fromNode.y + (toNode.y - fromNode.y) * pulse.progress;
 
-          const gradient = ctx.createRadialGradient(px, py, 0, px, py, 6);
-          gradient.addColorStop(0, 'rgba(200, 239, 75, 0.55)');
-          gradient.addColorStop(1, 'rgba(200, 239, 75, 0)');
+          const gradient = ctx.createRadialGradient(px, py, 0, px, py, 5);
+          gradient.addColorStop(0, 'rgba(201, 133, 77, 0.60)');
+          gradient.addColorStop(1, 'rgba(201, 133, 77, 0)');
 
           ctx.beginPath();
-          ctx.arc(px, py, 6, 0, Math.PI * 2);
+          ctx.arc(px, py, 5, 0, Math.PI * 2);
           ctx.fillStyle = gradient;
           ctx.fill();
         });
@@ -169,35 +169,38 @@ export default function NodeNetwork({ className }: { className?: string }) {
       // Draw nodes
       nodesRef.current.forEach((node) => {
         const floatY = prefersReducedMotion ? 0 : Math.sin(time * 0.001 + node.baseX * 0.01) * 3;
+        const isHighlight = node.id === 'website' || node.id === 'sales' || node.id === 'crm' || node.id === 'data';
 
-        // Glow
-        const glowGradient = ctx.createRadialGradient(
-          node.x,
-          node.y + floatY,
-          0,
-          node.x,
-          node.y + floatY,
-          node.radius * 2.5
-        );
-        glowGradient.addColorStop(0, 'rgba(200, 239, 75, 0.05)');
-        glowGradient.addColorStop(1, 'rgba(200, 239, 75, 0)');
-        ctx.beginPath();
-        ctx.arc(node.x, node.y + floatY, node.radius * 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = glowGradient;
-        ctx.fill();
+        // Subtle glow for active nodes only
+        if (isHighlight) {
+          const glowGradient = ctx.createRadialGradient(
+            node.x,
+            node.y + floatY,
+            0,
+            node.x,
+            node.y + floatY,
+            node.radius * 2.2
+          );
+          glowGradient.addColorStop(0, 'rgba(62, 119, 120, 0.08)');
+          glowGradient.addColorStop(1, 'rgba(62, 119, 120, 0)');
+          ctx.beginPath();
+          ctx.arc(node.x, node.y + floatY, node.radius * 2.2, 0, Math.PI * 2);
+          ctx.fillStyle = glowGradient;
+          ctx.fill();
+        }
 
         // Node circle
         ctx.beginPath();
         ctx.arc(node.x, node.y + floatY, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(34, 40, 39, 0.92)';
+        ctx.fillStyle = '#FFFDF8';
         ctx.fill();
-        ctx.strokeStyle = 'rgba(101, 205, 184, 0.20)';
-        ctx.lineWidth = 1;
+        ctx.strokeStyle = isHighlight ? ACCENT_COLOR : '#C3D1CC';
+        ctx.lineWidth = isHighlight ? 1.5 : 1;
         ctx.stroke();
 
         // Label
         ctx.font = '10px JetBrains Mono, monospace';
-        ctx.fillStyle = MINT_COLOR;
+        ctx.fillStyle = isHighlight ? ACCENT_COLOR : '#5D686A';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(node.label, node.x, node.y + floatY);

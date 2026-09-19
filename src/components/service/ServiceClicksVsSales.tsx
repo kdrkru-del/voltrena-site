@@ -31,16 +31,16 @@ export default function ServiceClicksVsSales() {
               const Icon = step.icon
               return (
                 <ScrollReveal key={step.title} delay={i * 80}>
-                  <div className={`h-full p-5 rounded-2xl bg-bg-surface border flex flex-col justify-between relative transition-all duration-300 ${step.isTarget ? 'border-accent shadow-[0_0_18px_rgba(200,239,75,0.12)] bg-gradient-to-b from-bg-surface to-accent/5' : 'border-border hover:border-accent/40'}`}>
+                  <div className={`h-full p-5 rounded-2xl bg-bg-surface border flex flex-col justify-between relative transition-all duration-300 ${step.isTarget ? 'border-cta shadow-[0_0_18px_rgba(201,133,77,0.15)] bg-gradient-to-b from-bg-surface to-cta/5' : 'border-border hover:border-accent/40'}`}>
                     <div>
-                      <div className={`p-3 rounded-xl inline-flex mb-4 ${step.isTarget ? 'bg-accent text-bg-primary font-bold' : 'bg-bg-primary text-accent border border-border'}`}>
+                      <div className={`p-3 rounded-xl inline-flex mb-4 ${step.isTarget ? 'bg-cta text-[#FFFDF8] font-bold' : 'bg-bg-primary text-accent border border-border'}`}>
                         <Icon className="w-5 h-5" />
                       </div>
                       <h3 className="text-lg font-bold text-text-primary mb-1">{step.title}</h3>
                       <p className="text-xs text-text-secondary leading-relaxed mb-4">{step.subtitle}</p>
                     </div>
                     <div className="pt-3 border-t border-border/50">
-                      <span className="text-xs font-mono font-semibold text-accent">{step.note}</span>
+                      <span className={`text-xs font-mono font-semibold ${step.isTarget ? 'text-cta' : 'text-accent'}`}>{step.note}</span>
                     </div>
                   </div>
                 </ScrollReveal>
@@ -50,7 +50,7 @@ export default function ServiceClicksVsSales() {
 
           <ScrollReveal delay={400}>
             <div className="mt-16 max-w-2xl mx-auto text-center">
-              <h2 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent to-blue-400">
+              <h2 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent to-cta">
                 Чем глубже аналитика, тем точнее управленческие решения.
               </h2>
             </div>

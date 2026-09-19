@@ -34,7 +34,7 @@ export default function ServiceCycle({ tag, title, description, steps, conclusio
 
           <div className="mt-7 flex items-center justify-center gap-3 text-accent" aria-hidden="true">
             <span className="h-px w-14 bg-accent/30" />
-            <span className="h-3 w-3 rounded-full bg-accent animate-pulse-slow shadow-[0_0_12px_rgba(200,239,75,0.45)]" />
+            <span className="h-3 w-3 rounded-full bg-cta animate-pulse-slow shadow-[0_0_12px_rgba(201,133,77,0.30)]" />
             <span className="h-px w-14 bg-accent/30" />
           </div>
         </div>

@@ -44,7 +44,7 @@ const teamMembers = [
 
 export default function HomeTeamTrust() {
   return (
-    <section className="py-20 md:py-28 bg-bg-secondary relative overflow-hidden border-t border-border/40">
+    <section className="py-20 md:py-28 bg-bg-primary relative overflow-hidden border-t border-border/40">
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
         <ScrollReveal>
           <SectionHeading

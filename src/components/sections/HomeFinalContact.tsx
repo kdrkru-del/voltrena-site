@@ -7,7 +7,7 @@ import { Send, MessageCircle, Mail } from 'lucide-react'
 
 export default function HomeFinalContact() {
   return (
-    <section id="contact" className="py-20 md:py-28 bg-bg-primary relative overflow-hidden border-t border-border/40 scroll-mt-24">
+    <section id="contact" className="py-20 md:py-28 bg-bg-secondary relative overflow-hidden border-t border-border/40 scroll-mt-24">
       <div aria-hidden="true" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] aspect-square bg-accent/6 blur-[160px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-6xl">
@@ -22,17 +22,17 @@ export default function HomeFinalContact() {
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-bg-surface border border-accent/30 shadow-xl flex flex-col justify-between gap-3 group hover:border-accent/60 transition-colors">
+            <div className="p-5 rounded-2xl bg-bg-surface border border-cta/30 shadow-md flex flex-col justify-between gap-3 group hover:border-cta/60 transition-colors">
               <div className="flex items-center gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-accent/15 border border-accent/30 flex items-center justify-center text-accent shrink-0 group-hover:scale-105 transition-transform">
+                <div className="w-10 h-10 rounded-xl bg-cta/15 border border-cta/30 flex items-center justify-center text-cta shrink-0 group-hover:scale-105 transition-transform">
                   <Send className="w-5 h-5 fill-current" aria-hidden="true" />
                 </div>
                 <div>
-                  <span className="text-[11px] font-mono text-accent font-semibold uppercase tracking-wider block">Быстрый запрос</span>
+                  <span className="text-[11px] font-mono text-cta font-semibold uppercase tracking-wider block">Быстрый запрос</span>
                   <h3 className="text-lg font-bold text-text-primary">Telegram</h3>
                 </div>
               </div>
-              <a href={siteConfig.telegramUrl} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-accent text-white font-semibold text-sm hover:bg-accent-light transition-colors shadow-md shadow-accent/20 min-h-[44px] group/btn">
+              <a href={siteConfig.telegramUrl} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-cta text-[#FFFDF8] font-semibold text-sm hover:bg-cta-light transition-colors shadow-sm shadow-cta/20 min-h-[44px] group/btn">
                 <span>Запросить конфигурацию</span>
                 <Send className="w-4 h-4 fill-current group-hover/btn:translate-x-0.5 transition-transform" aria-hidden="true" />
               </a>

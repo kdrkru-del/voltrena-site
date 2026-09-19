@@ -96,7 +96,7 @@ export default function Header() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-colors duration-500',
         scrolled
-          ? 'py-3 bg-bg-primary/80 backdrop-blur-xl border-b border-border'
+          ? 'py-3 bg-bg-primary/95 backdrop-blur-xl border-b border-border shadow-sm'
           : 'py-5 bg-transparent'
       )}
     >
@@ -131,7 +131,7 @@ export default function Header() {
                     aria-controls="desktop-services"
                     className={cn(
                       'min-h-[44px] inline-flex items-center text-sm transition-colors duration-200 relative group flex items-center gap-1',
-                      isActive ? 'text-accent font-medium' : 'text-text-secondary hover:text-accent-light'
+                      isActive ? 'text-accent font-medium' : 'text-text-secondary hover:text-accent'
                     )}
                     aria-expanded={servicesOpen}
 
@@ -152,7 +152,7 @@ export default function Header() {
                     id="desktop-services"
                     hidden={!servicesOpen}
                     className={cn(
-                      'absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[420px] bg-bg-surface/98 backdrop-blur-xl border border-border rounded-2xl overflow-hidden shadow-2xl transition-[opacity,transform,color,background-color,border-color] duration-300',
+                      'absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[420px] bg-bg-surface border border-border rounded-2xl overflow-hidden shadow-xl transition-[opacity,transform,color,background-color,border-color] duration-300',
                       servicesOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none -translate-y-2'
                     )}
                   >
@@ -201,7 +201,7 @@ export default function Header() {
                 href={link.href}
                 className={cn(
                   'min-h-[44px] inline-flex items-center text-sm transition-colors duration-200 relative group',
-                  isActive ? 'text-accent font-medium' : 'text-text-secondary hover:text-accent-light'
+                  isActive ? 'text-accent font-medium' : 'text-text-secondary hover:text-accent'
                 )}
               >
                 {link.label}
