@@ -56,8 +56,9 @@ const CONNECTIONS: Omit<Connection, 'pulseOffset' | 'pulseSpeed'>[] = [
   { from: 'data', to: 'sales' },
 ];
 
-const ACCENT_COLOR = '#d7ff4f';
-const ACCENT_LIGHT = '#65d6c2';
+const ACCENT_COLOR = '#C8EF4B';
+const ACCENT_LIGHT = '#DFFF78';
+const MINT_COLOR = '#65CDB8';
 
 export default function NodeNetwork({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -136,7 +137,7 @@ export default function NodeNetwork({ className }: { className?: string }) {
         ctx.beginPath();
         ctx.moveTo(fromNode.x, fromNode.y);
         ctx.lineTo(toNode.x, toNode.y);
-        ctx.strokeStyle = 'rgba(101, 214, 194, 0.10)';
+        ctx.strokeStyle = 'rgba(101, 205, 184, 0.07)';
         ctx.lineWidth = 1;
         ctx.stroke();
       });
@@ -155,8 +156,8 @@ export default function NodeNetwork({ className }: { className?: string }) {
           const py = fromNode.y + (toNode.y - fromNode.y) * pulse.progress;
 
           const gradient = ctx.createRadialGradient(px, py, 0, px, py, 6);
-          gradient.addColorStop(0, 'rgba(215, 255, 79, 0.75)');
-          gradient.addColorStop(1, 'rgba(215, 255, 79, 0)');
+          gradient.addColorStop(0, 'rgba(200, 239, 75, 0.55)');
+          gradient.addColorStop(1, 'rgba(200, 239, 75, 0)');
 
           ctx.beginPath();
           ctx.arc(px, py, 6, 0, Math.PI * 2);
@@ -178,8 +179,8 @@ export default function NodeNetwork({ className }: { className?: string }) {
           node.y + floatY,
           node.radius * 2.5
         );
-        glowGradient.addColorStop(0, 'rgba(215, 255, 79, 0.07)');
-        glowGradient.addColorStop(1, 'rgba(215, 255, 79, 0)');
+        glowGradient.addColorStop(0, 'rgba(200, 239, 75, 0.05)');
+        glowGradient.addColorStop(1, 'rgba(200, 239, 75, 0)');
         ctx.beginPath();
         ctx.arc(node.x, node.y + floatY, node.radius * 2.5, 0, Math.PI * 2);
         ctx.fillStyle = glowGradient;
@@ -190,13 +191,13 @@ export default function NodeNetwork({ className }: { className?: string }) {
         ctx.arc(node.x, node.y + floatY, node.radius, 0, Math.PI * 2);
         ctx.fillStyle = 'rgba(34, 40, 39, 0.92)';
         ctx.fill();
-        ctx.strokeStyle = 'rgba(101, 214, 194, 0.28)';
+        ctx.strokeStyle = 'rgba(101, 205, 184, 0.20)';
         ctx.lineWidth = 1;
         ctx.stroke();
 
         // Label
         ctx.font = '10px JetBrains Mono, monospace';
-        ctx.fillStyle = ACCENT_LIGHT;
+        ctx.fillStyle = MINT_COLOR;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(node.label, node.x, node.y + floatY);

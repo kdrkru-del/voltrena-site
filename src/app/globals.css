@@ -4,17 +4,25 @@
 
 :root {
   --bg-primary: #111315;
-  --bg-secondary: #181c1d;
+  --bg-secondary: #181C1D;
   --bg-surface: #222827;
-  --text-primary: #f5f4ed;
-  --text-secondary: #c0c4bd;
-  --accent: #d7ff4f;
-  --accent-light: #e5ff82;
-  --accent-glow: rgba(215, 255, 79, 0.22);
-  --accent-glow-strong: rgba(215, 255, 79, 0.45);
-  --mint: #65d6c2;
-  --mint-glow: rgba(101, 214, 194, 0.18);
+  --bg-surface-hover: #2D3432;
+  --text-primary: #F2EFE6;
+  --text-secondary: #BCC0B7;
+  --text-muted: #929A91;
+  --accent: #C8EF4B;
+  --accent-light: #DFFF78;
+  --accent-dark: #A9D438;
+  --accent-glow: rgba(200, 239, 75, 0.18);
+  --accent-glow-strong: rgba(200, 239, 75, 0.35);
+  --mint: #65CDB8;
+  --mint-muted: #3F8F82;
+  --mint-glow: rgba(101, 205, 184, 0.14);
+  --warm: #E3A94B;
+  --warm-muted: #9E7735;
+  --warm-glow: rgba(227, 169, 75, 0.12);
   --border: #303936;
+  --border-light: #46514B;
 }
 
 * {
@@ -37,7 +45,7 @@ body {
 
 /* Selection styling */
 ::selection {
-  background-color: rgba(215, 255, 79, 0.28);
+  background-color: rgba(200, 239, 75, 0.25);
   color: #111315;
 }
 

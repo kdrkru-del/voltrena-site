@@ -88,7 +88,7 @@ const serviceGroups: ServiceGroup[] = [
     tag: 'AUTOMATE',
     title: 'Автоматизация процессов',
     desc: 'Убираем ручные операции, ускоряем ответ лидам и наводим порядок в воронке продаж.',
-    badgeColor: 'border-amber-500/30 bg-amber-500/10 text-amber-400',
+    badgeColor: 'border-warm/30 bg-warm/10 text-warm',
     services: [
       {
         id: 'ai-automation',
@@ -113,7 +113,7 @@ const serviceGroups: ServiceGroup[] = [
     tag: 'DATA',
     title: 'Данные и управление',
     desc: 'Собираем внешние данные рынка и сводим сквозные показатели в единые дашборды.',
-    badgeColor: 'border-cyan-500/30 bg-cyan-500/10 text-cyan-400',
+    badgeColor: 'border-mint/30 bg-mint/10 text-mint',
     services: [
       {
         id: 'web-scraping',

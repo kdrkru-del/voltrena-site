@@ -131,7 +131,7 @@ export default function Header() {
                     aria-controls="desktop-services"
                     className={cn(
                       'min-h-[44px] inline-flex items-center text-sm transition-colors duration-200 relative group flex items-center gap-1',
-                      isActive ? 'text-text-primary' : 'text-text-secondary hover:text-text-primary'
+                      isActive ? 'text-accent font-medium' : 'text-text-secondary hover:text-accent-light'
                     )}
                     aria-expanded={servicesOpen}
 
@@ -152,7 +152,7 @@ export default function Header() {
                     id="desktop-services"
                     hidden={!servicesOpen}
                     className={cn(
-                      'absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[420px] bg-bg-primary/95 backdrop-blur-xl border border-border rounded-2xl overflow-hidden shadow-2xl transition-[opacity,transform,color,background-color,border-color] duration-300',
+                      'absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[420px] bg-bg-surface/98 backdrop-blur-xl border border-border rounded-2xl overflow-hidden shadow-2xl transition-[opacity,transform,color,background-color,border-color] duration-300',
                       servicesOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none -translate-y-2'
                     )}
                   >
@@ -166,7 +166,7 @@ export default function Header() {
                             'flex flex-col gap-0.5 px-4 py-3 rounded-xl transition-[opacity,transform,color,background-color,border-color] duration-200 group',
                             pathname === service.href
                               ? 'bg-accent/10 text-text-primary'
-                              : 'hover:bg-bg-surface text-text-secondary hover:text-text-primary'
+                              : 'hover:bg-bg-surface-hover text-text-secondary hover:text-text-primary'
                           )}
                         >
                           <span className="text-sm font-medium text-text-primary group-hover:text-accent transition-colors">
@@ -201,7 +201,7 @@ export default function Header() {
                 href={link.href}
                 className={cn(
                   'min-h-[44px] inline-flex items-center text-sm transition-colors duration-200 relative group',
-                  isActive ? 'text-text-primary' : 'text-text-secondary hover:text-text-primary'
+                  isActive ? 'text-accent font-medium' : 'text-text-secondary hover:text-accent-light'
                 )}
               >
                 {link.label}
@@ -257,6 +257,7 @@ export default function Header() {
           <nav className="flex flex-col gap-1" role="navigation" aria-label="Mobile navigation">
             {navigationLinks.map((link) => {
               const isServices = link.href === '/services';
+              const isActive = pathname === link.href || pathname.startsWith(link.href + '/');
 
               if (isServices) {
                 return (
@@ -265,7 +266,10 @@ export default function Header() {
                       onClick={() => setMobileServicesOpen((v) => !v)}
                       aria-expanded={mobileServicesOpen}
                       aria-controls="mobile-services"
-                      className="w-full flex items-center justify-between py-4 text-xl font-medium text-text-primary border-b border-border"
+                      className={cn(
+                        'w-full flex items-center justify-between py-4 text-xl font-medium border-b border-border',
+                        isActive ? 'text-accent' : 'text-text-primary'
+                      )}
                     >
                       {link.label}
                       <svg
@@ -283,7 +287,10 @@ export default function Header() {
                             key={service.href}
                             href={service.href}
                             onClick={() => setMobileOpen(false)}
-                            className="py-2.5 text-base text-text-secondary hover:text-accent transition-colors"
+                            className={cn(
+                              'py-2.5 text-base transition-colors',
+                              pathname === service.href ? 'text-accent font-medium' : 'text-text-secondary hover:text-accent'
+                            )}
                           >
                             {service.label}
                           </Link>
@@ -299,7 +306,10 @@ export default function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="py-4 text-xl font-medium text-text-primary hover:text-accent transition-colors border-b border-border"
+                  className={cn(
+                    'py-4 text-xl font-medium hover:text-accent transition-colors border-b border-border',
+                    isActive ? 'text-accent' : 'text-text-primary'
+                  )}
                 >
                   {link.label}
                 </Link>

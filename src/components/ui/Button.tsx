@@ -22,9 +22,9 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
 
     const variants = {
       primary:
-        'bg-accent text-bg-primary font-semibold hover:bg-accent-light shadow-lg shadow-accent/15 hover:shadow-accent/30',
+        'bg-accent text-bg-primary font-semibold hover:bg-accent-light active:bg-accent-dark shadow-md shadow-accent/15 hover:shadow-accent/25',
       secondary:
-        'bg-transparent text-text-primary border border-border-light hover:border-accent/60 hover:bg-bg-surface',
+        'bg-transparent text-text-primary border border-border-light hover:border-accent hover:bg-bg-surface-hover',
       ghost:
         'bg-transparent text-text-secondary hover:text-accent hover:bg-bg-surface',
     };
