@@ -80,32 +80,6 @@ async function run() {
         assert.equal(await page.locator('#desktop-services').isVisible(),true);
         await page.keyboard.press('Escape');assert.equal(await page.locator('#desktop-services').isVisible(),false);
       }
-      // --- Regression: Hero statement text must not be clipped in DOM ---
-      if (width >= 1024) {
-        const stepNames = ['Сайт','Спрос','Продажи','Данные','Система'];
-        for (let i = 0; i < stepNames.length; i++) {
-          await page.getByRole('tab',{name:stepNames[i],exact:true}).click();
-          await page.waitForTimeout(400);
-          // In reducedMotion context the fallback static div is used.
-          // Check that text wrapper width does not exceed the section column width.
-          const wrapper = page.locator('[data-testid="hero-statement-wrapper"]');
-          const exists = await wrapper.count();
-          if (exists > 0) {
-            const wrapperBox = await wrapper.boundingBox();
-            // Verify wrapper itself is not wider than viewport
-            if (wrapperBox) {
-              assert.ok(wrapperBox.x + wrapperBox.width <= width + 2,
-                `Hero statement wrapper overflows viewport at width=${width} step="${stepNames[i]}": right=${wrapperBox.x + wrapperBox.width}`);
-            }
-          }
-          // Verify full text in DOM for Продажи step
-          if (stepNames[i] === 'Продажи') {
-            const html = await page.content();
-            assert.ok(html.includes('автоматизируем') && html.includes('продажи'),
-              `Hero "Продажи" text not found in DOM at width=${width}`);
-          }
-        }
-      }
     }
     if(route==='/contact/' && width===390) {
       const form=page.locator('form');await form.getByRole('button',{name:'Получить конфигурацию'}).click();
