@@ -249,9 +249,7 @@ export default function HomeProblemNavigator() {
                   >
                     <div>
                       <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-[10px] font-mono text-[#5A9692] font-semibold">
-                          0{idx + 1}
-                        </span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#5A9692]" />
                         {idx < 3 && (
                           <ArrowRight className="hidden lg:block w-3.5 h-3.5 text-[#3E7778]/60 absolute -right-3 top-1/2 -translate-y-1/2 z-10" />
                         )}

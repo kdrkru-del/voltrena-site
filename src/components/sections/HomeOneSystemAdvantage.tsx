@@ -95,7 +95,7 @@ export default function HomeOneSystemAdvantage() {
                 {/* Node 1 */}
                 <div className="p-4 rounded-xl bg-[#0D1012] border border-[#3E7778]/50 relative">
                   <div className="text-[10px] font-mono text-[#5A9692] uppercase tracking-wider mb-1">
-                    Шаг 01 · Спрос
+                    Спрос и аудитория
                   </div>
                   <div className="text-sm font-bold text-[#F2EFE6] mb-2">
                     Яндекс Директ / B2B
@@ -111,7 +111,7 @@ export default function HomeOneSystemAdvantage() {
                 {/* Node 2 */}
                 <div className="p-4 rounded-xl bg-[#0D1012] border border-[#3E7778]/50 relative">
                   <div className="text-[10px] font-mono text-[#5A9692] uppercase tracking-wider mb-1">
-                    Шаг 02 · Сайт
+                    Посадочный сценарий
                   </div>
                   <div className="text-sm font-bold text-[#F2EFE6] mb-2">
                     Конверсионный сайт
@@ -127,7 +127,7 @@ export default function HomeOneSystemAdvantage() {
                 {/* Node 3 */}
                 <div className="p-4 rounded-xl bg-[#0D1012] border border-[#3E7778]/50 relative">
                   <div className="text-[10px] font-mono text-[#5A9692] uppercase tracking-wider mb-1">
-                    Шаг 03 · CRM & AI
+                    CRM и маршрутизация
                   </div>
                   <div className="text-sm font-bold text-[#F2EFE6] mb-2">
                     amoCRM / Битрикс24
@@ -143,7 +143,7 @@ export default function HomeOneSystemAdvantage() {
                 {/* Node 4 */}
                 <div className="p-4 rounded-xl bg-[#0D1012] border border-[#3E7778]/50 relative">
                   <div className="text-[10px] font-mono text-[#5A9692] uppercase tracking-wider mb-1">
-                    Шаг 04 · Аналитика
+                    Сквозной ROMI
                   </div>
                   <div className="text-sm font-bold text-[#F2EFE6] mb-2">
                     Сквозная аналитика
@@ -189,7 +189,7 @@ export default function HomeOneSystemAdvantage() {
                 {/* Node 1 */}
                 <div className="p-4 rounded-xl bg-[#181212] border border-[#E06C6C]/40 relative">
                   <div className="text-[10px] font-mono text-[#E06C6C] uppercase tracking-wider mb-1">
-                    Подрядчик 1 · Трафик
+                    Трафик
                   </div>
                   <div className="text-sm font-bold text-[#F2EFE6] mb-2">
                     Директолог
@@ -205,7 +205,7 @@ export default function HomeOneSystemAdvantage() {
                 {/* Node 2 */}
                 <div className="p-4 rounded-xl bg-[#181212] border border-[#E06C6C]/40 relative">
                   <div className="text-[10px] font-mono text-[#E06C6C] uppercase tracking-wider mb-1">
-                    Подрядчик 2 · Разработка
+                    Разработка
                   </div>
                   <div className="text-sm font-bold text-[#F2EFE6] mb-2">
                     Веб-студия
@@ -221,7 +221,7 @@ export default function HomeOneSystemAdvantage() {
                 {/* Node 3 */}
                 <div className="p-4 rounded-xl bg-[#181212] border border-[#E06C6C]/40 relative">
                   <div className="text-[10px] font-mono text-[#E06C6C] uppercase tracking-wider mb-1">
-                    Подрядчик 3 · Внедрение CRM
+                    Интеграция CRM
                   </div>
                   <div className="text-sm font-bold text-[#F2EFE6] mb-2">
                     Интегратор CRM
@@ -237,7 +237,7 @@ export default function HomeOneSystemAdvantage() {
                 {/* Node 4 */}
                 <div className="p-4 rounded-xl bg-[#181212] border border-[#E06C6C]/40 relative">
                   <div className="text-[10px] font-mono text-[#E06C6C] uppercase tracking-wider mb-1">
-                    Бизнес вслепую
+                    Слепая зона
                   </div>
                   <div className="text-sm font-bold text-[#F2EFE6] mb-2">
                     Аналитика не сходится

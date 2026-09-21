@@ -55,7 +55,6 @@ async function run() {
     if (route==='/') {
       await page.getByRole('heading',{level:1,name:/Цифровые системы|От первого клика до сделки/}).waitFor();
       await page.getByRole('link',{name:/Подобрать систему|Выбрать систему/}).first().waitFor();
-      assert.equal(await page.getByText('Интерактивная архитектура',{exact:true}).count(),1);
       for (const name of ['Система привлечения клиентов','Система B2B-продаж','Квалификация и обработка заявок','Автоматизация операционных процессов','Мониторинг рынка и данных']) {
         assert.ok(await page.getByRole('link',{name:new RegExp(name)}).count() >= 1);
       }

@@ -167,9 +167,7 @@ export default function ProofSection() {
                       <div key={step.source} className="relative">
                         <div className="flex items-center justify-between p-3 rounded-lg bg-[#14181A] border border-[#232B2D]/80">
                           <div className="flex items-center gap-3">
-                            <span className="w-6 h-6 rounded-md bg-[#3E7778]/20 border border-[#3E7778]/40 flex items-center justify-center text-[10px] font-mono text-[#5A9692] font-bold shrink-0">
-                              0{index + 1}
-                            </span>
+                            <span className="w-2 h-2 rounded-full bg-[#5A9692] shrink-0" />
                             <div>
                               <div className="text-xs font-bold text-[#F2EFE6]">
                                 {step.source}

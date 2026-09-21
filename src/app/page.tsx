@@ -4,7 +4,7 @@ import Hero from '@/components/sections/Hero'
 import MarqueeStrip from '@/components/ui/MarqueeStrip'
 import HomeProblemNavigator from '@/components/sections/HomeProblemNavigator'
 import ProofSection from '@/components/cases/ProofSection'
-import HomeSolutionsShowcase from '@/components/sections/HomeSolutionsShowcase'
+import DigitalGrowthContours from '@/components/sections/DigitalGrowthContours'
 import HomeOneSystemAdvantage from '@/components/sections/HomeOneSystemAdvantage'
 import HomeTechnologyBuildingBlocks from '@/components/sections/HomeTechnologyBuildingBlocks'
 import HomeTeamTrust from '@/components/sections/HomeTeamTrust'
@@ -44,7 +44,7 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
       <Hero />
       <MarqueeStrip />
-      <HomeSolutionsShowcase />
+      <DigitalGrowthContours />
       <ProofSection />
       <HomeProblemNavigator />
       <HomeOneSystemAdvantage />

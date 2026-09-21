@@ -1,10 +1,49 @@
 'use client';
 
-import { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
-import { useIsMobile } from '@/hooks/useMediaQuery';
 
-interface Node {
+interface NodeDef {
+  id: string;
+  label: string;
+  relX: number;
+  relY: number;
+  mobileRelX: number;
+  mobileRelY: number;
+  isMobileOnly?: boolean;
+  isDesktopOnly?: boolean;
+}
+
+interface ConnectionDef {
+  from: string;
+  to: string;
+  connectionLabel?: string;
+}
+
+const NODES: NodeDef[] = [
+  { id: 'demand', label: 'СПРОС', relX: 0.18, relY: 0.22, mobileRelX: 0.82, mobileRelY: 0.18 },
+  { id: 'ads', label: 'РЕКЛАМА', relX: 0.10, relY: 0.68, mobileRelX: 0.86, mobileRelY: 0.36 },
+  { id: 'site', label: 'САЙТ', relX: 0.38, relY: 0.42, mobileRelX: 0.78, mobileRelY: 0.52 },
+  { id: 'crm', label: 'CRM', relX: 0.58, relY: 0.26, mobileRelX: 0.84, mobileRelY: 0.68 },
+  { id: 'sales', label: 'ПРОДАЖИ', relX: 0.84, relY: 0.28, mobileRelX: 0.80, mobileRelY: 0.84 },
+  { id: 'auto', label: 'АВТОМАТИЗАЦИЯ', relX: 0.66, relY: 0.68, mobileRelX: 0.50, mobileRelY: 0.88, isDesktopOnly: true },
+  { id: 'data', label: 'ДАННЫЕ', relX: 0.88, relY: 0.62, mobileRelX: 0.65, mobileRelY: 0.90, isDesktopOnly: true },
+  { id: 'analytics', label: 'АНАЛИТИКА', relX: 0.40, relY: 0.82, mobileRelX: 0.25, mobileRelY: 0.85, isDesktopOnly: true },
+];
+
+const CONNECTIONS: ConnectionDef[] = [
+  { from: 'demand', to: 'site', connectionLabel: 'B2B-поиск' },
+  { from: 'ads', to: 'site', connectionLabel: 'UTM-трафик' },
+  { from: 'site', to: 'crm', connectionLabel: 'Заявка 0.8с' },
+  { from: 'crm', to: 'sales', connectionLabel: 'Лид менеджеру' },
+  { from: 'crm', to: 'auto', connectionLabel: 'Сценарии' },
+  { from: 'sales', to: 'data', connectionLabel: 'Выручка' },
+  { from: 'auto', to: 'data', connectionLabel: 'Документы' },
+  { from: 'data', to: 'analytics', connectionLabel: 'Сквозной ROMI' },
+  { from: 'analytics', to: 'ads', connectionLabel: 'Оптимизация' },
+];
+
+interface CanvasNode {
   id: string;
   label: string;
   x: number;
@@ -12,277 +51,246 @@ interface Node {
   baseX: number;
   baseY: number;
   radius: number;
-  color: string;
+  driftPhase: number;
+  driftSpeed: number;
 }
-
-interface Connection {
-  from: string;
-  to: string;
-  pulseOffset: number;
-  pulseSpeed: number;
-}
-
-interface DataPulse {
-  connection: Connection;
-  progress: number;
-  speed: number;
-  active: boolean;
-}
-
-const NODE_DEFINITIONS = [
-  { id: 'ads', label: 'ADS', relX: 0.12, relY: 0.25 },
-  { id: 'search', label: 'SEARCH', relX: 0.08, relY: 0.55 },
-  { id: 'seo', label: 'SEO', relX: 0.18, relY: 0.75 },
-  { id: 'b2b', label: 'B2B', relX: 0.15, relY: 0.42 },
-  { id: 'website', label: 'WEBSITE', relX: 0.38, relY: 0.48 },
-  { id: 'ai', label: 'AI', relX: 0.55, relY: 0.38 },
-  { id: 'bot', label: 'BOT', relX: 0.52, relY: 0.65 },
-  { id: 'crm', label: 'CRM', relX: 0.7, relY: 0.5 },
-  { id: 'data', label: 'DATA', relX: 0.82, relY: 0.35 },
-  { id: 'sales', label: 'SALES', relX: 0.88, relY: 0.6 },
-];
-
-const CONNECTIONS: Omit<Connection, 'pulseOffset' | 'pulseSpeed'>[] = [
-  { from: 'ads', to: 'website' },
-  { from: 'search', to: 'website' },
-  { from: 'seo', to: 'website' },
-  { from: 'b2b', to: 'website' },
-  { from: 'website', to: 'ai' },
-  { from: 'website', to: 'bot' },
-  { from: 'ai', to: 'crm' },
-  { from: 'bot', to: 'crm' },
-  { from: 'crm', to: 'data' },
-  { from: 'crm', to: 'sales' },
-  { from: 'data', to: 'sales' },
-];
-
-const ACCENT_COLOR = '#3E7778';
-const ACCENT_LIGHT = '#5A9692';
-const CTA_COLOR = '#C9854D';
 
 export default function NodeNetwork({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>(0);
-  const nodesRef = useRef<Node[]>([]);
-  const connectionsRef = useRef<Connection[]>([]);
-  const pulsesRef = useRef<DataPulse[]>([]);
-  const mouseRef = useRef({ x: -1000, y: -1000 });
-  const timeRef = useRef(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const animFrameId = useRef<number>(0);
+  const nodesRef = useRef<CanvasNode[]>([]);
+  const mouseRef = useRef({ x: -2000, y: -2000 });
+  const hoveredNodeIdRef = useRef<string | null>(null);
+  const isVisibleRef = useRef<boolean>(true);
   const prefersReducedMotion = useReducedMotion();
-  const isMobile = useIsMobile();
 
-  const initNodes = useCallback((width: number, height: number) => {
-    nodesRef.current = NODE_DEFINITIONS.map((def) => ({
-      id: def.id,
-      label: def.label,
-      x: def.relX * width,
-      y: def.relY * height,
-      baseX: def.relX * width,
-      baseY: def.relY * height,
-      radius: def.id === 'website' || def.id === 'crm' ? 28 : 22,
-      color: ACCENT_COLOR,
-    }));
+  const initNodes = useCallback((width: number, height: number, isMobile: boolean) => {
+    const activeDefs = NODES.filter((n) => (isMobile ? !n.isDesktopOnly : !n.isMobileOnly));
 
-    connectionsRef.current = CONNECTIONS.map((conn, i) => ({
-      ...conn,
-      pulseOffset: i * 0.3,
-      pulseSpeed: 0.003 + Math.random() * 0.002,
-    }));
+    nodesRef.current = activeDefs.map((def, idx) => {
+      const targetRelX = isMobile ? def.mobileRelX : def.relX;
+      const targetRelY = isMobile ? def.mobileRelY : def.relY;
+      const x = targetRelX * width;
+      const y = targetRelY * height;
 
-    pulsesRef.current = connectionsRef.current.map((conn) => ({
-      connection: conn,
-      progress: Math.random(),
-      speed: conn.pulseSpeed,
-      active: true,
-    }));
+      return {
+        id: def.id,
+        label: def.label,
+        x,
+        y,
+        baseX: x,
+        baseY: y,
+        radius: isMobile ? 3 : 4,
+        driftPhase: idx * 1.3,
+        driftSpeed: 0.0004 + (idx % 3) * 0.00015,
+      };
+    });
   }, []);
-
-  const getNodeById = useCallback((id: string): Node | undefined => {
-    return nodesRef.current.find((n) => n.id === id);
-  }, []);
-
-  const draw = useCallback(
-    (ctx: CanvasRenderingContext2D, width: number, height: number) => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      ctx.clearRect(0, 0, width * dpr, height * dpr);
-      ctx.save();
-      ctx.scale(dpr, dpr);
-
-      const time = timeRef.current;
-
-      // Update node positions (cursor interaction)
-      if (!isMobile) {
-        nodesRef.current.forEach((node) => {
-          const dx = mouseRef.current.x - node.baseX;
-          const dy = mouseRef.current.y - node.baseY;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          const maxDist = 250;
-          if (dist < maxDist) {
-            const force = (1 - dist / maxDist) * 15;
-            node.x = node.baseX - (dx / dist) * force;
-            node.y = node.baseY - (dy / dist) * force;
-          } else {
-            node.x += (node.baseX - node.x) * 0.05;
-            node.y += (node.baseY - node.y) * 0.05;
-          }
-        });
-      }
-
-      // Draw connections
-      connectionsRef.current.forEach((conn) => {
-        const fromNode = getNodeById(conn.from);
-        const toNode = getNodeById(conn.to);
-        if (!fromNode || !toNode) return;
-
-        ctx.beginPath();
-        ctx.moveTo(fromNode.x, fromNode.y);
-        ctx.lineTo(toNode.x, toNode.y);
-        ctx.strokeStyle = 'rgba(142, 170, 165, 0.28)';
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      });
-
-      // Draw data pulses
-      if (!prefersReducedMotion) {
-        pulsesRef.current.forEach((pulse) => {
-          pulse.progress += pulse.speed;
-          if (pulse.progress > 1) pulse.progress = 0;
-
-          const fromNode = getNodeById(pulse.connection.from);
-          const toNode = getNodeById(pulse.connection.to);
-          if (!fromNode || !toNode) return;
-
-          const px = fromNode.x + (toNode.x - fromNode.x) * pulse.progress;
-          const py = fromNode.y + (toNode.y - fromNode.y) * pulse.progress;
-
-          const gradient = ctx.createRadialGradient(px, py, 0, px, py, 5);
-          gradient.addColorStop(0, 'rgba(201, 133, 77, 0.60)');
-          gradient.addColorStop(1, 'rgba(201, 133, 77, 0)');
-
-          ctx.beginPath();
-          ctx.arc(px, py, 5, 0, Math.PI * 2);
-          ctx.fillStyle = gradient;
-          ctx.fill();
-        });
-      }
-
-      // Draw nodes
-      nodesRef.current.forEach((node) => {
-        const floatY = prefersReducedMotion ? 0 : Math.sin(time * 0.001 + node.baseX * 0.01) * 3;
-        const isHighlight = node.id === 'website' || node.id === 'sales' || node.id === 'crm' || node.id === 'data';
-
-        // Subtle glow for active nodes only
-        if (isHighlight) {
-          const glowGradient = ctx.createRadialGradient(
-            node.x,
-            node.y + floatY,
-            0,
-            node.x,
-            node.y + floatY,
-            node.radius * 2.2
-          );
-          glowGradient.addColorStop(0, 'rgba(62, 119, 120, 0.08)');
-          glowGradient.addColorStop(1, 'rgba(62, 119, 120, 0)');
-          ctx.beginPath();
-          ctx.arc(node.x, node.y + floatY, node.radius * 2.2, 0, Math.PI * 2);
-          ctx.fillStyle = glowGradient;
-          ctx.fill();
-        }
-
-        // Node circle
-        ctx.beginPath();
-        ctx.arc(node.x, node.y + floatY, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = '#FFFDF8';
-        ctx.fill();
-        ctx.strokeStyle = isHighlight ? ACCENT_COLOR : '#C3D1CC';
-        ctx.lineWidth = isHighlight ? 1.5 : 1;
-        ctx.stroke();
-
-        // Label
-        ctx.font = '10px JetBrains Mono, monospace';
-        ctx.fillStyle = isHighlight ? ACCENT_COLOR : '#5D686A';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(node.label, node.x, node.y + floatY);
-      });
-
-      ctx.restore();
-    },
-    [getNodeById, isMobile, prefersReducedMotion]
-  );
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    let width = 0;
+    let height = 0;
+
     const resize = () => {
-      const rect = canvas.parentElement?.getBoundingClientRect();
-      if (!rect) return;
-
+      const rect = container.getBoundingClientRect();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      canvas.style.width = `${rect.width}px`;
-      canvas.style.height = `${rect.height}px`;
+      width = rect.width;
+      height = rect.height;
 
-      initNodes(rect.width, rect.height);
-      if (prefersReducedMotion) draw(ctx, rect.width, rect.height);
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+
+      initNodes(width, height, width < 768);
     };
 
     resize();
 
-    let resizeTimer: ReturnType<typeof setTimeout>;
-    const debouncedResize = () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(resize, 100);
-    };
-    window.addEventListener('resize', debouncedResize);
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(container);
 
-    const handleMouse = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
+    const intersectionObserver = new IntersectionObserver(([entry]) => {
+      isVisibleRef.current = entry.isIntersecting;
+    });
+    intersectionObserver.observe(container);
+
+    const onMouseMove = (e: MouseEvent) => {
+      const rect = container.getBoundingClientRect();
       mouseRef.current = {
         x: e.clientX - rect.left,
         y: e.clientY - rect.top,
       };
     };
 
-    if (!isMobile) {
-      canvas.addEventListener('mousemove', handleMouse, { passive: true });
+    const onMouseLeave = () => {
+      mouseRef.current = { x: -2000, y: -2000 };
+      hoveredNodeIdRef.current = null;
+    };
+
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    container.addEventListener('mouseleave', onMouseLeave);
+
+    let lastTime = performance.now();
+
+    const draw = (currentTime: number) => {
+      if (!isVisibleRef.current) {
+        animFrameId.current = requestAnimationFrame(draw);
+        return;
+      }
+
+      ctx.clearRect(0, 0, width, height);
+
+      const mouse = mouseRef.current;
+      const nodes = nodesRef.current;
+      const nodeMap = new Map(nodes.map((n) => [n.id, n]));
+
+      // Check nearest hovered node
+      let nearestNode: CanvasNode | null = null;
+      let minDistance = 75; // hover trigger radius
+
+      for (const node of nodes) {
+        if (!prefersReducedMotion) {
+          // Slow organic drift
+          const t = currentTime * node.driftSpeed + node.driftPhase;
+          node.x = node.baseX + Math.sin(t) * 12;
+          node.y = node.baseY + Math.cos(t * 0.8) * 8;
+        }
+
+        const dx = mouse.x - node.x;
+        const dy = mouse.y - node.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < minDistance) {
+          nearestNode = node;
+          minDistance = dist;
+        }
+      }
+
+      hoveredNodeIdRef.current = nearestNode ? nearestNode.id : null;
+      const activeId = hoveredNodeIdRef.current;
+
+      // Draw Connections
+      for (const conn of CONNECTIONS) {
+        const fromNode = nodeMap.get(conn.from);
+        const toNode = nodeMap.get(conn.to);
+        if (!fromNode || !toNode) continue;
+
+        const isRelatedToHover = activeId === fromNode.id || activeId === toNode.id;
+
+        ctx.beginPath();
+        ctx.moveTo(fromNode.x, fromNode.y);
+        ctx.lineTo(toNode.x, toNode.y);
+
+        if (isRelatedToHover) {
+          ctx.strokeStyle = 'rgba(100, 141, 139, 0.65)';
+          ctx.lineWidth = 1.5;
+        } else {
+          ctx.strokeStyle = 'rgba(100, 141, 139, 0.18)';
+          ctx.lineWidth = 1;
+        }
+
+        ctx.stroke();
+
+        // If related to active node, draw subtle label in middle of line
+        if (isRelatedToHover && conn.connectionLabel && width > 640) {
+          const midX = (fromNode.x + toNode.x) / 2;
+          const midY = (fromNode.y + toNode.y) / 2;
+
+          ctx.font = '9px monospace';
+          ctx.fillStyle = '#D3C6A4';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'bottom';
+          ctx.fillText(conn.connectionLabel, midX, midY - 3);
+        }
+
+        // Slow data packet pulse along line
+        if (!prefersReducedMotion) {
+          const pulseSpeed = 0.00025;
+          const pulseProgress = ((currentTime * pulseSpeed + fromNode.baseX * 0.01) % 1);
+          const px = fromNode.x + (toNode.x - fromNode.x) * pulseProgress;
+          const py = fromNode.y + (toNode.y - fromNode.y) * pulseProgress;
+
+          ctx.beginPath();
+          ctx.arc(px, py, 1.5, 0, Math.PI * 2);
+          ctx.fillStyle = isRelatedToHover ? '#D3C6A4' : 'rgba(100, 141, 139, 0.4)';
+          ctx.fill();
+        }
+      }
+
+      // Draw Nodes
+      for (const node of nodes) {
+        const isHovered = activeId === node.id;
+
+        // Outer glow on hover
+        if (isHovered) {
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, 14, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(211, 198, 164, 0.12)';
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, 7, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(211, 198, 164, 0.25)';
+          ctx.fill();
+        }
+
+        // Main node core
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, isHovered ? 4.5 : node.radius, 0, Math.PI * 2);
+        ctx.fillStyle = isHovered ? '#D3C6A4' : 'rgba(211, 198, 164, 0.35)';
+        ctx.fill();
+
+        ctx.strokeStyle = isHovered ? '#D3C6A4' : 'rgba(100, 141, 139, 0.45)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // Node Label
+        ctx.font = '10px monospace';
+        ctx.fillStyle = isHovered ? '#F2EFE6' : '#737B77';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(node.label, node.x + (isHovered ? 9 : 8), node.y);
+      }
+
+      if (!prefersReducedMotion) {
+        animFrameId.current = requestAnimationFrame(draw);
+      }
+    };
+
+    if (prefersReducedMotion) {
+      draw(0);
+    } else {
+      animFrameId.current = requestAnimationFrame(draw);
     }
 
-    const animate = (timestamp: number) => {
-      timeRef.current = timestamp;
-      const rect = canvas.parentElement?.getBoundingClientRect();
-      if (rect) {
-        draw(ctx, rect.width, rect.height);
-      }
-      animationRef.current = requestAnimationFrame(animate);
-    };
-
-    if (!prefersReducedMotion) animationRef.current = requestAnimationFrame(animate);
-
     return () => {
-      cancelAnimationFrame(animationRef.current);
-      clearTimeout(resizeTimer);
-      window.removeEventListener('resize', debouncedResize);
-      canvas.removeEventListener('mousemove', handleMouse);
+      cancelAnimationFrame(animFrameId.current);
+      resizeObserver.disconnect();
+      intersectionObserver.disconnect();
+      window.removeEventListener('mousemove', onMouseMove);
+      container.removeEventListener('mouseleave', onMouseLeave);
     };
-  }, [draw, initNodes, isMobile, prefersReducedMotion]);
-
-  if (isMobile && prefersReducedMotion) {
-    return null;
-  }
+  }, [initNodes, prefersReducedMotion]);
 
   return (
-    <div className={className} aria-hidden="true">
-      <canvas
-        ref={canvasRef}
-        className="w-full h-full"
-        style={{ display: 'block' }}
-      />
+    <div
+      ref={containerRef}
+      className={`absolute inset-0 pointer-events-auto overflow-hidden ${className || ''}`}
+      aria-hidden="true"
+    >
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full block" />
     </div>
   );
 }

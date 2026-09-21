@@ -94,20 +94,20 @@ export default function Header() {
     <>
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-colors duration-500',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         scrolled
-          ? 'py-3 bg-bg-primary/95 backdrop-blur-xl border-b border-border shadow-sm'
-          : 'py-5 bg-transparent'
+          ? 'py-3.5 bg-[#111315]/90 backdrop-blur-md border-b border-[#2B3330]/60 shadow-sm'
+          : 'py-6 bg-transparent border-b border-transparent'
       )}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
-          <span className="text-xl font-bold text-text-primary tracking-tight">
+          <span className="text-xl font-bold text-[#F2EFE6] tracking-tight group-hover:text-[#D3C6A4] transition-colors">
             VOLTRENA
           </span>
           <span className={cn(
-            'text-xs font-mono text-text-secondary tracking-wider transition-opacity duration-300',
+            'text-xs font-mono text-[#737B77] tracking-wider transition-opacity duration-300',
             scrolled ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'
           )}>
             Digital
@@ -131,10 +131,9 @@ export default function Header() {
                     aria-controls="desktop-services"
                     className={cn(
                       'min-h-[44px] inline-flex items-center text-sm transition-colors duration-200 relative group flex items-center gap-1',
-                      isActive ? 'text-accent font-medium' : 'text-text-secondary hover:text-accent'
+                      isActive ? 'text-[#D3C6A4] font-medium' : 'text-[#A8ADA8] hover:text-[#D3C6A4]'
                     )}
                     aria-expanded={servicesOpen}
-
                   >
                     {link.label}
                     <svg
@@ -144,7 +143,7 @@ export default function Header() {
                     >
                       <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-[width] duration-300" />
+                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#D3C6A4] group-hover:w-full transition-[width] duration-300" />
                   </button>
 
                   {/* Dropdown */}
@@ -152,7 +151,7 @@ export default function Header() {
                     id="desktop-services"
                     hidden={!servicesOpen}
                     className={cn(
-                      'absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[420px] bg-bg-surface border border-border rounded-2xl overflow-hidden shadow-xl transition-[opacity,transform,color,background-color,border-color] duration-300',
+                      'absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[420px] bg-[#14181A] border border-[#2B3330] rounded-xl overflow-hidden shadow-2xl transition-[opacity,transform,color,background-color,border-color] duration-300',
                       servicesOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none -translate-y-2'
                     )}
                   >
@@ -163,26 +162,26 @@ export default function Header() {
                           href={service.href}
                           onClick={() => setServicesOpen(false)}
                           className={cn(
-                            'flex flex-col gap-0.5 px-4 py-3 rounded-xl transition-[opacity,transform,color,background-color,border-color] duration-200 group',
+                            'flex flex-col gap-0.5 px-4 py-3 rounded-lg transition-colors duration-200 group',
                             pathname === service.href
-                              ? 'bg-accent/10 text-text-primary'
-                              : 'hover:bg-bg-surface-hover text-text-secondary hover:text-text-primary'
+                              ? 'bg-[#1D211F] text-[#D3C6A4]'
+                              : 'hover:bg-[#1D211F] text-[#A8ADA8] hover:text-[#F2EFE6]'
                           )}
                         >
-                          <span className="text-sm font-medium text-text-primary group-hover:text-accent transition-colors">
+                          <span className="text-sm font-medium text-[#F2EFE6] group-hover:text-[#D3C6A4] transition-colors">
                             {service.label}
                           </span>
                           {service.description && (
-                            <span className="text-xs text-text-muted">{service.description}</span>
+                            <span className="text-xs text-[#737B77]">{service.description}</span>
                           )}
                         </Link>
                       ))}
                     </div>
-                    <div className="border-t border-border p-3">
+                    <div className="border-t border-[#2B3330] p-3 bg-[#111315]/50">
                       <Link
                         href="/services"
                         onClick={() => setServicesOpen(false)}
-                        className="flex items-center justify-center gap-2 text-xs font-mono text-accent hover:text-accent-light transition-colors min-h-[44px] py-1"
+                        className="flex items-center justify-center gap-2 text-xs font-mono text-[#D3C6A4] hover:text-[#F2EFE6] transition-colors min-h-[44px] py-1"
                       >
                         Все услуги
                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -201,11 +200,11 @@ export default function Header() {
                 href={link.href}
                 className={cn(
                   'min-h-[44px] inline-flex items-center text-sm transition-colors duration-200 relative group',
-                  isActive ? 'text-accent font-medium' : 'text-text-secondary hover:text-accent'
+                  isActive ? 'text-[#D3C6A4] font-medium' : 'text-[#A8ADA8] hover:text-[#D3C6A4]'
                 )}
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-[width] duration-300" />
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#D3C6A4] group-hover:w-full transition-[width] duration-300" />
               </Link>
             );
           })}
@@ -229,13 +228,13 @@ export default function Header() {
         >
           <span
             className={cn(
-              'w-6 h-px bg-text-primary transition-transform duration-300',
+              'w-6 h-px bg-[#F2EFE6] transition-transform duration-300',
               mobileOpen && 'rotate-45 translate-y-[4px]'
             )}
           />
           <span
             className={cn(
-              'w-6 h-px bg-text-primary transition-transform duration-300',
+              'w-6 h-px bg-[#F2EFE6] transition-transform duration-300',
               mobileOpen && '-rotate-45 -translate-y-[3px]'
             )}
           />
@@ -249,7 +248,7 @@ export default function Header() {
         ref={menuRef}
         hidden={!mobileOpen}
         className={cn(
-          'lg:hidden fixed inset-0 z-40 bg-bg-primary/[0.98] backdrop-blur-xl transition-[opacity,transform,color,background-color,border-color] duration-500 flex flex-col overflow-y-auto',
+          'lg:hidden fixed inset-0 z-40 bg-[#111315]/[0.98] backdrop-blur-xl transition-[opacity,transform,color,background-color,border-color] duration-500 flex flex-col overflow-y-auto',
           mobileOpen ? 'opacity-100 pointer-events-auto' : '!hidden'
         )}
       >
@@ -267,13 +266,13 @@ export default function Header() {
                       aria-expanded={mobileServicesOpen}
                       aria-controls="mobile-services"
                       className={cn(
-                        'w-full flex items-center justify-between py-4 text-xl font-medium border-b border-border',
-                        isActive ? 'text-accent' : 'text-text-primary'
+                        'w-full flex items-center justify-between py-4 text-xl font-medium border-b border-[#2B3330]',
+                        isActive ? 'text-[#D3C6A4]' : 'text-[#F2EFE6]'
                       )}
                     >
                       {link.label}
                       <svg
-                        className={cn('w-5 h-5 transition-transform duration-200 text-text-secondary', mobileServicesOpen && 'rotate-180')}
+                        className={cn('w-5 h-5 transition-transform duration-200 text-[#A8ADA8]', mobileServicesOpen && 'rotate-180')}
                         viewBox="0 0 20 20"
                         fill="none"
                       >
@@ -289,7 +288,7 @@ export default function Header() {
                             onClick={() => setMobileOpen(false)}
                             className={cn(
                               'py-2.5 text-base transition-colors',
-                              pathname === service.href ? 'text-accent font-medium' : 'text-text-secondary hover:text-accent'
+                              pathname === service.href ? 'text-[#D3C6A4] font-medium' : 'text-[#A8ADA8] hover:text-[#D3C6A4]'
                             )}
                           >
                             {service.label}
@@ -307,8 +306,8 @@ export default function Header() {
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
                   className={cn(
-                    'py-4 text-xl font-medium hover:text-accent transition-colors border-b border-border',
-                    isActive ? 'text-accent' : 'text-text-primary'
+                    'py-4 text-xl font-medium hover:text-[#D3C6A4] transition-colors border-b border-[#2B3330]',
+                    isActive ? 'text-[#D3C6A4]' : 'text-[#F2EFE6]'
                   )}
                 >
                   {link.label}

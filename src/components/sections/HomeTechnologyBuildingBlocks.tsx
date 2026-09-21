@@ -31,9 +31,6 @@ export default function HomeTechnologyBuildingBlocks() {
             <ScrollReveal key={service.href} delay={index * 30}>
               <SpotlightCard className="h-full min-w-0 rounded-xl bg-[#131719] border border-[#232B2D] p-5 sm:p-6 flex flex-col justify-between hover:border-[#384547] transition-colors group">
                 <div>
-                  <div className="text-[10px] font-mono text-[#5A9692] uppercase tracking-wider mb-2">
-                    Модуль 0{index + 1}
-                  </div>
                   <h3 className="text-lg font-bold text-[#F2EFE6] mb-2 break-words">
                     {service.label}
                   </h3>

@@ -2,99 +2,96 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Sparkles, ChevronDown } from 'lucide-react';
-import Button from '@/components/ui/Button';
-import HeroPointerGrid from '@/components/ui/HeroPointerGrid';
-import HeroSystemJourney from '@/components/sections/HeroSystemJourney';
-import { digitalProducts } from '@/data/digital-products';
+import { ArrowRight, ChevronDown } from 'lucide-react';
+import NodeNetwork from '@/components/ui/NodeNetwork';
 
 export default function Hero() {
-  const handleScrollToDemo = () => {
-    const demoEl = document.getElementById('system-demo');
-    if (demoEl) {
-      demoEl.scrollIntoView({ behavior: 'smooth' });
+  const handleScrollToNext = () => {
+    const nextEl = document.getElementById('digital-growth-contours');
+    if (nextEl) {
+      nextEl.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <section className="relative pt-28 pb-16 sm:pt-32 sm:pb-20 md:pt-36 md:pb-24 bg-[#0D1012] text-[#F2EFE6] overflow-hidden border-b border-[#232B2D]">
-      {/* Background Interactive Pointer Grid & Subtle Glows */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        <HeroPointerGrid className="absolute inset-0 opacity-80" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_15%,rgba(62,119,120,0.12),transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_85%_75%,rgba(201,133,77,0.08),transparent_60%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0D1012]/40 to-[#0D1012]" />
+    <section className="relative min-h-[100svh] flex flex-col justify-between pt-28 pb-10 sm:pt-36 sm:pb-12 bg-[#111315] text-[#F2EFE6] overflow-hidden select-none">
+      {/* Background Full-Bleed Interactive System Network */}
+      <div className="absolute inset-0 z-0 pointer-events-auto" aria-hidden="true">
+        <NodeNetwork className="absolute inset-0" />
+        {/* Subtle radial depth gradients */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_20%,rgba(100,141,139,0.08),transparent_65%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_80%,rgba(212,134,74,0.06),transparent_65%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#111315]/40 via-transparent to-[#111315] pointer-events-none" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">
-        <div className="grid grid-cols-1 xl:grid-cols-12 gap-10 xl:gap-12 items-center">
-          
-          {/* Left Column: Clear Permanent Heading, Subtitle & CTAs */}
-          <div className="xl:col-span-6 min-w-0">
-            {/* Permanent Primary Headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-[3.25rem] font-black text-[#F2EFE6] tracking-tight leading-[1.08] mb-5 break-words hyphens-auto">
-              <span className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#5A9692] uppercase mb-4 px-3 py-1 rounded-md border border-[#3E7778]/35 bg-[#3E7778]/15 block w-fit">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#5A9692] animate-pulse" />
-                Цифровые системы · Инженерный контур
-              </span>
-              От первого клика до сделки — одна управляемая система.
-            </h1>
+      {/* Decorative Technical HUD Labels (4 subtle positions) */}
+      <div
+        className="absolute top-24 right-6 sm:top-28 sm:right-10 z-10 hidden sm:flex items-center gap-2 text-[10px] font-mono tracking-widest text-[#737B77] uppercase pointer-events-none"
+        aria-hidden="true"
+      >
+        <span className="w-1.5 h-1.5 rounded-full bg-[#648D8B] animate-pulse" />
+        <span>SYSTEM MAP · LIVE CONNECTIONS</span>
+      </div>
 
-            {/* Subtitle */}
-            <p className="text-base sm:text-lg md:text-xl text-[#AAB4B1] leading-relaxed max-w-xl mb-8 font-normal">
-              VOLTRENA связывает сайт, рекламу, CRM и автоматизацию, чтобы обращения попадали к нужным людям, а результат можно было проследить.
-            </p>
+      <div
+        className="absolute bottom-12 right-6 sm:right-10 z-10 hidden md:block text-[10px] font-mono tracking-widest text-[#737B77] uppercase pointer-events-none text-right"
+        aria-hidden="true"
+      >
+        <span>DATA FLOW</span>
+        <span className="block text-[#648D8B]/70 mt-0.5">LATENCY &lt; 0.8S</span>
+      </div>
 
-            {/* Primary & Secondary Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 mb-10">
-              <Button
-                variant="primary"
-                size="lg"
-                href="#contact"
-                className="w-full sm:w-auto"
-                aria-label="Подобрать систему"
-              >
-                Подобрать систему
-              </Button>
-              <Button
-                variant="secondary"
-                size="lg"
-                href="#system-demo"
-                onClick={handleScrollToDemo}
-                className="w-full sm:w-auto border-[#344042] text-[#EAE6DD] hover:border-[#5A9692] hover:text-[#F2EFE6] hover:bg-[#182022]"
-              >
-                Посмотреть, как работает
-              </Button>
-            </div>
-
-            {/* Quick Digital Products Navigation (Preserves all 5 links for QA suite) */}
-            <div className="pt-6 border-t border-[#232B2D]/80">
-              <div className="text-[11px] font-mono text-[#7F8987] uppercase tracking-wider mb-3">
-                Контуры цифрового роста:
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {digitalProducts.map((product) => (
-                  <Link
-                    key={product.id}
-                    href={`/solutions/${product.slug}/`}
-                    className="group flex items-center justify-between gap-2.5 rounded-xl border border-[#232B2D] bg-[#131719]/80 px-3.5 py-2.5 hover:border-[#3E7778] hover:bg-[#1A2023] transition-colors min-h-[44px]"
-                  >
-                    <span className="text-xs font-semibold text-[#D7D3C8] group-hover:text-[#F2EFE6] truncate">
-                      {product.title}
-                    </span>
-                    <ArrowRight className="w-3.5 h-3.5 text-[#7A8885] group-hover:text-[#5A9692] shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-                  </Link>
-                ))}
-              </div>
-            </div>
+      {/* Main Spacious Editorial Content Container */}
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-6xl my-auto">
+        <div className="max-w-4xl">
+          {/* Technical Kicker / Mono-label */}
+          <div className="inline-flex items-center gap-2 text-xs font-mono font-medium tracking-widest text-[#D3C6A4] uppercase mb-6 sm:mb-8 px-3 py-1 rounded-sm border border-[#2B3330] bg-[#171A19]/80 backdrop-blur-sm">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#648D8B]" />
+            <span>ЦИФРОВЫЕ СИСТЕМЫ · ИНЖЕНЕРНЫЙ ПОДХОД</span>
           </div>
 
-          {/* Right Column: Interactive Living System Demonstration */}
-          <div id="system-demo" className="xl:col-span-6 min-w-0 scroll-mt-28">
-            <HeroSystemJourney />
-          </div>
+          {/* Large Editorial Headline */}
+          <h1 className="text-[42px] sm:text-[60px] md:text-[76px] lg:text-[90px] xl:text-[98px] font-extrabold text-[#F2EFE6] tracking-[-0.045em] leading-[0.92] sm:leading-[0.94] mb-8 break-words uppercase">
+            Цифровые системы,{' '}
+            <span className="text-[#F2EFE6]">которые связывают бизнес</span>{' '}
+            <span className="text-[#D3C6A4]">в единый контур.</span>
+          </h1>
 
+          {/* Restrained Subtitle (under 3 lines, <= 680px) */}
+          <p className="text-base sm:text-lg md:text-xl text-[#A8ADA8] leading-relaxed max-w-[680px] mb-10 sm:mb-12 font-normal">
+            VOLTRENA связывает сайт, рекламу, CRM, автоматизацию и данные, чтобы обращения доходили до нужных людей, а результат можно было проследить.
+          </p>
+
+          {/* Action Row: 1 Primary Button + 1 Secondary Text Link */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
+            <Link
+              href="#contact"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-[#D4864A] hover:bg-[#E09A60] text-[#111315] font-bold text-sm sm:text-base tracking-wide transition-all shadow-md shadow-[#D4864A]/20 hover:shadow-lg hover:shadow-[#D4864A]/30 hover:scale-[1.02] active:scale-[0.98] min-h-[48px]"
+            >
+              Подобрать систему
+            </Link>
+
+            <Link
+              href="/cases/"
+              className="inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-[#A8ADA8] hover:text-[#F2EFE6] transition-colors py-2 group/link"
+            >
+              <span>Посмотреть кейсы</span>
+              <ArrowRight className="w-4 h-4 text-[#648D8B] group-hover/link:translate-x-1 transition-transform" />
+            </Link>
+          </div>
         </div>
+      </div>
+
+      {/* Bottom Subtle Scroll Indicator */}
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-6xl pt-6">
+        <button
+          type="button"
+          onClick={handleScrollToNext}
+          className="inline-flex items-center gap-2 text-[11px] font-mono tracking-widest text-[#737B77] hover:text-[#D3C6A4] transition-colors uppercase py-1 focus:outline-none"
+        >
+          <span>SCROLL TO EXPLORE</span>
+          <ChevronDown className="w-3.5 h-3.5 animate-bounce" />
+        </button>
       </div>
     </section>
   );
