@@ -21,14 +21,14 @@ interface ConnectionDef {
 }
 
 const NODES: NodeDef[] = [
-  { id: 'demand', label: 'СПРОС', relX: 0.18, relY: 0.22, mobileRelX: 0.82, mobileRelY: 0.18 },
-  { id: 'ads', label: 'РЕКЛАМА', relX: 0.10, relY: 0.68, mobileRelX: 0.86, mobileRelY: 0.36 },
-  { id: 'site', label: 'САЙТ', relX: 0.38, relY: 0.42, mobileRelX: 0.78, mobileRelY: 0.52 },
-  { id: 'crm', label: 'CRM', relX: 0.58, relY: 0.26, mobileRelX: 0.84, mobileRelY: 0.68 },
-  { id: 'sales', label: 'ПРОДАЖИ', relX: 0.84, relY: 0.28, mobileRelX: 0.80, mobileRelY: 0.84 },
-  { id: 'auto', label: 'АВТОМАТИЗАЦИЯ', relX: 0.66, relY: 0.68, mobileRelX: 0.50, mobileRelY: 0.88, isDesktopOnly: true },
-  { id: 'data', label: 'ДАННЫЕ', relX: 0.88, relY: 0.62, mobileRelX: 0.65, mobileRelY: 0.90, isDesktopOnly: true },
-  { id: 'analytics', label: 'АНАЛИТИКА', relX: 0.40, relY: 0.82, mobileRelX: 0.25, mobileRelY: 0.85, isDesktopOnly: true },
+  { id: 'demand', label: 'СПРОС', relX: 0.62, relY: 0.20, mobileRelX: 0.88, mobileRelY: 0.22 },
+  { id: 'ads', label: 'РЕКЛАМА', relX: 0.82, relY: 0.16, mobileRelX: 0.88, mobileRelY: 0.38 },
+  { id: 'site', label: 'САЙТ', relX: 0.68, relY: 0.38, mobileRelX: 0.86, mobileRelY: 0.54 },
+  { id: 'crm', label: 'CRM', relX: 0.86, relY: 0.35, mobileRelX: 0.88, mobileRelY: 0.70 },
+  { id: 'sales', label: 'ПРОДАЖИ', relX: 0.93, relY: 0.52, mobileRelX: 0.84, mobileRelY: 0.86 },
+  { id: 'auto', label: 'АВТОМАТИЗАЦИЯ', relX: 0.75, relY: 0.60, mobileRelX: 0.60, mobileRelY: 0.90, isDesktopOnly: true },
+  { id: 'data', label: 'ДАННЫЕ', relX: 0.90, relY: 0.72, mobileRelX: 0.72, mobileRelY: 0.92, isDesktopOnly: true },
+  { id: 'analytics', label: 'АНАЛИТИКА', relX: 0.66, relY: 0.80, mobileRelX: 0.40, mobileRelY: 0.90, isDesktopOnly: true },
 ];
 
 const CONNECTIONS: ConnectionDef[] = [
@@ -40,7 +40,7 @@ const CONNECTIONS: ConnectionDef[] = [
   { from: 'sales', to: 'data', connectionLabel: 'Выручка' },
   { from: 'auto', to: 'data', connectionLabel: 'Документы' },
   { from: 'data', to: 'analytics', connectionLabel: 'Сквозной ROMI' },
-  { from: 'analytics', to: 'ads', connectionLabel: 'Оптимизация' },
+  { from: 'analytics', to: 'site', connectionLabel: 'Оптимизация' },
 ];
 
 interface CanvasNode {

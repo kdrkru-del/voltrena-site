@@ -42,17 +42,17 @@ export default function Hero() {
       </div>
 
       {/* Main Spacious Editorial Content Container */}
-      <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-6xl my-auto">
-        <div className="max-w-4xl">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl my-auto">
+        <div className="max-w-[960px]">
           {/* Large Editorial Headline (No redundant overline kicker) */}
-          <h1 className="text-[42px] sm:text-[60px] md:text-[76px] lg:text-[90px] xl:text-[98px] font-extrabold text-[#1D2528] tracking-[-0.045em] leading-[0.92] sm:leading-[0.94] mb-8 break-words uppercase">
-            Цифровые системы,{' '}
-            <span className="text-[#1D2528]">которые связывают бизнес</span>{' '}
+          <h1 className="text-[38px] sm:text-[52px] md:text-[66px] lg:text-[78px] xl:text-[88px] font-extrabold text-[#1D2528] tracking-[-0.04em] leading-[0.93] sm:leading-[0.95] mb-8 break-words uppercase">
+            Цифровые системы,<br className="hidden sm:inline" />{' '}
+            которые связывают бизнес<br className="hidden sm:inline" />{' '}
             <span className="text-[#3E7778]">в единый контур.</span>
           </h1>
 
           {/* Restrained Subtitle */}
-          <p className="text-base sm:text-lg md:text-xl text-[#5D686A] leading-relaxed max-w-[680px] mb-10 sm:mb-12 font-normal">
+          <p className="text-base sm:text-lg md:text-xl text-[#5D686A] leading-relaxed max-w-[620px] mb-10 sm:mb-12 font-normal">
             VOLTRENA связывает сайт, рекламу, CRM, автоматизацию и данные, чтобы обращения доходили до нужных людей, а результат можно было проследить.
           </p>
 
