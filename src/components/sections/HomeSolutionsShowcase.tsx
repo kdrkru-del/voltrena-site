@@ -41,7 +41,7 @@ export default function HomeSolutionsShowcase() {
                       Контур 0{idx + 1}
                     </span>
                     <span className="text-[10px] font-mono text-[#7A8885]">
-                      Под ключ
+                      Инженерный контур
                     </span>
                   </div>
 

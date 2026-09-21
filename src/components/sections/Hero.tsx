@@ -53,7 +53,7 @@ export default function Hero() {
 
           {/* Restrained Subtitle */}
           <p className="text-base sm:text-lg md:text-xl text-[#5D686A] leading-relaxed max-w-[620px] mb-10 sm:mb-12 font-normal">
-            VOLTRENA связывает сайт, рекламу, CRM, автоматизацию и данные, чтобы обращения доходили до нужных людей, а результат можно было проследить.
+            Связываем рекламу, посадочные страницы, CRM и сценарии n8n в одну рабочую цепочку. Заявка падает менеджеру за 0.8 секунды с рекламной фразой и UTM. Собственник видит реальный ROMI.
           </p>
 
           {/* Action Row: 1 Primary Button + 1 Secondary Text Link */}

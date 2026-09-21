@@ -21,7 +21,7 @@ export default function DigitalGrowthContours() {
               <span className="text-[#3E7778]">Единый контур роста.</span>
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-[#5D686A] mt-5 max-w-2xl leading-relaxed">
-              Каждый контур решает конкретную задачу бизнеса и бесшовно передаёт данные на следующий уровень.
+              Никаких разрозненных подрядчиков. Пять готовых контуров под задачи B2B: от первого клика в Директе до сделки в CRM и мониторинга рынка.
             </p>
           </div>
         </ScrollReveal>

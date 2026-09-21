@@ -69,7 +69,7 @@ export default function ServiceHumanHandoff() {
                 </ul>
               </div>
               <div className="mt-6 pt-4 border-t border-border text-xs font-mono text-accent">
-                Статус: бесшовное переключение в 1 клик
+                Статус: моментальный перевод с сохранением истории диалога
               </div>
             </div>
           </ScrollReveal>

@@ -23,10 +23,10 @@ export default function HomeOneSystemAdvantage() {
           <div className="text-center max-w-3xl mx-auto mb-10">
             {/* No redundant overline label */}
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1D2528] tracking-tight mb-4">
-              Один подрядчик на всю цепочку.
+              Один подрядчик на всю цепочку
             </h2>
             <p className="text-[#5D686A] text-base sm:text-lg">
-              Сравните, что происходит с данными, заявками и окупаемостью при разрозненных подрядчиках и в едином контуре VOLTRENA.
+              Сравните: что происходит с данными, заявками и окупаемостью при разрозненных исполнителях и в единой системе VOLTRENA.
             </p>
           </div>
         </ScrollReveal>
@@ -296,7 +296,7 @@ export default function HomeOneSystemAdvantage() {
               <span>Зона ответственности</span>
             </div>
             <div className="text-2xl font-extrabold text-[#1D2528] mb-1">
-              1 команда под ключ
+              Один контракт на всё
             </div>
             <p className="text-xs text-[#5D686A] leading-relaxed">
               Никакого перекладывания вины: мы проектируем и отвечаем за всю цепочку от первого клика до закрытой сделки.

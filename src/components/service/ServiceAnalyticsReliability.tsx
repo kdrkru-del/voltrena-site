@@ -20,8 +20,8 @@ export default function ServiceAnalyticsReliability() {
         <ScrollReveal>
           <SectionHeading
             tag="АЛЕРТЫ И КОНТРОЛЬ"
-            title="Важно знать не только что произошло, но и когда что-то пошло не так."
-            subtitle="Автоматический мониторинг предупреждает о сбоях и защищает рекламный бюджет от слива."
+            title="Система предупреждает об аномалиях до того, как слит бюджет."
+            subtitle="Автоматический мониторинг фиксирует сбои форм, обрывы меток и зависшие лиды."
             align="center"
           />
         </ScrollReveal>
@@ -49,7 +49,7 @@ export default function ServiceAnalyticsReliability() {
         <ScrollReveal delay={400}>
           <div className="mt-16 max-w-2xl mx-auto text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-text-primary">
-              Ошибочные данные дают ошибочные решения. Мы гарантируем точность сбора.
+              Ошибочные данные ведут к неверным решениям. Настраиваем сбор без потерь и дублей.
             </h2>
           </div>
         </ScrollReveal>

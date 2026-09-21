@@ -16,7 +16,7 @@ export default function CasesHero() {
         <div className="max-w-4xl mx-auto text-center">
           {/* H1 */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary tracking-tight leading-[1.12] mb-6 max-w-4xl mx-auto">
-            Кейсы, где виден не только сайт, но и работающая система.
+            Кейсы внедрений: от первого клика до сделки в CRM.
           </h1>
 
           {/* Supporting */}

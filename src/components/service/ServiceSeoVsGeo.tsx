@@ -28,9 +28,9 @@ export default function ServiceSeoVsGeo() {
       <div className="container mx-auto px-4">
         <ScrollReveal>
           <SectionHeading
-            tag="СИНЕРГИЯ"
-            title="SEO и GEO работают вместе."
-            subtitle="Классический поиск и генеративные AI-интерфейсы дополняют друг друга в единой системе видимости."
+            tag="ПОИСК И НЕЙРОСЕТИ"
+            title="SEO и GEO работают в одной связке."
+            subtitle="Классический поиск и генеративные AI-интерфейсы дополняют друг друга в едином контуре видимости."
             align="center"
           />
         </ScrollReveal>
