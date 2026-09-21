@@ -6,8 +6,6 @@ import HomeProblemNavigator from '@/components/sections/HomeProblemNavigator'
 import ProofSection from '@/components/cases/ProofSection'
 import DigitalGrowthContours from '@/components/sections/DigitalGrowthContours'
 import HomeOneSystemAdvantage from '@/components/sections/HomeOneSystemAdvantage'
-import HomeTechnologyBuildingBlocks from '@/components/sections/HomeTechnologyBuildingBlocks'
-import HomeTeamTrust from '@/components/sections/HomeTeamTrust'
 import HomeFinalContact from '@/components/sections/HomeFinalContact'
 
 const siteUrl = siteConfig.siteUrl
@@ -48,8 +46,6 @@ export default function HomePage() {
       <ProofSection />
       <HomeProblemNavigator />
       <HomeOneSystemAdvantage />
-      <HomeTechnologyBuildingBlocks />
-      <HomeTeamTrust />
       <HomeFinalContact />
     </>
   )

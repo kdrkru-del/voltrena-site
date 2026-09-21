@@ -4,125 +4,132 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SpotlightCard from '@/components/ui/SpotlightCard';
-import { 
-  ArrowRight, 
-  CheckCircle2, 
-  Sparkles, 
-  Layers, 
-  Activity, 
-  Cpu, 
-  ArrowUpRight,
-  Database,
-  Search,
-  Bot,
-  FileText,
-  Clock,
-  Radio
-} from 'lucide-react';
+import { ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
+
+interface PipelineStep {
+  label: string;
+  sub: string;
+}
 
 interface ProblemItem {
   id: string;
+  tabLabel: string;
   problemTitle: string;
-  problemSubtitle: string;
-  solutionName: string;
+  summary: string;
   badge: string;
+  solutionName: string;
+  solutionHref: string;
+  pipeline: PipelineStep[];
   outcome: string;
   firstStep: string;
-  pipeline: Array<{ label: string; sub: string }>;
-  tags: string[];
-  solutionHref: string;
 }
 
 const problems: ProblemItem[] = [
   {
-    id: 'leads',
-    problemTitle: 'Нет потока заявок',
-    problemSubtitle: 'Реклама крутится, но не окупается и не даёт стабильных сделок',
+    id: 'lost-leads',
+    tabLabel: 'Теряются лиды',
+    problemTitle: 'Теряются лиды между рекламой, сайтом и CRM',
+    summary:
+      'Реклама даёт переходы, но сайт конвертирует слабо, а поступившие заявки падают на общую почту или зависают у менеджеров без контекста.',
+    badge: 'Сквозной контур лидогенерации',
     solutionName: 'Система привлечения клиентов',
-    badge: 'Сквозной ROMI',
-    outcome: 'Связка контекстной рекламы, конверсионного сайта и CRM со сквозным контролем окупаемости.',
-    firstStep: 'Аудит текущей воронки и поиск точек потерь (2 дня)',
-    pipeline: [
-      { label: 'Яндекс Директ', sub: 'B2B-семантика' },
-      { label: 'Конверсионный сайт', sub: 'Посадочный сценарий' },
-      { label: 'Внедрение CRM', sub: 'Фиксация источника' },
-      { label: 'Сквозная аналитика', sub: 'Контроль окупаемости' }
-    ],
-    tags: ['Контекст', 'UX-структура', 'amoCRM / Битрикс24', 'ROI / ROMI'],
     solutionHref: '/solutions/digital-sales-system/',
+    pipeline: [
+      { label: 'Яндекс Директ', sub: 'Семантика + UTM-метки' },
+      { label: 'Посадочный сценарий', sub: 'Форма с контекстом' },
+      { label: 'amoCRM & Telegram', sub: 'Маршрутизация за 0.8с' },
+      { label: 'Сквозная аналитика', sub: 'ROMI по фразам' },
+    ],
+    outcome:
+      'Каждое обращение фиксируется в CRM со всеми метками в течение 0.8 секунд, дежурный менеджер получает мгновенное уведомление, а неэффективные рекламные ключи отключаются.',
+    firstStep:
+      'Аудит цепочки «Директ → Сайт → CRM» с выявлением точек обрыва данных и сценария конверсии.',
   },
   {
-    id: 'b2b',
-    problemTitle: 'Нужны B2B-продажи',
-    problemSubtitle: 'Входящего спроса мало, а холодные звонки вслепую не работают',
+    id: 'long-b2b-cycle',
+    tabLabel: 'Долгие B2B-сделки',
+    problemTitle: 'Сложные B2B-продажи и длинный цикл сделки',
+    summary:
+      'У клиента сложный продукт, решения принимают несколько ЛПР, а менеджеры тонут в рутине и забывают перезванивать вовремя.',
+    badge: 'Контур B2B-продаж',
     solutionName: 'Система B2B-продаж',
-    badge: 'ICP & Аутрич',
-    outcome: 'Сбор и обогащение баз целевых компаний, AI-скоринг ЛПР и передача контактов в отдел продаж.',
-    firstStep: 'Определение профиля идеального клиента (ICP) и тестовая выборка (3 дня)',
-    pipeline: [
-      { label: 'Сбор баз компаний', sub: 'ОКВЭД, выручка' },
-      { label: 'Верификация ЛПР', sub: 'Контакты директоров' },
-      { label: 'AI-скоринг', sub: 'Фильтрация целевых' },
-      { label: 'CRM-воронка', sub: 'Выход на сделку' }
-    ],
-    tags: ['B2B-пайплайн', 'Обогащение данных', 'Аутрич', 'Сделки в CRM'],
     solutionHref: '/solutions/b2b-sales-system/',
+    pipeline: [
+      { label: 'База ЛПР & Парсинг', sub: 'Сбор целевых компаний' },
+      { label: 'B2B-каталог', sub: 'Понятное КП на сайте' },
+      { label: 'Воронка сделок', sub: 'Регламент касаний' },
+      { label: 'Контроль пайплайна', sub: 'Прогноз закрытия' },
+    ],
+    outcome:
+      'Структурированная база клиентов, прозрачные этапы движения сделки, автоматические напоминания и понятные материалы для ЛПР, сокращающие цикл переговоров на 25–40%.',
+    firstStep:
+      'Разработка карты пути ЛПР и проектирование цифровой воронки под специфику вашего продукта.',
   },
   {
-    id: 'speed',
-    problemTitle: 'Теряются лиды',
-    problemSubtitle: 'Заявки висят без ответа часами, менеджеры забывают перезвонить',
+    id: 'manual-scoring',
+    tabLabel: 'Ручная рутина',
+    problemTitle: 'Менеджеры тратят часы на нецелевые запросы',
+    summary:
+      'Отдел продаж перегружен первичной квалификацией, переписками в WhatsApp и заполнением типовых полей вручную.',
+    badge: 'Контур квалификации и автоматизации',
     solutionName: 'Квалификация и обработка заявок',
-    badge: 'Ответ < 1 мин',
-    outcome: 'Моментальная AI-квалификация обращений и передача менеджеру готового контекста диалога.',
-    firstStep: 'Настройка квалификатора и регламентов маршрутизации в CRM (2 дня)',
-    pipeline: [
-      { label: 'Форма / Чат', sub: 'Входящий сигнал' },
-      { label: 'AI-квалификатор', sub: 'Сбор параметров' },
-      { label: 'Telegram-пуш', sub: 'Бриф дежурному' },
-      { label: 'Сделка в CRM', sub: 'Контроль SLA' }
-    ],
-    tags: ['AI-квалификатор', 'Telegram-интерфейс', 'Маршрутизация лидов', 'amoCRM / Битрикс24'],
     solutionHref: '/solutions/lead-operations-system/',
+    pipeline: [
+      { label: 'Входящий запрос', sub: 'Форма / Бот / Мессенджер' },
+      { label: 'AI-скоринг', sub: 'Оценка бюджета и задачи' },
+      { label: 'Обогащение данных', sub: 'Проверка ИНН и сайта' },
+      { label: 'Целевой пайплайн', sub: 'Передача старшему сейлу' },
+    ],
+    outcome:
+      'AI-квалификация отсеивает спам и нецелевые запросы за секунды, обогащает данные по компании и передаёт менеджеру готовый структурированный бриф.',
+    firstStep:
+      'Внедрение базового сценария квалификации входящих заявок через Telegram-бота или AI-скрипт.',
   },
   {
-    id: 'routine',
-    problemTitle: 'Рутина в процессах',
-    problemSubtitle: 'Сотрудники вручную копируют данные, заполняют договоры и путаются в Excel',
+    id: 'routine-operations',
+    tabLabel: 'Хаос в процессах',
+    problemTitle: 'Операционные процессы завязаны на ручном труде',
+    summary:
+      'Генерация счетов, отправка документов, обновление остатков и передача данных между сервисами требуют постоянного внимания людей.',
+    badge: 'Операционный контур',
     solutionName: 'Автоматизация операционных процессов',
-    badge: '0 ошибок ввода',
-    outcome: 'Автоматическая генерация КП, счетов, синхронизация баз данных и оповещения команды.',
-    firstStep: 'Аудит повторяющихся операций и запуск первого n8n-сценария (3 дня)',
+    solutionHref: '/solutions/operations-automation-system/',
     pipeline: [
-      { label: 'Триггер в CRM', sub: 'Смена этапа сделки' },
-      { label: 'n8n Workflow', sub: 'Сбор реквизитов' },
-      { label: 'Генерация КП/счёта', sub: 'PDF без ошибок' },
-      { label: '1С / Документы', sub: 'Синхронизация' }
+      { label: 'Событие в CRM', sub: 'Смена статуса сделки' },
+      { label: 'Сценарий n8n', sub: 'Авто-обработка логики' },
+      { label: 'Генерация смет/КП', sub: 'PDF по шаблону' },
+      { label: 'Синхронизация 1С', sub: 'Обновление баз' },
     ],
-    tags: ['Workflow (n8n)', 'Генерация документов', 'Telegram-боты', 'Синхронизация данных'],
-    solutionHref: '/solutions/ai-operations-system/',
+    outcome:
+      'Документы формируются без ошибок за секунды, данные передаются между системами по API, а сотрудники освобождены от многочасовой монотонной работы.',
+    firstStep:
+      'Картирование повторяющихся операций и запуск первого автоматического сценария документов.',
   },
   {
-    id: 'market',
-    problemTitle: 'Цены конкурентов',
-    problemSubtitle: 'Нет понимания, как меняются прайсы на рынке и что предлагают конкуренты',
+    id: 'blind-decisions',
+    tabLabel: 'Нет данных',
+    problemTitle: 'Решения принимаются вслепую, без рыночных данных',
+    summary:
+      'Собственник не видит реальные цены конкурентов, отслеживает ассортимент вручную и не понимает точную окупаемость каждого канала.',
+    badge: 'Контур данных и мониторинга',
     solutionName: 'Мониторинг рынка и данных',
-    badge: 'Алерты в реальном времени',
-    outcome: 'Регулярный сбор цен, ассортимента и активности конкурентов с оповещениями в Telegram.',
-    firstStep: 'Подключение парсинга 5 ключевых конкурентов и настройка таблицы матчинга (2 дня)',
-    pipeline: [
-      { label: 'Парсинг площадок', sub: 'Каталоги и сайты' },
-      { label: 'Матчинг SKU', sub: 'Нормализация данных' },
-      { label: 'Мониторинг цен', sub: 'Фиксация демпинга' },
-      { label: 'Дашборд и Telegram', sub: 'Уведомление директору' }
-    ],
-    tags: ['Парсинг площадок', 'Нормализация данных', 'Мониторинг цен', 'Дашборды'],
     solutionHref: '/solutions/market-intelligence-system/',
+    pipeline: [
+      { label: 'Регулярный парсинг', sub: 'Мониторинг сайтов' },
+      { label: 'Нормализация', sub: 'Очистка и сопоставление' },
+      { label: 'Дашборд и алерты', sub: 'Telegram при демпинге' },
+      { label: 'Динамическое ценообразование', sub: 'Реакция рынка' },
+    ],
+    outcome:
+      'Автоматический ежедневный мониторинг конкурентной среды, мгновенные алерты на изменение цен и четкие дашборды для принятия управленческих решений.',
+    firstStep:
+      'Пилотный сбор данных по ключевому пулу конкурентов с выгрузкой в единую таблицу.',
   },
 ];
 
 export default function HomeProblemNavigator() {
-  const [activeId, setActiveId] = useState<string>(problems[0].id);
+  const [activeId, setActiveId] = useState<string>('lost-leads');
+
   const activeItem = problems.find((p) => p.id === activeId) || problems[0];
 
   const handleSelectTask = (item: ProblemItem) => {
@@ -149,18 +156,15 @@ export default function HomeProblemNavigator() {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-[#101416] relative overflow-hidden border-t border-[#232B2D]">
+    <section className="py-20 md:py-28 bg-[#F4F1EA] relative overflow-hidden border-t border-[#D7D3C8]">
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#5A9692] uppercase mb-3 px-3 py-1 rounded-md border border-[#3E7778]/35 bg-[#3E7778]/15">
-              <Radio className="w-3.5 h-3.5 animate-pulse" />
-              <span>Навигатор задач</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#F2EFE6] tracking-tight mb-4">
+            {/* No redundant overline label */}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1D2528] tracking-tight mb-4">
               Что сейчас мешает бизнесу расти?
             </h2>
-            <p className="text-[#AAB4B1] text-base sm:text-lg">
+            <p className="text-[#5D686A] text-base sm:text-lg">
               Выберите узкое место. Мы покажем архитектуру решения, ожидаемый результат и конкретный первый шаг.
             </p>
           </div>
@@ -178,19 +182,19 @@ export default function HomeProblemNavigator() {
               return (
                 <button
                   key={p.id}
+                  type="button"
                   role="tab"
                   aria-selected={isSelected}
-                  aria-pressed={isSelected}
                   onClick={() => setActiveId(p.id)}
-                  className={`p-3.5 sm:p-4 rounded-xl text-center text-xs sm:text-sm font-bold transition-all duration-200 border min-h-[54px] flex flex-col items-center justify-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5A9692] ${
+                  className={`p-3 sm:p-3.5 rounded-xl text-xs sm:text-sm font-semibold transition-all text-left flex flex-col justify-between min-h-[58px] border ${
                     isSelected
-                      ? 'bg-[#182325] border-[#5A9692] text-[#F2EFE6] shadow-[0_0_20px_rgba(90,150,146,0.18)] scale-[1.02]'
-                      : 'bg-[#131719] text-[#AAB4B1] border-[#232B2D] hover:border-[#384547] hover:text-[#F2EFE6]'
+                      ? 'bg-[#FFFDF8] border-[#3E7778] text-[#1D2528] shadow-sm ring-1 ring-[#3E7778]/30'
+                      : 'bg-[#EAE6DD] border-[#D7D3C8] text-[#5D686A] hover:border-[#3E7778]/50 hover:text-[#1D2528]'
                   }`}
                 >
                   <span className="leading-snug">{p.problemTitle}</span>
                   {isSelected && (
-                    <span className="w-1 h-1 rounded-full bg-[#5A9692] mt-0.5" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#3E7778] mt-1" />
                   )}
                 </button>
               );
@@ -198,45 +202,43 @@ export default function HomeProblemNavigator() {
           </div>
 
           {/* Active Solution Display Card with Spotlight Sheen */}
-          <SpotlightCard className="p-6 sm:p-8 md:p-10 rounded-2xl bg-[#14181A] border border-[#2B3537] shadow-2xl relative overflow-hidden">
+          <SpotlightCard className="p-6 sm:p-8 md:p-10 rounded-2xl bg-[#FFFDF8] border border-[#D7D3C8] shadow-lg relative overflow-hidden">
             {/* Header info */}
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-[11px] font-mono uppercase tracking-wider text-[#5A9692] bg-[#3E7778]/15 border border-[#3E7778]/35 px-2.5 py-0.5 rounded">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-[#3E7778] bg-[#3E7778]/10 border border-[#3E7778]/30 px-2.5 py-0.5 rounded">
                     {activeItem.badge}
                   </span>
-                  <span className="text-xs text-[#7A8885] font-mono">
+                  <span className="text-xs text-[#7F8987] font-mono">
                     Решение под ключ
                   </span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-[#F2EFE6] tracking-tight">
-                  {activeItem.solutionName}
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1D2528]">
+                  {activeItem.problemTitle}
                 </h3>
               </div>
-              <div className="shrink-0">
-                <button
-                  type="button"
-                  onClick={() => handleSelectTask(activeItem)}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#C9854D] hover:bg-[#D9955D] text-[#0D1012] font-bold text-xs sm:text-sm transition-all shadow-md hover:scale-[1.02] active:scale-[0.98] min-h-[44px]"
-                >
-                  <span>Выбрать эту задачу</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
+              <Link
+                href={activeItem.solutionHref}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#3E7778] hover:text-[#2D5D60] transition-colors py-1 shrink-0"
+              >
+                <span>Подробнее о системе</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
 
-            <p className="text-base sm:text-lg text-[#D7D3C8] leading-relaxed mb-8 max-w-3xl">
-              {activeItem.outcome}
+            <p className="text-sm sm:text-base text-[#5D686A] leading-relaxed mb-8 max-w-3xl">
+              {activeItem.summary}
             </p>
 
-            {/* Dynamic Architecture Flow Diagram */}
-            <div className="mb-8 rounded-xl bg-[#0D1012] border border-[#232B2D] p-4 sm:p-6">
-              <div className="text-[11px] font-mono text-[#7A8885] uppercase tracking-wider mb-4 flex items-center justify-between">
-                <span>Инженерная цепочка процесса</span>
-                <span className="text-[#5A9692] flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#5A9692] animate-pulse" />
-                  Активный контур
+            {/* Architecture Pipeline Diagram */}
+            <div className="mb-8 p-5 sm:p-6 rounded-xl bg-[#F4F1EA] border border-[#D7D3C8]">
+              <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#D7D3C8]">
+                <span className="text-[11px] font-mono text-[#7F8987] uppercase tracking-wider">
+                  Архитектура решения (Pipeline)
+                </span>
+                <span className="text-xs font-mono text-[#3E7778] font-bold">
+                  {activeItem.solutionName}
                 </span>
               </div>
 
@@ -245,20 +247,20 @@ export default function HomeProblemNavigator() {
                 {activeItem.pipeline.map((step, idx) => (
                   <div
                     key={step.label}
-                    className="relative p-3.5 rounded-lg bg-[#14181A] border border-[#232B2D] flex flex-col justify-between group hover:border-[#3E7778] transition-colors"
+                    className="relative p-3.5 rounded-lg bg-[#FFFDF8] border border-[#D7D3C8] flex flex-col justify-between group hover:border-[#3E7778] transition-colors"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#5A9692]" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#3E7778]" />
                         {idx < 3 && (
-                          <ArrowRight className="hidden lg:block w-3.5 h-3.5 text-[#3E7778]/60 absolute -right-3 top-1/2 -translate-y-1/2 z-10" />
+                          <ArrowRight className="hidden lg:block w-3.5 h-3.5 text-[#3E7778]/40 absolute -right-3 top-1/2 -translate-y-1/2 z-10" />
                         )}
                       </div>
-                      <div className="text-xs sm:text-sm font-bold text-[#F2EFE6] mb-1">
+                      <div className="text-xs sm:text-sm font-bold text-[#1D2528] mb-1">
                         {step.label}
                       </div>
                     </div>
-                    <div className="text-[11px] text-[#AAB4B1] font-mono">
+                    <div className="text-[11px] text-[#5D686A] font-mono">
                       {step.sub}
                     </div>
                   </div>
@@ -266,45 +268,42 @@ export default function HomeProblemNavigator() {
               </div>
             </div>
 
-            {/* First step and tags */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 pt-6 border-t border-[#232B2D] items-center">
-              <div className="md:col-span-7">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#5A9692]/15 border border-[#5A9692]/35 flex items-center justify-center text-[#5A9692] shrink-0 mt-0.5">
-                    <Clock className="w-4 h-4" />
+            {/* Expected Result & Practical First Step Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+              {/* Result box */}
+              <div className="md:col-span-7 p-5 rounded-xl bg-[#EAE6DD] border border-[#3E7778]/30 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-2 text-[#3E7778] font-bold text-xs font-mono uppercase tracking-wider">
+                    <CheckCircle2 className="w-4 h-4" />
+                    <span>Ожидаемый результат для бизнеса</span>
                   </div>
-                  <div>
-                    <span className="text-xs font-mono text-[#7A8885] uppercase tracking-wider block mb-0.5">
-                      Первый практический шаг:
-                    </span>
-                    <span className="text-sm font-semibold text-[#F2EFE6]">
-                      {activeItem.firstStep}
-                    </span>
-                  </div>
+                  <p className="text-xs sm:text-sm text-[#1D2528] leading-relaxed">
+                    {activeItem.outcome}
+                  </p>
                 </div>
               </div>
 
-              <div className="md:col-span-5 flex flex-col sm:flex-row md:justify-end items-start sm:items-center gap-3">
-                <Link
-                  href={activeItem.solutionHref}
-                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#5A9692] hover:text-[#7EB5B1] transition-colors py-2 group/link"
-                >
-                  <span>Подробнее об инженерном решении</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-            </div>
+              {/* First practical step box + CTA button */}
+              <div className="md:col-span-5 p-5 rounded-xl bg-[#F4F1EA] border border-[#D7D3C8] flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-2 text-[#C9854D] font-bold text-xs font-mono uppercase tracking-wider">
+                    <AlertCircle className="w-4 h-4" />
+                    <span>Первый практический шаг</span>
+                  </div>
+                  <p className="text-xs text-[#5D686A] leading-relaxed mb-4">
+                    {activeItem.firstStep}
+                  </p>
+                </div>
 
-            {/* Tags strip */}
-            <div className="flex flex-wrap gap-2 mt-5 pt-4 border-t border-[#232B2D]/50">
-              {activeItem.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-2.5 py-1 rounded-md bg-[#0D1012] border border-[#232B2D] text-[11px] font-mono text-[#7A8885]"
+                <button
+                  type="button"
+                  onClick={() => handleSelectTask(activeItem)}
+                  className="w-full py-2.5 px-4 rounded-lg bg-[#C9854D] hover:bg-[#D99A62] text-[#FFFDF8] text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-2 mt-2"
                 >
-                  #{tag}
-                </span>
-              ))}
+                  <span>Выбрать эту задачу</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
             </div>
           </SpotlightCard>
         </div>

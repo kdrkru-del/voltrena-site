@@ -55,7 +55,13 @@ interface CanvasNode {
   driftSpeed: number;
 }
 
-export default function NodeNetwork({ className }: { className?: string }) {
+export default function NodeNetwork({
+  className,
+  isLightMode = true,
+}: {
+  className?: string;
+  isLightMode?: boolean;
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const animFrameId = useRef<number>(0);
@@ -194,10 +200,10 @@ export default function NodeNetwork({ className }: { className?: string }) {
         ctx.lineTo(toNode.x, toNode.y);
 
         if (isRelatedToHover) {
-          ctx.strokeStyle = 'rgba(100, 141, 139, 0.65)';
+          ctx.strokeStyle = isLightMode ? 'rgba(62, 119, 120, 0.75)' : 'rgba(100, 141, 139, 0.65)';
           ctx.lineWidth = 1.5;
         } else {
-          ctx.strokeStyle = 'rgba(100, 141, 139, 0.18)';
+          ctx.strokeStyle = isLightMode ? 'rgba(62, 119, 120, 0.22)' : 'rgba(100, 141, 139, 0.18)';
           ctx.lineWidth = 1;
         }
 
@@ -209,7 +215,7 @@ export default function NodeNetwork({ className }: { className?: string }) {
           const midY = (fromNode.y + toNode.y) / 2;
 
           ctx.font = '9px monospace';
-          ctx.fillStyle = '#D3C6A4';
+          ctx.fillStyle = isLightMode ? '#3E7778' : '#D3C6A4';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'bottom';
           ctx.fillText(conn.connectionLabel, midX, midY - 3);
@@ -224,7 +230,9 @@ export default function NodeNetwork({ className }: { className?: string }) {
 
           ctx.beginPath();
           ctx.arc(px, py, 1.5, 0, Math.PI * 2);
-          ctx.fillStyle = isRelatedToHover ? '#D3C6A4' : 'rgba(100, 141, 139, 0.4)';
+          ctx.fillStyle = isRelatedToHover
+            ? (isLightMode ? '#C9854D' : '#D3C6A4')
+            : (isLightMode ? 'rgba(62, 119, 120, 0.45)' : 'rgba(100, 141, 139, 0.4)');
           ctx.fill();
         }
       }
@@ -237,28 +245,34 @@ export default function NodeNetwork({ className }: { className?: string }) {
         if (isHovered) {
           ctx.beginPath();
           ctx.arc(node.x, node.y, 14, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(211, 198, 164, 0.12)';
+          ctx.fillStyle = isLightMode ? 'rgba(62, 119, 120, 0.12)' : 'rgba(211, 198, 164, 0.12)';
           ctx.fill();
 
           ctx.beginPath();
           ctx.arc(node.x, node.y, 7, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(211, 198, 164, 0.25)';
+          ctx.fillStyle = isLightMode ? 'rgba(62, 119, 120, 0.22)' : 'rgba(211, 198, 164, 0.25)';
           ctx.fill();
         }
 
         // Main node core
         ctx.beginPath();
         ctx.arc(node.x, node.y, isHovered ? 4.5 : node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = isHovered ? '#D3C6A4' : 'rgba(211, 198, 164, 0.35)';
+        ctx.fillStyle = isHovered
+          ? (isLightMode ? '#3E7778' : '#D3C6A4')
+          : (isLightMode ? 'rgba(62, 119, 120, 0.45)' : 'rgba(211, 198, 164, 0.35)');
         ctx.fill();
 
-        ctx.strokeStyle = isHovered ? '#D3C6A4' : 'rgba(100, 141, 139, 0.45)';
+        ctx.strokeStyle = isHovered
+          ? (isLightMode ? '#2D5D60' : '#D3C6A4')
+          : (isLightMode ? 'rgba(62, 119, 120, 0.60)' : 'rgba(100, 141, 139, 0.45)');
         ctx.lineWidth = 1;
         ctx.stroke();
 
         // Node Label
         ctx.font = '10px monospace';
-        ctx.fillStyle = isHovered ? '#F2EFE6' : '#737B77';
+        ctx.fillStyle = isHovered
+          ? (isLightMode ? '#1D2528' : '#F2EFE6')
+          : (isLightMode ? '#5D686A' : '#737B77');
         ctx.textAlign = 'left';
         ctx.textBaseline = 'middle';
         ctx.fillText(node.label, node.x + (isHovered ? 9 : 8), node.y);

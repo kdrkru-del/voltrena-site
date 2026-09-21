@@ -14,51 +14,45 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-[100svh] flex flex-col justify-between pt-28 pb-10 sm:pt-36 sm:pb-12 bg-[#111315] text-[#F2EFE6] overflow-hidden select-none">
+    <section className="relative min-h-[100svh] flex flex-col justify-between pt-28 pb-10 sm:pt-36 sm:pb-12 bg-[#F4F1EA] text-[#1D2528] overflow-hidden select-none">
       {/* Background Full-Bleed Interactive System Network */}
       <div className="absolute inset-0 z-0 pointer-events-auto" aria-hidden="true">
-        <NodeNetwork className="absolute inset-0" />
+        <NodeNetwork className="absolute inset-0" isLightMode={true} />
         {/* Subtle radial depth gradients */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_20%,rgba(100,141,139,0.08),transparent_65%)] pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_80%,rgba(212,134,74,0.06),transparent_65%)] pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#111315]/40 via-transparent to-[#111315] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_20%,rgba(62,119,120,0.06),transparent_65%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_80%,rgba(201,133,77,0.05),transparent_65%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F4F1EA]/30 via-transparent to-[#F4F1EA] pointer-events-none" />
       </div>
 
-      {/* Decorative Technical HUD Labels (4 subtle positions) */}
+      {/* Decorative Technical HUD Labels (subtle, low contrast) */}
       <div
-        className="absolute top-24 right-6 sm:top-28 sm:right-10 z-10 hidden sm:flex items-center gap-2 text-[10px] font-mono tracking-widest text-[#737B77] uppercase pointer-events-none"
+        className="absolute top-24 right-6 sm:top-28 sm:right-10 z-10 hidden sm:flex items-center gap-2 text-[10px] font-mono tracking-widest text-[#7F8987] uppercase pointer-events-none"
         aria-hidden="true"
       >
-        <span className="w-1.5 h-1.5 rounded-full bg-[#648D8B] animate-pulse" />
+        <span className="w-1.5 h-1.5 rounded-full bg-[#3E7778] animate-pulse" />
         <span>SYSTEM MAP · LIVE CONNECTIONS</span>
       </div>
 
       <div
-        className="absolute bottom-12 right-6 sm:right-10 z-10 hidden md:block text-[10px] font-mono tracking-widest text-[#737B77] uppercase pointer-events-none text-right"
+        className="absolute bottom-12 right-6 sm:right-10 z-10 hidden md:block text-[10px] font-mono tracking-widest text-[#7F8987] uppercase pointer-events-none text-right"
         aria-hidden="true"
       >
         <span>DATA FLOW</span>
-        <span className="block text-[#648D8B]/70 mt-0.5">LATENCY &lt; 0.8S</span>
+        <span className="block text-[#3E7778]/70 mt-0.5">LATENCY &lt; 0.8S</span>
       </div>
 
       {/* Main Spacious Editorial Content Container */}
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-6xl my-auto">
         <div className="max-w-4xl">
-          {/* Technical Kicker / Mono-label */}
-          <div className="inline-flex items-center gap-2 text-xs font-mono font-medium tracking-widest text-[#D3C6A4] uppercase mb-6 sm:mb-8 px-3 py-1 rounded-sm border border-[#2B3330] bg-[#171A19]/80 backdrop-blur-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#648D8B]" />
-            <span>ЦИФРОВЫЕ СИСТЕМЫ · ИНЖЕНЕРНЫЙ ПОДХОД</span>
-          </div>
-
-          {/* Large Editorial Headline */}
-          <h1 className="text-[42px] sm:text-[60px] md:text-[76px] lg:text-[90px] xl:text-[98px] font-extrabold text-[#F2EFE6] tracking-[-0.045em] leading-[0.92] sm:leading-[0.94] mb-8 break-words uppercase">
+          {/* Large Editorial Headline (No redundant overline kicker) */}
+          <h1 className="text-[42px] sm:text-[60px] md:text-[76px] lg:text-[90px] xl:text-[98px] font-extrabold text-[#1D2528] tracking-[-0.045em] leading-[0.92] sm:leading-[0.94] mb-8 break-words uppercase">
             Цифровые системы,{' '}
-            <span className="text-[#F2EFE6]">которые связывают бизнес</span>{' '}
-            <span className="text-[#D3C6A4]">в единый контур.</span>
+            <span className="text-[#1D2528]">которые связывают бизнес</span>{' '}
+            <span className="text-[#3E7778]">в единый контур.</span>
           </h1>
 
-          {/* Restrained Subtitle (under 3 lines, <= 680px) */}
-          <p className="text-base sm:text-lg md:text-xl text-[#A8ADA8] leading-relaxed max-w-[680px] mb-10 sm:mb-12 font-normal">
+          {/* Restrained Subtitle */}
+          <p className="text-base sm:text-lg md:text-xl text-[#5D686A] leading-relaxed max-w-[680px] mb-10 sm:mb-12 font-normal">
             VOLTRENA связывает сайт, рекламу, CRM, автоматизацию и данные, чтобы обращения доходили до нужных людей, а результат можно было проследить.
           </p>
 
@@ -66,17 +60,17 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
             <Link
               href="#contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-[#D4864A] hover:bg-[#E09A60] text-[#111315] font-bold text-sm sm:text-base tracking-wide transition-all shadow-md shadow-[#D4864A]/20 hover:shadow-lg hover:shadow-[#D4864A]/30 hover:scale-[1.02] active:scale-[0.98] min-h-[48px]"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-[#C9854D] hover:bg-[#D99A62] text-[#FFFDF8] font-bold text-sm sm:text-base tracking-wide transition-all shadow-md shadow-[#C9854D]/20 hover:shadow-lg hover:shadow-[#C9854D]/30 hover:scale-[1.02] active:scale-[0.98] min-h-[48px]"
             >
               Подобрать систему
             </Link>
 
             <Link
               href="/cases/"
-              className="inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-[#A8ADA8] hover:text-[#F2EFE6] transition-colors py-2 group/link"
+              className="inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-[#5D686A] hover:text-[#1D2528] transition-colors py-2 group/link"
             >
               <span>Посмотреть кейсы</span>
-              <ArrowRight className="w-4 h-4 text-[#648D8B] group-hover/link:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 text-[#3E7778] group-hover/link:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>
@@ -87,7 +81,7 @@ export default function Hero() {
         <button
           type="button"
           onClick={handleScrollToNext}
-          className="inline-flex items-center gap-2 text-[11px] font-mono tracking-widest text-[#737B77] hover:text-[#D3C6A4] transition-colors uppercase py-1 focus:outline-none"
+          className="inline-flex items-center gap-2 text-[11px] font-mono tracking-widest text-[#7F8987] hover:text-[#1D2528] transition-colors uppercase py-1 focus:outline-none"
         >
           <span>SCROLL TO EXPLORE</span>
           <ChevronDown className="w-3.5 h-3.5 animate-bounce" />
