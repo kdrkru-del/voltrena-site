@@ -45,7 +45,7 @@ export default function Hero() {
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl my-auto">
         <div className="max-w-[960px]">
           {/* Large Editorial Headline (No redundant overline kicker) */}
-          <h1 className="text-[38px] sm:text-[52px] md:text-[66px] lg:text-[78px] xl:text-[88px] font-extrabold text-[#1D2528] tracking-[-0.04em] leading-[0.93] sm:leading-[0.95] mb-8 break-words uppercase">
+          <h1 className="text-3xl sm:text-5xl md:text-[54px] lg:text-[62px] xl:text-[70px] font-extrabold text-[#1D2528] tracking-[-0.03em] leading-[1.08] mb-8 max-w-[860px]">
             Цифровые системы,<br className="hidden sm:inline" />{' '}
             которые связывают бизнес<br className="hidden sm:inline" />{' '}
             <span className="text-[#3E7778]">в единый контур.</span>
