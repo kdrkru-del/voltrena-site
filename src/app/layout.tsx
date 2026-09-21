@@ -4,6 +4,8 @@ import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import ViewportFrame from '@/components/ui/ViewportFrame';
+import CustomCursor from '@/components/ui/CustomCursor';
 import { siteConfig } from '@/config/site';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'], variable: '--font-inter', display: 'swap' });
@@ -57,6 +59,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <noscript><div><img src={`https://mc.yandex.ru/watch/${siteConfig.yandexMetrikaId}`} style={{ position: 'absolute', left: '-9999px' }} alt="" /></div></noscript>
           </>
         )}
+        <ViewportFrame />
+        <CustomCursor />
         <Header />
         <main id="main-content">{children}</main>
         <Footer />

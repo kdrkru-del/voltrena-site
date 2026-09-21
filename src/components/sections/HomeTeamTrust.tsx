@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Link from 'next/link'
-import SectionHeading from '@/components/ui/SectionHeading'
-import ScrollReveal from '@/components/ui/ScrollReveal'
-import { siteConfig } from '@/config/site'
-import { ArrowRight } from 'lucide-react'
+import React from 'react';
+import Link from 'next/link';
+import ScrollReveal from '@/components/ui/ScrollReveal';
+import SpotlightCard from '@/components/ui/SpotlightCard';
+import { siteConfig } from '@/config/site';
+import { ArrowRight, Users } from 'lucide-react';
 
 const teamMembers = [
   {
@@ -40,81 +40,87 @@ const teamMembers = [
     image: '/images/team/maxim-orlov.jpg',
     position: 'object-[50%_15%]',
   },
-]
+];
 
 export default function HomeTeamTrust() {
   return (
-    <section className="py-20 md:py-28 bg-bg-primary relative overflow-hidden border-t border-border/40">
+    <section className="py-20 md:py-28 bg-[#101416] relative overflow-hidden border-t border-[#232B2D]">
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
         <ScrollReveal>
-          <SectionHeading
-            title="За каждой системой стоят люди."
-            subtitle="Прямой контакт со специалистами, принимающими решения по проекту, без посредников и лишних звеньев."
-            align="center"
-          />
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#5A9692] uppercase mb-3 px-3 py-1 rounded-md border border-[#3E7778]/35 bg-[#3E7778]/15">
+              <Users className="w-3.5 h-3.5 text-[#5A9692]" />
+              <span>Команда инженеров</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#F2EFE6] tracking-tight mb-4">
+              За каждой системой стоят люди.
+            </h2>
+            <p className="text-[#AAB4B1] text-base sm:text-lg">
+              Прямой контакт со специалистами, принимающими решения по проекту, без посредников и лишних звеньев.
+            </p>
+          </div>
         </ScrollReveal>
 
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
           {teamMembers.map((member, idx) => (
             <ScrollReveal key={member.id} delay={idx * 60}>
-              <div className="h-full rounded-2xl bg-bg-surface border border-border/80 overflow-hidden shadow-lg hover:border-accent/40 transition-colors flex flex-col justify-between group">
-                {/* Image with headroom */}
-                <div className="relative aspect-square w-full overflow-hidden bg-bg-primary">
+              <SpotlightCard className="h-full rounded-2xl bg-[#131719] border border-[#232B2D] overflow-hidden shadow-xl hover:border-[#384547] transition-colors flex flex-col justify-between group">
+                {/* Image container */}
+                <div className="relative aspect-square w-full overflow-hidden bg-[#0D1012]">
                   <img
                     src={siteConfig.getAssetUrl(member.image)}
                     alt={member.name}
-                    className={`w-full h-full object-cover ${member.position} group-hover:scale-[1.02] transition-transform duration-500`}
+                    className={`w-full h-full object-cover ${member.position} group-hover:scale-[1.03] transition-transform duration-500`}
                     loading="lazy"
                     onError={(e) => {
-                      // Hide broken image and show initials fallback
                       e.currentTarget.style.display = 'none';
                       const fallback = e.currentTarget.nextElementSibling as HTMLElement;
                       if (fallback) fallback.style.display = 'flex';
                     }}
                   />
-                  {/* Initials fallback (shown if image fails to load) */}
+                  {/* Initials fallback */}
                   <div
-                    className="absolute inset-0 items-center justify-center bg-bg-surface border border-border/60 text-3xl font-bold text-accent select-none"
+                    className="absolute inset-0 items-center justify-center bg-[#14181A] border border-[#232B2D] text-3xl font-bold text-[#5A9692] select-none"
                     style={{ display: 'none' }}
                     aria-hidden="true"
                   >
-                    {member.name.split(' ').map(n => n[0]).join('')}
+                    {member.name.split(' ').map((n) => n[0]).join('')}
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-bg-surface via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#131719] via-[#131719]/30 to-transparent" />
                 </div>
 
                 {/* Info */}
                 <div className="p-5 flex flex-col justify-between flex-1">
                   <div>
-                    <div className="text-xs text-accent font-semibold mb-1">
+                    <div className="text-[11px] font-mono text-[#5A9692] font-semibold uppercase tracking-wider mb-1">
                       {member.role}
                     </div>
-                    <h3 className="text-lg font-bold text-text-primary mb-2">
+                    <h3 className="text-lg font-bold text-[#F2EFE6] mb-2">
                       {member.name}
                     </h3>
-                    <p className="text-xs text-text-secondary leading-relaxed">
+                    <p className="text-xs text-[#AAB4B1] leading-relaxed">
                       {member.desc}
                     </p>
                   </div>
                 </div>
-              </div>
+              </SpotlightCard>
             </ScrollReveal>
           ))}
         </div>
 
         {/* About team CTA link */}
         <ScrollReveal delay={200}>
-          <div className="mt-10 text-center">
+          <div className="mt-12 text-center">
             <Link
               href="/about/"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-bg-surface border border-border hover:border-accent text-text-primary hover:text-accent font-semibold text-xs sm:text-sm transition-colors min-h-[44px]"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#14181A] border border-[#2B3537] hover:border-[#5A9692] text-[#F2EFE6] font-semibold text-xs sm:text-sm transition-all min-h-[44px] shadow-md hover:scale-[1.02]"
             >
               <span>Подробнее о принципах команды</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 text-[#5A9692]" />
             </Link>
           </div>
         </ScrollReveal>
       </div>
     </section>
-  )
+  );
 }

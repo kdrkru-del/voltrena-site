@@ -1,6 +1,7 @@
 import { siteConfig } from '@/config/site'
 import type { Metadata } from 'next'
 import Hero from '@/components/sections/Hero'
+import MarqueeStrip from '@/components/ui/MarqueeStrip'
 import HomeProblemNavigator from '@/components/sections/HomeProblemNavigator'
 import ProofSection from '@/components/cases/ProofSection'
 import HomeSolutionsShowcase from '@/components/sections/HomeSolutionsShowcase'
@@ -42,6 +43,7 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
       <Hero />
+      <MarqueeStrip />
       <HomeSolutionsShowcase />
       <ProofSection />
       <HomeProblemNavigator />
