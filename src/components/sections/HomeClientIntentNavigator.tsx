@@ -163,7 +163,7 @@ export default function HomeClientIntentNavigator() {
                   </div>
 
                   <a
-                    href="https://окнацентр.рф"
+                    href="https://окнацентр.рф/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block p-4 rounded-xl bg-[#FFFDF8] border border-[#D7D3C8] hover:border-[#C9854D] transition-all group"
@@ -173,10 +173,10 @@ export default function HomeClientIntentNavigator() {
                       <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </div>
                     <div className="font-bold text-[#1D2528] text-sm group-hover:text-[#3E7778] transition-colors">
-                      Окна Центр · Панорамное остекление
+                      Окна Центр · Оконное производство (24 страницы)
                     </div>
                     <div className="text-xs text-[#5D686A] mt-1">
-                      Интерактивный конфигуратор конструкций, связка с amoCRM и Telegram инженера.
+                      Многостраничный сайт на Next.js, SEO 301 миграция, конфигуратор расчёта и запись на замер.
                     </div>
                   </a>
 

@@ -13,9 +13,9 @@ export default function CasesFeaturedOverview() {
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
         <ScrollReveal>
           <SectionHeading
-            tag="ПРОЕКТЫ"
-            title="Проекты в разработке и работающие системы"
-            subtitle="Показываем как готовые внедрения, так и проекты в активной разработке, включая интерактивные прототипы на этапе выбора направления."
+            tag="ВЫПОЛНЕННЫЕ РАБОТЫ"
+            title="Выполненные работы и действующие системы"
+            subtitle="Реальные внедрения VOLTRENA: многостраничные сайты, рекламные контуры в Яндекс Директе, системы доставки заявок и B2B-аналитика."
             align="center"
           />
         </ScrollReveal>

@@ -90,36 +90,8 @@ export default function CaseDetailSections() {
 
                 {/* Right: Demo Artifact & Limitations */}
                 <div className="lg:col-span-5 space-y-6">
-                  {/* Live Demo Banner for Okna Center */}
-                  {item.id === 'okna-center' && item.externalDemoUrl && (
-                    <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-accent/15 via-bg-surface to-bg-surface border border-accent/40 shadow-xl relative overflow-hidden">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent">
-                          <Sparkles className="w-3.5 h-3.5" />
-                          <span>Интерактивный стенд</span>
-                        </span>
-                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                      </div>
-                      <h4 className="text-base font-bold text-text-primary mb-2">
-                        {item.title}
-                      </h4>
-                      <p className="text-xs text-text-secondary leading-relaxed mb-4">
-                        {item.shortDescription}
-                      </p>
-                      <a
-                        href={item.externalDemoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-accent text-white font-semibold text-xs sm:text-sm hover:bg-accent-light transition-all shadow-md shadow-accent/20"
-                      >
-                        <span>{item.externalDemoLabel || 'Перейти к стенду'}</span>
-                        <ExternalLink className="w-4 h-4" />
-                      </a>
-                    </div>
-                  )}
-
-                  {/* Live Project Banner for Live Projects (ZemTrak, TehUchet, Zelenyi Srez) */}
-                  {item.id !== 'okna-center' && item.externalDemoUrl && (
+                  {/* Live Project Banner for Live Projects */}
+                  {item.externalDemoUrl && (
                     <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-accent/15 via-bg-surface to-bg-surface border border-accent/40 shadow-xl relative overflow-hidden">
                       <div className="flex items-center justify-between mb-2">
                         <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent">

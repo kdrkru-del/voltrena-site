@@ -21,6 +21,19 @@ export interface SelectedProject {
 
 const projects: SelectedProject[] = [
   {
+    id: 'okna-center',
+    title: 'Окна Центр',
+    label: 'MANUFACTURING & GLAZING / 24-PAGE NEXT.JS SITE',
+    url: 'https://окнацентр.рф/',
+    displayDomain: 'oknacenter.rf',
+    description: 'Многостраничный сайт оконного производства и монтажа во Владивостоке и Уссурийске (24 канонические страницы на Next.js). Полная миграция со старой CMS с сохранением поискового трафика.',
+    additionalText: 'Структура охватывает пластиковые окна, комплексное остекление и внутреннюю отделку балконов и лоджий, коттеджи и панорамные конструкции. Встроен интерактивный конфигуратор расчёта стоимости и быстрая отправка заявки в отдел замеров.',
+    tags: ['Next.js', '24 Pages', 'SEO 301 Migration', 'Online Configurator', 'Yandex Metrica'],
+    goal: 'привлечение целевого поискового спроса по Приморскому краю и запись на замер.',
+    image: '/images/projects/okna-center.svg',
+    accentColor: 'text-[#C9854D] border-[#C9854D]/30 bg-[#C9854D]/10',
+  },
+  {
     id: 'zelenyi-srez',
     title: 'Зелёный Срез',
     label: 'LOCAL SERVICE / LEAD GENERATION',
@@ -45,19 +58,6 @@ const projects: SelectedProject[] = [
     goal: 'превращать нишевой поисковый спрос в целевые обращения.',
     image: '/images/projects/techuchet.jpg',
     accentColor: 'text-blue-400 border-blue-500/30 bg-blue-500/10',
-  },
-  {
-    id: 'okna-center',
-    title: 'Окна Центр',
-    label: 'ARCHITECTURAL GLAZING / PREMIUM CONFIGURATOR',
-    url: 'https://окнацентр.рф',
-    displayDomain: 'oknacenter.rf',
-    description: 'Сайт компании по архитектурному и панорамному остеклению во Владивостоке. Чистый цифровой фасад, передающий масштаб архитектуры, приморские виды и статус премиальных конструкций.',
-    additionalText: 'В архитектуру заложена интерактивная презентация решений, онлайн-конфигуратор остекления и мгновенная передача параметров объекта инженеру по замерам.',
-    tags: ['Next.js', 'Architectural Glazing', 'Interactive 3D/Light', 'Online Configurator', 'Direct CRM Lead'],
-    goal: 'презентация сложных архитектурных решений и квалификация заявок на панорамное остекление.',
-    image: '/images/projects/okna-center.svg',
-    accentColor: 'text-[#C9854D] border-[#C9854D]/30 bg-[#C9854D]/10',
   },
   {
     id: 'globerion',
