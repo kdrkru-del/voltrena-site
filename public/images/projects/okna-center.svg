@@ -1,0 +1,114 @@
+<svg width="1000" height="625" viewBox="0 0 1000 625" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="oc-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14181B" />
+      <stop offset="50%" stop-color="#1B2226" />
+      <stop offset="100%" stop-color="#0E1214" />
+    </linearGradient>
+    <linearGradient id="oc-glass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255, 255, 255, 0.12)" />
+      <stop offset="50%" stop-color="rgba(201, 133, 77, 0.08)" />
+      <stop offset="100%" stop-color="rgba(255, 255, 255, 0.03)" />
+    </linearGradient>
+    <linearGradient id="oc-btn" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C9854D" />
+      <stop offset="100%" stop-color="#DE9E68" />
+    </linearGradient>
+    <radialGradient id="oc-sun" cx="70%" cy="20%" r="65%">
+      <stop offset="0%" stop-color="rgba(222, 158, 104, 0.25)" />
+      <stop offset="40%" stop-color="rgba(201, 133, 77, 0.08)" />
+      <stop offset="100%" stop-color="rgba(0, 0, 0, 0)" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="625" fill="url(#oc-bg)" />
+  <rect width="1000" height="625" fill="url(#oc-sun)" />
+
+  <!-- Subtle Architectural Grid -->
+  <g stroke="rgba(255, 255, 255, 0.04)" stroke-width="1">
+    <line x1="0" y1="80" x2="1000" y2="80" />
+    <line x1="0" y1="180" x2="1000" y2="180" />
+    <line x1="0" y1="320" x2="1000" y2="320" />
+    <line x1="0" y1="460" x2="1000" y2="460" />
+    <line x1="200" y1="0" x2="200" y2="625" />
+    <line x1="450" y1="0" x2="450" y2="625" />
+    <line x1="720" y1="0" x2="720" y2="625" />
+  </g>
+
+  <!-- Navigation Bar -->
+  <g transform="translate(60, 32)">
+    <rect width="880" height="56" rx="10" fill="rgba(25, 32, 36, 0.85)" stroke="rgba(201, 133, 77, 0.25)" />
+    <text x="30" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#FFFDF8" letter-spacing="1.5">ОКНА ЦЕНТР</text>
+    <text x="440" y="34" font-family="system-ui, sans-serif" font-size="12" fill="#9EA8AA" text-anchor="middle">Панорамное остекление · Безрамные системы · Алюминиевые фасады · Владивосток</text>
+    <rect x="730" y="12" width="130" height="32" rx="6" fill="url(#oc-btn)" />
+    <text x="795" y="32" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#14181B" text-anchor="middle">Рассчитать проект</text>
+  </g>
+
+  <!-- Hero Typography -->
+  <g transform="translate(60, 130)">
+    <rect width="210" height="26" rx="13" fill="rgba(201, 133, 77, 0.12)" stroke="rgba(201, 133, 77, 0.3)" />
+    <circle cx="14" cy="13" r="3.5" fill="#C9854D" />
+    <text x="115" y="17" font-family="monospace, sans-serif" font-size="10" font-weight="700" fill="#DE9E68" text-anchor="middle">АРХИТЕКТУРА СВЕТА</text>
+
+    <text x="0" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="800" fill="#FFFDF8" letter-spacing="-0.5">Панорамное остекление</text>
+    <text x="0" y="112" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="800" fill="#C9854D" letter-spacing="-0.5">с видом на весь город</text>
+
+    <text x="0" y="152" font-family="system-ui, sans-serif" font-size="14" fill="#9EA8AA" max-width="400">
+      Проектирование и монтаж фасадных систем Schüco, Reynaers и Alutech.
+    </text>
+    <text x="0" y="174" font-family="system-ui, sans-serif" font-size="14" fill="#9EA8AA">
+      Теплотехнический расчет под климатические нагрузки Приморья.
+    </text>
+
+    <!-- Metrics Badges -->
+    <g transform="translate(0, 210)">
+      <g>
+        <rect width="115" height="52" rx="8" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.08)" />
+        <text x="14" y="24" font-family="monospace, sans-serif" font-size="16" font-weight="700" fill="#DE9E68">10 лет</text>
+        <text x="14" y="42" font-family="system-ui, sans-serif" font-size="10" fill="#758285">Гарантия на монтаж</text>
+      </g>
+      <g transform="translate(125, 0)">
+        <rect width="115" height="52" rx="8" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.08)" />
+        <text x="14" y="24" font-family="monospace, sans-serif" font-size="16" font-weight="700" fill="#DE9E68">до 6.5 м</text>
+        <text x="14" y="42" font-family="system-ui, sans-serif" font-size="10" fill="#758285">Высота стеклопакета</text>
+      </g>
+      <g transform="translate(250, 0)">
+        <rect width="115" height="52" rx="8" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.08)" />
+        <text x="14" y="24" font-family="monospace, sans-serif" font-size="16" font-weight="700" fill="#DE9E68">48 часов</text>
+        <text x="14" y="42" font-family="system-ui, sans-serif" font-size="10" fill="#758285">Точный расчет сметы</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Architectural Showcase Render / Glass Panel Mockup -->
+  <g transform="translate(540, 125)">
+    <!-- Main Glass Portal Frame -->
+    <rect width="400" height="390" rx="14" fill="url(#oc-glass)" stroke="rgba(201, 133, 77, 0.4)" stroke-width="1.5" />
+    
+    <!-- Interior Framing Grid (Panoramic Window Mullions) -->
+    <rect x="15" y="15" width="180" height="230" rx="6" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.12)" />
+    <rect x="205" y="15" width="180" height="230" rx="6" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.12)" />
+    <rect x="15" y="255" width="370" height="120" rx="6" fill="rgba(201, 133, 77, 0.05)" stroke="rgba(201, 133, 77, 0.2)" />
+
+    <!-- Glass Reflection Highlights -->
+    <path d="M 25 25 L 140 25 L 30 190 Z" fill="rgba(255, 255, 255, 0.06)" />
+    <path d="M 215 25 L 340 25 L 220 200 Z" fill="rgba(255, 255, 255, 0.04)" />
+
+    <!-- Configurator Overlay Widget -->
+    <g transform="translate(30, 275)">
+      <text x="0" y="20" font-family="monospace, sans-serif" font-size="11" font-weight="700" fill="#DE9E68">ПАРАМЕТРЫ КОНСТРУКЦИИ</text>
+      <text x="0" y="44" font-family="system-ui, sans-serif" font-size="12" fill="#FFFDF8">Портал Alutech ALT SL160 · Теплый профиль · Триплекс 8 мм</text>
+      <text x="0" y="66" font-family="monospace, sans-serif" font-size="11" fill="#758285">Габариты: 4800 × 2800 мм · Заявка передана инженеру</text>
+      <circle cx="320" cy="40" r="14" fill="rgba(201, 133, 77, 0.2)" stroke="#C9854D" />
+      <path d="M 315 40 L 319 44 L 326 36" fill="none" stroke="#C9854D" stroke-width="2" />
+    </g>
+  </g>
+
+  <!-- Bottom Strip -->
+  <g transform="translate(60, 560)">
+    <text x="0" y="0" font-family="monospace, sans-serif" font-size="11" fill="#5D686A">
+      OKNACENTER.RF — ЦИФРОВОЙ ФАСАД И КОНФИГУРАТОР ПАНОРАМНОГО ОСТЕКЛЕНИЯ · VOLTRENA DIGITAL
+    </text>
+  </g>
+</svg>

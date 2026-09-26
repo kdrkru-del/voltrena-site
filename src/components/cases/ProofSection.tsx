@@ -26,6 +26,17 @@ const flagshipCase = {
 
 const secondaryCases = [
   {
+    title: 'Окна Центр',
+    system: 'Сайт & Интерактивный конфигуратор',
+    systemHref: '/solutions/digital-sales-system/',
+    task: 'Спроектировать премиальный цифровой фасад компании и перевести спрос на панорамное остекление в квалифицированные заявки.',
+    implemented: 'oknacenter.rf → выбор остекления → Яндекс Директ → amoCRM → Telegram замерщика',
+    result: 'Отстройка от типовых оконных каталогов: панорамная подача объектов, интерактивный расчет конструкций и передача параметров остекления прямо в CRM.',
+    href: '/cases/#okna-center',
+    externalDemoUrl: 'https://окнацентр.рф',
+    externalDemoLabel: 'oknacenter.rf',
+  },
+  {
     title: 'ZEMTRAK',
     system: 'Система привлечения клиентов',
     systemHref: '/solutions/digital-sales-system/',
@@ -187,8 +198,8 @@ export default function ProofSection() {
           </SpotlightCard>
         </ScrollReveal>
 
-        {/* 3 Secondary Cases Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Secondary Cases Grid (4 Client Implementations) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {secondaryCases.map((item, idx) => (
             <ScrollReveal key={item.title} delay={idx * 60}>
               <SpotlightCard className="h-full p-6 rounded-2xl bg-[#FFFDF8] border border-[#D7D3C8] shadow-sm hover:border-[#3E7778] transition-colors flex flex-col justify-between group">

@@ -47,6 +47,7 @@ const ServiceIncludes             = dynamic(() => import('@/components/service/S
 const ServiceTelegramReliability  = dynamic(() => import('@/components/service/ServiceTelegramReliability'),  { loading: () => <SectionSkeleton /> })
 const ServiceFAQ                  = dynamic(() => import('@/components/service/ServiceFAQ'),                  { loading: () => <SectionSkeleton /> })
 const ServiceCTA                  = dynamic(() => import('@/components/service/ServiceCTA'),                  { loading: () => <SectionSkeleton /> })
+const TelegramBotSimulator        = dynamic(() => import('@/components/ui/TelegramBotSimulator'),             { loading: () => <SectionSkeleton /> })
 
 export default function TelegramBotsPage() {
   const data = telegramBotsData
@@ -151,6 +152,28 @@ export default function TelegramBotsPage() {
 
       {/* Section 7: Сначала задача. Потом бот */}
       <ServiceBotPhilosophy />
+
+      {/* Interactive Simulator Demo */}
+      <section className="py-16 md:py-20 bg-bg-secondary relative overflow-hidden border-t border-border/60">
+        <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
+          <ScrollReveal>
+            <div className="text-center max-w-2xl mx-auto mb-10">
+              <span className="text-xs font-mono uppercase tracking-wider text-accent font-bold bg-accent/10 px-3 py-1 rounded">
+                Интерактивный демо-стенд
+              </span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-text-primary mt-3 mb-3">
+                Протестируйте работу бота прямо в браузере
+              </h2>
+              <p className="text-text-secondary text-sm sm:text-base">
+                Выберите один из типовых сценариев — посмотрите механику диалога, расчет сметы и формат передачи данных в CRM.
+              </p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={80}>
+            <TelegramBotSimulator />
+          </ScrollReveal>
+        </div>
+      </section>
 
       {/* Section 8: Что можно построить в Telegram */}
       {data.types && (
