@@ -169,7 +169,7 @@ export default function HomeClientIntentNavigator() {
                     className="block p-4 rounded-xl bg-[#FFFDF8] border border-[#D7D3C8] hover:border-[#C9854D] transition-all group"
                   >
                     <div className="flex items-center justify-between text-xs font-mono text-[#C9854D] mb-1 font-bold">
-                      <span>oknacenter.rf</span>
+                      <span>ОкнаЦентр.рф</span>
                       <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </div>
                     <div className="font-bold text-[#1D2528] text-sm group-hover:text-[#3E7778] transition-colors">

@@ -25,7 +25,7 @@ const projects: SelectedProject[] = [
     title: 'Окна Центр',
     label: 'MANUFACTURING & GLAZING / 24-PAGE NEXT.JS SITE',
     url: 'https://окнацентр.рф/',
-    displayDomain: 'oknacenter.rf',
+    displayDomain: 'ОкнаЦентр.рф',
     description: 'Многостраничный сайт оконного производства и монтажа во Владивостоке и Уссурийске (24 канонические страницы на Next.js). Полная миграция со старой CMS с сохранением поискового трафика.',
     additionalText: 'Структура охватывает пластиковые окна, комплексное остекление и внутреннюю отделку балконов и лоджий, коттеджи и панорамные конструкции. Встроен интерактивный конфигуратор расчёта стоимости и быстрая отправка заявки в отдел замеров.',
     tags: ['Next.js', '24 Pages', 'SEO 301 Migration', 'Online Configurator', 'Yandex Metrica'],

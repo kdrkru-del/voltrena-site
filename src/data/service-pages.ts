@@ -335,7 +335,7 @@ export const webDevelopmentData: ServicePageData = {
       { label: 'Тестирование скорости (Google PageSpeed 95+)' },
     ],
     extra: [
-      { label: 'Сложные расчетные калькуляторы и конфигураторы (как oknacenter.rf)' },
+      { label: 'Сложные расчетные калькуляторы и конфигураторы (как ОкнаЦентр.рф)' },
       { label: 'Интерактивные 3D / WebGL визуализации' },
       { label: 'Сквозная настройка Яндекс Директа' },
       { label: 'Telegram-бот или Mini App под бизнес-процессы' },

@@ -30,11 +30,11 @@ const secondaryCases = [
     system: 'Система привлечения клиентов',
     systemHref: '/solutions/digital-sales-system/',
     task: 'Перенести сайт оконного производства (Владивосток и Уссурийск) со старого конструктора на быстрый стек без потери SEO-позиций.',
-    implemented: 'oknacenter.rf (24 страницы Next.js) → SEO 301 миграция → конфигуратор расчёта → отдел замеров',
+    implemented: 'ОкнаЦентр.рф (24 страницы Next.js) → SEO 301 миграция → конфигуратор расчёта → отдел замеров',
     result: 'Мгновенная загрузка 24 посадочных страниц по окнам и лоджиям, интерактивный расчёт конструкций и доставка заявок без спама.',
     href: '/cases/#okna-center',
     externalDemoUrl: 'https://окнацентр.рф/',
-    externalDemoLabel: 'oknacenter.rf',
+    externalDemoLabel: 'ОкнаЦентр.рф',
   },
   {
     title: 'ZEMTRAK',
