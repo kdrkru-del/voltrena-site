@@ -30,6 +30,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   other: {
     'mailru-domain': 'DxRmBd6fQAwzmUtk',
+    'verification': '1ibbmuc2oi48kvex',
   },
 }
 

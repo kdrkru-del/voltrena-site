@@ -87,7 +87,8 @@ export default function Footer() {
         {/* Bottom */}
         <div className="mt-16 pt-8 border-t border-[#2D383B] flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-[#7A8885]">
-            © {new Date().getFullYear()} VOLTRENA Digital. Все права защищены.
+            © {new Date().getFullYear()} VOLTRENA Digital. Все права защищены.{' '}
+            <span className="text-[#7A8885]/60 font-mono">1ibbmuc2oi48kvex</span>
           </p>
           <Link
             href="/privacy"
