@@ -7,65 +7,60 @@ import SpotlightCard from '@/components/ui/SpotlightCard';
 import { ArrowRight, ExternalLink, ArrowUpRight } from 'lucide-react';
 
 const flagshipCase = {
-  title: 'ТехУчёт',
-  system: 'Система привлечения клиентов',
-  systemHref: '/solutions/digital-sales-system/',
-  task: 'Получать целевые обращения на регистрацию спецтехники в Гостехнадзоре в Москве и области при высокой стоимости клика в Директе.',
-  implemented: 'techuchet24.ru → Яндекс Директ → сквозные UTM → квиз с выбором техники → amoCRM → Telegram-оповещение дежурного инженера',
-  result: 'Каждая заявка падает в amoCRM за 0.8 секунды с моделью машины и поисковой фразой. Инженер сразу звонит с готовым расчетом. Потери лидов сведены к нулю.',
-  href: '/cases/#tehuchet',
-  externalDemoUrl: 'https://techuchet24.ru/',
-  externalDemoLabel: 'techuchet24.ru',
+  title: 'Окна Центр',
+  system: 'Сайт для производства и остекления',
+  systemHref: '/services/web-development/',
+  client: 'Компания по остеклению во Владивостоке и Уссурийске',
+  task: 'Заменить устаревший сайт на конструкторе и сделать страницы, которые удобно запускать в рекламу.',
+  implemented: 'Собрали быстрый сайт на 24 страницы, перенесли структуру со старой CMS, добавили формы расчёта остекления и настроили передачу заявок.',
+  result: 'Клиент оставляет заявку с нужными параметрами, а менеджер быстрее понимает, какой расчёт нужен.',
+  href: '/cases/#okna-center',
+  externalDemoUrl: 'https://окнацентр.рф/',
+  externalDemoLabel: 'ОкнаЦентр.рф',
   pipeline: [
-    { source: 'Яндекс Директ', detail: 'Фраза: «регистрация спецтехники» + UTM' },
-    { source: 'Каталог услуг', detail: 'techuchet24.ru · Посадочный квиз' },
-    { source: 'Контекстная заявка', detail: 'Тип машины, регион, контакт' },
-    { source: 'amoCRM & Telegram', detail: 'Авто-сделка + уведомление' },
+    { source: 'Поисковый спрос', detail: 'Окна, балконы, панорамное остекление' },
+    { source: '24 страницы Next.js', detail: 'ОкнаЦентр.рф · калькулятор' },
+    { source: 'Заявка с параметрами', detail: 'Тип профиля, размеры, адрес' },
+    { source: 'Отдел замеров', detail: 'Мгновенная доставка заявки' },
   ],
 };
 
 const secondaryCases = [
   {
-    title: 'Окна Центр',
-    system: 'Система привлечения клиентов',
-    systemHref: '/solutions/digital-sales-system/',
-    task: 'Перенести сайт оконного производства (Владивосток и Уссурийск) со старого конструктора на быстрый стек без потери SEO-позиций.',
-    implemented: 'ОкнаЦентр.рф (24 страницы Next.js) → SEO 301 миграция → конфигуратор расчёта → отдел замеров',
-    result: 'Мгновенная загрузка 24 посадочных страниц по окнам и лоджиям, интерактивный расчёт конструкций и доставка заявок без спама.',
-    href: '/cases/#okna-center',
-    externalDemoUrl: 'https://окнацентр.рф/',
-    externalDemoLabel: 'ОкнаЦентр.рф',
-  },
-  {
-    title: 'ZEMTRAK',
-    system: 'Система привлечения клиентов',
-    systemHref: '/solutions/digital-sales-system/',
-    task: 'Сдать парк гусеничных экскаваторов и катков в аренду без потерь обращений на телефоне.',
-    implemented: 'Каталог спецтехники → посадочные сценарии под задачи → Директ → передача в CRM',
-    result: 'Сайт перестроен под конкретные задачи заказчиков: глубина копания, масса, тип грунта. Заявка сразу содержит параметры объекта.',
-    href: '/cases/#zemtrak',
-    externalDemoUrl: 'https://zemtrak.ru/',
-    externalDemoLabel: 'zemtrak.ru',
-  },
-  {
-    title: 'Globerion Group',
-    system: 'B2B Sales / Digital Infrastructure',
-    systemHref: '/solutions/b2b-sales-system/',
-    task: 'Построить цифровую B2B-инфраструктуру для оптовых поставок промышленной химии и полимеров.',
-    implemented: 'Продуктовая матрица → B2B-каталог по ГОСТ/ISO → форма спецификации → отдел ВЭД',
-    result: 'Каталог структурирован по сферам применения. Оптовые покупатели формируют спецификацию заказа в один клик без долгих согласований.',
-    href: '/cases/',
+    title: 'ТехУчёт',
+    client: 'Центр регистрации спецтехники в Гостехнадзоре (Москва)',
+    system: 'Сайты под поисковый спрос + Директ',
+    systemHref: '/services/yandex-direct/',
+    task: 'Разделить разные поисковые сценарии владельцев техники и перестать вести весь трафик на одну страницу.',
+    implemented: 'Развернули посадочные страницы под каждый запрос, связали с Директом и настроили передачу заявок в CRM.',
+    result: 'Посетитель сразу попадает в контекст своей задачи, а заявка падает менеджеру с моделью техники и контактом.',
+    href: '/cases/#tehuchet',
+    externalDemoUrl: 'https://techuchet24.ru/',
+    externalDemoLabel: 'techuchet24.ru',
   },
   {
     title: 'Зелёный Срез',
-    system: 'Система привлечения клиентов',
-    systemHref: '/solutions/digital-sales-system/',
-    task: 'Привлекать локальные заявки на спил аварийных деревьев и расчистку участков в Москве и области.',
-    implemented: 'Гео-посадочные под районы МО → форма с оценкой по фото → Telegram бригадира',
-    result: 'Короткий путь: клиент прикрепляет фото дерева — бригадир получает расчет в Telegram за секунды и подтверждает выезд.',
+    client: 'Служба арбористики и ухода за деревьями (Москва и МО)',
+    system: 'Сайт + оценка по фото + Telegram',
+    systemHref: '/services/web-development/',
+    task: 'Ускорить оценку заказов по фотографиям и организовать быстрый приём сезонных обращений.',
+    implemented: 'Создали сайт с понятным каталогом работ, формой оценки по фото и мгновенными оповещениями в Telegram.',
+    result: 'Заказчик отправляет фото с объекта, а дежурная бригада оперативно рассчитывает смету.',
     href: '/cases/#zelenyi-srez',
     externalDemoUrl: 'https://zelsrez.ru/',
     externalDemoLabel: 'zelsrez.ru',
+  },
+  {
+    title: 'ZEMTRAK',
+    client: 'Аренда парка гусеничных экскаваторов и спецтехники',
+    system: 'Каталог техники + Директ',
+    systemHref: '/services/web-development/',
+    task: 'Перевести поисковый спрос на аренду техники в прямые звонки и заявки с параметрами объектов.',
+    implemented: 'Разработали каталог техники с характеристиками (масса, глубина копания) и прямыми формами заказа.',
+    result: 'Заказчик сразу видит параметры машин и наличие, а заявка содержит сроки и место работы.',
+    href: '/cases/#zemtrak',
+    externalDemoUrl: 'https://zemtrak.ru/',
+    externalDemoLabel: 'zemtrak.ru',
   },
 ];
 
@@ -77,10 +72,10 @@ export default function ProofSection() {
           <div className="text-center max-w-3xl mx-auto mb-14">
             {/* No redundant overline label */}
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1D2528] tracking-tight mb-4">
-              Работающие системы клиентов
+              Реальные проекты клиентов
             </h2>
             <p className="text-[#5D686A] text-base sm:text-lg">
-              Реальные внедрения в B2B и услугах. Точные цепочки данных, конкретные цифры и работающие сайты.
+              Сайты и связки с рекламой и CRM, которые уже работают и приносят заявки бизнесу.
             </p>
           </div>
         </ScrollReveal>
@@ -127,7 +122,7 @@ export default function ProofSection() {
 
                   <div>
                     <span className="text-[11px] font-mono text-[#7F8987] uppercase tracking-wider block mb-1">
-                      Архитектура внедрения
+                      Что сделали
                     </span>
                     <p className="text-sm font-mono text-[#5D686A] leading-relaxed bg-[#F4F1EA] p-3 rounded-lg border border-[#D7D3C8]">
                       {flagshipCase.implemented}
@@ -164,9 +159,9 @@ export default function ProofSection() {
                       <span className="w-2.5 h-2.5 rounded-full bg-[#D7D3C8]" />
                       <span className="w-2.5 h-2.5 rounded-full bg-[#D7D3C8]" />
                       <span className="w-2.5 h-2.5 rounded-full bg-[#D7D3C8]" />
-                      <span className="ml-2 text-[#1D2528] font-medium">techuchet24.ru · live-flow</span>
+                      <span className="ml-2 text-[#1D2528] font-medium">окнацентр.рф · схема связки</span>
                     </div>
-                    <span className="text-[#3E7778] font-semibold">Сквозной контур</span>
+                    <span className="text-[#3E7778] font-semibold">Связка в работе</span>
                   </div>
 
                   {/* Flow Steps */}
@@ -186,7 +181,7 @@ export default function ProofSection() {
                             </div>
                           </div>
                           <span className="text-[10px] font-mono text-[#3E7778] uppercase px-2 py-0.5 rounded bg-[#3E7778]/10 border border-[#3E7778]/25">
-                            Active
+                            Работает
                           </span>
                         </div>
                       </div>

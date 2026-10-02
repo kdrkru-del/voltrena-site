@@ -24,10 +24,10 @@ export default function HomeFinalContact() {
             <div>
               {/* No redundant overline label */}
               <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1D2528] tracking-tight leading-[1.15] mb-3 break-words hyphens-auto">
-                Какую задачу нужно решить?
+                Расскажите, что нужно улучшить в продажах
               </h2>
               <p className="text-[#5D686A] text-sm sm:text-base leading-relaxed mb-6">
-                Напишите, что у вас сейчас: сайт, реклама, ручные процессы или нехватка заявок. Инженер подключится к диалогу, разберет архитектуру и предложит первый рабочий шаг.
+                Опишите задачу в двух-трёх предложениях. Мы посмотрим, что уже есть, и предложим понятный следующий шаг: сайт, рекламу, CRM-связку или короткий аудит.
               </p>
             </div>
 
@@ -50,7 +50,7 @@ export default function HomeFinalContact() {
                 rel="noopener noreferrer"
                 className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-[#C9854D] text-[#FFFDF8] font-bold text-sm hover:bg-[#D99A62] transition-all shadow-sm min-h-[44px] group/btn"
               >
-                <span>Запросить конфигурацию в Telegram</span>
+                <span>Написать в Telegram</span>
                 <Send className="w-4 h-4 fill-current group-hover/btn:translate-x-0.5 transition-transform" aria-hidden="true" />
               </a>
             </SpotlightCard>
@@ -82,7 +82,7 @@ export default function HomeFinalContact() {
             <div className="p-4 rounded-xl bg-[#EAE6DD] border border-[#D7D3C8] text-xs text-[#5D686A] space-y-1">
               <div className="flex items-center gap-2 text-[#1D2528] font-bold">
                 <Mail className="w-3.5 h-3.5 text-[#3E7778]" />
-                <span>Прямая почта инженеров:</span>
+                <span>Прямая почта команды:</span>
               </div>
               <a
                 href={`mailto:${siteConfig.email}`}
@@ -91,7 +91,7 @@ export default function HomeFinalContact() {
                 {siteConfig.email}
               </a>
               <p className="pt-1 text-[11px] text-[#7F8987]">
-                Конфиденциально. Отвечаем напрямую, без колл-центров и назойливых сейлов.
+                Конфиденциально. Отвечаем по делу, без назойливых продаж.
               </p>
             </div>
           </div>
@@ -101,14 +101,18 @@ export default function HomeFinalContact() {
             <SpotlightCard className="p-6 sm:p-8 md:p-10 rounded-2xl bg-[#FFFDF8] border border-[#D7D3C8] shadow-lg relative overflow-hidden">
               <div className="mb-6 pb-5 border-b border-[#D7D3C8]">
                 <h3 className="text-xl sm:text-2xl font-bold text-[#1D2528] mb-1">
-                  Запрос на проектирование системы
+                  Запрос на оценку проекта
                 </h3>
                 <p className="text-xs sm:text-sm text-[#5D686A]">
-                  Оставьте контакты — свяжемся для обсуждения требований и вышлем предварительную схему контура.
+                  Оставьте контакты и кратко опишите задачу — свяжемся в течение рабочего дня с конкретным предложением.
                 </p>
               </div>
 
-              <LeadForm />
+              <LeadForm submitLabel="Получить предварительную оценку" />
+
+              <p className="mt-4 text-xs text-[#7F8987] leading-relaxed text-center sm:text-left">
+                Без навязчивых звонков и сложных презентаций. Сначала разберём задачу и скажем, что имеет смысл делать.
+              </p>
             </SpotlightCard>
           </div>
         </div>

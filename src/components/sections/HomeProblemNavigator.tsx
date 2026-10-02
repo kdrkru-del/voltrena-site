@@ -4,309 +4,185 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SpotlightCard from '@/components/ui/SpotlightCard';
-import { ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle2, AlertCircle, Sparkles } from 'lucide-react';
 
-interface PipelineStep {
-  label: string;
-  sub: string;
-}
-
-interface ProblemItem {
+interface ScenarioItem {
   id: string;
   tabLabel: string;
-  problemTitle: string;
-  summary: string;
-  badge: string;
-  solutionName: string;
-  solutionHref: string;
-  pipeline: PipelineStep[];
-  outcome: string;
-  firstStep: string;
+  title: string;
+  problem: string;
+  solution: string;
+  result: string;
+  ctaText: string;
+  ctaHref: string;
 }
 
-const problems: ProblemItem[] = [
+const scenarios: ScenarioItem[] = [
+  {
+    id: 'new-site',
+    tabLabel: 'Нужен новый сайт',
+    title: 'Нужен новый сайт для компании или завода',
+    problem:
+      'Старый сайт устарел, плохо открывается с телефона и не объясняет, почему клиенту стоит обратиться именно к вам.',
+    solution:
+      'Проектируем структуру, пишем понятные тексты, собираем быстрый сайт и подключаем формы заявок.',
+    result:
+      'У компании появляется аккуратный сайт, который можно показывать клиентам и запускать в рекламу.',
+    ctaText: 'Рассчитать стоимость сайта',
+    ctaHref: '/services/web-development/',
+  },
+  {
+    id: 'low-leads',
+    tabLabel: 'Реклама есть, заявок мало',
+    title: 'Реклама работает, но приносит мало целевых заявок',
+    problem:
+      'Бюджет в Яндекс Директе тратится, клики идут, но обращений мало или они нецелевые.',
+    solution:
+      'Проверяем запросы, объявления и посадочные страницы. Убираем лишний трафик и приводим рекламу к конкретным услугам.',
+    result:
+      'Менеджеры получают больше обращений от людей, которым действительно нужна ваша услуга или продукция.',
+    ctaText: 'Получить аудит Директа',
+    ctaHref: '/services/yandex-direct/',
+  },
   {
     id: 'lost-leads',
-    tabLabel: 'Теряются заявки',
-    problemTitle: 'Заявки теряются между рекламой, сайтом и CRM',
-    summary:
-      'Реклама крутится, деньги списываются. Но заявки падают на общую почту, висят сутками или попадают к менеджеру без контекста. Никто не знает, какая фраза из Директа сработала.',
-    badge: 'Сквозной контур лидогенерации',
-    solutionName: 'Система привлечения клиентов',
-    solutionHref: '/solutions/digital-sales-system/',
-    pipeline: [
-      { label: 'Яндекс Директ', sub: 'Фразы и UTM-метки' },
-      { label: 'Конверсионный сайт', sub: 'Форма с контекстом' },
-      { label: 'amoCRM / Битрикс24', sub: 'Передача за 0.8с' },
-      { label: 'Сквозная аналитика', sub: 'ROMI до рубля' },
-    ],
-    outcome:
-      'Заявка падает в CRM за 0.8 секунды. Менеджер получает пуш в Telegram с именем, телефоном и поисковой фразой клиента. Убыточные ключи отключаются.',
-    firstStep:
-      'Аудит цепочки «Директ → Сайт → CRM». Находим точки обрыва меток и сценарий конверсии.',
+    tabLabel: 'Заявки теряются',
+    title: 'Заявки теряются между сайтом и менеджерами',
+    problem:
+      'Клиенты пишут в разные формы и мессенджеры, а менеджеры не всегда быстро видят новые обращения.',
+    solution:
+      'Связываем сайт, формы, Telegram и CRM. Настраиваем уведомления и передачу данных по заявке.',
+    result:
+      'Каждое обращение попадает в рабочую систему, а руководитель видит, что с ним происходит дальше.',
+    ctaText: 'Настроить связку с CRM',
+    ctaHref: '/services/crm/',
   },
   {
-    id: 'long-b2b-cycle',
-    tabLabel: 'Долгие B2B-сделки',
-    problemTitle: 'Длинный цикл сделки и потеря контекста в B2B',
-    summary:
-      'Решение принимают несколько человек. Менеджеры отправляют громоздкие КП вслепую, забывают перезванивать вовремя и не могут объяснить ценность лицам, принимающим решения.',
-    badge: 'Контур B2B-продаж',
-    solutionName: 'Система B2B-продаж',
-    solutionHref: '/solutions/b2b-sales-system/',
-    pipeline: [
-      { label: 'Сбор базы ЛПР', sub: 'Парсинг по ОКВЭД' },
-      { label: 'B2B-каталог', sub: 'Спецификации и цены' },
-      { label: 'CRM-воронка', sub: 'Регламент касаний' },
-      { label: 'Контроль сделок', sub: 'Прогноз закрытия' },
-    ],
-    outcome:
-      'Проверенная база клиентов, прозрачные этапы сделки и автоматические напоминания сейлам. Цикл переговоров сокращается на 25–40%.',
-    firstStep:
-      'Анализ типовой цепочки продажи и проектирование конверсионной посадочной структуры под ваших ЛПР.',
-  },
-  {
-    id: 'manual-scoring',
-    tabLabel: 'Нецелевые звонки',
-    problemTitle: 'Менеджеры тратят рабочие часы на нецелевые запросы',
-    summary:
-      'Отдел продаж тонет в пустых переписках в WhatsApp, спаме и ручном заполнении карточек. На общение с реальными платежеспособными заказчиками не хватает времени.',
-    badge: 'Контур квалификации',
-    solutionName: 'Квалификация и обработка заявок',
-    solutionHref: '/solutions/lead-operations-system/',
-    pipeline: [
-      { label: 'Входящий контакт', sub: 'Форма / Бот / Мессенджер' },
-      { label: 'Скоринг и ИНН', sub: 'Оценка выручки и задачи' },
-      { label: 'Обогащение данных', sub: 'Проверка контрагента' },
-      { label: 'Целевой пайплайн', sub: 'Передача старшему сейлу' },
-    ],
-    outcome:
-      'Сценарий квалификации отсекает нецелевой трафик на входе. Система проверяет компанию по ИНН и отдает менеджеру готовый бриф с бюджетом и срочностью.',
-    firstStep:
-      'Запуск сценария квалификации входящих обращений с сайта и мессенджеров.',
-  },
-  {
-    id: 'routine-operations',
-    tabLabel: 'Хаос в рутине',
-    problemTitle: 'Сотрудники вручную готовят документы и переносят данные',
-    summary:
-      'Выставление счетов, сборка смет в Excel, перенос остатков и отправка актов съедают часы рабочего времени. Любая невнимательность приводит к ошибкам в суммах или реквизитах.',
-    badge: 'Операционный контур',
-    solutionName: 'Автоматизация операционных процессов',
-    solutionHref: '/solutions/operations-automation-system/',
-    pipeline: [
-      { label: 'Событие в CRM', sub: 'Смена этапа сделки' },
-      { label: 'Сценарий n8n', sub: 'Автоматическая логика' },
-      { label: 'Сборка КП и счета', sub: 'PDF по шаблону за 3с' },
-      { label: 'Синхронизация', sub: 'Обновление в 1С' },
-    ],
-    outcome:
-      'Сценарий n8n формирует PDF-смету и счет по клику в CRM за 3 секунды. Данные синхронизируются с базой без участия человека. Ошибки исключены.',
-    firstStep:
-      'Выбор одного повторяющегося документа (КП или счет) и его автоматическая сборка по шаблону.',
-  },
-  {
-    id: 'blind-decisions',
-    tabLabel: 'Нет рыночных данных',
-    problemTitle: 'Цены конкурентов и динамика рынка отслеживаются вручную',
-    summary:
-      'Руководитель не видит реальные цены конкурентов. Мониторинг ведут вручную от случая к случаю, а о демпинге узнают, когда клиенты уже ушли к другим.',
-    badge: 'Контур мониторинга',
-    solutionName: 'Мониторинг рынка и данных',
-    solutionHref: '/solutions/market-intelligence-system/',
-    pipeline: [
-      { label: 'Ежедневный сбор', sub: 'Парсинг каталогов' },
-      { label: 'Очистка данных', sub: 'Сопоставление артикулов' },
-      { label: 'Дашборд и алерты', sub: 'Telegram при демпинге' },
-      { label: 'Реакция на рынок', sub: 'Корректировка прайса' },
-    ],
-    outcome:
-      'Ежедневный сбор открытых цен и остатков конкурентов. При резком изменении прайса бот шлет алерт в рабочий Telegram-чат коммерческого отдела.',
-    firstStep:
-      'Пилотный сбор цен по 5 главным конкурентам в единую таблицу с регулярным авто-обновлением.',
+    id: 'faster-estimate',
+    tabLabel: 'Нужно считать быстрее',
+    title: 'Нужно считать заявки и сметы быстрее',
+    problem:
+      'Менеджеры тратят много времени на одинаковые вопросы и предварительные расчёты.',
+    solution:
+      'Добавляем калькулятор, квиз или Telegram-бота, который собирает параметры заказа до разговора с менеджером.',
+    result:
+      'Клиент быстрее получает ориентир, а менеджер работает уже с подготовленной заявкой.',
+    ctaText: 'Посмотреть симулятор бота',
+    ctaHref: '/services/telegram-bots/',
   },
 ];
 
 export default function HomeProblemNavigator() {
-  const [activeId, setActiveId] = useState<string>('lost-leads');
-
-  const activeItem = problems.find((p) => p.id === activeId) || problems[0];
-
-  const handleSelectTask = (item: ProblemItem) => {
-    if (typeof window !== 'undefined') {
-      try {
-        localStorage.setItem(
-          'voltrena_selected_task',
-          JSON.stringify({ id: item.id, title: item.solutionName, problem: item.problemTitle })
-        );
-        window.dispatchEvent(
-          new CustomEvent('voltrena:select-task', {
-            detail: { id: item.id, title: item.solutionName, problem: item.problemTitle },
-          })
-        );
-      } catch (e) {
-        console.warn('Could not save selected task', e);
-      }
-
-      const contactEl = document.getElementById('contact');
-      if (contactEl) {
-        contactEl.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
+  const [activeTab, setActiveTab] = useState<string>('new-site');
+  const current = scenarios.find((s) => s.id === activeTab) || scenarios[0];
 
   return (
-    <section className="py-20 md:py-28 bg-[#F4F1EA] relative overflow-hidden border-t border-[#D7D3C8]">
+    <section
+      id="problem-navigator"
+      className="py-20 md:py-28 bg-[#F4F1EA] relative overflow-hidden border-t border-[#D7D3C8] scroll-mt-20"
+    >
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
         <ScrollReveal>
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            {/* No redundant overline label */}
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1D2528] tracking-tight mb-4">
-              Узкие места в воронке и операциях
+              С какими задачами помогаем
             </h2>
-            <p className="text-[#5D686A] text-base sm:text-lg">
-              Выберите проблему. Покажем архитектуру связки, физический результат для выручки и понятный первый шаг.
+            <p className="text-[#5D686A] text-base sm:text-lg leading-relaxed">
+              Выберите ситуацию, которая ближе к вашей — покажем, как мы её решаем и какой результат вы получите.
             </p>
           </div>
         </ScrollReveal>
 
-        <div className="max-w-5xl mx-auto">
-          {/* Problem Selector Buttons: 5 tabs */}
-          <div
-            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3 mb-8"
-            role="tablist"
-            aria-label="Выбор задачи"
-          >
-            {problems.map((p) => {
-              const isSelected = activeId === p.id;
-              return (
-                <button
-                  key={p.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={isSelected}
-                  onClick={() => setActiveId(p.id)}
-                  className={`p-3 sm:p-3.5 rounded-xl text-xs sm:text-sm font-semibold transition-all text-left flex flex-col justify-between min-h-[58px] border ${
-                    isSelected
-                      ? 'bg-[#FFFDF8] border-[#3E7778] text-[#1D2528] shadow-sm ring-1 ring-[#3E7778]/30'
-                      : 'bg-[#EAE6DD] border-[#D7D3C8] text-[#5D686A] hover:border-[#3E7778]/50 hover:text-[#1D2528]'
-                  }`}
-                >
-                  <span className="leading-snug">{p.problemTitle}</span>
-                  {isSelected && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#3E7778] mt-1" />
-                  )}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Active Solution Display Card with Spotlight Sheen */}
-          <SpotlightCard className="p-6 sm:p-8 md:p-10 rounded-2xl bg-[#FFFDF8] border border-[#D7D3C8] shadow-lg relative overflow-hidden">
-            {/* Header info */}
-            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-[11px] font-mono uppercase tracking-wider text-[#3E7778] bg-[#3E7778]/10 border border-[#3E7778]/30 px-2.5 py-0.5 rounded">
-                    {activeItem.badge}
-                  </span>
-                  <span className="text-xs text-[#7F8987] font-mono">
-                    Инженерный контур
-                  </span>
-                </div>
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1D2528]">
-                  {activeItem.problemTitle}
-                </h3>
-              </div>
-              <Link
-                href={activeItem.solutionHref}
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#3E7778] hover:text-[#2D5D60] transition-colors py-1 shrink-0"
+        {/* Scenarios Tabs Switcher */}
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 sm:mb-10 max-w-4xl mx-auto">
+          {scenarios.map((sc) => {
+            const isActive = sc.id === activeTab;
+            return (
+              <button
+                key={sc.id}
+                type="button"
+                onClick={() => setActiveTab(sc.id)}
+                className={`px-4 sm:px-5 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all border ${
+                  isActive
+                    ? 'bg-[#1D2528] text-[#FFFDF8] border-[#1D2528] shadow-md'
+                    : 'bg-[#FFFDF8] text-[#5D686A] hover:text-[#1D2528] border-[#D7D3C8]'
+                }`}
               >
-                <span>Подробнее о системе</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
+                {sc.tabLabel}
+              </button>
+            );
+          })}
+        </div>
 
-            <p className="text-sm sm:text-base text-[#5D686A] leading-relaxed mb-8 max-w-3xl">
-              {activeItem.summary}
-            </p>
+        {/* Active Scenario Card */}
+        <ScrollReveal delay={60}>
+          <SpotlightCard className="p-6 sm:p-10 md:p-12 rounded-2xl bg-[#FFFDF8] border border-[#D7D3C8] shadow-lg">
+            <div className="max-w-4xl mx-auto">
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-[#1D2528] mb-6">
+                {current.title}
+              </h3>
 
-            {/* Architecture Pipeline Diagram */}
-            <div className="mb-8 p-5 sm:p-6 rounded-xl bg-[#F4F1EA] border border-[#D7D3C8]">
-              <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#D7D3C8]">
-                <span className="text-[11px] font-mono text-[#7F8987] uppercase tracking-wider">
-                  Архитектура решения (Pipeline)
-                </span>
-                <span className="text-xs font-mono text-[#3E7778] font-bold">
-                  {activeItem.solutionName}
-                </span>
-              </div>
-
-              {/* Responsive 4-node pipeline */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 relative">
-                {activeItem.pipeline.map((step, idx) => (
-                  <div
-                    key={step.label}
-                    className="relative p-3.5 rounded-lg bg-[#FFFDF8] border border-[#D7D3C8] flex flex-col justify-between group hover:border-[#3E7778] transition-colors"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#3E7778]" />
-                        {idx < 3 && (
-                          <ArrowRight className="hidden lg:block w-3.5 h-3.5 text-[#3E7778]/40 absolute -right-3 top-1/2 -translate-y-1/2 z-10" />
-                        )}
-                      </div>
-                      <div className="text-xs sm:text-sm font-bold text-[#1D2528] mb-1">
-                        {step.label}
-                      </div>
-                    </div>
-                    <div className="text-[11px] text-[#5D686A] font-mono">
-                      {step.sub}
-                    </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 pb-8 border-b border-[#D7D3C8]">
+                {/* Pain */}
+                <div className="p-5 rounded-xl bg-[#FFF5F5] border border-[#C93B3B]/20">
+                  <div className="flex items-center gap-2 text-[#C93B3B] font-bold text-xs uppercase tracking-wider mb-2 font-mono">
+                    <AlertCircle className="w-4 h-4" />
+                    <span>В чём сложность</span>
                   </div>
-                ))}
-              </div>
-            </div>
+                  <p className="text-xs sm:text-sm text-[#5D686A] leading-relaxed">
+                    {current.problem}
+                  </p>
+                </div>
 
-            {/* Expected Result & Practical First Step Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
-              {/* Result box */}
-              <div className="md:col-span-7 p-5 rounded-xl bg-[#EAE6DD] border border-[#3E7778]/30 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-2 mb-2 text-[#3E7778] font-bold text-xs font-mono uppercase tracking-wider">
-                    <CheckCircle2 className="w-4 h-4" />
-                    <span>Ожидаемый результат для бизнеса</span>
+                {/* What we do */}
+                <div className="p-5 rounded-xl bg-[#F4F1EA] border border-[#D7D3C8]">
+                  <div className="flex items-center gap-2 text-[#3E7778] font-bold text-xs uppercase tracking-wider mb-2 font-mono">
+                    <Sparkles className="w-4 h-4" />
+                    <span>Что делаем</span>
                   </div>
                   <p className="text-xs sm:text-sm text-[#1D2528] leading-relaxed">
-                    {activeItem.outcome}
+                    {current.solution}
+                  </p>
+                </div>
+
+                {/* Result */}
+                <div className="p-5 rounded-xl bg-[#F0F7F6] border border-[#3E7778]/30">
+                  <div className="flex items-center gap-2 text-[#3E7778] font-bold text-xs uppercase tracking-wider mb-2 font-mono">
+                    <CheckCircle2 className="w-4 h-4" />
+                    <span>Какой результат</span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#1D2528] font-medium leading-relaxed">
+                    {current.result}
                   </p>
                 </div>
               </div>
 
-              {/* First practical step box + CTA button */}
-              <div className="md:col-span-5 p-5 rounded-xl bg-[#F4F1EA] border border-[#D7D3C8] flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-2 mb-2 text-[#C9854D] font-bold text-xs font-mono uppercase tracking-wider">
-                    <AlertCircle className="w-4 h-4" />
-                    <span>Первый практический шаг</span>
-                  </div>
-                  <p className="text-xs text-[#5D686A] leading-relaxed mb-4">
-                    {activeItem.firstStep}
-                  </p>
-                </div>
+              {/* Action row */}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <span className="text-xs text-[#7F8987] font-mono">
+                  Обсудим проект без навязывания лишних услуг
+                </span>
 
-                <button
-                  type="button"
-                  onClick={() => handleSelectTask(activeItem)}
-                  className="w-full py-2.5 px-4 rounded-lg bg-[#C9854D] hover:bg-[#D99A62] text-[#FFFDF8] text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-2 mt-2"
-                >
-                  <span>Выбрать эту задачу</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
+                <div className="flex items-center gap-4 w-full sm:w-auto">
+                  <Link
+                    href="#contact"
+                    className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-[#C9854D] hover:bg-[#D99A62] text-[#FFFDF8] font-bold text-xs sm:text-sm transition-all shadow-sm w-full sm:w-auto"
+                  >
+                    Обсудить эту задачу
+                  </Link>
+
+                  <Link
+                    href={current.ctaHref}
+                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#3E7778] hover:text-[#2D5D60] transition-colors py-2 whitespace-nowrap"
+                  >
+                    <span>Подробнее об услуге</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
               </div>
             </div>
           </SpotlightCard>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

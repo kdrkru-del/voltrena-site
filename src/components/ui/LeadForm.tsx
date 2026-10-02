@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 export interface LeadFormProps {
   source?: string;
   className?: string;
+  submitLabel?: string;
 }
 
 interface SelectedTask {
@@ -19,7 +20,11 @@ interface SelectedTask {
   problem: string;
 }
 
-export default function LeadForm({ source = 'direct_form', className }: LeadFormProps) {
+export default function LeadForm({
+  source = 'direct_form',
+  className,
+  submitLabel = 'Получить конфигурацию',
+}: LeadFormProps) {
   const formId = useId();
   const submitting = useRef(false);
   const formRef = useRef<HTMLFormElement>(null);
@@ -345,7 +350,7 @@ export default function LeadForm({ source = 'direct_form', className }: LeadForm
         className="w-full mt-2"
         disabled={formState === 'loading'}
       >
-        {formState === 'loading' ? 'Отправляем запрос...' : 'Получить конфигурацию'}
+        {formState === 'loading' ? 'Отправляем запрос...' : submitLabel}
       </Button>
       <p className="text-[11px] text-text-muted leading-relaxed pt-1 text-center sm:text-left">
         Нажимая кнопку, вы соглашаетесь с{' '}
