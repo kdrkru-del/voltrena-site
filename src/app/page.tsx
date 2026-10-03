@@ -12,22 +12,22 @@ import HomeFinalContact from '@/components/sections/HomeFinalContact'
 const siteUrl = siteConfig.siteUrl
 
 export const metadata: Metadata = {
-  title: 'VOLTRENA — Сайты, реклама и CRM для B2B и производственных компаний',
-  description: 'Создаём быстрые сайты, настраиваем Яндекс Директ и связываем формы с CRM и Telegram. Менеджер получает заявку сразу, а вы видите, откуда пришёл клиент.',
+  title: 'VOLTRENA — Сайты, реклама и CRM для бизнеса',
+  description: 'Создаём быстрые сайты, настраиваем Яндекс Директ и связываем формы с CRM и Telegram. Менеджер получает заявку сразу со всеми деталями заказа, а вы видите, какая реклама сработала.',
   alternates: { canonical: siteUrl + '/' },
   openGraph: {
-    title: 'VOLTRENA — Сайты, реклама и CRM для B2B и производственных компаний',
-    description: 'Создаём быстрые сайты, настраиваем Яндекс Директ и связываем формы с CRM и Telegram. Менеджер получает заявку сразу, а вы видите, откуда пришёл клиент.',
+    title: 'VOLTRENA — Сайты, реклама и CRM для бизнеса',
+    description: 'Создаём быстрые сайты, настраиваем Яндекс Директ и связываем формы с CRM и Telegram. Менеджер получает заявку сразу со всеми деталями заказа, а вы видите, какая реклама сработала.',
     url: siteUrl + '/',
     type: 'website',
     locale: 'ru_RU',
     siteName: 'VOLTRENA',
-    images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.svg'), width: 1200, height: 630, alt: 'VOLTRENA — Сайты, реклама и CRM для B2B' }],
+    images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.svg'), width: 1200, height: 630, alt: 'VOLTRENA — Сайты, реклама и CRM для бизнеса' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'VOLTRENA — Сайты, реклама и CRM для B2B и производственных компаний',
-    description: 'Создаём быстрые сайты, настраиваем Яндекс Директ и связываем формы с CRM и Telegram. Менеджер получает заявку сразу, а вы видите, откуда пришёл клиент.',
+    title: 'VOLTRENA — Сайты, реклама и CRM для бизнеса',
+    description: 'Создаём быстрые сайты, настраиваем Яндекс Директ и связываем формы с CRM и Telegram. Менеджер получает заявку сразу со всеми деталями заказа, а вы видите, какая реклама сработала.',
     images: [siteConfig.getCanonicalUrl('/images/og-image.svg')],
   },
   robots: { index: true, follow: true },
@@ -43,7 +43,7 @@ export default function HomePage() {
     '@type': 'WebSite',
     name: 'VOLTRENA',
     url: siteUrl + '/',
-    description: 'Сайты, реклама и CRM для B2B и производственных компаний.',
+    description: 'Сайты, реклама и CRM для бизнеса.',
   }
 
   const organizationSchema = {
