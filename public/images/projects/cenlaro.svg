@@ -1,0 +1,126 @@
+<svg width="1000" height="625" viewBox="0 0 1000 625" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cl-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#140D08" />
+      <stop offset="50%" stop-color="#1F150E" />
+      <stop offset="100%" stop-color="#0B0704" />
+    </linearGradient>
+    <radialGradient id="cl-glow" cx="80%" cy="25%" r="65%">
+      <stop offset="0%" stop-color="rgba(217, 119, 6, 0.22)" />
+      <stop offset="50%" stop-color="rgba(180, 83, 9, 0.08)" />
+      <stop offset="100%" stop-color="rgba(0, 0, 0, 0)" />
+    </radialGradient>
+    <linearGradient id="cl-gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D97706" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+    <linearGradient id="cl-card" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255, 255, 255, 0.08)" />
+      <stop offset="100%" stop-color="rgba(255, 255, 255, 0.02)" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="625" fill="url(#cl-bg)" />
+  <rect width="1000" height="625" fill="url(#cl-glow)" />
+
+  <!-- Coffee Origin Lat/Long Grid -->
+  <g stroke="rgba(217, 119, 6, 0.06)" stroke-width="1">
+    <line x1="0" y1="85" x2="1000" y2="85" />
+    <line x1="0" y1="190" x2="1000" y2="190" />
+    <line x1="0" y1="330" x2="1000" y2="330" />
+    <line x1="0" y1="470" x2="1000" y2="470" />
+    <line x1="220" y1="0" x2="220" y2="625" />
+    <line x1="480" y1="0" x2="480" y2="625" />
+    <line x1="740" y1="0" x2="740" y2="625" />
+  </g>
+
+  <!-- Navigation Bar -->
+  <g transform="translate(60, 30)">
+    <rect width="880" height="56" rx="12" fill="rgba(24, 16, 11, 0.85)" stroke="rgba(217, 119, 6, 0.25)" />
+    <rect x="25" y="16" width="24" height="24" rx="6" fill="#D97706" />
+    <circle cx="37" cy="28" r="5" fill="#140D08" />
+    <text x="60" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#FFFDF8" letter-spacing="1">CENLARO</text>
+    <text x="145" y="34" font-family="system-ui, sans-serif" font-size="11" fill="#A89685" letter-spacing="1">SELECTED ORIGINS</text>
+    <text x="510" y="34" font-family="system-ui, sans-serif" font-size="12" fill="#BFAFA0" text-anchor="middle">B2B Coffee Export · Lam Dong Highlands · Multilingual [EN / RU / VI]</text>
+    <rect x="735" y="12" width="130" height="32" rx="6" fill="url(#cl-gold)" />
+    <text x="800" y="32" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#140D08" text-anchor="middle">Request B2B Quote</text>
+  </g>
+
+  <!-- Hero Typography -->
+  <g transform="translate(60, 125)">
+    <rect width="260" height="26" rx="13" fill="rgba(217, 119, 6, 0.12)" stroke="rgba(217, 119, 6, 0.3)" />
+    <circle cx="14" cy="13" r="3.5" fill="#F59E0B" />
+    <text x="140" y="17" font-family="monospace, sans-serif" font-size="10" font-weight="700" fill="#FBBF24" text-anchor="middle">VIET BRIDGE TRADING LTD</text>
+
+    <text x="0" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="800" fill="#FFFDF8" letter-spacing="-0.5">Вьетнамский кофе оптом</text>
+    <text x="0" y="112" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="800" fill="#F59E0B" letter-spacing="-0.5">прямой экспорт от производителя</text>
+
+    <text x="0" y="152" font-family="system-ui, sans-serif" font-size="14" fill="#BFAFA0">
+      Зеленый кофе, обжаренный опт и Private Label с высокогорий Ламдонг и Даклак.
+    </text>
+    <text x="0" y="174" font-family="system-ui, sans-serif" font-size="14" fill="#BFAFA0">
+      Контейнерные отгрузки FOB Хошимин / CIF мировые порты с фитосанитарным контролем.
+    </text>
+
+    <!-- Metrics Badges -->
+    <g transform="translate(0, 210)">
+      <g>
+        <rect width="130" height="52" rx="8" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.08)" />
+        <text x="14" y="24" font-family="monospace, sans-serif" font-size="16" font-weight="700" fill="#F59E0B">EN / RU / VI</text>
+        <text x="14" y="42" font-family="system-ui, sans-serif" font-size="10" fill="#8C7A6B">3 языка платформы</text>
+      </g>
+      <g transform="translate(142, 0)">
+        <rect width="130" height="52" rx="8" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.08)" />
+        <text x="14" y="24" font-family="monospace, sans-serif" font-size="16" font-weight="700" fill="#F59E0B">от 1 тонны</text>
+        <text x="14" y="42" font-family="system-ui, sans-serif" font-size="10" fill="#8C7A6B">Минимальный объем</text>
+      </g>
+      <g transform="translate(284, 0)">
+        <rect width="130" height="52" rx="8" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.08)" />
+        <text x="14" y="24" font-family="monospace, sans-serif" font-size="16" font-weight="700" fill="#F59E0B">AI Scraper</text>
+        <text x="14" y="42" font-family="system-ui, sans-serif" font-size="10" fill="#8C7A6B">Пайплайн B2B-базы</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right Visual: Export & AI Lead Pipeline Card -->
+  <g transform="translate(560, 130)">
+    <rect width="380" height="440" rx="16" fill="url(#cl-card)" stroke="rgba(217, 119, 6, 0.25)" />
+    
+    <g transform="translate(24, 24)">
+      <text x="0" y="20" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#FFFDF8">B2B Экспорт & AI Lead Pipeline</text>
+      <text x="0" y="40" font-family="system-ui, sans-serif" font-size="12" fill="#8C7A6B">Интеграция портала и парсера байеров:</text>
+
+      <!-- Grade Items -->
+      <g transform="translate(0, 58)">
+        <rect width="332" height="64" rx="8" fill="rgba(19, 13, 8, 0.9)" stroke="rgba(255, 255, 255, 0.06)" />
+        <text x="14" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#FFFDF8">Robusta Wet Polished Gr. 1 Scr 18</text>
+        <text x="14" y="44" font-family="system-ui, sans-serif" font-size="11" fill="#A89685">Moisture max 12.5% · Foreign matter 0.1% · FOB Cat Lai</text>
+        <text x="250" y="34" font-family="monospace, sans-serif" font-size="11" font-weight="700" fill="#F59E0B">Highlands</text>
+      </g>
+
+      <g transform="translate(0, 132)">
+        <rect width="332" height="64" rx="8" fill="rgba(19, 13, 8, 0.9)" stroke="rgba(255, 255, 255, 0.06)" />
+        <text x="14" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#FFFDF8">Arabica Lam Dong Catimor Full Washed</text>
+        <text x="14" y="44" font-family="system-ui, sans-serif" font-size="11" fill="#A89685">Altitude 1500m+ · SCA 82+ · Прямые контракты с фермерами</text>
+        <text x="250" y="34" font-family="monospace, sans-serif" font-size="11" font-weight="700" fill="#10B981">Specialty</text>
+      </g>
+
+      <!-- Python Lead Parser Pipeline status -->
+      <g transform="translate(0, 210)">
+        <rect width="332" height="160" rx="10" fill="rgba(19, 13, 8, 0.95)" stroke="rgba(217, 119, 6, 0.3)" />
+        <g transform="translate(14, 16)">
+          <text x="0" y="14" font-family="monospace, sans-serif" font-size="11" font-weight="700" fill="#F59E0B">$ python coffee_lead_parser/run.py</text>
+          
+          <g transform="translate(0, 28)">
+            <text x="0" y="14" font-family="system-ui, sans-serif" font-size="11" fill="#A89685">► РФ &amp; СНГ: 1 200+ обжарщиков и оптовиков</text>
+            <text x="0" y="32" font-family="system-ui, sans-serif" font-size="11" fill="#A89685">► Австралия (AU) &amp; Океания: 840 кофе-хабов</text>
+            <text x="0" y="50" font-family="system-ui, sans-serif" font-size="11" fill="#A89685">► Скоринг B2B контактов: WhatsApp, Email, Decision Maker</text>
+            <line x1="0" y1="62" x2="304" y2="62" stroke="rgba(255, 255, 255, 0.08)" />
+            <text x="0" y="80" font-family="monospace, sans-serif" font-size="11" font-weight="700" fill="#34D399">✓ Pipeline Active · Leads exported to CRM</text>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

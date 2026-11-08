@@ -87,15 +87,13 @@ export default function Footer() {
         {/* Bottom */}
         <div className="mt-16 pt-8 border-t border-[#2D383B] flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-[#7A8885]">
-            © {new Date().getFullYear()} VOLTRENA Digital. Все права защищены.{' '}
+            © {new Date().getFullYear()} ООО «ЮНАТ» (ИНН 2536345868, ОГРН 1242500018859) · VOLTRENA Digital. Все права защищены.{' '}
             <span className="text-[#7A8885]/60 font-mono">1ibbmuc2oi48kvex</span>
           </p>
-          <Link
-            href="/privacy"
-            className="text-xs text-[#7A8885] hover:text-[#AAB4B1] transition-colors"
-          >
-            Политика конфиденциальности
-          </Link>
+          <div className="flex flex-wrap gap-4">
+            <Link href="/privacy" className="text-xs text-[#7A8885] hover:text-[#AAB4B1] transition-colors underline">Политика конфиденциальности</Link>
+            <Link href="/consent" className="text-xs text-[#7A8885] hover:text-[#AAB4B1] transition-colors underline">Согласие на обработку данных</Link>
+          </div>
         </div>
       </div>
     </footer>

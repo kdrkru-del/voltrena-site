@@ -1,0 +1,132 @@
+<svg width="1000" height="625" viewBox="0 0 1000 625" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ck-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080F17" />
+      <stop offset="50%" stop-color="#0E1A29" />
+      <stop offset="100%" stop-color="#05090F" />
+    </linearGradient>
+    <radialGradient id="ck-glow" cx="80%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="rgba(6, 182, 212, 0.22)" />
+      <stop offset="50%" stop-color="rgba(59, 130, 246, 0.08)" />
+      <stop offset="100%" stop-color="rgba(0, 0, 0, 0)" />
+    </radialGradient>
+    <linearGradient id="ck-btn" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06B6D4" />
+      <stop offset="100%" stop-color="#3B82F6" />
+    </linearGradient>
+    <linearGradient id="ck-card" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255, 255, 255, 0.08)" />
+      <stop offset="100%" stop-color="rgba(255, 255, 255, 0.02)" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="625" fill="url(#ck-bg)" />
+  <rect width="1000" height="625" fill="url(#ck-glow)" />
+
+  <!-- Subtle Air Flow Wave & Grid -->
+  <g stroke="rgba(6, 182, 212, 0.06)" stroke-width="1">
+    <line x1="0" y1="85" x2="1000" y2="85" />
+    <line x1="0" y1="190" x2="1000" y2="190" />
+    <line x1="0" y1="330" x2="1000" y2="330" />
+    <line x1="0" y1="470" x2="1000" y2="470" />
+    <line x1="220" y1="0" x2="220" y2="625" />
+    <line x1="480" y1="0" x2="480" y2="625" />
+    <line x1="740" y1="0" x2="740" y2="625" />
+  </g>
+
+  <!-- Navigation Bar -->
+  <g transform="translate(60, 30)">
+    <rect width="880" height="56" rx="12" fill="rgba(14, 26, 41, 0.85)" stroke="rgba(6, 182, 212, 0.25)" />
+    <rect x="25" y="16" width="24" height="24" rx="6" fill="#06B6D4" />
+    <path d="M 31 28 L 37 22 L 43 28" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round" />
+    <text x="60" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#FFFFFF" letter-spacing="1">ЦЕНТР КОНДИЦИОНЕРОВ</text>
+    <text x="490" y="34" font-family="system-ui, sans-serif" font-size="12" fill="#94A3B8" text-anchor="middle">Каталог 13 сплит-систем · Подбор по площади · Владивосток · Артём · Уссурийск</text>
+    <rect x="730" y="12" width="135" height="32" rx="6" fill="url(#ck-btn)" />
+    <text x="797" y="32" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">Заказать монтаж</text>
+  </g>
+
+  <!-- Hero Typography -->
+  <g transform="translate(60, 125)">
+    <rect width="250" height="26" rx="13" fill="rgba(6, 182, 212, 0.12)" stroke="rgba(6, 182, 212, 0.3)" />
+    <circle cx="14" cy="13" r="3.5" fill="#06B6D4" />
+    <text x="135" y="17" font-family="monospace, sans-serif" font-size="10" font-weight="700" fill="#38BDF8" text-anchor="middle">ПРИМОРСКИЙ КРАЙ 2026</text>
+
+    <text x="0" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">Сплит-системы с установкой</text>
+    <text x="0" y="112" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="800" fill="#06B6D4" letter-spacing="-0.5">под ключ за 24 часа</text>
+
+    <text x="0" y="152" font-family="system-ui, sans-serif" font-size="14" fill="#94A3B8">
+      Официальный дилер MDV, AMSTON, DAHATSU, HUNBERG.
+    </text>
+    <text x="0" y="174" font-family="system-ui, sans-serif" font-size="14" fill="#94A3B8">
+      Честные цены без скрытых доплат. Оплата строго по факту пусконаладки.
+    </text>
+
+    <!-- Metrics Badges -->
+    <g transform="translate(0, 210)">
+      <g>
+        <rect width="130" height="52" rx="8" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.08)" />
+        <text x="14" y="24" font-family="monospace, sans-serif" font-size="16" font-weight="700" fill="#38BDF8">до 4 лет</text>
+        <text x="14" y="42" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Гарантия на работы</text>
+      </g>
+      <g transform="translate(142, 0)">
+        <rect width="130" height="52" rx="8" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.08)" />
+        <text x="14" y="24" font-family="monospace, sans-serif" font-size="16" font-weight="700" fill="#38BDF8">13 моделей</text>
+        <text x="14" y="42" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">В наличии на складе</text>
+      </g>
+      <g transform="translate(284, 0)">
+        <rect width="130" height="52" rx="8" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.08)" />
+        <text x="14" y="24" font-family="monospace, sans-serif" font-size="16" font-weight="700" fill="#38BDF8">0 ₽ аванс</text>
+        <text x="14" y="42" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Оплата по результату</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right Visual: Interactive Area Selector Card -->
+  <g transform="translate(560, 130)">
+    <rect width="380" height="440" rx="16" fill="url(#ck-card)" stroke="rgba(6, 182, 212, 0.25)" />
+    
+    <g transform="translate(24, 24)">
+      <text x="0" y="20" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">Быстрый подбор по площади</text>
+      <text x="0" y="40" font-family="system-ui, sans-serif" font-size="12" fill="#64748B">Выберите площадь вашей комнаты:</text>
+
+      <!-- Area Chips -->
+      <g transform="translate(0, 60)">
+        <rect width="98" height="34" rx="6" fill="rgba(6, 182, 212, 0.2)" stroke="#06B6D4" />
+        <text x="49" y="22" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#38BDF8" text-anchor="middle">до 20 м²</text>
+
+        <rect x="110" y="0" width="98" height="34" rx="6" fill="rgba(255, 255, 255, 0.05)" stroke="rgba(255, 255, 255, 0.1)" />
+        <text x="159" y="22" font-family="system-ui, sans-serif" font-size="12" fill="#94A3B8" text-anchor="middle">до 25 м²</text>
+
+        <rect x="220" y="0" width="98" height="34" rx="6" fill="rgba(255, 255, 255, 0.05)" stroke="rgba(255, 255, 255, 0.1)" />
+        <text x="269" y="22" font-family="system-ui, sans-serif" font-size="12" fill="#94A3B8" text-anchor="middle">до 35 м²</text>
+      </g>
+
+      <!-- Featured Product Card -->
+      <g transform="translate(0, 120)">
+        <rect width="332" height="180" rx="12" fill="rgba(10, 18, 29, 0.9)" stroke="rgba(255, 255, 255, 0.08)" />
+        <rect x="16" y="16" width="70" height="20" rx="4" fill="rgba(16, 185, 129, 0.15)" stroke="rgba(16, 185, 129, 0.3)" />
+        <text x="51" y="30" font-family="monospace, sans-serif" font-size="9" font-weight="700" fill="#34D399" text-anchor="middle">ХИТ ПРОДАЖ</text>
+        
+        <text x="16" y="60" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">MDV Forest Inverter 07</text>
+        <text x="16" y="80" font-family="system-ui, sans-serif" font-size="11" fill="#64748B">Энергоэффективность A++ · Тихий режим 21 дБ</text>
+
+        <line x1="16" y1="100" x2="316" y2="100" stroke="rgba(255, 255, 255, 0.06)" />
+
+        <text x="16" y="130" font-family="system-ui, sans-serif" font-size="11" fill="#94A3B8">Комплект с установкой:</text>
+        <text x="16" y="156" font-family="monospace, sans-serif" font-size="20" font-weight="800" fill="#38BDF8">41 900 ₽</text>
+
+        <rect x="200" y="125" width="116" height="36" rx="6" fill="url(#ck-btn)" />
+        <text x="258" y="148" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">Купить в 1 клик</text>
+      </g>
+
+      <!-- Telegram Alert Indicator -->
+      <g transform="translate(0, 325)">
+        <rect width="332" height="48" rx="8" fill="rgba(6, 182, 212, 0.08)" stroke="rgba(6, 182, 212, 0.2)" />
+        <circle cx="24" cy="24" r="5" fill="#34D399" />
+        <text x="38" y="22" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#FFFFFF">Мгновенный пуш в Telegram монтажникам</text>
+        <text x="38" y="38" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Фиксация цели 101376260 в Яндекс Метрике</text>
+      </g>
+    </g>
+  </g>
+</svg>

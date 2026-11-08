@@ -4,6 +4,7 @@ import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import CookieBanner from '@/components/ui/CookieBanner';
 import ViewportFrame from '@/components/ui/ViewportFrame';
 import CustomCursor from '@/components/ui/CustomCursor';
 import { siteConfig } from '@/config/site';
@@ -64,6 +65,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main-content">{children}</main>
         <Footer />
+        <CookieBanner />
+        <script src="/cro-tracker.js" data-site="voltrena-site" data-endpoint="http://localhost:4200/api/track" defer />
       </body>
     </html>
   );

@@ -41,11 +41,15 @@ export default function CasesPage() {
     mainEntity: {
       '@type': 'ItemList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'ZEMTRAK: система привлечения клиентов для аренды спецтехники', url: siteUrl + '/cases/#zemtrak' },
-        { '@type': 'ListItem', position: 2, name: 'ТехУчёт: система привлечения клиентов для услуг Гостехнадзора', url: siteUrl + '/cases/#tehuchet' },
-        { '@type': 'ListItem', position: 3, name: 'Зелёный Срез: локальная система привлечения и обработки заявок', url: siteUrl + '/cases/#zelenyi-srez' },
-        { '@type': 'ListItem', position: 4, name: 'ГИЭ Групп: система поиска и фильтрации B2B-закупок', url: siteUrl + '/cases/#gie-group' },
-        { '@type': 'ListItem', position: 5, name: 'Окна Центр: проектирование цифрового продукта и интерфейса', url: siteUrl + '/cases/#okna-center' },
+        { '@type': 'ListItem', position: 1, name: 'ИИ-агент для Яндекс.Директа: управление ставками через Direct API v5', url: siteUrl + '/cases/#direct-ai-agent' },
+        { '@type': 'ListItem', position: 2, name: 'Вебсайт-аналитик микроконверсий (CRO) и аудит барьеров воронки', url: siteUrl + '/cases/#cro-tracker-audit' },
+        { '@type': 'ListItem', position: 3, name: 'Центр Кондиционеров: интернет-магазин сплит-систем и монтаж под ключ', url: siteUrl + '/cases/#centr-kondicionerov' },
+        { '@type': 'ListItem', position: 4, name: 'CENLARO Selected Origins: международная B2B-платформа экспорта кофе и AI-парсер байеров', url: siteUrl + '/cases/#cenlaro-coffee' },
+        { '@type': 'ListItem', position: 5, name: 'Окна Центр: многостраничный сайт оконного производства и конфигуратор остекления', url: siteUrl + '/cases/#okna-center' },
+        { '@type': 'ListItem', position: 6, name: 'ZEMTRAK: система привлечения клиентов для аренды спецтехники', url: siteUrl + '/cases/#zemtrak' },
+        { '@type': 'ListItem', position: 7, name: 'ТехУчёт: мультирегиональная сеть (Москва и СПб), права на спецтехнику, ЕАИСТО и каскадная доставка лидов', url: siteUrl + '/cases/#tehuchet' },
+        { '@type': 'ListItem', position: 8, name: 'Зелёный Срез: локальная система привлечения и обработки заявок', url: siteUrl + '/cases/#zelenyi-srez' },
+        { '@type': 'ListItem', position: 9, name: 'ГИЭ Групп: система поиска и фильтрации B2B-закупок', url: siteUrl + '/cases/#gie-group' },
       ],
     },
   }

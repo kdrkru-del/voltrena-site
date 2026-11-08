@@ -34,6 +34,7 @@ export default function LeadForm({
   const [errorMessage, setErrorMessage] = useState('');
   const [utmParams, setUtmParams] = useState<Record<string, string>>({});
   const [selectedTask, setSelectedTask] = useState<SelectedTask | null>(null);
+  const [consent, setConsent] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -121,6 +122,7 @@ export default function LeadForm({
     let isValid = true;
     const newErrors = { name: '', contact: '', message: '' };
     if (!formData.name.trim()) { newErrors.name = 'Пожалуйста, укажите ваше имя'; isValid = false; }
+    if (!consent) { newErrors.contact = 'Необходимо подтвердить согласие на обработку персональных данных'; isValid = false; }
     if (!formData.contact.trim()) { newErrors.contact = 'Укажите телефон, Telegram или email для связи'; isValid = false; }
     if (!formData.message.trim()) { newErrors.message = 'Опишите кратко вашу задачу'; isValid = false; }
     setErrors(newErrors);
@@ -155,6 +157,28 @@ export default function LeadForm({
       _captcha: 'false',
       ...utmParams,
     };
+
+    // 1. Первичная фиксация в базе данных РФ через Lead Gateway (ч. 5 ст. 18 152-ФЗ РФ)
+    const leadGatewayUrl = process.env.NEXT_PUBLIC_LEAD_GATEWAY_URL || 'http://localhost:4300/api/lead/voltrena';
+    try {
+      const gwController = new AbortController();
+      const gwTimeout = setTimeout(() => gwController.abort(), 2500);
+      const gwRes = await fetch(leadGatewayUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        signal: gwController.signal
+      });
+      clearTimeout(gwTimeout);
+      if (gwRes.ok) {
+        reachGoal('lead_form_success', { source });
+        setFormState('success');
+        submitting.current = false;
+        return;
+      }
+    } catch (gwErr) {
+      console.warn('Lead Gateway offline, falling back to direct delivery...', (gwErr as Error)?.message || gwErr);
+    }
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 15000);
@@ -287,7 +311,7 @@ export default function LeadForm({
           onChange={handleChange}
           disabled={formState === 'loading'}
           className={cn(
-            'w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/22 transition-[color,background-color,border-color,box-shadow] text-sm',
+            'ym-disable-keys w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/22 transition-[color,background-color,border-color,box-shadow] text-sm',
             errors.name && 'border-red-400 focus:border-red-400'
           )}
         />
@@ -312,7 +336,7 @@ export default function LeadForm({
           onChange={handleChange}
           disabled={formState === 'loading'}
           className={cn(
-            'w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/22 transition-[color,background-color,border-color,box-shadow] text-sm',
+            'ym-disable-keys w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/22 transition-[color,background-color,border-color,box-shadow] text-sm',
             errors.contact && 'border-red-400 focus:border-red-400'
           )}
         />
@@ -352,13 +376,19 @@ export default function LeadForm({
       >
         {formState === 'loading' ? 'Отправляем запрос...' : submitLabel}
       </Button>
-      <p className="text-[11px] text-text-muted leading-relaxed pt-1 text-center sm:text-left">
-        Нажимая кнопку, вы соглашаетесь с{' '}
-        <Link href="/privacy" className="text-text-secondary hover:text-[#5A9692] underline transition-colors">
-          Политикой конфиденциальности
-        </Link>{' '}
-        и обработкой персональных данных.
-      </p>
+      <div className="flex items-start gap-2.5 pt-2 text-left">
+        <input
+          type="checkbox"
+          id={`${formId}-consent`}
+          required
+          checked={consent}
+          onChange={(e) => setConsent(e.target.checked)}
+          className="mt-0.5 w-4 h-4 rounded border-border bg-bg-surface text-accent focus:ring-accent cursor-pointer shrink-0"
+        />
+        <label htmlFor={`${formId}-consent`} className="text-[11px] text-text-muted leading-tight cursor-pointer select-none">
+          Даю <Link href="/consent" target="_blank" className="text-text-secondary hover:text-accent underline font-medium">согласие на обработку персональных данных</Link> ООО «ЮНАТ». С <Link href="/privacy" target="_blank" className="text-text-secondary hover:text-accent underline font-medium">Политикой конфиденциальности</Link> ознакомлен.
+        </label>
+      </div>
     </form>
   );
 }
