@@ -66,8 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main-content">{children}</main>
         <Footer />
         <CookieBanner />
-        <script src="/cro-tracker.js" data-site="voltrena-site" data-endpoint="http://localhost:4200/api/track" defer />
-      </body>
+        </body>
     </html>
   );
 }

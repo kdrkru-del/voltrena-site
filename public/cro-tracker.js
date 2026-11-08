@@ -12,6 +12,11 @@
     window.CRO_AGENT_ENDPOINT ||
     'http://localhost:4200/api/track';
 
+  // Безопасность: не отправлять запросы на localhost с боевого сайта (блокирует всплывающее окно браузера)
+  if (apiEndpoint.includes('localhost') && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+    return;
+  }
+
   // Уникальный ID сессии
   const SESSION_KEY = 'cro_agent_session_id';
   let sessionId = sessionStorage.getItem(SESSION_KEY);
