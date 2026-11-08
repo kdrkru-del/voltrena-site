@@ -47,8 +47,8 @@ const secondaryCases = [
     implemented: 'Собрали каталог 13 моделей на Next.js 16 с умным селектором площади, расчётом монтажа и пушем в Telegram.',
     result: 'Покупатель за 2 клика находит сплит-систему с установкой, а монтажники получают заявку со всеми параметрами.',
     href: '/cases/#centr-kondicionerov',
-    externalDemoUrl: 'https://кондиционеры-владивосток.рф/',
-    externalDemoLabel: 'кондиционеры-владивосток.рф',
+    externalDemoUrl: 'https://центр-кондиционеров.рф/',
+    externalDemoLabel: 'центр-кондиционеров.рф',
   },
   {
     title: 'Зелёный Срез',

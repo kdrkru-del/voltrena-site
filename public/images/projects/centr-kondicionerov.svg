@@ -40,7 +40,7 @@
     <rect width="880" height="56" rx="12" fill="rgba(14, 26, 41, 0.85)" stroke="rgba(6, 182, 212, 0.25)" />
     <rect x="25" y="16" width="24" height="24" rx="6" fill="#06B6D4" />
     <path d="M 31 28 L 37 22 L 43 28" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round" />
-    <text x="60" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#FFFFFF" letter-spacing="1">ЦЕНТР КОНДИЦИОНЕРОВ · кондиционеры-владивосток.рф</text>
+    <text x="60" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#FFFFFF" letter-spacing="1">ЦЕНТР КОНДИЦИОНЕРОВ · центр-кондиционеров.рф</text>
     <text x="490" y="34" font-family="system-ui, sans-serif" font-size="12" fill="#94A3B8" text-anchor="middle">Каталог 13 сплит-систем · Подбор по площади · Владивосток · Артём · Уссурийск</text>
     <rect x="730" y="12" width="135" height="32" rx="6" fill="url(#ck-btn)" />
     <text x="797" y="32" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">Заказать монтаж</text>
@@ -50,7 +50,7 @@
   <g transform="translate(60, 125)">
     <rect width="250" height="26" rx="13" fill="rgba(6, 182, 212, 0.12)" stroke="rgba(6, 182, 212, 0.3)" />
     <circle cx="14" cy="13" r="3.5" fill="#06B6D4" />
-    <text x="135" y="17" font-family="monospace, sans-serif" font-size="10" font-weight="700" fill="#38BDF8" text-anchor="middle">КОНДИЦИОНЕРЫ-ВЛАДИВОСТОК.РФ</text>
+    <text x="135" y="17" font-family="monospace, sans-serif" font-size="10" font-weight="700" fill="#38BDF8" text-anchor="middle">ЦЕНТР-КОНДИЦИОНЕРОВ.РФ</text>
 
     <text x="0" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">Сплит-системы с установкой</text>
     <text x="0" y="112" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="800" fill="#06B6D4" letter-spacing="-0.5">под ключ за 24 часа</text>

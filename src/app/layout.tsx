@@ -66,7 +66,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main-content">{children}</main>
         <Footer />
         <CookieBanner />
-        </body>
+        <script src="/antifraud-sensor.js" data-counter="112313992" defer />
+      </body>
     </html>
   );
 }
