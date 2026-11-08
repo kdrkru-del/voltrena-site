@@ -43,7 +43,7 @@ export default function CasesPage() {
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'ИИ-агент для Яндекс.Директа: управление ставками через Direct API v5', url: siteUrl + '/cases/#direct-ai-agent' },
         { '@type': 'ListItem', position: 2, name: 'Вебсайт-аналитик микроконверсий (CRO) и аудит барьеров воронки', url: siteUrl + '/cases/#cro-tracker-audit' },
-        { '@type': 'ListItem', position: 3, name: 'Центр Кондиционеров: интернет-магазин сплит-систем и монтаж под ключ', url: siteUrl + '/cases/#centr-kondicionerov' },
+        { '@type': 'ListItem', position: 3, name: '«Центр Кондиционеров» (кондиционеры-владивосток.рф): сплит-системы и монтаж под ключ', url: siteUrl + '/cases/#centr-kondicionerov' },
         { '@type': 'ListItem', position: 4, name: 'CENLARO Selected Origins: международная B2B-платформа экспорта кофе и AI-парсер байеров', url: siteUrl + '/cases/#cenlaro-coffee' },
         { '@type': 'ListItem', position: 5, name: 'Окна Центр: многостраничный сайт оконного производства и конфигуратор остекления', url: siteUrl + '/cases/#okna-center' },
         { '@type': 'ListItem', position: 6, name: 'ZEMTRAK: система привлечения клиентов для аренды спецтехники', url: siteUrl + '/cases/#zemtrak' },
