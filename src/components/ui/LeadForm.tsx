@@ -159,7 +159,8 @@ export default function LeadForm({
     };
 
     // 1. Первичная фиксация в базе данных РФ через Lead Gateway (ч. 5 ст. 18 152-ФЗ РФ)
-    const leadGatewayUrl = process.env.NEXT_PUBLIC_LEAD_GATEWAY_URL || 'http://localhost:4300/api/lead/voltrena';
+    const leadGatewayUrl = (process.env.NEXT_PUBLIC_LEAD_GATEWAY_URL && !process.env.NEXT_PUBLIC_LEAD_GATEWAY_URL.includes('localhost')) ? process.env.NEXT_PUBLIC_LEAD_GATEWAY_URL : '';
+    if (leadGatewayUrl) {
     try {
       const gwController = new AbortController();
       const gwTimeout = setTimeout(() => gwController.abort(), 2500);
@@ -178,6 +179,7 @@ export default function LeadForm({
       }
     } catch (gwErr) {
       console.warn('Lead Gateway offline, falling back to direct delivery...', (gwErr as Error)?.message || gwErr);
+    }
     }
 
     const controller = new AbortController();
