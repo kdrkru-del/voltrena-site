@@ -162,6 +162,17 @@ body {
   .animate-marquee { animation: none !important; }
 }
 
+@keyframes lfe-drop {
+  0% { top: -6px; opacity: 0; }
+  30% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+@keyframes hero-blob {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(3%, -4%, 0) scale(1.08); }
+}
+
 @keyframes marquee {
   0% {
     transform: translateX(0%);

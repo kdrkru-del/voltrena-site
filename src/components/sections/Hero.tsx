@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, ChevronDown, CheckCircle2, MessageSquare, Send, Sparkles } from 'lucide-react';
-import NodeNetwork from '@/components/ui/NodeNetwork';
+import LeadFlowEngine from '@/components/ui/LeadFlowEngine';
 
 export default function Hero() {
   const handleScrollToNext = () => {
@@ -15,12 +15,12 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[100svh] flex flex-col justify-between pt-28 pb-10 sm:pt-36 sm:pb-12 bg-[#F4F1EA] text-[#1D2528] overflow-hidden select-none">
-      {/* Background Interactive Network - hidden on small mobile to avoid text clutter */}
-      <div className="absolute inset-0 z-0 pointer-events-auto hidden sm:block" aria-hidden="true">
-        <NodeNetwork className="absolute inset-0" isLightMode={true} />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_20%,rgba(62,119,120,0.06),transparent_65%)] pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_80%,rgba(201,133,77,0.05),transparent_65%)] pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#F4F1EA]/30 via-transparent to-[#F4F1EA] pointer-events-none" />
+      {/* Background: soft drifting color fields + dot grid */}
+      <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+        <div className="absolute -top-[20%] right-[-10%] w-[70vw] max-w-[900px] aspect-square rounded-full bg-[radial-gradient(circle,rgba(62,119,120,0.16),transparent_62%)] blur-2xl motion-safe:animate-[hero-blob_18s_ease-in-out_infinite]" />
+        <div className="absolute bottom-[-25%] right-[15%] w-[55vw] max-w-[700px] aspect-square rounded-full bg-[radial-gradient(circle,rgba(201,133,77,0.14),transparent_60%)] blur-2xl motion-safe:animate-[hero-blob_22s_ease-in-out_infinite_reverse]" />
+        <div className="absolute inset-0 bg-[radial-gradient(rgba(29,37,40,0.09)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_70%_60%_at_70%_45%,#000_20%,transparent_75%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[#F4F1EA]" />
       </div>
 
       {/* Main Content Container */}
@@ -28,7 +28,7 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           
           {/* Left Column: Heading, Subtitle, Actions, Facts */}
-          <div className="lg:col-span-7 xl:col-span-8 space-y-6">
+          <div className="lg:col-span-7 space-y-6">
             {/* Label over headline */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#3E7778]/10 text-[#3E7778] text-xs font-mono font-bold uppercase tracking-wider">
               <span>Сайты · Реклама · CRM для бизнеса</span>
@@ -79,49 +79,9 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column (Desktop): Tangible Lead Delivery Card */}
-          <div className="hidden lg:block lg:col-span-5 xl:col-span-4">
-            <div className="p-6 rounded-2xl bg-[#FFFDF8] border border-[#D7D3C8] shadow-xl max-w-sm ml-auto space-y-4 relative">
-              <div className="flex items-center justify-between pb-3 border-b border-[#D7D3C8]">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#3E7778] animate-pulse" />
-                  <span className="text-xs font-mono text-[#3E7778] font-bold uppercase tracking-wider">
-                    Новая заявка
-                  </span>
-                </div>
-                <span className="text-[11px] font-mono text-[#7F8987]">12 сек назад</span>
-              </div>
-
-              <div className="space-y-3 text-xs">
-                <div>
-                  <span className="text-[10px] font-mono text-[#7F8987] uppercase tracking-wider block mb-0.5">
-                    Источник:
-                  </span>
-                  <span className="font-semibold text-[#1D2528] block">
-                    Яндекс Директ · Поиск
-                  </span>
-                </div>
-
-                <div>
-                  <span className="text-[10px] font-mono text-[#7F8987] uppercase tracking-wider block mb-0.5">
-                    Детали заказа:
-                  </span>
-                  <span className="text-[#1D2528] block">
-                    Расчёт остекления коттеджа (14 окон, Rehau)
-                  </span>
-                </div>
-
-                <div className="p-3 rounded-xl bg-[#F4F1EA] border border-[#D7D3C8] flex items-center justify-between">
-                  <span className="text-[11px] font-mono text-[#5D686A]">Куда передано:</span>
-                  <span className="font-mono text-xs font-bold text-[#3E7778]">CRM + Telegram</span>
-                </div>
-              </div>
-
-              <div className="pt-2 border-t border-[#D7D3C8] flex items-center gap-2 text-[11px] text-[#5D686A]">
-                <CheckCircle2 className="w-4 h-4 text-[#3E7778] shrink-0" />
-                <span>Менеджер получил контакты и параметры</span>
-              </div>
-            </div>
+          {/* Right Column: animated lead flow (sources → hub → manager inbox) */}
+          <div className="lg:col-span-5 pt-2 lg:pt-0">
+            <LeadFlowEngine />
           </div>
 
         </div>
