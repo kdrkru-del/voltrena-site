@@ -16,13 +16,13 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'ru_RU',
     siteName: 'VOLTRENA Digital',
-    images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.svg'), width: 1200, height: 630, alt: 'VOLTRENA — SEO, GEO и видимость в AI-поиске' }],
+    images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.png'), width: 1200, height: 630, alt: 'VOLTRENA — SEO, GEO и видимость в AI-поиске' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: seoGeoData.seo.title,
     description: seoGeoData.seo.description,
-    images: [siteConfig.getCanonicalUrl('/images/og-image.svg')],
+    images: [siteConfig.getCanonicalUrl('/images/og-image.png')],
   },
   robots: { index: true, follow: true },
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import { Inter, JetBrains_Mono, Onest } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -10,7 +10,8 @@ import CustomCursor from '@/components/ui/CustomCursor';
 import { siteConfig } from '@/config/site';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'], variable: '--font-inter', display: 'swap' });
-const jetbrainsMono = JetBrains_Mono({ subsets: ['latin', 'cyrillic'], variable: '--font-jetbrains', display: 'swap' });
+const onest = Onest({ subsets: ['latin', 'cyrillic'], variable: '--font-display', display: 'swap' });
+const jetbrainsMono =JetBrains_Mono({ subsets: ['latin', 'cyrillic'], variable: '--font-jetbrains', display: 'swap' });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
@@ -30,13 +31,13 @@ export const metadata: Metadata = {
     title: 'VOLTRENA Digital — Агентство цифрового роста и автоматизации',
     description: 'Мы создаем цифровые системы, которые находят клиентов, конвертируют лиды и автоматизируют продажи. Сайты, маркетинг, ИИ, автоматизация и данные — в единой системе роста.',
     url: siteConfig.getCanonicalUrl('/'), type: 'website', locale: 'ru_RU', siteName: siteConfig.name,
-    images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.svg'), width: 1200, height: 630, alt: 'VOLTRENA Digital — Digital Growth Systems' }],
+    images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.png'), width: 1200, height: 630, alt: 'VOLTRENA Digital — Digital Growth Systems' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'VOLTRENA Digital — Агентство цифрового роста и автоматизации',
     description: 'Мы создаем цифровые системы, которые находят клиентов, конвертируют лиды и автоматизируют продажи. Сайты, маркетинг, ИИ, автоматизация и данные — в единой системе роста.',
-    images: [siteConfig.getCanonicalUrl('/images/og-image.svg')],
+    images: [siteConfig.getCanonicalUrl('/images/og-image.png')],
   },
   robots: { index: true, follow: true },
   other: {
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ru" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="ru" className={`${inter.variable} ${onest.variable} ${jetbrainsMono.variable}`}>
       <body className="font-sans antialiased">
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-3 focus:rounded-lg focus:bg-accent focus:text-white">
           Перейти к содержанию

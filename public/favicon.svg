@@ -1,18 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
   <defs>
     <linearGradient id="vBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#263235" />
+      <stop offset="0%" stop-color="#2C3A3E" />
       <stop offset="100%" stop-color="#1D2528" />
     </linearGradient>
     <linearGradient id="vAccent" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#5A9692" />
+      <stop offset="0%" stop-color="#6FB0AB" />
       <stop offset="100%" stop-color="#3E7778" />
     </linearGradient>
   </defs>
-  <!-- Background squircle -->
-  <rect width="32" height="32" rx="7.5" fill="url(#vBg)" />
-  <rect x="0.5" y="0.5" width="31" height="31" rx="7" fill="none" stroke="rgba(62, 119, 120, 0.40)" stroke-width="1" />
-  <!-- Geometric V Monogram -->
+  <rect width="32" height="32" rx="8" fill="url(#vBg)" />
+  <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="rgba(111,176,171,0.35)" />
   <path d="M6.5 8 H11.2 L16 21.5 L13.2 21.5 Z" fill="#F4F1EA" />
   <path d="M25.5 8 H20.8 L14.2 24.5 H17.5 Z" fill="url(#vAccent)" />
+  <circle cx="25.6" cy="6.6" r="2.7" fill="#C9854D" stroke="#1D2528" stroke-width="1.3" />
 </svg>

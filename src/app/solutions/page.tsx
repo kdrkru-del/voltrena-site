@@ -19,11 +19,13 @@ export const metadata: Metadata = {
   description: 'Каталог цифровых систем VOLTRENA: привлечение клиентов, B2B-продажи, обработка заявок, автоматизация операций и мониторинг рынка.',
   alternates: { canonical: siteUrl + '/solutions/' },
   openGraph: {
+    images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.png'), width: 1200, height: 630, alt: 'VOLTRENA Digital' }],
     title: 'Готовые digital-решения для бизнеса | VOLTRENA Digital',
     description: 'Каталог цифровых систем VOLTRENA: привлечение клиентов, B2B-продажи, обработка заявок, автоматизация операций и мониторинг рынка.',
     url: siteUrl + '/solutions/', type: 'website', locale: 'ru_RU', siteName: 'VOLTRENA Digital',
   },
   twitter: {
+    images: [siteConfig.getCanonicalUrl('/images/og-image.png')],
     card: 'summary_large_image',
     title: 'Готовые digital-решения для бизнеса | VOLTRENA Digital',
     description: 'Каталог цифровых систем VOLTRENA: привлечение клиентов, B2B-продажи, обработка заявок, автоматизация операций и мониторинг рынка.',

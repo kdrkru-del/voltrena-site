@@ -79,7 +79,7 @@ const cases: CaseItem[] = [
 const shot = (id: string, kind: 'desktop' | 'mobile') =>
   siteConfig.getAssetUrl(`/images/cases/${id}-${kind}.jpg`);
 
-function BrowserFrame({
+export function BrowserFrame({
   src,
   alt,
   domain,

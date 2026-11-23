@@ -1,45 +1,48 @@
 'use client'
 
 import React from 'react'
-import Link from 'next/link'
-import Button from '@/components/ui/Button'
-import { ArrowDown, Layers, Sparkles } from 'lucide-react'
+import { BarChart3, Bot, Globe, Megaphone, Workflow } from 'lucide-react'
+import { DarkHeroSection, HeroActions, HeroEyebrow, HeroLead, HeroTitle } from '@/components/ui/DarkHero'
+
+const modules = [
+  { icon: Megaphone, label: 'Реклама' },
+  { icon: Globe, label: 'Сайты' },
+  { icon: Workflow, label: 'CRM' },
+  { icon: Bot, label: 'Боты и AI' },
+  { icon: BarChart3, label: 'Аналитика' },
+]
 
 export default function AboutHero() {
   return (
-    <section className="relative pt-32 pb-16 md:pt-36 md:pb-24 bg-bg-primary overflow-hidden border-b border-border/40">
-      {/* Background glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/8 blur-[150px] rounded-full pointer-events-none" />
+    <DarkHeroSection>
+      <div className="max-w-4xl mx-auto text-center">
+        <HeroEyebrow>О нас</HeroEyebrow>
+        <HeroTitle className="mt-5 mx-auto max-w-4xl">
+          Мы строим не отдельные инструменты. <br className="hidden sm:inline" />
+          <span className="text-[#D99A62]">Мы строим системы роста.</span>
+        </HeroTitle>
+        <HeroLead className="mt-6 mx-auto max-w-3xl">
+          VOLTRENA Digital объединяет стратегию, разработку, маркетинг, данные и AI-автоматизацию в одной системе — от первого контакта с клиентом до заявки, продажи и дальнейшего роста.
+        </HeroLead>
+        <HeroActions
+          className="mt-8 sm:justify-center"
+          primary={{ label: 'Познакомиться с командой', href: '#team' }}
+          secondary={{ label: 'Обсудить проект', href: '#contact' }}
+        />
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-6xl">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* H1 */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary tracking-tight leading-[1.12] mb-6 max-w-4xl mx-auto">
-            Мы строим не отдельные инструменты. <br className="hidden sm:inline" />
-            Мы строим системы роста.
-          </h1>
-
-          {/* Supporting text */}
-          <p className="text-base sm:text-lg md:text-xl text-text-secondary leading-relaxed max-w-3xl mx-auto mb-6">
-            VOLTRENA Digital объединяет стратегию, разработку, маркетинг, данные и AI-автоматизацию в одной системе — от первого контакта с клиентом до заявки, продажи и дальнейшего роста.
-          </p>
-
-          {/* Extra punch line */}
-          <p className="font-mono text-xs sm:text-sm text-accent tracking-wider uppercase mb-8 font-medium">
-            От первого клика — до продажи.
-          </p>
-
-          {/* CTAs */}
-          <div className="flex flex-wrap items-center justify-center gap-3.5">
-            <Button variant="primary" size="lg" href="#team">
-              Познакомиться с командой
-            </Button>
-            <Button variant="secondary" size="lg" href="#contact">
-              Обсудить проект
-            </Button>
-          </div>
-        </div>
+        <ul className="mt-14 flex flex-wrap items-center justify-center gap-3">
+          {modules.map(({ icon: Icon, label }, i) => (
+            <React.Fragment key={label}>
+              <li className="inline-flex items-center gap-2 rounded-full bg-white/[0.05] ring-1 ring-white/10 px-4 py-2 text-sm font-semibold text-[#E6EAE9]">
+                <Icon className="h-4 w-4 text-[#D99A62]" />
+                {label}
+              </li>
+              {i < modules.length - 1 && <span className="hidden sm:block h-px w-6 bg-gradient-to-r from-[#3E7778] to-[#C9854D]" aria-hidden="true" />}
+            </React.Fragment>
+          ))}
+        </ul>
+        <p className="mt-6 font-mono text-xs tracking-[0.18em] uppercase text-[#7F8987]">От первого клика — до продажи</p>
       </div>
-    </section>
+    </DarkHeroSection>
   )
 }

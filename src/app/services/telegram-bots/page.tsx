@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   description: telegramBotsData.seo.description,
   alternates: { canonical: siteUrl + '/services/telegram-bots/' },
   openGraph: {
+    images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.png'), width: 1200, height: 630, alt: 'VOLTRENA Digital' }],
     title: telegramBotsData.seo.title,
     description: telegramBotsData.seo.description,
     url: siteUrl + '/services/telegram-bots/',
@@ -19,7 +20,8 @@ export const metadata: Metadata = {
     locale: 'ru_RU',
     siteName: 'VOLTRENA Digital',
   },
-  twitter: { card: 'summary_large_image', title: telegramBotsData.seo.title, description: telegramBotsData.seo.description },
+  twitter: {
+    images: [siteConfig.getCanonicalUrl('/images/og-image.png')], card: 'summary_large_image', title: telegramBotsData.seo.title, description: telegramBotsData.seo.description },
   robots: { index: true, follow: true },
 }
 

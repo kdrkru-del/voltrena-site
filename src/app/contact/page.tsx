@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     'Свяжитесь с нами для аудита и разработки цифровой системы роста. Прямой контакт в Telegram, WhatsApp, email или через форму.',
   alternates: { canonical: siteConfig.getCanonicalUrl('/contact/') },
   openGraph: {
+    images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.png'), width: 1200, height: 630, alt: 'VOLTRENA Digital' }],
     title: 'Контакты — VOLTRENA Digital',
     description:
       'Свяжитесь с нами для аудита и разработки цифровой системы роста. Прямой контакт в Telegram, WhatsApp, email или через форму.',
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
   },
   twitter: {
+    images: [siteConfig.getCanonicalUrl('/images/og-image.png')],
     card: 'summary_large_image',
     title: 'Контакты — VOLTRENA Digital',
     description:
@@ -64,19 +66,19 @@ export default function ContactPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsSchema) }} />
 
-      <section className="relative pt-32 pb-20 md:pt-36 md:pb-28 bg-bg-primary overflow-hidden border-b border-border/40">
+      <section data-dark-hero className="relative pt-32 pb-20 md:pt-36 md:pb-28 bg-[#141B1D] text-[#F4F1EA] overflow-hidden">
         {/* Soft Ambient Glow */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/8 blur-[160px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/30 blur-[160px] rounded-full pointer-events-none" />
 
         <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-6xl">
           
           {/* Header */}
           <div className="max-w-3xl mb-12 sm:mb-16">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary tracking-tight leading-[1.15] mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#F4F1EA] tracking-tight leading-[1.1] mb-6">
               Расскажите, что сейчас мешает бизнесу расти.
             </h1>
 
-            <p className="text-base sm:text-lg text-text-secondary leading-relaxed">
+            <p className="text-base sm:text-lg text-[#A9B3B1] leading-relaxed">
               Опишите задачу, которая сейчас создаёт потери, тормозит продажи или требует слишком много ручной работы. Мы посмотрим на ситуацию целиком и предложим разумную точку старта.
             </p>
           </div>

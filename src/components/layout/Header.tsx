@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { navigationLinks, serviceLinks, ctaButton } from '@/data/navigation';
 import Button from '@/components/ui/Button';
+import Logo from '@/components/ui/Logo';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -17,6 +18,27 @@ export default function Header() {
   const menuRef = useRef<HTMLDivElement>(null);
   const servicesButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
+  // Header turns light-on-dark while a dark hero ([data-dark-hero]) sits under it.
+  const [overDark, setOverDark] = useState(false);
+  const dk = overDark && !mobileOpen;
+
+  useEffect(() => {
+    const update = () => {
+      const hero = document.querySelector('[data-dark-hero]');
+      setOverDark(!!hero && hero.getBoundingClientRect().bottom > 80);
+    };
+    update();
+    const main = document.getElementById('main-content');
+    const mo = main ? new MutationObserver(update) : null;
+    if (main && mo) mo.observe(main, { childList: true, subtree: true });
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      mo?.disconnect();
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -96,22 +118,16 @@ export default function Header() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         scrolled
-          ? 'py-3.5 bg-[#F4F1EA]/95 backdrop-blur-md border-b border-[#D7D3C8] shadow-sm'
+          ? dk
+            ? 'py-3.5 bg-[#141B1D]/85 backdrop-blur-md border-b border-white/10'
+            : 'py-3.5 bg-[#F4F1EA]/95 backdrop-blur-md border-b border-[#D7D3C8] shadow-sm'
           : 'py-6 bg-transparent border-b border-transparent'
       )}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
-          <span className="text-xl font-bold text-[#1D2528] tracking-tight group-hover:text-[#3E7778] transition-colors">
-            VOLTRENA
-          </span>
-          <span className={cn(
-            'text-xs font-mono text-[#7F8987] tracking-wider transition-opacity duration-300',
-            scrolled ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'
-          )}>
-            Digital
-          </span>
+        <Link href="/" className="flex items-center group flex-shrink-0" aria-label="VOLTRENA Digital — на главную">
+          <Logo tone={dk ? 'light' : 'dark'} showDigital={!scrolled} size={34} />
         </Link>
 
         {/* Desktop navigation */}
@@ -131,7 +147,9 @@ export default function Header() {
                     aria-controls="desktop-services"
                     className={cn(
                       'min-h-[44px] inline-flex items-center text-sm transition-colors duration-200 relative group flex items-center gap-1',
-                      isActive ? 'text-[#3E7778] font-medium' : 'text-[#5D686A] hover:text-[#3E7778]'
+                      isActive
+                        ? dk ? 'text-[#9FD0CB] font-medium' : 'text-[#3E7778] font-medium'
+                        : dk ? 'text-[#C9D0CE] hover:text-white' : 'text-[#5D686A] hover:text-[#3E7778]'
                     )}
                     aria-expanded={servicesOpen}
                   >
@@ -200,7 +218,9 @@ export default function Header() {
                 href={link.href}
                 className={cn(
                   'min-h-[44px] inline-flex items-center text-sm transition-colors duration-200 relative group',
-                  isActive ? 'text-[#3E7778] font-medium' : 'text-[#5D686A] hover:text-[#3E7778]'
+                  isActive
+                        ? dk ? 'text-[#9FD0CB] font-medium' : 'text-[#3E7778] font-medium'
+                        : dk ? 'text-[#C9D0CE] hover:text-white' : 'text-[#5D686A] hover:text-[#3E7778]'
                 )}
               >
                 {link.label}
@@ -228,13 +248,15 @@ export default function Header() {
         >
           <span
             className={cn(
-              'w-6 h-px bg-[#1D2528] transition-transform duration-300',
+              'w-6 h-px transition-transform duration-300',
+              dk ? 'bg-[#F4F1EA]' : 'bg-[#1D2528]',
               mobileOpen && 'rotate-45 translate-y-[4px]'
             )}
           />
           <span
             className={cn(
-              'w-6 h-px bg-[#1D2528] transition-transform duration-300',
+              'w-6 h-px transition-transform duration-300',
+              dk ? 'bg-[#F4F1EA]' : 'bg-[#1D2528]',
               mobileOpen && '-rotate-45 -translate-y-[3px]'
             )}
           />

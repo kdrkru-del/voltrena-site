@@ -38,21 +38,21 @@ export default function ServiceCTA({
       {serviceSlug && <ServiceRelatedSystems serviceSlug={serviceSlug} />}
       {productSlug && <ProductRelatedCases productSlug={productSlug} />}
 
-      <section id="contact" className="py-20 md:py-28 bg-bg-primary relative overflow-hidden scroll-mt-24">
+      <section id="contact" className="py-20 md:py-28 bg-[#141B1D] text-[#F4F1EA] relative overflow-hidden scroll-mt-24">
         <div aria-hidden="true" className="absolute inset-0 bg-dot-grid opacity-15 pointer-events-none" />
-        <div aria-hidden="true" className="absolute inset-x-0 top-1/2 mx-auto -translate-y-1/2 w-full max-w-[600px] aspect-square bg-accent/5 blur-[160px] rounded-full pointer-events-none" />
+        <div aria-hidden="true" className="absolute inset-x-0 top-1/2 mx-auto -translate-y-1/2 w-full max-w-[600px] aspect-square bg-accent/25 blur-[160px] rounded-full pointer-events-none" />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center max-w-6xl mx-auto">
             <div className="lg:col-span-6">
               <ScrollReveal direction="right" delay={0}>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mb-4 tracking-tight break-words hyphens-auto">{title}</h2>
-                <p className="text-text-secondary text-base md:text-lg leading-relaxed mb-8">{description}</p>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#F4F1EA] mb-4 tracking-tight break-words hyphens-auto">{title}</h2>
+                <p className="text-[#A9B3B1] text-base md:text-lg leading-relaxed mb-8">{description}</p>
                 <ul className="space-y-3.5">
                   {benefits.map((benefit, index) => (
                     <li key={index} className="flex items-center gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0" />
-                      <span className="text-text-primary text-sm md:text-base font-medium">{benefit}</span>
+                      <CheckCircle2 className="w-5 h-5 text-[#9FD0CB] shrink-0" />
+                      <span className="text-[#E6EAE9] text-sm md:text-base font-medium">{benefit}</span>
                     </li>
                   ))}
                 </ul>
@@ -77,7 +77,7 @@ export default function ServiceCTA({
                         <ArrowRight className="w-4 h-4 text-emerald-400 group-hover:translate-x-1 transition-transform" />
                       </a>
                       <a href={`mailto:${siteConfig.email}`} onClick={() => reachGoal('contact_email_click', { origin: 'cta_direct' })} className="flex items-center justify-between p-4 rounded-xl bg-bg-primary border border-border hover:border-accent/40 text-text-primary font-medium text-sm md:text-base transition-colors group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[50px]">
-                        <div className="flex items-center gap-3 min-w-0"><Mail className="w-5 h-5 text-accent shrink-0" /><span className="break-all">{siteConfig.email}</span></div>
+                        <div className="flex items-center gap-3 min-w-0"><Mail className="w-5 h-5 text-[#9FD0CB] shrink-0" /><span className="break-all">{siteConfig.email}</span></div>
                         <span className="text-xs font-mono text-accent group-hover:underline hidden sm:inline ml-3">Отправить письмо</span>
                       </a>
                     </div>

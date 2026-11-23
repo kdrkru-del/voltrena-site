@@ -1,46 +1,55 @@
 'use client'
 
 import React from 'react'
-import Link from 'next/link'
-import Button from '@/components/ui/Button'
+import { ShieldCheck } from 'lucide-react'
 import { siteConfig } from '@/config/site'
-import { ArrowDown, ShieldCheck, Layers } from 'lucide-react'
+import { DarkHeroSection, HeroActions, HeroEyebrow, HeroLead, HeroTitle } from '@/components/ui/DarkHero'
+import { BrowserFrame } from '@/components/cases/ProofSection'
+
+const shot = (id: string) => siteConfig.getAssetUrl(`/images/cases/${id}-desktop.jpg`)
 
 export default function CasesHero() {
   return (
-    <section className="relative pt-32 pb-16 md:pt-36 md:pb-24 bg-bg-primary overflow-hidden border-b border-border/40">
-      {/* Glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/8 blur-[150px] rounded-full pointer-events-none" />
-
-      <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-6xl">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* H1 */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary tracking-tight leading-[1.12] mb-6 max-w-4xl mx-auto">
-            Кейсы внедрений: от первого клика до сделки в CRM.
-          </h1>
-
-          {/* Supporting */}
-          <p className="text-base sm:text-lg md:text-xl text-text-secondary leading-relaxed max-w-3xl mx-auto mb-8">
+    <DarkHeroSection>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+        <div className="lg:col-span-6">
+          <HeroEyebrow>Кейсы</HeroEyebrow>
+          <HeroTitle className="mt-5">Кейсы внедрений: от первого клика до сделки в CRM</HeroTitle>
+          <HeroLead className="mt-5 max-w-xl">
             Показываем проекты через связку: спрос, интерфейс, заявка, данные, обработка и следующий шаг. Без выдуманных процентов и фейковых обещаний.
-          </p>
-
-          {/* CTAs */}
-          <div className="flex flex-wrap items-center justify-center gap-3.5 mb-10">
-            <Button variant="primary" size="lg" href={siteConfig.telegramUrl}>
-              Разобрать похожую задачу
-            </Button>
-            <Button variant="secondary" size="lg" href="#cases">
-              Смотреть кейсы
-            </Button>
-          </div>
-
-          {/* Fact-check badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-bg-surface border border-border/80 text-xs font-mono text-text-muted">
-            <ShieldCheck className="w-4 h-4 text-accent" />
+          </HeroLead>
+          <HeroActions
+            className="mt-8"
+            primary={{ label: 'Разобрать похожую задачу', href: siteConfig.telegramUrl }}
+            secondary={{ label: 'Смотреть кейсы', href: '#cases' }}
+          />
+          <div className="mt-8 inline-flex items-start gap-2.5 rounded-xl bg-white/[0.04] ring-1 ring-white/10 px-4 py-2.5 text-xs font-mono text-[#A9B3B1]">
+            <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#9FD0CB]" />
             <span>Только проверяемые артефакты и подтверждённые данные проектов</span>
           </div>
         </div>
+
+        <div className="lg:col-span-6 min-w-0">
+          <div className="group relative pb-14 sm:pb-16">
+            <BrowserFrame
+              src={shot('okna-center')}
+              alt="Сайт Окна Центр"
+              domain="окнацентр.рф"
+              eager
+              className="-rotate-1 transition-transform duration-700 group-hover:rotate-0"
+            />
+            <div className="absolute -bottom-0 right-0 w-[62%]">
+              <BrowserFrame
+                src={shot('centr-kondicionerov')}
+                alt="Сайт Центр Кондиционеров"
+                domain="центр-кондиционеров.рф"
+                eager
+                className="rotate-[1.5deg] transition-transform duration-700 group-hover:rotate-0 group-hover:translate-y-1"
+              />
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
+    </DarkHeroSection>
   )
 }

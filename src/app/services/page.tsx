@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   description: 'Услуги VOLTRENA: создание сайтов, Яндекс Директ, SEO/GEO, B2B-лидогенерация, парсинг, AI-автоматизация, Telegram-боты, CRM и аналитика.',
   alternates: { canonical: siteUrl + '/services/' },
   openGraph: {
+    images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.png'), width: 1200, height: 630, alt: 'VOLTRENA Digital' }],
     title: 'Услуги digital-агентства VOLTRENA | Сайты, реклама, AI, CRM и аналитика',
     description: 'Услуги VOLTRENA: создание сайтов, Яндекс Директ, SEO/GEO, B2B-лидогенерация, парсинг, AI-автоматизация, Telegram-боты, CRM и аналитика.',
     url: siteUrl + '/services/',
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
     siteName: 'VOLTRENA Digital',
   },
   twitter: {
+    images: [siteConfig.getCanonicalUrl('/images/og-image.png')],
     card: 'summary_large_image',
     title: 'Услуги digital-агентства VOLTRENA | Сайты, реклама, AI, CRM и аналитика',
     description: 'Услуги VOLTRENA: создание сайтов, Яндекс Директ, SEO/GEO, B2B-лидогенерация, парсинг, AI-автоматизация, Telegram-боты, CRM и аналитика.',

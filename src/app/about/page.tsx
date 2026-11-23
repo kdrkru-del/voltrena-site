@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   description: 'Команда VOLTRENA Digital: стратегия, разработка сайтов, контекстная реклама, внедрение CRM, AI-автоматизация и сквозная аналитика.',
   alternates: { canonical: siteUrl + '/about/' },
   openGraph: {
+    images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.png'), width: 1200, height: 630, alt: 'VOLTRENA Digital' }],
     title: 'О нас — Команда и принципы агентства VOLTRENA Digital',
     description: 'Команда VOLTRENA Digital: стратегия, разработка сайтов, контекстная реклама, внедрение CRM, AI-автоматизация и сквозная аналитика.',
     url: siteUrl + '/about/',
@@ -26,6 +27,7 @@ export const metadata: Metadata = {
     siteName: 'VOLTRENA Digital',
   },
   twitter: {
+    images: [siteConfig.getCanonicalUrl('/images/og-image.png')],
     card: 'summary_large_image',
     title: 'О нас — Команда и принципы агентства VOLTRENA Digital',
     description: 'Команда VOLTRENA Digital: стратегия, разработка сайтов, контекстная реклама, внедрение CRM, AI-автоматизация и сквозная аналитика.',

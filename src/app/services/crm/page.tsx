@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description: crmData.seo.description,
   alternates: { canonical: siteUrl + '/services/crm/' },
   openGraph: {
+    images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.png'), width: 1200, height: 630, alt: 'VOLTRENA Digital' }],
     title: crmData.seo.title,
     description: crmData.seo.description,
     url: siteUrl + '/services/crm/',
@@ -17,7 +18,8 @@ export const metadata: Metadata = {
     locale: 'ru_RU',
     siteName: 'VOLTRENA Digital',
   },
-  twitter: { card: 'summary_large_image', title: crmData.seo.title, description: crmData.seo.description },
+  twitter: {
+    images: [siteConfig.getCanonicalUrl('/images/og-image.png')], card: 'summary_large_image', title: crmData.seo.title, description: crmData.seo.description },
   robots: { index: true, follow: true },
 }
 

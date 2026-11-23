@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description: aiAutomationData.seo.description,
   alternates: { canonical: siteUrl + '/services/ai-automation/' },
   openGraph: {
+    images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.png'), width: 1200, height: 630, alt: 'VOLTRENA Digital' }],
     title: aiAutomationData.seo.title,
     description: aiAutomationData.seo.description,
     url: siteUrl + '/services/ai-automation/',
@@ -17,7 +18,8 @@ export const metadata: Metadata = {
     locale: 'ru_RU',
     siteName: 'VOLTRENA Digital',
   },
-  twitter: { card: 'summary_large_image', title: aiAutomationData.seo.title, description: aiAutomationData.seo.description },
+  twitter: {
+    images: [siteConfig.getCanonicalUrl('/images/og-image.png')], card: 'summary_large_image', title: aiAutomationData.seo.title, description: aiAutomationData.seo.description },
   robots: { index: true, follow: true },
 }
 

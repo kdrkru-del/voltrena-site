@@ -44,6 +44,13 @@ body {
   color: var(--text-primary);
 }
 
+/* Display typeface for headings (Onest), body stays Inter */
+h1, h2, h3 {
+  font-family: var(--font-display), var(--font-inter), system-ui, sans-serif;
+  letter-spacing: -0.028em;
+  text-wrap: balance;
+}
+
 /* Selection styling */
 ::selection {
   background-color: rgba(62, 119, 120, 0.20);
@@ -160,6 +167,16 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .group:hover img { transform: none !important; }
   .animate-marquee { animation: none !important; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+
+.rise {
+  animation: rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0s);
 }
 
 @keyframes lfe-drop {

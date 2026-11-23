@@ -23,7 +23,7 @@ export function useStepLoop(active: boolean, max: number, ms: number) {
   return step;
 }
 
-function Panel({ title, tag = 'демонстрация', children }: { title: string; tag?: string; children: React.ReactNode }) {
+export function Panel({ title, tag = 'демонстрация', children }: { title: string; tag?: string; children: React.ReactNode }) {
   return (
     <div className="relative rounded-2xl bg-[#1D2528] ring-1 ring-white/10 shadow-[0_40px_90px_-40px_rgba(29,37,40,0.8)] overflow-hidden">
       <div className="flex items-center justify-between gap-3 px-4 sm:px-5 py-3 border-b border-white/5">

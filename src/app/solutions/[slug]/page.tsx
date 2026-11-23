@@ -59,9 +59,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: 'website',
       locale: 'ru_RU',
       siteName: siteConfig.name,
-      images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.svg'), width: 1200, height: 630, alt: product.title }],
+      images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.png'), width: 1200, height: 630, alt: product.title }],
     },
-    twitter: { card: 'summary_large_image', title, description, images: [siteConfig.getCanonicalUrl('/images/og-image.svg')] },
+    twitter: { card: 'summary_large_image', title, description, images: [siteConfig.getCanonicalUrl('/images/og-image.png')] },
     robots: { index: true, follow: true },
   };
 }

@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   description: 'Автоматизированный поиск и квалификация корпоративных клиентов: сбор баз компаний, обогащение данных, сегментация и передача в CRM.',
   alternates: { canonical: siteUrl + '/services/b2b-lead-generation/' },
   openGraph: {
+    images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.png'), width: 1200, height: 630, alt: 'VOLTRENA Digital' }],
     title: 'B2B Лидогенерация | VOLTRENA Digital',
     description: 'Автоматизированный поиск и квалификация корпоративных клиентов.',
     url: siteUrl + '/services/b2b-lead-generation/',

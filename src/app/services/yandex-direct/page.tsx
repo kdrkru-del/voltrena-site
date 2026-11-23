@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     canonical: `${siteUrl}/services/yandex-direct/`,
   },
   openGraph: {
+    images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.png'), width: 1200, height: 630, alt: 'VOLTRENA Digital' }],
     title: yandexDirectData.seo.title,
     description: yandexDirectData.seo.description,
     url: `${siteUrl}/services/yandex-direct/`,
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
     siteName: 'VOLTRENA Digital',
   },
   twitter: {
+    images: [siteConfig.getCanonicalUrl('/images/og-image.png')],
     card: 'summary_large_image',
     title: yandexDirectData.seo.title,
     description: yandexDirectData.seo.description,

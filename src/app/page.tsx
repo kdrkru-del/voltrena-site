@@ -21,13 +21,13 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'ru_RU',
     siteName: 'VOLTRENA',
-    images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.svg'), width: 1200, height: 630, alt: 'VOLTRENA — Сайты, реклама и CRM для бизнеса' }],
+    images: [{ url: siteConfig.getCanonicalUrl('/images/og-image.png'), width: 1200, height: 630, alt: 'VOLTRENA — Сайты, реклама и CRM для бизнеса' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'VOLTRENA — Сайты, реклама и CRM для бизнеса',
     description: 'Создаём быстрые сайты, настраиваем Яндекс Директ и связываем формы с CRM и Telegram. Менеджер получает заявку сразу со всеми деталями заказа, а вы видите, какая реклама сработала.',
-    images: [siteConfig.getCanonicalUrl('/images/og-image.svg')],
+    images: [siteConfig.getCanonicalUrl('/images/og-image.png')],
   },
   robots: { index: true, follow: true },
   other: {

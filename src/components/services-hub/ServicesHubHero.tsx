@@ -1,67 +1,36 @@
 'use client'
 
 import React from 'react'
-import Link from 'next/link'
-import ScrollReveal from '@/components/ui/ScrollReveal'
-import Button from '@/components/ui/Button'
-import { ArrowDown, Layers } from 'lucide-react'
+import { DarkHeroSection, HeroActions, HeroEyebrow, HeroLead, HeroTitle } from '@/components/ui/DarkHero'
+import { PipelineVisual } from '@/components/service/HeroVisuals'
 
 const servicePillars = [
-  { id: 'attract', title: 'Привлечь', desc: 'Директ, SEO / GEO, B2B-поиск' },
-  { id: 'convert', title: 'Конвертировать', desc: 'Сайты, Telegram Mini Apps' },
-  { id: 'automate', title: 'Автоматизировать', desc: 'ИИ-ассистенты, CRM-воронки' },
-  { id: 'measure', title: 'Измерять', desc: 'Парсинг данных, Сквозная аналитика' },
+  { id: 'attract', label: 'Привлечь', detail: 'Директ, SEO / GEO, B2B-поиск' },
+  { id: 'convert', label: 'Конвертировать', detail: 'Сайты, калькуляторы, Mini Apps' },
+  { id: 'automate', label: 'Автоматизировать', detail: 'ИИ-ассистенты, боты, CRM-воронки' },
+  { id: 'measure', label: 'Измерять', detail: 'Парсинг данных, сквозная аналитика' },
 ]
 
 export default function ServicesHubHero() {
   return (
-    <section className="relative pt-32 pb-16 md:pt-36 md:pb-24 bg-bg-primary overflow-hidden border-b border-border/40">
-      {/* Subtle Glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-accent/8 blur-[140px] rounded-full pointer-events-none" />
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* H1 */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary tracking-tight mb-6 max-w-3xl mx-auto leading-[1.1]">
-            Услуги для каждого участка цифровой системы продаж.
-          </h1>
-
-          {/* Supporting Text */}
-          <p className="text-base sm:text-lg md:text-xl text-text-secondary leading-relaxed max-w-2xl mx-auto mb-8">
+    <DarkHeroSection>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+        <div className="lg:col-span-6">
+          <HeroEyebrow>Услуги</HeroEyebrow>
+          <HeroTitle className="mt-5">Услуги для каждого участка цифровой системы продаж</HeroTitle>
+          <HeroLead className="mt-5 max-w-xl">
             Можно начать с сайта, рекламы, CRM, автоматизации или аналитики — а затем соединить нужные компоненты в одну управляемую систему.
-          </p>
-
-          {/* CTAs */}
-          <div className="flex flex-wrap items-center justify-center gap-3.5 mb-14">
-            <Button variant="primary" size="lg" href="#service-groups">
-              Выбрать услугу
-            </Button>
-            <Button variant="secondary" size="lg" href="#contact">
-              Описать задачу
-            </Button>
-          </div>
+          </HeroLead>
+          <HeroActions
+            className="mt-8"
+            primary={{ label: 'Выбрать услугу', href: '#service-groups' }}
+            secondary={{ label: 'Описать задачу', href: '#contact' }}
+          />
         </div>
-
-        {/* Compact 4-Pillar Map (Instantly readable, lightweight) */}
-        <div className="max-w-5xl mx-auto">
-          <div className="p-4 sm:p-6 rounded-2xl bg-bg-surface/70 border border-border/70 backdrop-blur-sm shadow-xl">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-              {servicePillars.map((p) => (
-                <div
-                  key={p.id}
-                  className="p-4 rounded-xl bg-bg-primary/80 border border-border/80 flex flex-col justify-between"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-bold text-sm text-text-primary">{p.title}</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
-                  </div>
-                  <p className="text-xs text-text-secondary leading-relaxed">{p.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="lg:col-span-6 min-w-0">
+          <PipelineVisual nodes={servicePillars} title="Система продаж · 4 этапа" tag="карта услуг" />
         </div>
       </div>
-    </section>
+    </DarkHeroSection>
   )
 }

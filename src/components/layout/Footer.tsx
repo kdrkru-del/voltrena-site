@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { footerLinks } from '@/data/navigation';
 import { siteConfig } from '@/config/site';
+import Logo from '@/components/ui/Logo';
 
 export default function Footer() {
   return (
@@ -9,13 +10,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
-            <Link href="/" className="inline-block">
-              <span className="text-2xl font-bold text-[#F2EFE6] tracking-tight">
-                VOLTRENA
-              </span>
-              <span className="text-xs font-mono text-[#AAB4B1] tracking-wider ml-2">
-                Digital
-              </span>
+            <Link href="/" className="inline-block" aria-label="VOLTRENA Digital — на главную">
+              <Logo tone="light" size={40} />
             </Link>
             <p className="mt-4 text-[#AAB4B1] text-sm leading-relaxed max-w-sm">
               Проектируем единые цифровые контуры для B2B: связываем Директ, посадочные страницы, CRM, n8n-автоматизацию и сквозную аналитику.
