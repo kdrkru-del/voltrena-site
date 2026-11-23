@@ -59,6 +59,7 @@ export default function LeadFlowEngine({ className = '' }: { className?: string 
   const circleRefs = useRef<(SVGCircleElement | null)[]>([]);
   const particles = useRef<Particle[]>([]);
   const visible = useRef(true);
+  const keySeq = useRef(0);
 
   const [stack, setStack] = useState<StackItem[]>([
     { key: -2, lead: LEADS[5] },
@@ -83,7 +84,6 @@ export default function LeadFlowEngine({ className = '' }: { className?: string 
     const canRun = () => visible.current && document.visibilityState === 'visible';
 
     let leadIndex = 0;
-    let keySeq = 0;
 
     const launchLead = () => {
       if (!canRun()) return;
@@ -98,8 +98,9 @@ export default function LeadFlowEngine({ className = '' }: { className?: string 
         onArrive: () => {
           setPulse((p) => p + 1);
           later(() => {
-            keySeq += 1;
-            setStack((prev) => [{ key: keySeq, lead }, ...prev].slice(0, 3));
+            keySeq.current += 1;
+            const key = keySeq.current;
+            setStack((prev) => [{ key, lead }, ...prev].slice(0, 3));
             setCount((c) => c + 1);
             setActiveSource(null);
           }, 280);

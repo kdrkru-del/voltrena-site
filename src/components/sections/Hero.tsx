@@ -7,7 +7,7 @@ import LeadFlowEngine from '@/components/ui/LeadFlowEngine';
 
 export default function Hero() {
   const handleScrollToNext = () => {
-    const nextEl = document.getElementById('short-benefits');
+    const nextEl = document.getElementById('system-story');
     if (nextEl) {
       nextEl.scrollIntoView({ behavior: 'smooth' });
     }

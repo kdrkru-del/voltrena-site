@@ -1,9 +1,8 @@
 import { siteConfig } from '@/config/site'
 import type { Metadata } from 'next'
 import Hero from '@/components/sections/Hero'
-import HomeShortBenefits from '@/components/sections/HomeShortBenefits'
-import HomeProblemNavigator from '@/components/sections/HomeProblemNavigator'
-import DigitalGrowthContours from '@/components/sections/DigitalGrowthContours'
+import SystemStory from '@/components/sections/SystemStory'
+import SystemConfigurator from '@/components/sections/SystemConfigurator'
 import ProofSection from '@/components/cases/ProofSection'
 import HomeWorkflowSteps from '@/components/sections/HomeWorkflowSteps'
 import HomeTrustBlock from '@/components/sections/HomeTrustBlock'
@@ -64,12 +63,11 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
       <Hero />
-      <HomeShortBenefits />
-      <HomeProblemNavigator />
-      <DigitalGrowthContours />
+      <SystemStory />
       <ProofSection />
       <HomeWorkflowSteps />
       <HomeTrustBlock />
+      <SystemConfigurator />
       <HomeFinalContact />
     </>
   )
