@@ -70,16 +70,36 @@ export default function SystemStory() {
   const refs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) setActive(Number((e.target as HTMLElement).dataset.idx));
+    // Active chapter = the one whose box is closest to the viewport centre.
+    // Computed from scroll position, so fast jumps and anchor links never leave a stale chapter.
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const mid = window.innerHeight / 2;
+      let best = 0;
+      let bestDist = Infinity;
+      refs.current.forEach((el, i) => {
+        if (!el) return;
+        const r = el.getBoundingClientRect();
+        const dist = mid < r.top ? r.top - mid : mid > r.bottom ? mid - r.bottom : 0;
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = i;
         }
-      },
-      { rootMargin: '-45% 0px -45% 0px' }
-    );
-    refs.current.forEach((el) => el && io.observe(el));
-    return () => io.disconnect();
+      });
+      setActive(best);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
   }, []);
 
   return (
