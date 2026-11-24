@@ -3,7 +3,7 @@
 import React from 'react'
 import SectionHeading from '@/components/ui/SectionHeading'
 import ScrollReveal from '@/components/ui/ScrollReveal'
-import { useIsMobile } from '@/hooks/useMediaQuery'
+import { Band, pad } from '@/components/service/Band'
 
 interface UseCase {
   id: string
@@ -16,34 +16,27 @@ interface ServiceUseCasesProps {
 }
 
 export default function ServiceUseCases({ useCases }: ServiceUseCasesProps) {
-  const isMobile = useIsMobile()
-
   return (
-    <section className="py-section bg-bg-primary relative overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollReveal>
-          <SectionHeading title="Для каких задач." align="left" />
-        </ScrollReveal>
+    <Band tone="sand2">
+      <SectionHeading tag="Применение" title="Для каких задач." align="left" />
 
-        <div className="mt-16 flex flex-col">
-          {useCases.map((useCase, index) => (
-            <ScrollReveal key={useCase.id} delay={0.1 + index * 0.1}>
-                <div className="group flex flex-col md:flex-row md:items-start gap-4 md:gap-8 py-8 border-b border-border transition-all duration-300 md:hover:border-l-2 md:hover:border-l-accent md:hover:pl-4">
-                  <div className="w-2 h-2 rounded-full bg-accent/60 mt-3 flex-shrink-0 hidden md:block" />
-                  
-                  <div className="flex-1">
-                    <h3 className="text-subheading font-bold group-hover:text-accent transition-colors duration-300">
-                      {useCase.title}
-                    </h3>
-                    <p className="mt-2 text-text-secondary max-w-xs md:max-w-md">
-                      {useCase.description}
-                    </p>
-                  </div>
-                </div>
-              </ScrollReveal>
-          ))}
-        </div>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+        {useCases.map((useCase, index) => (
+          <ScrollReveal key={useCase.id} delay={index * 60}>
+            <article className="group relative h-full overflow-hidden rounded-2xl bg-[#FFFDF8] p-6 ring-1 ring-[#D7D3C8] transition-all duration-300 hover:-translate-y-1 hover:ring-[#C9854D]/50 hover:shadow-[0_24px_50px_-28px_rgba(29,37,40,0.35)] md:p-7">
+              <span
+                className="pointer-events-none absolute -right-2 -top-4 select-none font-display text-[5.5rem] font-extrabold leading-none text-[#1D2528]/[0.04] transition-colors duration-300 group-hover:text-[#C9854D]/[0.12]"
+                aria-hidden="true"
+              >
+                {pad(index + 1)}
+              </span>
+              <span className="mb-5 block h-1 w-8 rounded-full bg-[#C9854D] transition-all duration-300 group-hover:w-14" aria-hidden="true" />
+              <h3 className="relative text-lg font-extrabold leading-snug tracking-tight text-[#1D2528] md:text-xl">{useCase.title}</h3>
+              <p className="relative mt-2.5 text-sm leading-relaxed text-[#5D686A]">{useCase.description}</p>
+            </article>
+          </ScrollReveal>
+        ))}
       </div>
-    </section>
+    </Band>
   )
 }

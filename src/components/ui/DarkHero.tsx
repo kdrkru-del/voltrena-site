@@ -7,15 +7,19 @@ export function DarkHeroSection({
   children,
   className,
   id,
+  serviceHero = false,
 }: {
   children: React.ReactNode;
   className?: string;
   id?: string;
+  /** Marks service pages so legacy body cards can be harmonised via CSS. */
+  serviceHero?: boolean;
 }) {
   return (
     <section
       id={id}
       data-dark-hero
+      {...(serviceHero ? { 'data-service-page': '' } : {})}
       className={cn('relative bg-[#141B1D] text-[#F4F1EA] overflow-hidden pt-28 md:pt-36 pb-16 md:pb-24', className)}
     >
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">

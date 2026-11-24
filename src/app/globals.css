@@ -169,6 +169,33 @@ h1, h2, h3 {
   .animate-marquee { animation: none !important; }
 }
 
+/* Consecutive "formula" bands alternate dark / light automatically */
+.lead-sys {
+  --ls-bg: #1d2528; --ls-fg: #f4f1ea; --ls-sub: #a9b3b1; --ls-chip: rgba(255, 255, 255, 0.06);
+  --ls-line: rgba(255, 255, 255, 0.12); --ls-inner: #1d2528; --ls-accent: #d99a62;
+}
+.lead-sys + .lead-sys,
+.lead-sys + .lead-sys + .lead-sys + .lead-sys {
+  --ls-bg: #f4f1ea; --ls-fg: #1d2528; --ls-sub: #5d686a; --ls-chip: #fffdf8;
+  --ls-line: #d7d3c8; --ls-inner: #fffdf8; --ls-accent: #c9854d;
+}
+.lead-sys + .lead-sys + .lead-sys,
+.lead-sys + .lead-sys + .lead-sys + .lead-sys + .lead-sys {
+  --ls-bg: #1d2528; --ls-fg: #f4f1ea; --ls-sub: #a9b3b1; --ls-chip: rgba(255, 255, 255, 0.06);
+  --ls-line: rgba(255, 255, 255, 0.12); --ls-inner: #1d2528; --ls-accent: #d99a62;
+}
+
+@keyframes flow-x {
+  0% { left: -35%; }
+  100% { left: 100%; }
+}
+
+/* Harmonise the legacy one-off service blocks with the new card language */
+main:has([data-service-page]) .bg-bg-surface {
+  border-radius: 1.25rem;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 18px 40px -28px rgba(29, 37, 40, 0.3);
+}
+
 @keyframes rise {
   from { opacity: 0; transform: translateY(18px); }
   to { opacity: 1; transform: none; }
